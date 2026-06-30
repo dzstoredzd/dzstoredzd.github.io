@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="q4sa-fmVwGJOlf542lkuE1kLPuGHTy7R-aptzCyJ97A" />
   <title>Privacy Policy — Store Soft</title>
   <meta name="description" content="Privacy Policy for Store Soft, an offline-first store-management app. How we handle your data and Google Drive backup access." />
+  <meta name="google-site-verification" content="q4sa-fmVwGJOlf542lkuE1kLPuGHTy7R-aptzCyJ97A" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="canonical" href="https://yousoft.site/privacy.html" />
   <link rel="stylesheet" href="styles.css" />
@@ -41,13 +41,17 @@
     <div class="container doc-wrap">
       <a class="back" href="index.html">← Back to home</a>
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: 26 June 2026</p>
+      <p class="updated">Last updated: 30 June 2026</p>
       <p class="intro">
         This Privacy Policy explains how <strong>Store Soft</strong> ("Store Soft", "the app",
         "we", "us") handles information when you use our store-management application on
         Windows and Android. Store Soft is designed to be <strong>offline-first</strong>:
         your business data lives on your own device, and the app works without an account
-        or an internet connection.
+        or an internet connection. Two features are <strong>optional and off by default</strong>
+        and only send data when you turn them on: <strong>Google Drive backup</strong> (to your
+        own Google account) and the <strong>paid multi-device sync</strong> tier (to our secure
+        cloud backend). The app also sends a small amount of <strong>anonymous usage analytics</strong>
+        that never includes your business data.
       </p>
 
       <div class="toc">
@@ -56,8 +60,11 @@
           <li><a href="#who">Who we are</a></li>
           <li><a href="#scope">Scope</a></li>
           <li><a href="#data-local">Data stored on your device</a></li>
-          <li><a href="#google">Google account &amp; Google Drive</a></li>
+          <li><a href="#sync">Multi-device sync (optional, paid)</a></li>
+          <li><a href="#google">Google account &amp; Google Drive backup (optional)</a></li>
           <li><a href="#limited-use">Google API Limited Use</a></li>
+          <li><a href="#camera">Camera</a></li>
+          <li><a href="#analytics">Anonymous analytics &amp; diagnostics</a></li>
           <li><a href="#use">How we use information</a></li>
           <li><a href="#sharing">Sharing &amp; disclosure</a></li>
           <li><a href="#retention">Retention &amp; deletion</a></li>
@@ -96,14 +103,64 @@
         <li>Local user profiles secured by a 4-digit PIN (stored only as a salted hash).</li>
       </ul>
       <div class="callout">
-        <strong>We do not operate a server that collects your shop data.</strong> Store Soft
-        does not transmit your products, sales, customers or any business records to us or to
-        any third party. This information never leaves your device unless <em>you</em> choose
-        to enable Google Drive backup (see Section 4) or you manually export or share a backup
-        file yourself.
+        <strong>By default, your shop data stays on your device.</strong> In its standard
+        offline mode Store Soft does not transmit your products, sales, customers or any
+        business records to us or to any third party. Your business records leave your
+        device only when <em>you</em> choose to turn on an optional feature — <strong>Google
+        Drive backup</strong> (to your own Google account, see Section 5) or the <strong>paid
+        multi-device sync</strong> tier (to our secure backend, see Section 4) — or when you
+        manually export or share a backup file yourself. Separately, the app sends a small
+        amount of <strong>anonymous usage analytics</strong> that never contains any business
+        data (see Section 8).
       </div>
 
-      <h2 id="google">4. Google account &amp; Google Drive backup</h2>
+      <h2 id="sync">4. Multi-device sync (optional, paid)</h2>
+      <p>
+        Multi-device sync is an <strong>optional, paid</strong> feature for shops that want the
+        same data on more than one device (for example a second till or the owner's phone). It is
+        <strong>off by default</strong> and is only active if the shop owner creates a Store Soft
+        cloud account and enables it. Most shops run a single device fully offline and never use it.
+      </p>
+      <h3>The store account</h3>
+      <ul>
+        <li>
+          The owner creates an account with an <strong>email address and password</strong>. This
+          identifies the shop ("the store") and is used to sign in and to enroll devices. We use the
+          email only for authentication and account-related contact — never for advertising.
+        </li>
+        <li>
+          Each device you enroll registers under the store using a <strong>device fingerprint</strong>
+          (the same machine ID / Android ID the license uses), so the number of devices can be limited
+          to your plan and a lost or sold device can be removed.
+        </li>
+        <li>
+          <strong>Staff (cashier) accounts</strong> are created by the owner with a username and a
+          password/PIN that is stored only as a <strong>salted hash</strong> — never in plain text.
+        </li>
+      </ul>
+      <h3>What is uploaded</h3>
+      <p>
+        When sync is enabled, your shop's business records — products, prices, stock, suppliers,
+        sales and receipts, customers, debt (credit / الكريدي) records, repair tickets and staff
+        accounts — are uploaded to our cloud backend so they appear on every enrolled device of the
+        same shop. <strong>Unlike Drive backup, these copies are stored on a server we operate</strong>
+        (our Supabase backend, hosted in the European Union) for as long as sync is active on your account.
+      </p>
+      <h3>How it is protected</h3>
+      <ul>
+        <li>Data is transferred over <strong>encrypted HTTPS</strong> connections.</li>
+        <li>
+          Each store's data is <strong>isolated</strong> by row-level security keyed to your store
+          identifier, so one shop can never read or modify another shop's data.
+        </li>
+        <li>We use your synced business data <strong>only</strong> to provide the sync service to you. We do not sell it, share it, or use it for advertising.</li>
+      </ul>
+      <p>
+        You can disconnect a device, disable sync, or ask us to delete your store's cloud data at any
+        time (see Sections 11 and 15).
+      </p>
+
+      <h2 id="google">5. Google account &amp; Google Drive backup (optional)</h2>
       <p>
         Google Drive backup is an <strong>optional</strong> feature. It is off by default and
         is only used if you choose to sign in with Google from within the app.
@@ -141,7 +198,7 @@
         never receive a copy.
       </p>
 
-      <h2 id="limited-use">5. Google API Services User Data Policy — Limited Use</h2>
+      <h2 id="limited-use">6. Google API Services User Data Policy — Limited Use</h2>
       <div class="callout">
         Store Soft's use and transfer of information received from Google APIs adheres to the
         <a class="inline" href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes" target="_blank" rel="noopener">Google API Services User Data Policy</a>,
@@ -155,54 +212,103 @@
         <li>We do not allow humans to read your data, except where you give explicit consent for support, where required for security or to comply with law, or where the data has been aggregated and anonymized.</li>
       </ul>
 
-      <h2 id="use">6. How we use information</h2>
+      <h2 id="camera">7. Camera</h2>
+      <p>
+        On Android, Store Soft uses the camera <strong>only</strong> to scan product barcodes in
+        real time (when you open a scanner to add a product or ring up a sale). The camera preview is
+        processed on your device to read the barcode; <strong>images are not stored and are not
+        transmitted</strong> anywhere. The app does not access your photo gallery.
+      </p>
+
+      <h2 id="analytics">8. Anonymous analytics &amp; diagnostics</h2>
+      <p>
+        To understand how many shops install and open the app and which versions and platforms are
+        in use, Store Soft sends a small amount of <strong>anonymous</strong> usage data on startup.
+        This helps us fix bugs and prioritise improvements. It contains <strong>no business data and
+        nothing that identifies you personally</strong>.
+      </p>
+      <h3>What is sent</h3>
+      <ul>
+        <li>A <strong>one-way hashed device identifier</strong> (so a reinstall on the same machine isn't double-counted; it cannot be reversed to identify you).</li>
+        <li>Platform (Windows or Android), operating-system version, and app version.</li>
+        <li>The app's interface language (for example Arabic or French).</li>
+        <li>Anonymous "install" and "app opened" events (the open event at most once per day).</li>
+      </ul>
+      <h3>What is never sent</h3>
+      <p>
+        We <strong>never</strong> send your products, prices, sales, customers, suppliers, debts or
+        any other business records, and we do not collect your name, email, phone number, contacts,
+        precise location, or any advertising identifier. Store Soft contains <strong>no advertising
+        and no third-party tracking SDKs</strong>; this data is not sold, not shared, and not used
+        for advertising.
+      </p>
+      <p>
+        Separately, the app keeps a <strong>diagnostic error log on your own device</strong> for
+        troubleshooting. It is shown only to you and is never sent automatically — you may choose to
+        share it with our support (for example over WhatsApp).
+      </p>
+
+      <h2 id="use">9. How we use information</h2>
       <ul>
         <li>To let you run your shop: ring up sales, manage stock, and track debt — entirely on your device.</li>
         <li>To create and restore backups when you ask the app to (locally and, if enabled, to your Google Drive).</li>
+        <li>To provide the optional paid multi-device sync service when you enable it (keeping the same shop data on your enrolled devices).</li>
+        <li>To understand install/usage counts through the anonymous analytics described in Section 8.</li>
         <li>To show diagnostic logs to you on your own device for troubleshooting (you may choose to share these with our support).</li>
       </ul>
 
-      <h2 id="sharing">7. Sharing &amp; disclosure</h2>
+      <h2 id="sharing">10. Sharing &amp; disclosure</h2>
       <p>
-        We do not sell, rent or trade your information. We do not share your shop data or your
-        Google data with third parties. Information may only leave your device when:
+        We do not sell, rent or trade your information. We do not share your shop data, your Google
+        data, or your analytics data with third parties for their own purposes. Information may only
+        leave your device when:
       </p>
       <ul>
         <li>You enable Google Drive backup (data goes only to your own Google account); or</li>
+        <li>You enable the paid multi-device sync tier (business data goes to our secure backend solely to sync your own devices, see Section 4); or</li>
+        <li>The app sends the anonymous, non-business analytics described in Section 8; or</li>
         <li>You manually export, copy or share a backup file or a diagnostic log yourself (for example, sending it to our support over WhatsApp).</li>
       </ul>
+      <p>
+        We may disclose information if required by law, or to protect the security and integrity of
+        the service. We host our backend with infrastructure providers (Supabase / its cloud
+        provider, in the EU) acting solely as our processors.
+      </p>
 
-      <h2 id="retention">8. Data retention &amp; deletion</h2>
+      <h2 id="retention">11. Data retention &amp; deletion</h2>
       <ul>
         <li><strong>On your device:</strong> data is kept until you delete it. The app includes a "delete all business data" option, and uninstalling the app removes its local data.</li>
         <li><strong>Google Drive backups:</strong> you can delete backups from within the app, or directly from your Google Drive.</li>
+        <li><strong>Synced cloud data:</strong> if you use the paid sync tier, you can remove an enrolled device or disable sync in the app; you can also contact us to delete your store account and its synced data from our backend.</li>
         <li><strong>Revoking Google access:</strong> you can disconnect the account in the app, and you can revoke Store Soft's access at any time from your Google Account at
           <a class="inline" href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.
         </li>
+        <li><strong>Analytics:</strong> analytics records are anonymous and cannot be tied back to you, so we cannot single them out for individual deletion.</li>
       </ul>
 
-      <h2 id="security">9. Security</h2>
+      <h2 id="security">12. Security</h2>
       <p>
-        Local PINs are stored only as salted SHA-256 hashes, never in plain text. Data
-        transferred to Google Drive is sent over encrypted HTTPS connections and stored within
-        your own Google account. No method of storage or transmission is 100% secure, but we
-        design the app to keep your data on your device and under your control by default.
+        Local PINs and staff passwords are stored only as salted SHA-256 hashes, never in plain text.
+        Data transferred to Google Drive or to our sync backend is sent over encrypted HTTPS
+        connections; synced data is isolated per store by row-level security so one shop cannot access
+        another's. No method of storage or transmission is 100% secure, but we design the app to keep
+        your data on your device and under your control by default.
       </p>
 
-      <h2 id="children">10. Children's privacy</h2>
+      <h2 id="children">13. Children's privacy</h2>
       <p>
         Store Soft is a business tool intended for shop owners and their staff. It is not
         directed to children and we do not knowingly collect personal information from children.
       </p>
 
-      <h2 id="changes">11. Changes to this policy</h2>
+      <h2 id="changes">14. Changes to this policy</h2>
       <p>
         We may update this Privacy Policy from time to time. When we do, we will revise the
         "Last updated" date at the top of this page. Continued use of the app after changes
         take effect constitutes acceptance of the updated policy.
       </p>
 
-      <h2 id="contact">12. Contact us</h2>
+      <h2 id="contact">15. Contact us</h2>
       <p>
         Questions about this policy or your data? Message us on
         <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp (+213 654 33 86 49)</a>
