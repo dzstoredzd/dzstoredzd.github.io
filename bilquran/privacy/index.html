@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سياسة الخصوصية — بالقرآن اهتديت</title>
+  <meta name="description" content="سياسة الخصوصية لتطبيق «بالقرآن اهتديت» لإدارة تحفيظ القرآن الكريم: البيانات التي نجمعها وكيف نستخدمها ونحميها." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://yousoft.site/bilquran/privacy" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <style>
+    /* بالقرآن اهتديت — صفحة سياسة الخصوصية.
+       صفحة مستقلة بذاتها بدون أي اعتماد خارجي. تصميم إسلامي أخضر، اتجاه من اليمين لليسار. */
+    :root {
+      --green: #12805c;
+      --green-dark: #0c5f45;
+      --green-soft: #e8f5ef;
+      --gold: #c8a24b;
+      --ink: #12211c;
+      --ink-soft: #3f5750;
+      --ink-faint: #6b7c76;
+      --line: #e2ece7;
+      --bg: #ffffff;
+      --bg-alt: #f5faf7;
+      --card: #ffffff;
+      --radius: 16px;
+      --radius-lg: 22px;
+      --shadow-sm: 0 1px 3px rgba(12, 95, 69, .08), 0 1px 2px rgba(12, 95, 69, .05);
+      --shadow: 0 14px 34px rgba(12, 95, 69, .10), 0 4px 8px rgba(12, 95, 69, .05);
+      --maxw: 900px;
+      --font: "Cairo", "Tajawal", "Segoe UI", "Noto Sans Arabic", Tahoma, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg-alt);
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--green-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: 22px;
+    }
+
+    /* ---------- الترويسة ---------- */
+    .site-header {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      color: #fff;
+      padding: 34px 0 30px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #fff;
+    }
+    .brand:hover { text-decoration: none; }
+    .mark {
+      width: 52px; height: 52px;
+      display: grid; place-items: center;
+      background: rgba(255, 255, 255, .16);
+      border: 1px solid rgba(255, 255, 255, .30);
+      border-radius: 14px;
+      font-size: 26px;
+      line-height: 1;
+    }
+    .brand .name { display: flex; flex-direction: column; }
+    .brand .name strong { font-size: 20px; font-weight: 800; }
+    .brand .name small { font-size: 13px; opacity: .85; font-weight: 500; }
+
+    /* ---------- المستند ---------- */
+    .doc { padding: 34px 0 60px; }
+    .doc-wrap {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 40px 38px;
+      margin-top: -18px;
+      position: relative;
+    }
+    .back {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--ink-faint);
+      font-size: 14px;
+    }
+    h1 {
+      font-size: 30px;
+      margin: 0 0 6px;
+      font-weight: 800;
+      color: var(--green-dark);
+    }
+    .updated {
+      color: var(--ink-faint);
+      font-size: 14px;
+      margin: 0 0 20px;
+    }
+    .intro {
+      background: var(--green-soft);
+      border-right: 4px solid var(--green);
+      border-radius: 12px;
+      padding: 16px 18px;
+      color: var(--ink-soft);
+      margin: 0 0 26px;
+    }
+    h2 {
+      font-size: 20px;
+      margin: 30px 0 10px;
+      font-weight: 800;
+      color: var(--green-dark);
+      scroll-margin-top: 20px;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 18px 0 6px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    p { margin: 0 0 12px; color: var(--ink-soft); }
+    ul, ol { margin: 0 0 14px; padding-inline-start: 24px; color: var(--ink-soft); }
+    li { margin-bottom: 8px; }
+    strong { color: var(--ink); }
+    code {
+      background: var(--green-soft);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 13px;
+      direction: ltr;
+      display: inline-block;
+      color: var(--green-dark);
+    }
+
+    .toc {
+      background: var(--bg-alt);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 0 0 28px;
+    }
+    .toc h4 { margin: 0 0 8px; font-size: 15px; color: var(--ink); }
+    .toc ol { margin: 0; padding-inline-start: 22px; }
+    .toc li { margin-bottom: 4px; }
+    .toc a { color: var(--ink-soft); font-size: 14px; }
+
+    .callout {
+      background: #fbf6e9;
+      border: 1px solid #ecdcb0;
+      border-right: 4px solid var(--gold);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 14px 0 18px;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- التذييل ---------- */
+    .site-footer {
+      background: #0c1f19;
+      color: #cfe0d9;
+      padding: 26px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+    .site-footer a { color: #9fd8c1; }
+
+    @media (max-width: 620px) {
+      .doc-wrap { padding: 26px 20px; }
+      h1 { font-size: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الترويسة -->
+  <header class="site-header">
+    <div class="container">
+      <span class="brand" aria-label="بالقرآن اهتديت">
+        <span class="mark">۩</span>
+        <span class="name">
+          <strong>بالقرآن اهتديت</strong>
+          <small>تطبيق إدارة تحفيظ القرآن الكريم</small>
+        </span>
+      </span>
+    </div>
+  </header>
+
+  <!-- المستند -->
+  <main class="doc">
+    <div class="container">
+      <div class="doc-wrap">
+        <a class="back" href="https://yousoft.site/">→ العودة إلى الصفحة الرئيسية</a>
+        <h1>سياسة الخصوصية</h1>
+        <p class="updated">آخر تحديث: 2 يوليو 2026</p>
+
+        <p class="intro">
+          توضّح سياسة الخصوصية هذه كيف يتعامل تطبيق <strong>«بالقرآن اهتديت»</strong>
+          («التطبيق»، «نحن») مع المعلومات عند استخدامه. التطبيق أداة لإدارة حِلَق ومدارس
+          تحفيظ القرآن الكريم، يستخدمه <strong>المشرفون والمعلّمون</strong> لتنظيم بيانات
+          الطلاب والحضور ومتابعة الحفظ. لا يحتوي التطبيق على أي إعلانات، ولا يبيع بياناتك،
+          ولا يجمع موقعك الجغرافي أو صورك.
+        </p>
+
+        <div class="toc">
+          <h4>المحتويات</h4>
+          <ol>
+            <li><a href="#who">من نحن</a></li>
+            <li><a href="#scope">نطاق السياسة</a></li>
+            <li><a href="#data">البيانات التي نجمعها</a></li>
+            <li><a href="#use">كيف نستخدم البيانات</a></li>
+            <li><a href="#storage">أين تُخزَّن البيانات (Firebase من Google)</a></li>
+            <li><a href="#notifications">الإشعارات</a></li>
+            <li><a href="#not-collect">ما لا نجمعه</a></li>
+            <li><a href="#sharing">المشاركة والإفصاح</a></li>
+            <li><a href="#retention">الاحتفاظ بالبيانات وحذفها</a></li>
+            <li><a href="#security">الأمان</a></li>
+            <li><a href="#children">خصوصية بيانات الطلاب والأطفال</a></li>
+            <li><a href="#rights">حقوقك</a></li>
+            <li><a href="#changes">التغييرات على السياسة</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+          </ol>
+        </div>
+
+        <h2 id="who">١. من نحن</h2>
+        <p>
+          «بالقرآن اهتديت» تطبيق لإدارة مدارس وحِلَق تحفيظ القرآن الكريم. يوفّر للمشرف
+          والمعلّم أدوات لتسجيل الطلاب، وتتبّع الحضور والغياب، ومتابعة تقدّم الحفظ
+          والتقييم. يمكنك التواصل معنا عبر البريد الإلكتروني
+          <a href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
+        </p>
+
+        <h2 id="scope">٢. نطاق هذه السياسة</h2>
+        <p>
+          تغطّي هذه السياسة تطبيق «بالقرآن اهتديت» على أجهزة أندرويد. لا تغطّي خدمات
+          الطرف الثالث التي قد تستخدمها بشكل منفصل، والتي تخضع لسياسات الخصوصية الخاصة بها.
+          يعتمد التطبيق على خدمات <strong>Firebase من Google</strong> كبنية خلفية له
+          (انظر القسم ٥).
+        </p>
+
+        <h2 id="data">٣. البيانات التي نجمعها</h2>
+        <p>يجمع التطبيق فقط البيانات اللازمة لتشغيل خدمة إدارة التحفيظ، وهي:</p>
+
+        <h3>أ. حسابات المستخدمين (المشرف / المعلّم)</h3>
+        <ul>
+          <li><strong>اسم المستخدم</strong> المستخدَم لتسجيل الدخول.</li>
+          <li><strong>الاسم</strong> المعروض ورقم <strong>الهاتف</strong>.</li>
+          <li><strong>الصلاحية</strong> (مشرف أو معلّم).</li>
+          <li>
+            <strong>كلمة المرور</strong> تُدار حصريًّا بواسطة خدمة المصادقة
+            <span dir="ltr">Firebase Authentication</span> من Google، ولا تُخزَّن أبدًا
+            في قاعدة البيانات في صورة نصّية.
+          </li>
+        </ul>
+
+        <h3>ب. سجلّات الطلاب (يُدخِلها المشرف أو المعلّم)</h3>
+        <p>
+          لا يسجّل الطلاب الدخول إلى التطبيق بأنفسهم؛ إنما يُنشئ المشرف والمعلّم سجلّاتهم
+          لأغراض المتابعة، وقد تتضمّن:
+        </p>
+        <ul>
+          <li>اسم الطالب وتاريخ ميلاده (اختياري).</li>
+          <li>اسم ولي الأمر ورقم هاتفه.</li>
+          <li>سجلّات الحضور والغياب حسب التاريخ.</li>
+          <li>سجلّات الحفظ (المقدار المطلوب بالأثمان، السور والآيات، التقييم من ١ إلى ٥، وملاحظات المعلّم).</li>
+        </ul>
+
+        <h3>ج. بيانات تقنية للإشعارات</h3>
+        <ul>
+          <li>
+            <strong>رمز جهاز الإشعارات</strong>
+            (<span dir="ltr">Firebase Cloud Messaging token</span>) — معرّف تقني يُستخدم
+            لإرسال الإشعارات إلى جهازك فقط، ولا يكشف هويتك الشخصية.
+          </li>
+        </ul>
+
+        <h2 id="use">٤. كيف نستخدم البيانات</h2>
+        <ul>
+          <li>للسماح للمشرف والمعلّم بتسجيل الدخول وإدارة حساباتهم.</li>
+          <li>لإدارة سجلّات الطلاب وتتبّع الحضور ومتابعة تقدّم الحفظ والتقييم.</li>
+          <li>لعرض الإحصاءات والتقارير الخاصة بالمدرسة والمعلّمين.</li>
+          <li>لإرسال الإشعارات المتعلّقة بالخدمة إلى جهازك.</li>
+        </ul>
+        <p>
+          نستخدم بياناتك <strong>فقط</strong> لتقديم خدمة إدارة التحفيظ. لا نبيعها ولا
+          نشاركها ولا نستخدمها لأغراض إعلانية.
+        </p>
+
+        <h2 id="storage">٥. أين تُخزَّن البيانات (Firebase من Google)</h2>
+        <p>
+          يستخدم التطبيق خدمات <strong>Google Firebase</strong> كبنية خلفية آمنة، وتحديدًا:
+        </p>
+        <ul>
+          <li><span dir="ltr">Firebase Authentication</span> — لإدارة تسجيل الدخول وكلمات المرور.</li>
+          <li><span dir="ltr">Cloud Firestore</span> — لتخزين حسابات المستخدمين وسجلّات الطلاب والحضور والحفظ.</li>
+          <li><span dir="ltr">Firebase Cloud Messaging</span> — لإرسال الإشعارات.</li>
+        </ul>
+        <p>
+          تُخزَّن هذه البيانات على خوادم Google الآمنة، وتخضع أيضًا
+          <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">لسياسة خصوصية Firebase / Google</a>.
+        </p>
+
+        <h2 id="notifications">٦. الإشعارات</h2>
+        <p>
+          يطلب التطبيق إذن <strong>إرسال الإشعارات</strong>
+          (<code>POST_NOTIFICATIONS</code>) لعرض التنبيهات المتعلّقة بالخدمة (مثل التذكيرات
+          والتحديثات). يمكنك تعطيل الإشعارات في أي وقت من إعدادات جهازك. تُرسَل الإشعارات
+          إلى جهازك فقط عبر رمز الإشعارات ولا تتضمّن مشاركة بياناتك مع أي طرف ثالث.
+        </p>
+
+        <h2 id="not-collect">٧. ما لا نجمعه</h2>
+        <p>حرصًا على خصوصيتك، لا يقوم التطبيق بأيٍّ ممّا يلي:</p>
+        <ul>
+          <li>لا يجمع <strong>موقعك الجغرافي</strong>.</li>
+          <li>لا يستخدم <strong>الكاميرا</strong> ولا يصل إلى <strong>صورك أو ملفاتك</strong>.</li>
+          <li>لا يجمع <strong>جهات الاتصال</strong> على جهازك.</li>
+          <li>لا يحتوي على <strong>إعلانات</strong> ولا على أدوات تتبّع إعلاني من طرف ثالث.</li>
+          <li>لا يبيع بياناتك ولا يشاركها لأغراض تجارية أو إعلانية.</li>
+        </ul>
+
+        <h2 id="sharing">٨. المشاركة والإفصاح</h2>
+        <p>
+          لا نبيع بياناتك ولا نؤجّرها ولا نتاجر بها. تُخزَّن بياناتك ضمن بنية Firebase
+          الخاصة بمدرستك، ولا تُشارَك إلا في الحدود التالية:
+        </p>
+        <ul>
+          <li>مع <strong>Google Firebase</strong> بوصفها مزوّد البنية الخلفية الذي يعالج البيانات نيابةً عنّا لتشغيل الخدمة.</li>
+          <li>إذا اقتضى ذلك <strong>القانون</strong>، أو لحماية أمن الخدمة وسلامتها.</li>
+        </ul>
+        <p>
+          داخل التطبيق نفسه، يطبّق نظام صلاحيات صارم: يرى <strong>المعلّم</strong> طلابه
+          المسندين إليه فقط، بينما يملك <strong>المشرف</strong> صلاحية الاطّلاع على بيانات
+          المدرسة كاملة.
+        </p>
+
+        <h2 id="retention">٩. الاحتفاظ بالبيانات وحذفها</h2>
+        <ul>
+          <li>
+            نحتفظ بالبيانات ما دام الحساب فعّالًا ولازمًا لتقديم الخدمة. يعتمد التطبيق
+            <strong>الحذف الناعم</strong> (تعطيل السجلّ) بدل الحذف النهائي، للحفاظ على
+            سلامة السجلّات التاريخية للمدرسة.
+          </li>
+          <li>
+            يمكن للمشرف تعطيل حسابات المستخدمين وسجلّات الطلاب.
+          </li>
+          <li>
+            لطلب حذف بياناتك أو بيانات مدرستك نهائيًّا من خوادمنا، تواصل معنا عبر
+            وسائل التواصل في القسم ١٤، وسننفّذ الطلب في مدة معقولة.
+          </li>
+        </ul>
+
+        <h2 id="security">١٠. الأمان</h2>
+        <p>
+          تُدار كلمات المرور حصريًّا عبر <span dir="ltr">Firebase Authentication</span>
+          ولا تُخزَّن نصًّا في قاعدة البيانات. تُنقَل جميع البيانات عبر اتصالات
+          <strong>مشفّرة (HTTPS)</strong>. كما نطبّق <strong>قواعد أمان</strong> على مستوى
+          الخادم تضمن ألّا يصل كل مستخدم إلا إلى البيانات المصرّح له بها. ومع أنه لا توجد
+          وسيلة تخزين أو نقل آمنة بنسبة ١٠٠٪، فإننا نصمّم التطبيق لحماية بياناتك قدر الإمكان.
+        </p>
+
+        <h2 id="children">١١. خصوصية بيانات الطلاب والأطفال</h2>
+        <p>
+          التطبيق موجَّه إلى <strong>المشرفين والمعلّمين البالغين</strong>، وليس إلى
+          الأطفال؛ فالطلاب لا يستخدمون التطبيق بأنفسهم. تُدخَل بيانات الطلاب (بمن فيهم
+          القاصرون) بمعرفة المدرسة والمعلّم لغرض تنظيمي محدود، ويتحمّل المشرف مسؤولية
+          الحصول على الموافقات اللازمة من أولياء الأمور وفق الأنظمة المعمول بها. يمكن
+          حذف بيانات أي طالب عند الطلب.
+        </p>
+
+        <h2 id="rights">١٢. حقوقك</h2>
+        <ul>
+          <li>الاطّلاع على البيانات المرتبطة بحسابك.</li>
+          <li>تصحيح البيانات غير الدقيقة.</li>
+          <li>طلب حذف حسابك أو بيانات مدرستك.</li>
+        </ul>
+        <p>لممارسة أيٍّ من هذه الحقوق، تواصل معنا عبر الوسائل المذكورة في القسم ١٤.</p>
+
+        <h2 id="changes">١٣. التغييرات على هذه السياسة</h2>
+        <p>
+          قد نحدّث سياسة الخصوصية هذه من حين لآخر. عند حدوث ذلك سنعدّل تاريخ «آخر تحديث»
+          أعلى الصفحة. استمرارك في استخدام التطبيق بعد سريان التغييرات يُعدّ قبولًا
+          للسياسة المُحدَّثة.
+        </p>
+
+        <h2 id="contact">١٤. تواصل معنا</h2>
+        <p>
+          لأي استفسار حول هذه السياسة أو بياناتك:
+        </p>
+        <ul>
+          <li>البريد الإلكتروني: <a href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a></li>
+          <li>واتساب: <a href="https://wa.me/213654338649" target="_blank" rel="noopener">‎+213 654 33 86 49</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- التذييل -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year">2026</span> بالقرآن اهتديت — جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
