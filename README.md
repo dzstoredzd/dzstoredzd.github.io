@@ -30,6 +30,10 @@ writes to it. Google Sheets mirroring uses `google-apps-script/Code.gs` and the
 function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
 `GOOGLE_SHEETS_WEBHOOK_SECRET`.
 
+The landing page uses Meta Pixel `2176257146284643`: it records `PageView` when
+the page loads and the standard `Lead` event only after the Edge Function confirms
+that the request was saved. Form field values are not included in the Pixel event.
+
 ## Deploy
 
 GitHub Pages serves this repo from the `main` branch root. Any push to `main`
