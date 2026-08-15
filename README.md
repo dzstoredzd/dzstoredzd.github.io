@@ -13,12 +13,22 @@ browser to preview locally.
 | File | Purpose | Live URL |
 |------|---------|----------|
 | `index.html` | Landing / home page | https://yousoft.site/ |
+| `storesoft/download/index.html` | Store Soft trial/download lead form | https://yousoft.site/storesoft/download/ |
 | `privacy.html` | Privacy Policy (incl. Google API Limited Use) | https://yousoft.site/privacy.html |
 | `terms.html` | Terms of Service | https://yousoft.site/terms.html |
 
 Served from the `dzstoredzd.github.io` repo via GitHub Pages on the custom
 domain **yousoft.site** (set by the `CNAME` file). The custom domain is what
 Google OAuth brand verification requires (github.io is not accepted).
+
+## Store Soft lead capture
+
+The download form posts to the `submit-store-soft-lead` Supabase Edge Function.
+Its schema is recorded in the versioned migration under `supabase/migrations/`. The leads
+table is private (RLS enabled, no browser-role grants); only the Edge Function
+writes to it. Google Sheets mirroring uses `google-apps-script/Code.gs` and the
+function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
+`GOOGLE_SHEETS_WEBHOOK_SECRET`.
 
 ## Deploy
 
