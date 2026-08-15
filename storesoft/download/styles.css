@@ -288,32 +288,32 @@ img { display: block; max-width: 100%; }
 .receipt h2 { margin: 0; color: var(--midnight); font: 700 27px/1.35 var(--display); letter-spacing: -0.03em; }
 .form-intro { margin: 8px 0 17px; color: var(--muted); font-size: 14px; }
 
-.pricing {
+.free-offer {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 8px;
+  grid-template-columns: minmax(132px, .78fr) 1.35fr;
+  gap: 12px;
+  align-items: center;
   margin: 0 0 19px;
   padding: 11px;
-  border: 1px solid #dbe3f7;
+  border: 1px dashed #b9c8eb;
   border-radius: 16px;
   background: #f7f9ff;
 }
 
-.pricing__main,
-.pricing__extra {
+.free-offer__badge {
   display: grid;
   align-content: center;
   min-height: 72px;
   padding: 10px 12px;
   border-radius: 11px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+  box-shadow: 0 10px 24px rgba(39, 78, 165, .16);
 }
 
-.pricing__main { color: #fff; background: var(--midnight); }
-.pricing__extra { border: 1px solid #d4dcf0; background: #fff; }
-.pricing span { font-size: 11px; }
-.pricing strong { margin-top: 2px; font: 700 16px/1.35 var(--display); }
-.pricing__extra strong { color: var(--blue-dark); font-size: 14px; }
-.pricing p { grid-column: 1 / -1; margin: 0 4px; color: var(--muted); font-size: 11px; }
+.free-offer__badge span { font-size: 11px; }
+.free-offer__badge strong { margin-top: 2px; font: 700 17px/1.35 var(--display); }
+.free-offer p { margin: 0; color: var(--midnight); font-size: 12px; line-height: 1.75; }
 
 .field { margin-bottom: 13px; }
 .field label { display: block; margin: 0 2px 6px; color: var(--midnight); font-size: 13px; font-weight: 600; }
@@ -492,10 +492,8 @@ footer { border-top: 1px solid rgba(255, 255, 255, 0.08); color: #a8b3cb; backgr
   .support-note { margin-top: 20px; }
   .receipt { padding: 25px 18px 32px; border-radius: 21px; }
   .receipt h2 { font-size: 24px; }
-  .pricing { grid-template-columns: 1fr; }
-  .pricing__main,
-  .pricing__extra { min-height: 67px; }
-  .pricing p { grid-column: auto; }
+  .free-offer { grid-template-columns: 1fr; }
+  .free-offer__badge { min-height: 67px; }
   .value,
   .product-proof,
   .steps { padding: 60px 0; }
