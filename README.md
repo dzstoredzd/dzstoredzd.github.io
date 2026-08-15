@@ -30,9 +30,16 @@ writes to it. Google Sheets mirroring uses `google-apps-script/Code.gs` and the
 function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
 `GOOGLE_SHEETS_WEBHOOK_SECRET`.
 
-The landing page uses Meta Pixel `2176257146284643`: it records `PageView` when
-the page loads and the standard `Lead` event only after the Edge Function confirms
-that the request was saved. Form field values are not included in the Pixel event.
+The landing page uses Meta Pixel `2176257146284643`. The Pixel is initialized once
+and records the base `PageView`, custom `LandingPageView`, `FormStarted`,
+`FormSubmitted`, and `WhatsAppCTAClick` events, plus the standard `Lead` event only
+after the Edge Function confirms that the request was saved. Form values are never
+included in tracking events. The same conversion events are also exposed through
+the `storesoft:tracking` browser event and `dataLayer` for future integrations.
+
+The product-proof gallery reuses four optimized Android screenshots under
+`storesoft/download/assets/`. They are lazy-loaded to keep the Facebook Ads landing
+experience fast on mobile connections.
 
 ## Deploy
 
