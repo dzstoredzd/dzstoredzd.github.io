@@ -5,7 +5,6 @@
   var formStartedAt = Date.now();
   var currentLanguage = 'ar';
   var formStartTracked = false;
-  var submissionTracked = false;
   var emailValidationTimer;
   window.dataLayer = window.dataLayer || [];
 
@@ -353,11 +352,8 @@
       formView.hidden = true;
       successView.hidden = false;
 
-      if (!submissionTracked) {
-        submissionTracked = true;
-        trackEvent('FormSubmitted', { content_name: 'Store Soft download request' }, false);
-        trackEvent('Lead', { content_name: 'Store Soft download request' }, true);
-      }
+      trackEvent('FormSubmitted', { content_name: 'Store Soft download request' }, false);
+      trackEvent('Lead', { content_name: 'Store Soft download request' }, true);
 
       successView.focus();
     } catch (_) {

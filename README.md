@@ -30,6 +30,10 @@ writes to it. Google Sheets mirroring uses `google-apps-script/Code.gs` and the
 function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
 `GOOGLE_SHEETS_WEBHOOK_SECRET`.
 
+Every valid form submission creates a new lead, even when the email was submitted
+before. This keeps the Google Sheet row count aligned with Meta's successful `Lead`
+events while preserving the normalized email for grouping repeated contacts.
+
 ### Google Sheet workflow
 
 The Apps Script keeps separate `date` (`dd/MM/yyyy`) and `time` (`HH:mm`)
