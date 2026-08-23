@@ -30,6 +30,33 @@ writes to it. Google Sheets mirroring uses `google-apps-script/Code.gs` and the
 function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
 `GOOGLE_SHEETS_WEBHOOK_SECRET`.
 
+### Google Sheet workflow
+
+The Apps Script keeps separate `date` (`dd/MM/yyyy`) and `time` (`HH:mm`)
+columns in GMT+1 and inserts each new lead at row 2 so the newest leads stay
+at the top. All rows are sorted by date and time in descending order; each date
+group has a divider and alternating date-column shading. The `status` column is
+a dropdown. Changing one lead to
+`Confirmed` sends the Store Soft Google Play email once and records the result
+in `email_sent_at` or `email_error`.
+
+`importArchivedLeads()` copies unique lead IDs from the legacy `Archeived Leads`
+tab into the current schema, preserves the archived tab, and reapplies the
+current sorting, dropdown, and date-group formatting.
+
+To move the workflow to another Google account:
+
+1. Copy the Sheet into the destination account's Drive and open its bound Apps
+   Script project.
+2. Replace the project code with `google-apps-script/Code.gs`.
+3. While signed in as the sender account, run `setupLeadSheet()` and approve the
+   requested Sheets and email permissions. The installed edit trigger always
+   sends as the account that created it.
+4. Deploy the script as a Web app that executes as the deploying account, then
+   replace the Supabase Edge Function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
+   `GOOGLE_SHEETS_WEBHOOK_SECRET` with the new deployment URL and the secret
+   returned by `setupLeadSheet()`.
+
 The landing page uses Meta Pixel `2176257146284643`. The Pixel is initialized once
 and records the base `PageView`, custom `LandingPageView`, `FormStarted`,
 `FormSubmitted`, and `WhatsAppCTAClick` events, plus the standard `Lead` event only

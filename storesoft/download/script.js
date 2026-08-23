@@ -6,6 +6,7 @@
   var currentLanguage = 'ar';
   var formStartTracked = false;
   var submissionTracked = false;
+  var emailValidationTimer;
   window.dataLayer = window.dataLayer || [];
 
   var copies = {
@@ -29,6 +30,7 @@
       nameLabel: 'الاسم',
       namePlaceholder: 'مثال: محمد',
       emailLabel: 'البريد الإلكتروني',
+      emailHint: 'اكتب البريد كاملًا، مثال: name@gmail.com',
       shopLabel: 'نوع المحل',
       shopPlaceholder: 'اختر نوع المحل',
       shopGrocery: 'مواد غذائية / سوبرات',
@@ -89,6 +91,7 @@
       nameLabel: 'Nom',
       namePlaceholder: 'Exemple : Mohamed',
       emailLabel: 'E-mail',
+      emailHint: 'Saisissez l’adresse complète, par exemple : name@gmail.com',
       shopLabel: 'Type de magasin',
       shopPlaceholder: 'Choisissez votre activité',
       shopGrocery: 'Alimentation / supérette',
@@ -138,6 +141,7 @@
   var successView = document.getElementById('successView');
   var submitError = document.getElementById('submitError');
   var languageSwitch = document.getElementById('languageSwitch');
+  var emailInput = document.getElementById('email');
 
   function copy(key) {
     return copies[currentLanguage][key];
@@ -192,6 +196,53 @@
     document.getElementById(id + 'Error').textContent = message;
   }
 
+  function clearFieldError(id) {
+    document.getElementById(id).removeAttribute('aria-invalid');
+    document.getElementById(id + 'Error').textContent = '';
+  }
+
+  function isValidEmail(value) {
+    if (!value || value.length > 254 || /\s/.test(value)) return false;
+
+    var atIndex = value.indexOf('@');
+    if (atIndex <= 0 || atIndex !== value.lastIndexOf('@')) return false;
+
+    var localPart = value.slice(0, atIndex);
+    var domain = value.slice(atIndex + 1).toLowerCase();
+    if (localPart.length > 64 || localPart.charAt(0) === '.' ||
+        localPart.charAt(localPart.length - 1) === '.' || localPart.indexOf('..') !== -1) {
+      return false;
+    }
+    if (!/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(localPart)) return false;
+
+    if (!domain || domain.length > 253 || domain.indexOf('.') === -1 || domain.indexOf('..') !== -1) {
+      return false;
+    }
+    var labels = domain.split('.');
+    var labelsAreValid = labels.every(function (label) {
+      return label.length > 0 && label.length <= 63 &&
+        label.charAt(0) !== '-' && label.charAt(label.length - 1) !== '-' &&
+        /^[a-z0-9-]+$/i.test(label);
+    });
+    return labelsAreValid && /^[a-z]{2,63}$/i.test(labels[labels.length - 1]);
+  }
+
+  function validateEmailField(showRequired, normalize) {
+    var value = emailInput.value.trim().toLowerCase();
+    if (normalize) emailInput.value = value;
+    clearFieldError('email');
+
+    if (!value) {
+      if (showRequired) fieldError('email', copy('required'));
+      return false;
+    }
+    if (!emailInput.checkValidity() || !isValidEmail(value)) {
+      fieldError('email', copy('invalidEmail'));
+      return false;
+    }
+    return true;
+  }
+
   function validate(values) {
     clearErrors();
     var valid = true;
@@ -203,7 +254,7 @@
     if (!values.email) {
       fieldError('email', copy('required'));
       valid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+    } else if (!isValidEmail(values.email)) {
       fieldError('email', copy('invalidEmail'));
       valid = false;
     }
@@ -230,6 +281,20 @@
 
   languageSwitch.addEventListener('click', function () {
     setLanguage(currentLanguage === 'ar' ? 'fr' : 'ar');
+  });
+
+  emailInput.addEventListener('blur', function () {
+    window.clearTimeout(emailValidationTimer);
+    validateEmailField(true, true);
+  });
+
+  emailInput.addEventListener('input', function () {
+    window.clearTimeout(emailValidationTimer);
+    clearFieldError('email');
+    if (!emailInput.value.trim()) return;
+    emailValidationTimer = window.setTimeout(function () {
+      validateEmailField(false, false);
+    }, 300);
   });
 
   document.querySelectorAll('a[href="#download-form"]').forEach(function (link) {
@@ -266,6 +331,8 @@
       form_started_at: formStartedAt,
       language: currentLanguage
     };
+
+    emailInput.value = values.email;
 
     if (!validate(values)) return;
 

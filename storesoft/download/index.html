@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260816-simple-v1" />
+  <link rel="stylesheet" href="styles.css?v=20260823-email-validation-v1" />
 </head>
 <body>
   <noscript><img height="1" width="1" style="display:none" alt=""
@@ -95,8 +95,9 @@
               </div>
               <div class="field">
                 <label for="email" data-copy="emailLabel">البريد الإلكتروني</label>
-                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required placeholder="name@gmail.com" dir="ltr" />
-                <p class="field-error" id="emailError"></p>
+                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required placeholder="name@gmail.com" dir="ltr" autocapitalize="none" autocorrect="off" spellcheck="false" aria-describedby="emailHint emailError" />
+                <p class="field-hint" id="emailHint" data-copy="emailHint">اكتب البريد كاملًا، مثال: name@gmail.com</p>
+                <p class="field-error" id="emailError" role="status" aria-live="polite"></p>
               </div>
               <div class="field">
                 <label for="shopType" data-copy="shopLabel">نوع المحل</label>
@@ -214,6 +215,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260816-simple-v1"></script>
+  <script src="script.js?v=20260823-email-validation-v1"></script>
 </body>
 </html>
