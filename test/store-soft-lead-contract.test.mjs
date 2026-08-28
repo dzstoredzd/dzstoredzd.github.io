@@ -46,3 +46,20 @@ test('every stored submission emits its own Meta Lead event', async () => {
     /trackEvent\('Lead', \{ content_name: 'Store Soft download request' \}, true\)/,
   );
 });
+
+test('successful submissions offer the localized Store Soft learning playlist', async () => {
+  const [landingPage, landingScript, landingStyles] = await Promise.all([
+    read('storesoft/download/index.html'),
+    read('storesoft/download/script.js'),
+    read('storesoft/download/styles.css'),
+  ]);
+
+  assert.match(
+    landingPage,
+    /id="successView"[\s\S]*href="https:\/\/www\.youtube\.com\/playlist\?list=PLZCuVpkDZZFE"/,
+  );
+  assert.match(landingPage, /target="_blank" rel="noopener noreferrer"/);
+  assert.match(landingScript, /learningWait: 'يمكنك مشاهدة فيديوهات الشرح حتى يصلك البريد.'/);
+  assert.match(landingScript, /learningWait: 'Vous pouvez regarder nos vidéos de formation en attendant l’e-mail.'/);
+  assert.match(landingStyles, /\.success__learning a \{[^}]*min-height: 48px/);
+});
