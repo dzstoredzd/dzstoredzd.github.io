@@ -18,7 +18,7 @@ test('every valid submission is inserted as a separate lead', async () => {
   assert.match(edgeFunction, /return json\(\{ok:true,lead_id:lead\.id\},200,origin\)/);
 });
 
-test('lead endpoint accepts the phone-first contact contract', async () => {
+test('lead endpoint requires email for the versioned contact form', async () => {
   const edgeFunction = await read(
     'supabase/functions/submit-store-soft-lead/index.ts',
   );
@@ -29,6 +29,9 @@ test('lead endpoint accepts the phone-first contact contract', async () => {
   assert.match(edgeFunction, /allowedPlatforms\.has\(requestedPlatform\)/);
   assert.match(edgeFunction, /requested_platform:requestedPlatform\|\|null/);
   assert.match(edgeFunction, /isLegacyEmailLead/);
+  assert.match(edgeFunction, /formVersion=clean\(body\.form_version,40\)/);
+  assert.match(edgeFunction, /requiresEmail=formVersion==='contact_email_v2'/);
+  assert.match(edgeFunction, /requiresEmail&&!email/);
 });
 
 test('migration allows repeated normalized emails', async () => {
@@ -73,18 +76,25 @@ test('every stored submission emits its own Meta Lead event', async () => {
   );
 });
 
-test('landing form asks for the four phone-first lead fields', async () => {
+test('landing form asks for five contact fields with email after phone', async () => {
   const landingPage = await read('storesoft/download/index.html');
 
   assert.match(landingPage, /id="name" name="name" type="text"/);
   assert.match(landingPage, /id="shopType" name="shop_type" type="text"/);
   assert.match(landingPage, /id="phone" name="phone" type="tel"/);
+  assert.match(landingPage, /id="email" name="email" type="email"[^>]*required/);
   assert.match(landingPage, /id="requestedPlatform" name="requested_platform"/);
   assert.match(landingPage, /value="phone"/);
   assert.match(landingPage, /value="computer"/);
   assert.match(landingPage, /value="both"/);
-  assert.doesNotMatch(landingPage, /id="email"/);
+  assert.ok(landingPage.indexOf('id="phone"') < landingPage.indexOf('id="email"'));
+  assert.ok(landingPage.indexOf('id="email"') < landingPage.indexOf('id="requestedPlatform"'));
   assert.doesNotMatch(landingPage, /<select id="shopType"/);
+
+  const landingScript = await read('storesoft/download/script.js');
+  assert.match(landingScript, /email: String\(data\.get\('email'\)/);
+  assert.match(landingScript, /form_version: 'contact_email_v2'/);
+  assert.match(landingScript, /isValidEmail\(values\.email\)/);
 });
 
 test('successful submissions offer localized WhatsApp contact instead of YouTube', async () => {

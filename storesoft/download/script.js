@@ -31,6 +31,8 @@
       shopPlaceholder: 'مثال: مواد غذائية',
       phoneLabel: 'رقم الهاتف أو WhatsApp',
       phonePlaceholder: 'مثال: 0654338649',
+      emailLabel: 'البريد الإلكتروني',
+      emailPlaceholder: 'name@gmail.com',
       platformLabel: 'تريد نسخة لـ',
       platformPlaceholder: 'اختر الجهاز',
       platformPhone: 'هاتف',
@@ -67,6 +69,7 @@
       required: 'هذا الحقل مطلوب.',
       tooShort: 'اكتب حرفين على الأقل.',
       invalidPhone: 'أدخل رقم هاتف أو WhatsApp صحيحًا.',
+      invalidEmail: 'أدخل بريدًا إلكترونيًا صحيحًا.',
       generalError: 'تعذّر إرسال المعلومات. تحقق من الإنترنت وحاول مرة أخرى.'
     },
     fr: {
@@ -92,6 +95,8 @@
       shopPlaceholder: 'Exemple : Alimentation',
       phoneLabel: 'Numéro de téléphone ou WhatsApp',
       phonePlaceholder: 'Exemple : 0654338649',
+      emailLabel: 'Adresse e-mail',
+      emailPlaceholder: 'nom@gmail.com',
       platformLabel: 'Je veux une version pour',
       platformPlaceholder: 'Choisissez l’appareil',
       platformPhone: 'Téléphone',
@@ -128,6 +133,7 @@
       required: 'Ce champ est obligatoire.',
       tooShort: 'Saisissez au moins deux caractères.',
       invalidPhone: 'Saisissez un numéro de téléphone ou WhatsApp valide.',
+      invalidEmail: 'Saisissez une adresse e-mail valide.',
       generalError: 'Les informations n’ont pas pu être envoyées. Vérifiez votre connexion et réessayez.'
     }
   };
@@ -181,7 +187,7 @@
   }
 
   function clearErrors() {
-    ['name', 'shopType', 'phone', 'requestedPlatform'].forEach(function (id) {
+    ['name', 'shopType', 'phone', 'email', 'requestedPlatform'].forEach(function (id) {
       document.getElementById(id).removeAttribute('aria-invalid');
       document.getElementById(id + 'Error').textContent = '';
     });
@@ -202,6 +208,25 @@
     var digits = value.replace(/\D/g, '');
     return value.length <= 24 && /^[+\d\s().-]+$/.test(value) &&
       digits.length >= 8 && digits.length <= 15;
+  }
+
+  function isValidEmail(value) {
+    if (!value || value.length > 254 || /\s/.test(value)) return false;
+    var parts = value.split('@');
+    if (parts.length !== 2 || !parts[0] || !parts[1]) return false;
+    var localPart = parts[0];
+    var domain = parts[1].toLowerCase();
+    if (localPart.length > 64 || localPart.charAt(0) === '.' ||
+        localPart.charAt(localPart.length - 1) === '.' || localPart.indexOf('..') !== -1) return false;
+    if (!/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(localPart)) return false;
+    if (domain.length > 253 || domain.indexOf('.') === -1 || domain.indexOf('..') !== -1) return false;
+    var labels = domain.split('.');
+    var labelsAreValid = labels.every(function (label) {
+      return label.length > 0 && label.length <= 63 &&
+        /^[a-z0-9-]+$/i.test(label) && label.charAt(0) !== '-' &&
+        label.charAt(label.length - 1) !== '-';
+    });
+    return labelsAreValid && /^[a-z]{2,63}$/i.test(labels[labels.length - 1]);
   }
 
   function validate(values) {
@@ -227,6 +252,13 @@
       valid = false;
     } else if (!isValidPhone(values.phone)) {
       fieldError('phone', copy('invalidPhone'));
+      valid = false;
+    }
+    if (!values.email) {
+      fieldError('email', copy('required'));
+      valid = false;
+    } else if (!isValidEmail(values.email)) {
+      fieldError('email', copy('invalidEmail'));
       valid = false;
     }
     if (!values.requested_platform) {
@@ -284,10 +316,12 @@
       name: String(data.get('name') || '').trim(),
       shop_type: String(data.get('shop_type') || '').trim(),
       phone: String(data.get('phone') || '').trim(),
+      email: String(data.get('email') || '').trim().toLowerCase(),
       requested_platform: String(data.get('requested_platform') || ''),
       website: String(data.get('website') || ''),
       form_started_at: formStartedAt,
-      language: currentLanguage
+      language: currentLanguage,
+      form_version: 'contact_email_v2'
     };
 
     if (!validate(values)) return;
