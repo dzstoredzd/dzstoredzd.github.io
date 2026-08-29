@@ -7,7 +7,10 @@ function publishableKey() {
   return Deno.env.get('SUPABASE_ANON_KEY') || '';
 }
 function cors(origin: string | null) {
-  const allowed = origin === 'https://yousoft.site' || origin === 'https://www.yousoft.site' ? origin : 'https://yousoft.site';
+  const localOrigin = origin === 'null' || /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin || '');
+  const allowed = localOrigin || origin === 'https://yousoft.site' || origin === 'https://www.yousoft.site'
+    ? origin || 'https://yousoft.site'
+    : 'https://yousoft.site';
   return { 'Access-Control-Allow-Origin': allowed, 'Access-Control-Allow-Headers': 'authorization, apikey, content-type', 'Access-Control-Allow-Methods': 'POST, OPTIONS', Vary: 'Origin' };
 }
 function json(body: unknown, status: number, origin: string | null) {
@@ -48,7 +51,10 @@ Deno.serve(async (request: Request) => {
   const webhook = Deno.env.get('GOOGLE_SHEETS_WEBHOOK_URL');
   const secret = Deno.env.get('GOOGLE_SHEETS_WEBHOOK_SECRET');
   if (!webhook || !secret) {
-    await call('EMAIL_ERROR', 'Confirmation sender is not configured');
+    lead = await call('EMAIL_ERROR', 'Confirmation sender is not configured');
+    if (action === 'CONFIRM') {
+      return json({ ok: true, lead, email_sent: false, warning: 'email_sender_not_configured' }, 200, origin);
+    }
     return json({ ok: false, error: 'email_sender_not_configured' }, 503, origin);
   }
   try {
@@ -59,7 +65,10 @@ Deno.serve(async (request: Request) => {
     return json({ ok: true, lead, email_sent: true, already_sent: result.already_sent === true }, 200, origin);
   } catch (error) {
     const message = error instanceof Error ? error.message.slice(0, 500) : 'Email delivery failed';
-    await call('EMAIL_ERROR', message);
+    lead = await call('EMAIL_ERROR', message);
+    if (action === 'CONFIRM') {
+      return json({ ok: true, lead, email_sent: false, warning: 'email_delivery_failed' }, 200, origin);
+    }
     return json({ ok: false, error: 'email_delivery_failed' }, 502, origin);
   }
 });

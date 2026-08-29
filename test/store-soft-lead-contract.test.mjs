@@ -113,6 +113,10 @@ test('confirmation email is authenticated, idempotent, and uses branded tracked 
   assert.match(action, /sync_admin_crm_apply_action/);
   assert.match(action, /lead\.email_sent_at/);
   assert.match(action, /action: 'send_confirmation'/);
+  assert.match(action, /action === 'CONFIRM'/);
+  assert.match(action, /warning: 'email_delivery_failed'/);
+  assert.match(action, /origin === 'null'/);
+  assert.match(action, /localhost\|127\\\.0\\\.0\\\.1/);
   assert.match(appsScript, /already_sent: true/);
   assert.match(appsScript, /storesoft\\\/try/);
   assert.match(appsScript, /sendConfirmedEmail_\(email, name, trackedUrl\)/);
