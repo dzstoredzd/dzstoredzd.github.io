@@ -32,14 +32,16 @@ function onOpen() {
     .addItem('Setup / repair lead sheet', 'setupLeadSheet')
     .addItem('Sort and group leads by date', 'sortLeadSheet')
     .addItem('Import archived leads', 'importArchivedLeads')
+    .addItem('Switch email control to CRM', 'enableCrmEmailControl')
     .addItem('Show webhook settings', 'showWebhookSettings')
     .addToUi();
 }
 
 /**
  * Run this once while signed in as store.soft.algeria@gmail.com.
- * It prepares the sheet, adds the Status dropdown and creates the authorized
- * edit trigger that sends email from the account that ran this function.
+ * It prepares the sheet and preserves the legacy email trigger until the CRM
+ * sender is live. Run enableCrmEmailControl only after crm-admin-action has
+ * completed a real confirmation email.
  */
 function setupLeadSheet() {
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -59,7 +61,11 @@ function setupLeadSheet() {
   migrateLeadSheet_(sheet);
   formatLeadSheet_(sheet);
   sortAndGroupLeadSheet_(sheet);
-  installStatusEditTrigger_(spreadsheet);
+  if (properties.getProperty('CRM_EMAIL_ENABLED') === 'true') {
+    disableStatusEditTrigger_();
+  } else {
+    installStatusEditTrigger_(spreadsheet);
+  }
 
   var result = {
     spreadsheetId: spreadsheet.getId(),
@@ -79,6 +85,7 @@ function doPost(event) {
     }
 
     var lead = payload.lead || {};
+    var action = payload.action || 'upsert_lead';
     if (!lead.id) return response_({ ok: false, error: 'missing_lead_id' });
 
     var lock = LockService.getScriptLock();
@@ -88,41 +95,79 @@ function doPost(event) {
       var sheet = spreadsheet.getSheetByName(CONFIG.sheetName);
       if (!sheet) throw new Error('Leads sheet is missing');
 
-      var lastRow = sheet.getLastRow();
-      if (lastRow > 1) {
-        var duplicate = sheet.getRange(2, column_('lead_id'), lastRow - 1, 1)
-          .createTextFinder(String(lead.id))
-          .matchEntireCell(true)
-          .findNext();
-        if (duplicate) return response_({ ok: true, duplicate: true });
+      if (action === 'send_confirmation') {
+        return response_(sendConfirmationAction_(sheet, lead));
       }
-
-      var createdAt = parseDate_(lead.created_at) || new Date();
-      var row = emptyRow_();
-      row[column_('lead_id') - 1] = lead.id || '';
-      row[column_('date') - 1] = Utilities.formatDate(createdAt, CONFIG.timeZone, 'dd/MM/yyyy');
-      row[column_('time') - 1] = Utilities.formatDate(createdAt, CONFIG.timeZone, 'HH:mm');
-      row[column_('name') - 1] = lead.name || '';
-      row[column_('email') - 1] = lead.email || '';
-      row[column_('phone') - 1] = lead.phone || '';
-      row[column_('shop_type') - 1] = lead.shop_type || '';
-      row[column_('requested_platform') - 1] = lead.requested_platform || '';
-      row[column_('status') - 1] = normalizeStatus_(lead.status || 'New');
-      row[column_('source') - 1] = lead.source || '';
-      row[column_('medium') - 1] = lead.medium || '';
-      row[column_('campaign') - 1] = lead.campaign || '';
-      row[column_('sheet_sync_status') - 1] = 'synced';
-
-      sheet.insertRowsBefore(2, 1);
-      sheet.getRange(2, 1, 1, row.length).setValues([row]);
-      applyStatusValidation_(sheet, 2);
-      sortAndGroupLeadSheet_(sheet);
-      return response_({ ok: true });
+      if (action !== 'upsert_lead') return response_({ ok: false, error: 'unsupported_action' });
+      return response_(upsertLead_(sheet, lead));
     } finally {
       lock.releaseLock();
     }
   } catch (error) {
     return response_({ ok: false, error: String(error && error.message || error) });
+  }
+}
+
+function findLeadRow_(sheet, leadId) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 2) return null;
+  var match = sheet.getRange(2, column_('lead_id'), lastRow - 1, 1)
+    .createTextFinder(String(leadId)).matchEntireCell(true).findNext();
+  return match ? match.getRow() : null;
+}
+
+function upsertLead_(sheet, lead) {
+  var existingRow = findLeadRow_(sheet, lead.id);
+  var row = existingRow
+    ? sheet.getRange(existingRow, 1, 1, HEADERS.length).getValues()[0]
+    : emptyRow_();
+  var createdAt = parseDate_(lead.created_at) || new Date();
+  row[column_('lead_id') - 1] = lead.id || '';
+  row[column_('date') - 1] = Utilities.formatDate(createdAt, CONFIG.timeZone, 'dd/MM/yyyy');
+  row[column_('time') - 1] = Utilities.formatDate(createdAt, CONFIG.timeZone, 'HH:mm');
+  row[column_('name') - 1] = lead.name || '';
+  row[column_('email') - 1] = lead.email || '';
+  row[column_('phone') - 1] = lead.phone || '';
+  row[column_('shop_type') - 1] = lead.shop_type || '';
+  row[column_('requested_platform') - 1] = lead.requested_platform || '';
+  row[column_('status') - 1] = normalizeStatus_(lead.status || 'New');
+  row[column_('source') - 1] = lead.source || '';
+  row[column_('medium') - 1] = lead.medium || '';
+  row[column_('campaign') - 1] = lead.campaign || '';
+  row[column_('sheet_sync_status') - 1] = 'synced';
+  if (existingRow) sheet.getRange(existingRow, 1, 1, row.length).setValues([row]);
+  else {
+    sheet.insertRowsBefore(2, 1);
+    sheet.getRange(2, 1, 1, row.length).setValues([row]);
+    applyStatusValidation_(sheet, 2);
+  }
+  sortAndGroupLeadSheet_(sheet);
+  return { ok: true, upserted: Boolean(existingRow) };
+}
+
+function sendConfirmationAction_(sheet, lead) {
+  var rowNumber = findLeadRow_(sheet, lead.id);
+  if (!rowNumber) {
+    upsertLead_(sheet, lead);
+    rowNumber = findLeadRow_(sheet, lead.id);
+  }
+  var sentCell = sheet.getRange(rowNumber, columnInSheet_(sheet, 'email_sent_at'));
+  if (sentCell.getValue()) return { ok: true, already_sent: true };
+  var email = String(lead.email || sheet.getRange(rowNumber, columnInSheet_(sheet, 'email')).getValue() || '').trim();
+  var name = String(lead.name || sheet.getRange(rowNumber, columnInSheet_(sheet, 'name')).getValue() || '').trim();
+  var trackedUrl = String(lead.tracked_url || '');
+  var errorCell = sheet.getRange(rowNumber, columnInSheet_(sheet, 'email_error'));
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Invalid or missing email address');
+  if (!/^https:\/\/yousoft\.site\/storesoft\/try\/\?t=[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{6}$/.test(trackedUrl)) throw new Error('Invalid tracked download URL');
+  try {
+    sendConfirmedEmail_(email, name, trackedUrl);
+    sentCell.setValue(Utilities.formatDate(new Date(), CONFIG.timeZone, 'dd/MM/yyyy HH:mm'));
+    errorCell.clearContent();
+    sheet.getRange(rowNumber, columnInSheet_(sheet, 'status')).setValue('Confirmed');
+    return { ok: true, already_sent: false };
+  } catch (error) {
+    errorCell.setValue(String(error && error.message || error).slice(0, 500));
+    throw error;
   }
 }
 
@@ -132,23 +177,20 @@ function doPost(event) {
  * other than a manual change to Confirmed.
  */
 function handleLeadStatusEdit(event) {
+  if (PropertiesService.getScriptProperties().getProperty('CRM_EMAIL_ENABLED') === 'true') return;
   if (!event || !event.range || event.range.getNumRows() !== 1 ||
       event.range.getNumColumns() !== 1 || event.range.getRow() < 2) return;
-
   var sheet = event.range.getSheet();
   if (sheet.getName() !== CONFIG.sheetName) return;
-
   var statusColumn = columnInSheet_(sheet, 'status');
   if (event.range.getColumn() !== statusColumn ||
       String(event.value || '').toLowerCase() !== 'confirmed') return;
-
   var lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
     var rowNumber = event.range.getRow();
     var emailSentCell = sheet.getRange(rowNumber, columnInSheet_(sheet, 'email_sent_at'));
     if (emailSentCell.getValue()) return;
-
     var email = String(sheet.getRange(rowNumber, columnInSheet_(sheet, 'email')).getValue() || '').trim();
     var name = String(sheet.getRange(rowNumber, columnInSheet_(sheet, 'name')).getValue() || '').trim();
     var errorCell = sheet.getRange(rowNumber, columnInSheet_(sheet, 'email_error'));
@@ -160,9 +202,10 @@ function handleLeadStatusEdit(event) {
       errorCell.setValue('Invalid or missing email address');
       return;
     }
-
     try {
-      sendConfirmedEmail_(email, name);
+      // During the brief cutover window, the legacy path keeps the ordinary
+      // Play link. CRM-only mail always supplies the private tracked URL.
+      sendConfirmedEmail_(email, name, CONFIG.downloadUrl);
       emailSentCell.setValue(Utilities.formatDate(new Date(), CONFIG.timeZone, 'dd/MM/yyyy HH:mm'));
       errorCell.clearContent();
     } catch (error) {
@@ -174,14 +217,15 @@ function handleLeadStatusEdit(event) {
   }
 }
 
-function sendConfirmedEmail_(email, name) {
+function sendConfirmedEmail_(email, name, downloadUrl) {
+  downloadUrl = downloadUrl || CONFIG.downloadUrl;
   var greeting = name ? 'السلام عليكم ' + escapeHtml_(name) + '،' : 'السلام عليكم،';
   var subject = 'نسخة تجريبية من تطبيق StoreSoft ✅';
   var plainBody = [
     name ? 'السلام عليكم ' + name + '،' : 'السلام عليكم،',
     '',
     '👉 تحميل StoreSoft من Google Play:',
-    CONFIG.downloadUrl,
+    downloadUrl,
     '',
     'ملاحظة مهمة: تأكد أن تستعمل نفس الإيميل على بلاي ستور.',
     '',
@@ -197,7 +241,7 @@ function sendConfirmedEmail_(email, name) {
   var htmlBody = '<div dir="rtl" style="font-family:Arial,sans-serif;line-height:1.8">' +
     '<p>' + greeting + '</p>' +
     '<p>👉 <strong>تحميل StoreSoft من Google Play:</strong><br>' +
-    '<a href="' + escapeHtml_(CONFIG.downloadUrl) + '">اضغط هنا للذهاب إلى صفحة التحميل</a></p>' +
+    '<a href="' + escapeHtml_(downloadUrl) + '">اضغط هنا للذهاب إلى صفحة التحميل</a></p>' +
     '<p><strong>ملاحظة مهمة:</strong> تأكد أن تستعمل نفس الإيميل على بلاي ستور.</p>' +
     '<p>بعد تثبيت التطبيق، جرّب إضافة بعض المنتجات وتنفيذ أول عملية بيع لمشاهدة تحديث المخزون والمبيعات مباشرة.</p>' +
     '<p>مع StoreSoft يمكنك:</p>' +
@@ -415,7 +459,7 @@ function applyStatusValidation_(sheet, lastRow) {
   var rule = SpreadsheetApp.newDataValidation()
     .requireValueInList(CONFIG.statusValues, true)
     .setAllowInvalid(false)
-    .setHelpText('Choose a status. Confirmed sends the Store Soft email once when an email is available.')
+    .setHelpText('Choose a status for the Sheet copy. Email moves to CRM after the explicit cutover.')
     .build();
   sheet.getRange(2, columnInSheet_(sheet, 'status'), lastRow - 1, 1).setDataValidation(rule);
 }
@@ -428,6 +472,21 @@ function installStatusEditTrigger_(spreadsheet) {
     .forSpreadsheet(spreadsheet)
     .onEdit()
     .create();
+}
+
+function enableCrmEmailControl() {
+  PropertiesService.getScriptProperties().setProperty('CRM_EMAIL_ENABLED', 'true');
+  disableStatusEditTrigger_();
+  SpreadsheetApp.getUi().alert(
+    'Store Soft CRM',
+    'Sheet confirmation email is disabled. CRM now controls delivery.',
+    SpreadsheetApp.getUi().ButtonSet.OK);
+}
+
+function disableStatusEditTrigger_() {
+  ScriptApp.getProjectTriggers().forEach(function (trigger) {
+    if (trigger.getHandlerFunction() === 'handleLeadStatusEdit') ScriptApp.deleteTrigger(trigger);
+  });
 }
 
 function showWebhookSettings() {

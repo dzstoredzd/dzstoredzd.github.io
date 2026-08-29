@@ -60,10 +60,70 @@ test('migration stores free-text activity and requested platform without requiri
 test('Google Sheets deduplicates by submission id, not email', async () => {
   const appsScript = await read('google-apps-script/Code.gs');
 
-  assert.match(appsScript, /createTextFinder\(String\(lead\.id\)\)/);
+  assert.match(appsScript, /createTextFinder\(String\(leadId\)\)/);
   assert.doesNotMatch(appsScript, /createTextFinder\(String\(lead\.email\)\)/);
   assert.match(appsScript, /'requested_platform'/);
   assert.match(appsScript, /lead\.requested_platform \|\| ''/);
+  assert.match(appsScript, /function upsertLead_/);
+  assert.match(appsScript, /getRange\(existingRow, 1, 1, row\.length\)\.setValues/);
+  assert.match(appsScript, /action === 'send_confirmation'/);
+  assert.match(appsScript, /function enableCrmEmailControl\(\)/);
+  assert.match(appsScript, /CRM_EMAIL_ENABLED/);
+  assert.match(appsScript, /disableStatusEditTrigger_/);
+});
+
+test('CRM migration preserves legacy leads and protects tracking data', async () => {
+  const [migration, shortReferral] = await Promise.all([
+    read('supabase/migrations/20260829153849_store_soft_crm_core.sql'),
+    read('supabase/migrations/20260829163153_store_soft_crm_short_referral.sql'),
+  ]);
+  assert.match(migration, /alter table public\.store_soft_leads/);
+  assert.match(migration, /create table if not exists public\.lead_events/);
+  assert.match(migration, /FORM_SUBMITTED/);
+  assert.match(migration, /tracking_token ~ '\^\[0-9a-f\]\{64\}\$'/);
+  assert.match(migration, /revoke all on table public\.lead_events from public, anon, authenticated/);
+  assert.match(migration, /perform sync\.require_vendor_admin\(\)/);
+  assert.match(shortReferral, /tracking_code ~ '\^\[23456789ABCDEFGHJKLMNPQRSTUVWXYZ\]\{6\}\$'/);
+  assert.match(shortReferral, /store_soft_leads_tracking_code_uidx/);
+  assert.match(shortReferral, /to_jsonb\(p\) - array\['tracking_token','tracking_code'\]/);
+});
+
+test('public tracking accepts only six-character codes and allowlisted app events', async () => {
+  const [record, redirect, tryPage, tryScript] = await Promise.all([
+    read('supabase/functions/record-store-soft-lead-event/index.ts'),
+    read('supabase/functions/store-soft-play-redirect/index.ts'),
+    read('storesoft/try/index.html'), read('storesoft/try/script.js'),
+  ]);
+  assert.match(record, /APP_FIRST_OPEN/);
+  assert.doesNotMatch(record, /QUALIFIED.*EVENT_TYPES|PURCHASED.*EVENT_TYPES|LOST.*EVENT_TYPES/);
+  assert.match(record, /METADATA_KEYS/);
+  assert.match(record, /body\.code/);
+  assert.match(redirect, /encodeURIComponent\(code\)/);
+  assert.doesNotMatch(redirect, /storesoft_lead_token/);
+  assert.match(redirect, /status: 302/);
+  assert.doesNotMatch(redirect, /name|phone|email/);
+  assert.match(tryPage, /noindex,nofollow/);
+  assert.match(tryScript, /\^\[23456789ABCDEFGHJKLMNPQRSTUVWXYZ\]\{6\}\$/);
+});
+
+test('confirmation email is authenticated, idempotent, and uses branded tracked URL', async () => {
+  const [action, appsScript] = await Promise.all([
+    read('supabase/functions/crm-admin-action/index.ts'), read('google-apps-script/Code.gs'),
+  ]);
+  assert.match(action, /sync_admin_crm_apply_action/);
+  assert.match(action, /lead\.email_sent_at/);
+  assert.match(action, /action: 'send_confirmation'/);
+  assert.match(appsScript, /already_sent: true/);
+  assert.match(appsScript, /storesoft\\\/try/);
+  assert.match(appsScript, /sendConfirmedEmail_\(email, name, trackedUrl\)/);
+});
+
+test('Sheet delivery never receives the CRM tracking token', async () => {
+  const edgeFunction = await read('supabase/functions/submit-store-soft-lead/index.ts');
+  assert.match(edgeFunction, /const sheetLead=\{id:lead\.id/);
+  assert.match(edgeFunction, /await syncToSheet\(sheetLead\)/);
+  const sheetPayload = edgeFunction.match(/const sheetLead=\{([^}]+)\}/)?.[1] || '';
+  assert.doesNotMatch(sheetPayload, /tracking_token/);
 });
 
 test('every stored submission emits its own Meta Lead event', async () => {

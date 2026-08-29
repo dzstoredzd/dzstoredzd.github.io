@@ -14,6 +14,7 @@ browser to preview locally.
 |------|---------|----------|
 | `index.html` | Landing / home page | https://yousoft.site/ |
 | `storesoft/download/index.html` | Store Soft trial/download lead form | https://yousoft.site/storesoft/download/ |
+| `storesoft/try/index.html` | Six-character tracked Google Play redirect | https://yousoft.site/storesoft/try/ |
 | `privacy.html` | Privacy Policy (incl. Google API Limited Use) | https://yousoft.site/privacy.html |
 | `terms.html` | Terms of Service | https://yousoft.site/terms.html |
 
@@ -25,8 +26,9 @@ Google OAuth brand verification requires (github.io is not accepted).
 
 The download form posts to the `submit-store-soft-lead` Supabase Edge Function.
 Its schema is recorded in the versioned migration under `supabase/migrations/`. The leads
-table is private (RLS enabled, no browser-role grants); only the Edge Function
-writes to it. Google Sheets mirroring uses `google-apps-script/Code.gs` and the
+table and immutable `lead_events` timeline are private (RLS enabled, no
+browser-role grants); only guarded admin RPCs and Edge Functions access them.
+Google Sheets mirroring uses `google-apps-script/Code.gs` and the
 function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
 `GOOGLE_SHEETS_WEBHOOK_SECRET`.
 
@@ -41,10 +43,28 @@ The Apps Script keeps separate `date` (`dd/MM/yyyy`) and `time` (`HH:mm`)
 columns in GMT+1 and inserts each new lead at row 2 so the newest leads stay
 at the top. All rows are sorted by date and time in descending order; each date
 group has a divider and alternating date-column shading. The `status` column is
-a dropdown. Changing one lead to
-`Confirmed` sends the Store Soft Google Play email once when a legacy lead has an
-email address and records the result in `email_sent_at` or `email_error`. Current
-phone-first leads are contacted through phone or WhatsApp.
+a dropdown. Incoming webhook retries upsert the existing row by `lead_id`.
+Confirmation email is controlled only by the authenticated StoreSoft CRM; the
+Apps Script sender is idempotent by `lead_id` and records `email_sent_at` or
+`email_error`. Deploy the sender and `crm-admin-action`, verify one real CRM
+email, then run **Store Soft → Switch email control to CRM**. Until that explicit
+cutover, the legacy Sheet trigger keeps the ordinary Play link working.
+
+### CRM and tracked trial links
+
+`supabase/migrations/20260829153849_store_soft_crm_core.sql` additively extends
+`public.store_soft_leads`, preserves every legacy column and row, and creates
+`public.lead_events`. Admin access uses the existing `sync.admins` allow-list.
+`20260829154758_store_soft_crm_transition_idempotency.sql` keeps contacted/replied
+Play clicks non-downgrading and makes repeated Customer actions preserve an
+already-recorded purchase amount when the retry omits it.
+`20260829163153_store_soft_crm_short_referral.sql` keeps the 256-bit token private and
+adds the unique six-character referral code used by public tracking.
+Confirmation email and WhatsApp use
+`https://yousoft.site/storesoft/try/?t=<six-character-code>`; the redirect function
+records a Play click and sends only that code through Google Play Install
+Referrer. App milestone delivery accepts only UUID events from the explicit
+allowlist and never accepts product/sale contents, amounts, or PII.
 
 `importArchivedLeads()` copies unique lead IDs from the legacy `Archeived Leads`
 tab into the current schema, preserves the archived tab, and reapplies the
