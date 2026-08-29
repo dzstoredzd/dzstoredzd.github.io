@@ -30,9 +30,10 @@ writes to it. Google Sheets mirroring uses `google-apps-script/Code.gs` and the
 function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
 `GOOGLE_SHEETS_WEBHOOK_SECRET`.
 
-Every valid form submission creates a new lead, even when the email was submitted
-before. This keeps the Google Sheet row count aligned with Meta's successful `Lead`
-events while preserving the normalized email for grouping repeated contacts.
+Every valid form submission creates a new lead. The current form records name,
+free-text activity/shop type, phone or WhatsApp number, and whether the visitor
+wants Store Soft for phone, computer, or both. Legacy email fields remain nullable
+for compatibility with cached versions of the earlier form.
 
 ### Google Sheet workflow
 
@@ -41,8 +42,9 @@ columns in GMT+1 and inserts each new lead at row 2 so the newest leads stay
 at the top. All rows are sorted by date and time in descending order; each date
 group has a divider and alternating date-column shading. The `status` column is
 a dropdown. Changing one lead to
-`Confirmed` sends the Store Soft Google Play email once and records the result
-in `email_sent_at` or `email_error`.
+`Confirmed` sends the Store Soft Google Play email once when a legacy lead has an
+email address and records the result in `email_sent_at` or `email_error`. Current
+phone-first leads are contacted through phone or WhatsApp.
 
 `importArchivedLeads()` copies unique lead IDs from the legacy `Archeived Leads`
 tab into the current schema, preserves the archived tab, and reapplies the

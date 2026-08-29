@@ -18,6 +18,19 @@ test('every valid submission is inserted as a separate lead', async () => {
   assert.match(edgeFunction, /return json\(\{ok:true,lead_id:lead\.id\},200,origin\)/);
 });
 
+test('lead endpoint accepts the phone-first contact contract', async () => {
+  const edgeFunction = await read(
+    'supabase/functions/submit-store-soft-lead/index.ts',
+  );
+
+  assert.match(edgeFunction, /clean\(body\.shop_type,100\)/);
+  assert.match(edgeFunction, /clean\(body\.phone,24\)/);
+  assert.match(edgeFunction, /clean\(body\.requested_platform,20\)/);
+  assert.match(edgeFunction, /allowedPlatforms\.has\(requestedPlatform\)/);
+  assert.match(edgeFunction, /requested_platform:requestedPlatform\|\|null/);
+  assert.match(edgeFunction, /isLegacyEmailLead/);
+});
+
 test('migration allows repeated normalized emails', async () => {
   const migration = await read(
     'supabase/migrations/20260823170553_allow_duplicate_store_soft_lead_emails.sql',
@@ -30,11 +43,24 @@ test('migration allows repeated normalized emails', async () => {
   assert.match(migration, /duplicate values are allowed/);
 });
 
+test('migration stores free-text activity and requested platform without requiring email', async () => {
+  const migration = await read(
+    'supabase/migrations/20260829140453_update_store_soft_lead_contact_form.sql',
+  );
+
+  assert.match(migration, /alter column email drop not null/);
+  assert.match(migration, /char_length\(btrim\(shop_type\)\) between 2 and 100/);
+  assert.match(migration, /add column if not exists requested_platform text/);
+  assert.match(migration, /requested_platform in \('phone', 'computer', 'both'\)/);
+});
+
 test('Google Sheets deduplicates by submission id, not email', async () => {
   const appsScript = await read('google-apps-script/Code.gs');
 
   assert.match(appsScript, /createTextFinder\(String\(lead\.id\)\)/);
   assert.doesNotMatch(appsScript, /createTextFinder\(String\(lead\.email\)\)/);
+  assert.match(appsScript, /'requested_platform'/);
+  assert.match(appsScript, /lead\.requested_platform \|\| ''/);
 });
 
 test('every stored submission emits its own Meta Lead event', async () => {
@@ -47,19 +73,33 @@ test('every stored submission emits its own Meta Lead event', async () => {
   );
 });
 
-test('successful submissions offer the localized Store Soft learning playlist', async () => {
+test('landing form asks for the four phone-first lead fields', async () => {
+  const landingPage = await read('storesoft/download/index.html');
+
+  assert.match(landingPage, /id="name" name="name" type="text"/);
+  assert.match(landingPage, /id="shopType" name="shop_type" type="text"/);
+  assert.match(landingPage, /id="phone" name="phone" type="tel"/);
+  assert.match(landingPage, /id="requestedPlatform" name="requested_platform"/);
+  assert.match(landingPage, /value="phone"/);
+  assert.match(landingPage, /value="computer"/);
+  assert.match(landingPage, /value="both"/);
+  assert.doesNotMatch(landingPage, /id="email"/);
+  assert.doesNotMatch(landingPage, /<select id="shopType"/);
+});
+
+test('successful submissions offer localized WhatsApp contact instead of YouTube', async () => {
   const [landingPage, landingScript, landingStyles] = await Promise.all([
     read('storesoft/download/index.html'),
     read('storesoft/download/script.js'),
     read('storesoft/download/styles.css'),
   ]);
 
-  assert.match(
-    landingPage,
-    /id="successView"[\s\S]*href="https:\/\/www\.youtube\.com\/playlist\?list=PLZCuVpkDZZFE"/,
-  );
+  const successBlock = landingPage.match(/id="successView"[\s\S]*?<\/aside>/)?.[0] || '';
+
+  assert.match(successBlock, /href="https:\/\/wa\.me\/213654338649\?text=I%20want%20to%20know%20more%20about%20storesoft"/);
   assert.match(landingPage, /target="_blank" rel="noopener noreferrer"/);
-  assert.match(landingScript, /learningWait: 'يمكنك مشاهدة فيديوهات الشرح حتى يصلك البريد.'/);
-  assert.match(landingScript, /learningWait: 'Vous pouvez regarder nos vidéos de formation en attendant l’e-mail.'/);
-  assert.match(landingStyles, /\.success__learning a \{[^}]*min-height: 48px/);
+  assert.doesNotMatch(successBlock, /youtube\.com|YouTube/);
+  assert.match(landingScript, /contactWhatsApp: 'تواصل معنا على WhatsApp'/);
+  assert.match(landingScript, /contactWhatsApp: 'Nous contacter sur WhatsApp'/);
+  assert.match(landingStyles, /\.success__contact a \{[^}]*min-height: 48px/);
 });

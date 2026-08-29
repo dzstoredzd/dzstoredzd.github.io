@@ -17,6 +17,7 @@ var HEADERS = [
   'status',
   'phone',
   'shop_type',
+  'requested_platform',
   'source',
   'medium',
   'campaign',
@@ -105,6 +106,7 @@ function doPost(event) {
       row[column_('email') - 1] = lead.email || '';
       row[column_('phone') - 1] = lead.phone || '';
       row[column_('shop_type') - 1] = lead.shop_type || '';
+      row[column_('requested_platform') - 1] = lead.requested_platform || '';
       row[column_('status') - 1] = normalizeStatus_(lead.status || 'New');
       row[column_('source') - 1] = lead.source || '';
       row[column_('medium') - 1] = lead.medium || '';
@@ -150,6 +152,10 @@ function handleLeadStatusEdit(event) {
     var email = String(sheet.getRange(rowNumber, columnInSheet_(sheet, 'email')).getValue() || '').trim();
     var name = String(sheet.getRange(rowNumber, columnInSheet_(sheet, 'name')).getValue() || '').trim();
     var errorCell = sheet.getRange(rowNumber, columnInSheet_(sheet, 'email_error'));
+    if (!email) {
+      errorCell.setValue('No email; contact by phone or WhatsApp');
+      return;
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errorCell.setValue('Invalid or missing email address');
       return;
@@ -409,7 +415,7 @@ function applyStatusValidation_(sheet, lastRow) {
   var rule = SpreadsheetApp.newDataValidation()
     .requireValueInList(CONFIG.statusValues, true)
     .setAllowInvalid(false)
-    .setHelpText('Choose a status. Changing it to Confirmed sends the Store Soft email once.')
+    .setHelpText('Choose a status. Confirmed sends the Store Soft email once when an email is available.')
     .build();
   sheet.getRange(2, columnInSheet_(sheet, 'status'), lastRow - 1, 1).setDataValidation(rule);
 }

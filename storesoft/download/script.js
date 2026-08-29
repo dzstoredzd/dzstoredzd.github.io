@@ -5,7 +5,6 @@
   var formStartedAt = Date.now();
   var currentLanguage = 'ar';
   var formStartTracked = false;
-  var emailValidationTimer;
   window.dataLayer = window.dataLayer || [];
 
   var copies = {
@@ -18,38 +17,35 @@
       whatsappCta: 'واتساب',
       offlineShort: 'يعمل بدون إنترنت',
       languagesShort: 'العربية والفرنسية',
-      algeriaShort: 'الرابط يصلك عبر البريد',
+      algeriaShort: 'نتواصل معك عبر واتساب',
       available: '7 أيام مجانًا',
       formTitle: 'استلم رابط التطبيق',
-      formIntro: 'عمّر معلوماتك ونرسل الرابط إلى بريدك.',
+      formIntro: 'عمّر معلوماتك وسنتواصل معك عبر واتساب.',
       freeOfferValue: '7 أيام مجانًا',
       freeOfferText: 'المبيعات، المخزون، الديون والأرباح.',
       priceMain: 'بعد التجربة: 7000 دج للجهاز الأول',
       priceExtra: 'الأجهزة الإضافية فقط: +3000 دج سنويًا لكل جهاز',
       nameLabel: 'الاسم',
       namePlaceholder: 'مثال: محمد',
-      emailLabel: 'البريد الإلكتروني',
-      emailHint: 'اكتب البريد كاملًا، مثال: name@gmail.com',
-      shopLabel: 'نوع المحل',
-      shopPlaceholder: 'اختر نوع المحل',
-      shopGrocery: 'مواد غذائية / سوبرات',
-      shopClothing: 'ملابس وأحذية',
-      shopCosmetics: 'مواد تجميل',
-      shopParts: 'قطع غيار',
-      shopRepair: 'محل تصليح',
-      shopOther: 'نشاط آخر',
-      submit: 'أرسل الرابط إلى بريدي',
+      shopLabel: 'نوع النشاط / المحل',
+      shopPlaceholder: 'مثال: مواد غذائية',
+      phoneLabel: 'رقم الهاتف أو WhatsApp',
+      phonePlaceholder: 'مثال: 0654338649',
+      platformLabel: 'تريد نسخة لـ',
+      platformPlaceholder: 'اختر الجهاز',
+      platformPhone: 'هاتف',
+      platformComputer: 'كمبيوتر',
+      platformBoth: 'الاثنين',
+      submit: 'أرسل طلبي',
       submitting: 'جاري إرسال معلوماتك…',
-      privacyCopy: 'معلوماتك تُستعمل لإرسال رابط التطبيق فقط.',
+      privacyCopy: 'معلوماتك تُستعمل لمعالجة طلبك والتواصل معك فقط.',
       privacyLink: 'سياسة الخصوصية',
       terms: 'شروط الاستخدام',
       successTitle: 'تم استلام معلوماتك ✅',
-      successText: 'سنرسل رابط تحميل Store Soft إلى بريدك الإلكتروني.',
-      sentTo: 'البريد المسجّل',
-      successNote: 'إذا لم تجد الرسالة، تحقق من مجلد الرسائل غير المرغوب فيها (Spam / Junk).',
-      learningWait: 'يمكنك مشاهدة فيديوهات الشرح حتى يصلك البريد.',
-      watchLearningVideos: 'شاهد فيديوهات الشرح على YouTube',
-      editEmail: 'تصحيح البريد',
+      successText: 'تم حفظ طلبك. تواصل معنا على واتساب لمعرفة المزيد.',
+      contactPrompt: 'اضغط هنا لفتح محادثة واتساب معنا.',
+      contactWhatsApp: 'تواصل معنا على WhatsApp',
+      editDetails: 'تصحيح المعلومات',
       valueTitle: 'كل ما يحتاجه محلك',
       benefitSales: 'تسجيل المبيعات بسرعة',
       benefitStock: 'متابعة المخزون تلقائيًا',
@@ -65,11 +61,12 @@
       shotDebtTitle: 'ديون الزبائن',
       shotReportTitle: 'المبيعات والأرباح',
       closingTitle: 'جرّب Store Soft مجانًا',
-      closingText: 'الرابط يصلك عبر البريد الإلكتروني.',
+      closingText: 'أرسل طلبك وسنتواصل معك عبر واتساب.',
       storiesEyebrow: 'تجارب أصحاب المحلات',
       storiesTitle: 'ماذا يقول زبائن Store Soft؟',
       required: 'هذا الحقل مطلوب.',
-      invalidEmail: 'أدخل بريدًا إلكترونيًا صحيحًا.',
+      tooShort: 'اكتب حرفين على الأقل.',
+      invalidPhone: 'أدخل رقم هاتف أو WhatsApp صحيحًا.',
       generalError: 'تعذّر إرسال المعلومات. تحقق من الإنترنت وحاول مرة أخرى.'
     },
     fr: {
@@ -81,38 +78,35 @@
       whatsappCta: 'WhatsApp',
       offlineShort: 'Fonctionne sans Internet',
       languagesShort: 'Arabe et français',
-      algeriaShort: 'Lien envoyé par e-mail',
+      algeriaShort: 'Nous vous contactons sur WhatsApp',
       available: '7 jours gratuits',
       formTitle: 'Recevoir l’application',
-      formIntro: 'Remplissez le formulaire. Le lien arrive par e-mail.',
+      formIntro: 'Remplissez le formulaire. Nous vous contacterons sur WhatsApp.',
       freeOfferValue: '7 jours gratuits',
       freeOfferText: 'Ventes, stock, dettes et bénéfices.',
       priceMain: 'Après l’essai : 7 000 DA pour le premier appareil',
       priceExtra: 'Appareils supplémentaires uniquement : +3 000 DA par appareil et par an',
       nameLabel: 'Nom',
       namePlaceholder: 'Exemple : Mohamed',
-      emailLabel: 'E-mail',
-      emailHint: 'Saisissez l’adresse complète, par exemple : name@gmail.com',
-      shopLabel: 'Type de magasin',
-      shopPlaceholder: 'Choisissez votre activité',
-      shopGrocery: 'Alimentation / supérette',
-      shopClothing: 'Vêtements et chaussures',
-      shopCosmetics: 'Cosmétiques',
-      shopParts: 'Pièces détachées',
-      shopRepair: 'Atelier de réparation',
-      shopOther: 'Autre activité',
-      submit: 'Envoyer le lien à mon e-mail',
+      shopLabel: 'Type d’activité / magasin',
+      shopPlaceholder: 'Exemple : Alimentation',
+      phoneLabel: 'Numéro de téléphone ou WhatsApp',
+      phonePlaceholder: 'Exemple : 0654338649',
+      platformLabel: 'Je veux une version pour',
+      platformPlaceholder: 'Choisissez l’appareil',
+      platformPhone: 'Téléphone',
+      platformComputer: 'Ordinateur',
+      platformBoth: 'Les deux',
+      submit: 'Envoyer ma demande',
       submitting: 'Envoi de vos informations…',
-      privacyCopy: 'Vos informations servent uniquement à envoyer le lien de l’application.',
+      privacyCopy: 'Vos informations servent uniquement à traiter votre demande et à vous contacter.',
       privacyLink: 'Confidentialité',
       terms: 'Conditions',
       successTitle: 'Informations reçues ✅',
-      successText: 'Nous enverrons le lien de téléchargement de Store Soft à votre adresse e-mail.',
-      sentTo: 'E-mail enregistré',
-      successNote: 'Si le message n’apparaît pas, vérifiez le dossier Spam / Courrier indésirable.',
-      learningWait: 'Vous pouvez regarder nos vidéos de formation en attendant l’e-mail.',
-      watchLearningVideos: 'Voir les vidéos de formation sur YouTube',
-      editEmail: 'Corriger l’e-mail',
+      successText: 'Votre demande est enregistrée. Contactez-nous sur WhatsApp pour en savoir plus.',
+      contactPrompt: 'Appuyez ici pour ouvrir une discussion WhatsApp avec nous.',
+      contactWhatsApp: 'Nous contacter sur WhatsApp',
+      editDetails: 'Corriger les informations',
       valueTitle: 'L’essentiel pour votre commerce',
       benefitSales: 'Enregistrer les ventes rapidement',
       benefitStock: 'Suivre le stock automatiquement',
@@ -128,11 +122,12 @@
       shotDebtTitle: 'Dettes clients',
       shotReportTitle: 'Ventes et bénéfices',
       closingTitle: 'Essayez Store Soft gratuitement',
-      closingText: 'Le lien arrive directement par e-mail.',
+      closingText: 'Envoyez votre demande et nous vous contacterons sur WhatsApp.',
       storiesEyebrow: 'Expériences de commerçants',
       storiesTitle: 'Que disent les clients Store Soft ?',
       required: 'Ce champ est obligatoire.',
-      invalidEmail: 'Saisissez une adresse e-mail valide.',
+      tooShort: 'Saisissez au moins deux caractères.',
+      invalidPhone: 'Saisissez un numéro de téléphone ou WhatsApp valide.',
       generalError: 'Les informations n’ont pas pu être envoyées. Vérifiez votre connexion et réessayez.'
     }
   };
@@ -144,7 +139,6 @@
   var successView = document.getElementById('successView');
   var submitError = document.getElementById('submitError');
   var languageSwitch = document.getElementById('languageSwitch');
-  var emailInput = document.getElementById('email');
 
   function copy(key) {
     return copies[currentLanguage][key];
@@ -187,7 +181,7 @@
   }
 
   function clearErrors() {
-    ['name', 'email', 'shopType'].forEach(function (id) {
+    ['name', 'shopType', 'phone', 'requestedPlatform'].forEach(function (id) {
       document.getElementById(id).removeAttribute('aria-invalid');
       document.getElementById(id + 'Error').textContent = '';
     });
@@ -204,46 +198,10 @@
     document.getElementById(id + 'Error').textContent = '';
   }
 
-  function isValidEmail(value) {
-    if (!value || value.length > 254 || /\s/.test(value)) return false;
-
-    var atIndex = value.indexOf('@');
-    if (atIndex <= 0 || atIndex !== value.lastIndexOf('@')) return false;
-
-    var localPart = value.slice(0, atIndex);
-    var domain = value.slice(atIndex + 1).toLowerCase();
-    if (localPart.length > 64 || localPart.charAt(0) === '.' ||
-        localPart.charAt(localPart.length - 1) === '.' || localPart.indexOf('..') !== -1) {
-      return false;
-    }
-    if (!/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(localPart)) return false;
-
-    if (!domain || domain.length > 253 || domain.indexOf('.') === -1 || domain.indexOf('..') !== -1) {
-      return false;
-    }
-    var labels = domain.split('.');
-    var labelsAreValid = labels.every(function (label) {
-      return label.length > 0 && label.length <= 63 &&
-        label.charAt(0) !== '-' && label.charAt(label.length - 1) !== '-' &&
-        /^[a-z0-9-]+$/i.test(label);
-    });
-    return labelsAreValid && /^[a-z]{2,63}$/i.test(labels[labels.length - 1]);
-  }
-
-  function validateEmailField(showRequired, normalize) {
-    var value = emailInput.value.trim().toLowerCase();
-    if (normalize) emailInput.value = value;
-    clearFieldError('email');
-
-    if (!value) {
-      if (showRequired) fieldError('email', copy('required'));
-      return false;
-    }
-    if (!emailInput.checkValidity() || !isValidEmail(value)) {
-      fieldError('email', copy('invalidEmail'));
-      return false;
-    }
-    return true;
+  function isValidPhone(value) {
+    var digits = value.replace(/\D/g, '');
+    return value.length <= 24 && /^[+\d\s().-]+$/.test(value) &&
+      digits.length >= 8 && digits.length <= 15;
   }
 
   function validate(values) {
@@ -253,16 +211,26 @@
     if (!values.name) {
       fieldError('name', copy('required'));
       valid = false;
-    }
-    if (!values.email) {
-      fieldError('email', copy('required'));
-      valid = false;
-    } else if (!isValidEmail(values.email)) {
-      fieldError('email', copy('invalidEmail'));
+    } else if (values.name.length < 2) {
+      fieldError('name', copy('tooShort'));
       valid = false;
     }
     if (!values.shop_type) {
       fieldError('shopType', copy('required'));
+      valid = false;
+    } else if (values.shop_type.length < 2) {
+      fieldError('shopType', copy('tooShort'));
+      valid = false;
+    }
+    if (!values.phone) {
+      fieldError('phone', copy('required'));
+      valid = false;
+    } else if (!isValidPhone(values.phone)) {
+      fieldError('phone', copy('invalidPhone'));
+      valid = false;
+    }
+    if (!values.requested_platform) {
+      fieldError('requestedPlatform', copy('required'));
       valid = false;
     }
 
@@ -284,20 +252,6 @@
 
   languageSwitch.addEventListener('click', function () {
     setLanguage(currentLanguage === 'ar' ? 'fr' : 'ar');
-  });
-
-  emailInput.addEventListener('blur', function () {
-    window.clearTimeout(emailValidationTimer);
-    validateEmailField(true, true);
-  });
-
-  emailInput.addEventListener('input', function () {
-    window.clearTimeout(emailValidationTimer);
-    clearFieldError('email');
-    if (!emailInput.value.trim()) return;
-    emailValidationTimer = window.setTimeout(function () {
-      validateEmailField(false, false);
-    }, 300);
   });
 
   document.querySelectorAll('a[href="#download-form"]').forEach(function (link) {
@@ -328,14 +282,13 @@
     var data = new FormData(form);
     var values = {
       name: String(data.get('name') || '').trim(),
-      email: String(data.get('email') || '').trim().toLowerCase(),
-      shop_type: String(data.get('shop_type') || ''),
+      shop_type: String(data.get('shop_type') || '').trim(),
+      phone: String(data.get('phone') || '').trim(),
+      requested_platform: String(data.get('requested_platform') || ''),
       website: String(data.get('website') || ''),
       form_started_at: formStartedAt,
       language: currentLanguage
     };
-
-    emailInput.value = values.email;
 
     if (!validate(values)) return;
 
@@ -352,7 +305,6 @@
       var result = await response.json().catch(function () { return {}; });
       if (!response.ok || !result.ok) throw new Error(result.error || 'submit_failed');
 
-      document.getElementById('submittedEmail').textContent = values.email;
       formView.hidden = true;
       successView.hidden = false;
 
@@ -368,10 +320,10 @@
     }
   });
 
-  document.getElementById('editEmail').addEventListener('click', function () {
+  document.getElementById('editDetails').addEventListener('click', function () {
     successView.hidden = true;
     formView.hidden = false;
-    document.getElementById('email').focus();
+    document.getElementById('name').focus();
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();

@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260828-learning-playlist-v1" />
+  <link rel="stylesheet" href="styles.css?v=20260829-contact-form-v1" />
 </head>
 <body>
   <noscript><img height="1" width="1" style="display:none" alt=""
@@ -61,7 +61,7 @@
           <ul class="hero__proof" aria-label="معلومات سريعة عن Store Soft">
             <li data-copy="offlineShort">يعمل بدون إنترنت</li>
             <li data-copy="languagesShort">العربية والفرنسية</li>
-            <li data-copy="algeriaShort">الرابط يصلك عبر البريد</li>
+            <li data-copy="algeriaShort">نتواصل معك عبر واتساب</li>
           </ul>
         </div>
 
@@ -73,7 +73,7 @@
 
           <div id="formView">
             <h2 id="formTitle" data-copy="formTitle">استلم رابط التطبيق</h2>
-            <p class="form-intro" data-copy="formIntro">عمّر معلوماتك ونرسل الرابط إلى بريدك.</p>
+            <p class="form-intro" data-copy="formIntro">عمّر معلوماتك وسنتواصل معك عبر واتساب.</p>
 
             <div class="free-offer" aria-label="عرض النسخة المجانية">
               <div class="free-offer__badge">
@@ -90,27 +90,28 @@
             <form id="leadForm" novalidate>
               <div class="field">
                 <label for="name" data-copy="nameLabel">الاسم</label>
-                <input id="name" name="name" type="text" autocomplete="name" maxlength="80" required placeholder="مثال: محمد" data-copy-placeholder="namePlaceholder" />
+                <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required placeholder="مثال: محمد" data-copy-placeholder="namePlaceholder" />
                 <p class="field-error" id="nameError"></p>
               </div>
               <div class="field">
-                <label for="email" data-copy="emailLabel">البريد الإلكتروني</label>
-                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required placeholder="name@gmail.com" dir="ltr" autocapitalize="none" autocorrect="off" spellcheck="false" aria-describedby="emailHint emailError" />
-                <p class="field-hint" id="emailHint" data-copy="emailHint">اكتب البريد كاملًا، مثال: name@gmail.com</p>
-                <p class="field-error" id="emailError" role="status" aria-live="polite"></p>
+                <label for="shopType" data-copy="shopLabel">نوع النشاط / المحل</label>
+                <input id="shopType" name="shop_type" type="text" minlength="2" maxlength="100" required placeholder="مثال: مواد غذائية" data-copy-placeholder="shopPlaceholder" />
+                <p class="field-error" id="shopTypeError"></p>
               </div>
               <div class="field">
-                <label for="shopType" data-copy="shopLabel">نوع المحل</label>
-                <select id="shopType" name="shop_type" required>
-                  <option value="" data-copy="shopPlaceholder">اختر نوع المحل</option>
-                  <option value="grocery" data-copy="shopGrocery">مواد غذائية / سوبرات</option>
-                  <option value="clothing" data-copy="shopClothing">ملابس وأحذية</option>
-                  <option value="cosmetics" data-copy="shopCosmetics">مواد تجميل</option>
-                  <option value="spare_parts" data-copy="shopParts">قطع غيار</option>
-                  <option value="repair_shop" data-copy="shopRepair">محل تصليح</option>
-                  <option value="other" data-copy="shopOther">نشاط آخر</option>
+                <label for="phone" data-copy="phoneLabel">رقم الهاتف أو WhatsApp</label>
+                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required placeholder="مثال: 0654338649" data-copy-placeholder="phonePlaceholder" dir="ltr" />
+                <p class="field-error" id="phoneError"></p>
+              </div>
+              <div class="field">
+                <label for="requestedPlatform" data-copy="platformLabel">تريد نسخة لـ</label>
+                <select id="requestedPlatform" name="requested_platform" required>
+                  <option value="" data-copy="platformPlaceholder">اختر الجهاز</option>
+                  <option value="phone" data-copy="platformPhone">هاتف</option>
+                  <option value="computer" data-copy="platformComputer">كمبيوتر</option>
+                  <option value="both" data-copy="platformBoth">الاثنين</option>
                 </select>
-                <p class="field-error" id="shopTypeError"></p>
+                <p class="field-error" id="requestedPlatformError"></p>
               </div>
 
               <div class="trap" hidden aria-hidden="true">
@@ -120,24 +121,22 @@
 
               <p class="submit-error" id="submitError" role="alert" aria-live="polite"></p>
               <button class="submit-button" id="submitButton" type="submit">
-                <span data-copy="submit">أرسل الرابط إلى بريدي</span>
+                <span data-copy="submit">أرسل طلبي</span>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
               </button>
-              <p class="privacy-copy" data-copy="privacyCopy">معلوماتك تُستعمل لإرسال رابط التطبيق فقط.</p>
+              <p class="privacy-copy" data-copy="privacyCopy">معلوماتك تُستعمل لمعالجة طلبك والتواصل معك فقط.</p>
             </form>
           </div>
 
           <div class="success" id="successView" hidden tabindex="-1">
             <span class="success__icon" aria-hidden="true">✓</span>
             <h2 data-copy="successTitle">تم استلام معلوماتك ✅</h2>
-            <p data-copy="successText">سنرسل رابط تحميل Store Soft إلى بريدك الإلكتروني.</p>
-            <div class="success__email"><span data-copy="sentTo">البريد المسجّل</span><b id="submittedEmail" dir="ltr"></b></div>
-            <p class="success__note" data-copy="successNote">إذا لم تجد الرسالة، تحقق من مجلد الرسائل غير المرغوب فيها (Spam / Junk).</p>
-            <p class="success__learning">
-              <span data-copy="learningWait">يمكنك مشاهدة فيديوهات الشرح حتى يصلك البريد.</span>
-              <a href="https://www.youtube.com/playlist?list=PLZCuVpkDZZFE" target="_blank" rel="noopener noreferrer" data-copy="watchLearningVideos">شاهد فيديوهات الشرح على YouTube</a>
+            <p data-copy="successText">تم حفظ طلبك. تواصل معنا على واتساب لمعرفة المزيد.</p>
+            <p class="success__contact">
+              <span data-copy="contactPrompt">اضغط هنا لفتح محادثة واتساب معنا.</span>
+              <a class="js-whatsapp" href="https://wa.me/213654338649?text=I%20want%20to%20know%20more%20about%20storesoft" target="_blank" rel="noopener noreferrer" data-copy="contactWhatsApp">تواصل معنا على WhatsApp</a>
             </p>
-            <button class="edit-button" id="editEmail" type="button" data-copy="editEmail">تصحيح البريد</button>
+            <button class="edit-button" id="editDetails" type="button" data-copy="editDetails">تصحيح المعلومات</button>
           </div>
         </aside>
       </div>
@@ -191,7 +190,7 @@
       <div class="shell closing__inner">
         <div>
           <h2 id="closingTitle" data-copy="closingTitle">جرّب Store Soft مجانًا</h2>
-          <p data-copy="closingText">الرابط يصلك عبر البريد الإلكتروني.</p>
+          <p data-copy="closingText">أرسل طلبك وسنتواصل معك عبر واتساب.</p>
         </div>
         <div class="final-cta">
           <a class="primary-cta" href="#download-form" data-copy="primaryCta">استلم رابط النسخة المجانية</a>
@@ -219,6 +218,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260828-learning-playlist-v1"></script>
+  <script src="script.js?v=20260829-contact-form-v1"></script>
 </body>
 </html>
