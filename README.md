@@ -32,10 +32,10 @@ Google Sheets mirroring uses `google-apps-script/Code.gs` and the
 function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
 `GOOGLE_SHEETS_WEBHOOK_SECRET`.
 
-Every valid form submission creates a new lead. The current form records name,
-free-text activity/shop type, phone or WhatsApp number, email address, and whether
-the visitor wants Store Soft for phone, computer, or both. The database email columns
-remain nullable so cached versions of the previous form can finish submitting safely.
+Every valid form submission creates a new lead. The current form records name, a
+shop type selected from the approved activity list, and email address. Legacy phone
+and requested-platform columns remain nullable so cached versions of previous forms
+can finish submitting safely.
 
 ### Google Sheet workflow
 

@@ -28,16 +28,15 @@
       nameLabel: 'الاسم',
       namePlaceholder: 'مثال: محمد',
       shopLabel: 'نوع النشاط / المحل',
-      shopPlaceholder: 'مثال: مواد غذائية',
-      phoneLabel: 'رقم الهاتف أو WhatsApp',
-      phonePlaceholder: 'مثال: 0654338649',
+      shopPlaceholder: 'اختر نوع المحل',
+      shopGrocery: 'مواد غذائية / سوبرات',
+      shopClothing: 'ملابس وأحذية',
+      shopCosmetics: 'مواد تجميل',
+      shopParts: 'قطع غيار',
+      shopRepair: 'محل تصليح',
+      shopOther: 'نشاط آخر',
       emailLabel: 'البريد الإلكتروني',
       emailPlaceholder: 'name@gmail.com',
-      platformLabel: 'تريد نسخة لـ',
-      platformPlaceholder: 'اختر الجهاز',
-      platformPhone: 'هاتف',
-      platformComputer: 'كمبيوتر',
-      platformBoth: 'الاثنين',
       submit: 'أرسل طلبي',
       submitting: 'جاري إرسال معلوماتك…',
       privacyCopy: 'معلوماتك تُستعمل لمعالجة طلبك والتواصل معك فقط.',
@@ -68,7 +67,6 @@
       storiesTitle: 'ماذا يقول زبائن Store Soft؟',
       required: 'هذا الحقل مطلوب.',
       tooShort: 'اكتب حرفين على الأقل.',
-      invalidPhone: 'أدخل رقم هاتف أو WhatsApp صحيحًا.',
       invalidEmail: 'أدخل بريدًا إلكترونيًا صحيحًا.',
       generalError: 'تعذّر إرسال المعلومات. تحقق من الإنترنت وحاول مرة أخرى.'
     },
@@ -92,16 +90,15 @@
       nameLabel: 'Nom',
       namePlaceholder: 'Exemple : Mohamed',
       shopLabel: 'Type d’activité / magasin',
-      shopPlaceholder: 'Exemple : Alimentation',
-      phoneLabel: 'Numéro de téléphone ou WhatsApp',
-      phonePlaceholder: 'Exemple : 0654338649',
+      shopPlaceholder: 'Choisissez le type de magasin',
+      shopGrocery: 'Alimentation / supérette',
+      shopClothing: 'Vêtements et chaussures',
+      shopCosmetics: 'Cosmétiques',
+      shopParts: 'Pièces détachées',
+      shopRepair: 'Atelier de réparation',
+      shopOther: 'Autre activité',
       emailLabel: 'Adresse e-mail',
       emailPlaceholder: 'nom@gmail.com',
-      platformLabel: 'Je veux une version pour',
-      platformPlaceholder: 'Choisissez l’appareil',
-      platformPhone: 'Téléphone',
-      platformComputer: 'Ordinateur',
-      platformBoth: 'Les deux',
       submit: 'Envoyer ma demande',
       submitting: 'Envoi de vos informations…',
       privacyCopy: 'Vos informations servent uniquement à traiter votre demande et à vous contacter.',
@@ -132,7 +129,6 @@
       storiesTitle: 'Que disent les clients Store Soft ?',
       required: 'Ce champ est obligatoire.',
       tooShort: 'Saisissez au moins deux caractères.',
-      invalidPhone: 'Saisissez un numéro de téléphone ou WhatsApp valide.',
       invalidEmail: 'Saisissez une adresse e-mail valide.',
       generalError: 'Les informations n’ont pas pu être envoyées. Vérifiez votre connexion et réessayez.'
     }
@@ -187,7 +183,7 @@
   }
 
   function clearErrors() {
-    ['name', 'shopType', 'phone', 'email', 'requestedPlatform'].forEach(function (id) {
+    ['name', 'shopType', 'email'].forEach(function (id) {
       document.getElementById(id).removeAttribute('aria-invalid');
       document.getElementById(id + 'Error').textContent = '';
     });
@@ -202,12 +198,6 @@
   function clearFieldError(id) {
     document.getElementById(id).removeAttribute('aria-invalid');
     document.getElementById(id + 'Error').textContent = '';
-  }
-
-  function isValidPhone(value) {
-    var digits = value.replace(/\D/g, '');
-    return value.length <= 24 && /^[+\d\s().-]+$/.test(value) &&
-      digits.length >= 8 && digits.length <= 15;
   }
 
   function isValidEmail(value) {
@@ -243,16 +233,6 @@
     if (!values.shop_type) {
       fieldError('shopType', copy('required'));
       valid = false;
-    } else if (values.shop_type.length < 2) {
-      fieldError('shopType', copy('tooShort'));
-      valid = false;
-    }
-    if (!values.phone) {
-      fieldError('phone', copy('required'));
-      valid = false;
-    } else if (!isValidPhone(values.phone)) {
-      fieldError('phone', copy('invalidPhone'));
-      valid = false;
     }
     if (!values.email) {
       fieldError('email', copy('required'));
@@ -261,11 +241,6 @@
       fieldError('email', copy('invalidEmail'));
       valid = false;
     }
-    if (!values.requested_platform) {
-      fieldError('requestedPlatform', copy('required'));
-      valid = false;
-    }
-
     return valid;
   }
 
@@ -315,13 +290,11 @@
     var values = {
       name: String(data.get('name') || '').trim(),
       shop_type: String(data.get('shop_type') || '').trim(),
-      phone: String(data.get('phone') || '').trim(),
       email: String(data.get('email') || '').trim().toLowerCase(),
-      requested_platform: String(data.get('requested_platform') || ''),
       website: String(data.get('website') || ''),
       form_started_at: formStartedAt,
       language: currentLanguage,
-      form_version: 'contact_email_v2'
+      form_version: 'email_shop_select_v3'
     };
 
     if (!validate(values)) return;

@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260829-contact-email-v2" />
+  <link rel="stylesheet" href="styles.css?v=20260830-email-shop-select-v3" />
 </head>
 <body>
   <noscript><img height="1" width="1" style="display:none" alt=""
@@ -95,30 +95,22 @@
               </div>
               <div class="field">
                 <label for="shopType" data-copy="shopLabel">نوع النشاط / المحل</label>
-                <input id="shopType" name="shop_type" type="text" minlength="2" maxlength="100" required placeholder="مثال: مواد غذائية" data-copy-placeholder="shopPlaceholder" />
+                <select id="shopType" name="shop_type" required>
+                  <option value="" data-copy="shopPlaceholder">اختر نوع المحل</option>
+                  <option value="grocery" data-copy="shopGrocery">مواد غذائية / سوبرات</option>
+                  <option value="clothing" data-copy="shopClothing">ملابس وأحذية</option>
+                  <option value="cosmetics" data-copy="shopCosmetics">مواد تجميل</option>
+                  <option value="spare_parts" data-copy="shopParts">قطع غيار</option>
+                  <option value="repair_shop" data-copy="shopRepair">محل تصليح</option>
+                  <option value="other" data-copy="shopOther">نشاط آخر</option>
+                </select>
                 <p class="field-error" id="shopTypeError"></p>
-              </div>
-              <div class="field">
-                <label for="phone" data-copy="phoneLabel">رقم الهاتف أو WhatsApp</label>
-                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required placeholder="مثال: 0654338649" data-copy-placeholder="phonePlaceholder" dir="ltr" />
-                <p class="field-error" id="phoneError"></p>
               </div>
               <div class="field">
                 <label for="email" data-copy="emailLabel">البريد الإلكتروني</label>
                 <input id="email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required placeholder="name@gmail.com" data-copy-placeholder="emailPlaceholder" dir="ltr" autocapitalize="none" autocorrect="off" spellcheck="false" />
                 <p class="field-error" id="emailError"></p>
               </div>
-              <div class="field">
-                <label for="requestedPlatform" data-copy="platformLabel">تريد نسخة لـ</label>
-                <select id="requestedPlatform" name="requested_platform" required>
-                  <option value="" data-copy="platformPlaceholder">اختر الجهاز</option>
-                  <option value="phone" data-copy="platformPhone">هاتف</option>
-                  <option value="computer" data-copy="platformComputer">كمبيوتر</option>
-                  <option value="both" data-copy="platformBoth">الاثنين</option>
-                </select>
-                <p class="field-error" id="requestedPlatformError"></p>
-              </div>
-
               <div class="trap" hidden aria-hidden="true">
                 <label for="website">Website</label>
                 <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
@@ -223,6 +215,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260829-contact-email-v2"></script>
+  <script src="script.js?v=20260830-email-shop-select-v3"></script>
 </body>
 </html>
