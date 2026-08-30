@@ -164,7 +164,7 @@ function sendConfirmationAction_(sheet, lead) {
     sentCell.setValue(Utilities.formatDate(new Date(), CONFIG.timeZone, 'dd/MM/yyyy HH:mm'));
     errorCell.clearContent();
     sheet.getRange(rowNumber, columnInSheet_(sheet, 'status')).setValue('Confirmed');
-    return { ok: true, already_sent: false };
+    return { ok: true, email_sent: true, already_sent: false };
   } catch (error) {
     errorCell.setValue(String(error && error.message || error).slice(0, 500));
     throw error;

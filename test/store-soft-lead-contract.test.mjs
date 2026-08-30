@@ -141,6 +141,7 @@ test('confirmation email is authenticated, repeatable, counted, and uses branded
   assert.doesNotMatch(action, /if \(lead\.email_sent_at\) return/);
   assert.doesNotMatch(action, /already_sent: true/);
   assert.doesNotMatch(appsScript, /if \(sentCell\.getValue\(\)\) return/);
+  assert.match(appsScript, /email_sent: true/);
   assert.match(appsScript, /storesoft\\\/try/);
   assert.match(appsScript, /sendConfirmedEmail_\(email, name, trackedUrl\)/);
   assert.match(appsScript, /حمّل Store Soft من Google Play/);
