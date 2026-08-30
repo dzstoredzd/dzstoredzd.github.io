@@ -45,10 +45,17 @@ at the top. All rows are sorted by date and time in descending order; each date
 group has a divider and alternating date-column shading. The `status` column is
 a dropdown. Incoming webhook retries upsert the existing row by `lead_id`.
 Confirmation email is controlled only by the authenticated StoreSoft CRM; the
-Apps Script sender is idempotent by `lead_id` and records `email_sent_at` or
-`email_error`. Deploy the sender and `crm-admin-action`, verify one real CRM
+Apps Script sender permits explicit repeat delivery. After each successful MailApp call,
+`crm-admin-action` uses the vendor-admin-only counter RPC to preserve the first
+`email_sent_at`, advance `email_last_sent_at`, and increment `email_sent_count`; failures record
+`email_error` without incrementing. Deploy the migration before the sender and
+`crm-admin-action`, then verify one real CRM
 email, then run **Store Soft → Switch email control to CRM**. Until that explicit
 cutover, the legacy Sheet trigger keeps the ordinary Play link working.
+
+Production status (2026-08-30): migration `20260830134150_store_soft_crm_repeat_email`,
+Apps Script version 8, and `crm-admin-action` version 6 are live. The Apps Script web-app URL
+was preserved, and no customer email was sent during deployment verification.
 
 ### CRM and tracked trial links
 

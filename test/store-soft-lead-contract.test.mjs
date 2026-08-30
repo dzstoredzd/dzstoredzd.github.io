@@ -106,20 +106,32 @@ test('public tracking accepts only six-character codes and allowlisted app event
   assert.match(tryScript, /\^\[23456789ABCDEFGHJKLMNPQRSTUVWXYZ\]\{6\}\$/);
 });
 
-test('confirmation email is authenticated, idempotent, and uses branded tracked URL', async () => {
-  const [action, appsScript] = await Promise.all([
+test('confirmation email is authenticated, repeatable, counted, and uses branded tracked URL', async () => {
+  const [action, appsScript, migration] = await Promise.all([
     read('supabase/functions/crm-admin-action/index.ts'), read('google-apps-script/Code.gs'),
+    read('supabase/migrations/20260830142229_store_soft_crm_repeat_email.sql'),
   ]);
   assert.match(action, /sync_admin_crm_apply_action/);
-  assert.match(action, /lead\.email_sent_at/);
+  assert.match(action, /sync_admin_crm_record_email_sent/);
   assert.match(action, /action: 'send_confirmation'/);
   assert.match(action, /action === 'CONFIRM'/);
   assert.match(action, /warning: 'email_delivery_failed'/);
   assert.match(action, /origin === 'null'/);
   assert.match(action, /localhost\|127\\\.0\\\.0\\\.1/);
-  assert.match(appsScript, /already_sent: true/);
+  assert.doesNotMatch(action, /if \(lead\.email_sent_at\) return/);
+  assert.doesNotMatch(action, /already_sent: true/);
+  assert.doesNotMatch(appsScript, /if \(sentCell\.getValue\(\)\) return/);
   assert.match(appsScript, /storesoft\\\/try/);
   assert.match(appsScript, /sendConfirmedEmail_\(email, name, trackedUrl\)/);
+  assert.match(appsScript, /حمّل Store Soft من Google Play/);
+  assert.match(appsScript, /https:\/\/wa\.me\/213654338649/);
+  assert.match(appsScript, /تواصل معنا عبر واتساب/);
+  assert.match(migration, /email_sent_count = email_sent_count \+ 1/);
+  assert.match(migration, /email_sent_at = coalesce\(email_sent_at, v_now\)/);
+  assert.match(migration, /email_last_sent_at = v_now/);
+  assert.match(migration, /perform sync\.require_vendor_admin\(\)/);
+  assert.match(migration, /from public, anon/);
+  assert.match(migration, /to authenticated, service_role/);
 });
 
 test('Sheet delivery never receives the CRM tracking token', async () => {

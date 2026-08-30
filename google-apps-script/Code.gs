@@ -4,6 +4,7 @@ var CONFIG = {
   timeZone: 'GMT+01:00',
   statusValues: ['New', 'Confirmed', 'Rejected', 'Installed', 'Paid', 'Lost'],
   downloadUrl: 'https://play.google.com/store/apps/details?id=com.yousoft.storesoft',
+  whatsappUrl: 'https://wa.me/213654338649',
   senderName: 'Store Soft',
   replyTo: 'store.soft.algeria@gmail.com'
 };
@@ -152,7 +153,6 @@ function sendConfirmationAction_(sheet, lead) {
     rowNumber = findLeadRow_(sheet, lead.id);
   }
   var sentCell = sheet.getRange(rowNumber, columnInSheet_(sheet, 'email_sent_at'));
-  if (sentCell.getValue()) return { ok: true, already_sent: true };
   var email = String(lead.email || sheet.getRange(rowNumber, columnInSheet_(sheet, 'email')).getValue() || '').trim();
   var name = String(lead.name || sheet.getRange(rowNumber, columnInSheet_(sheet, 'name')).getValue() || '').trim();
   var trackedUrl = String(lead.tracked_url || '');
@@ -224,34 +224,44 @@ function sendConfirmedEmail_(email, name, downloadUrl) {
   var plainBody = [
     name ? 'السلام عليكم ' + name + '،' : 'السلام عليكم،',
     '',
-    '👉 تحميل StoreSoft من Google Play:',
+    'شكرًا لاهتمامك بـ Store Soft. تم تأكيد طلبك وأصبح بإمكانك تحميل التطبيق:',
+    '',
+    'حمّل Store Soft من Google Play:',
     downloadUrl,
     '',
-    'ملاحظة مهمة: تأكد أن تستعمل نفس الإيميل على بلاي ستور.',
+    'مهم: افتح الرابط باستعمال حساب Google Play نفسه الذي أدخلته في الطلب.',
     '',
-    'بعد تثبيت التطبيق، جرّب إضافة بعض المنتجات وتنفيذ أول عملية بيع لمشاهدة تحديث المخزون والمبيعات مباشرة.',
+    'بعد التثبيت، ابدأ بهذه الخطوات البسيطة:',
+    '1. أضف أحد منتجات محلك.',
+    '2. سجّل أول عملية بيع.',
+    '3. راقب تحديث المخزون والمبيعات تلقائيًا.',
     '',
-    'إذا واجهتك أي مشكلة، رد على هذا البريد أو تواصل معنا عبر واتساب: 0654338649',
+    'يعمل Store Soft دون إنترنت، ويساعدك على تسيير المبيعات والمخزون وديون الزبائن والموردين بسهولة.',
     '',
     'سعر التطبيق بعد التجربة:',
-    '7000 دج تدفعها مرة واحدة للجهاز الأول',
-    '+ 3000 دج سنويًا لكل جهاز إضافي'
+    '7000 دج مرة واحدة للجهاز الأول',
+    '- 3000 دج سنويًا لكل جهاز إضافي',
+    '',
+    'تحتاج إلى مساعدة؟ رد مباشرة على هذا البريد أو تواصل معنا عبر واتساب:',
+    CONFIG.whatsappUrl,
+    '',
+    'فريق Store Soft'
   ].join('\n');
 
   var htmlBody = '<div dir="rtl" style="font-family:Arial,sans-serif;line-height:1.8">' +
     '<p>' + greeting + '</p>' +
-    '<p>👉 <strong>تحميل StoreSoft من Google Play:</strong><br>' +
-    '<a href="' + escapeHtml_(downloadUrl) + '">اضغط هنا للذهاب إلى صفحة التحميل</a></p>' +
-    '<p><strong>ملاحظة مهمة:</strong> تأكد أن تستعمل نفس الإيميل على بلاي ستور.</p>' +
-    '<p>بعد تثبيت التطبيق، جرّب إضافة بعض المنتجات وتنفيذ أول عملية بيع لمشاهدة تحديث المخزون والمبيعات مباشرة.</p>' +
-    '<p>مع StoreSoft يمكنك:</p>' +
-    '<ul><li>تسجيل المبيعات بسرعة</li><li>متابعة المخزون تلقائيًا</li>' +
-    '<li>إدارة ديون الزبائن والموردين</li><li>معرفة المبيعات والأرباح من خلال تقارير واضحة</li>' +
-    '<li>العمل دون إنترنت</li><li>طباعة الفواتير الحرارية</li>' +
-    '<li>استخدام التطبيق بالعربية أو الفرنسية</li><li>إضافة أجهزة أخرى مع المزامنة بينها</li></ul>' +
-    '<p>إذا واجهتك أي مشكلة، رد على هذا البريد أو تواصل معنا عبر واتساب: <strong>0654338649</strong></p>' +
-    '<p>سعر التطبيق بعد التجربة:<br><strong>7000 دج تدفعها مرة واحدة للجهاز الأول</strong><br>' +
-    '<strong>+ 3000 دج سنويًا لكل جهاز إضافي</strong></p></div>';
+    '<p>شكرًا لاهتمامك بـ Store Soft. تم تأكيد طلبك وأصبح بإمكانك تحميل التطبيق:</p>' +
+    '<p><strong><a href="' + escapeHtml_(downloadUrl) + '">حمّل Store Soft من Google Play</a></strong></p>' +
+    '<p><strong>مهم:</strong> افتح الرابط باستعمال حساب Google Play نفسه الذي أدخلته في الطلب.</p>' +
+    '<p>بعد التثبيت، ابدأ بهذه الخطوات البسيطة:</p>' +
+    '<ol><li>أضف أحد منتجات محلك.</li><li>سجّل أول عملية بيع.</li>' +
+    '<li>راقب تحديث المخزون والمبيعات تلقائيًا.</li></ol>' +
+    '<p>يعمل Store Soft دون إنترنت، ويساعدك على تسيير المبيعات والمخزون وديون الزبائن والموردين بسهولة.</p>' +
+    '<p><strong>السعر بعد التجربة:</strong><br>7000 دج مرة واحدة للجهاز الأول</p>' +
+    '<ul><li>3000 دج سنويًا لكل جهاز إضافي</li></ul>' +
+    '<p>تحتاج إلى مساعدة؟ رد مباشرة على هذا البريد أو <strong><a href="' +
+    escapeHtml_(CONFIG.whatsappUrl) + '">تواصل معنا عبر واتساب</a></strong>.</p>' +
+    '<p>فريق Store Soft</p></div>';
 
   MailApp.sendEmail({
     to: email,

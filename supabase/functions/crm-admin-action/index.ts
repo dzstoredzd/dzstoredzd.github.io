@@ -39,11 +39,19 @@ Deno.serve(async (request: Request) => {
     if (!result.ok) throw Object.assign(new Error(result.status === 403 ? 'not_admin' : 'database_action_failed'), { status: result.status, detail: payload });
     return payload;
   };
+  const recordEmailSent = async () => {
+    const result = await fetch(`${url}/rest/v1/rpc/sync_admin_crm_record_email_sent`, {
+      method: 'POST', headers: { apikey: key, Authorization: authorization, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_lead: leadId }),
+    });
+    const payload = await result.json().catch(() => ({}));
+    if (!result.ok) throw Object.assign(new Error(result.status === 403 ? 'not_admin' : 'email_delivery_record_failed'), { status: result.status, detail: payload });
+    return payload;
+  };
   let lead: Record<string, unknown>;
   try { lead = await call(action); }
   catch (error) { const value = error as { status?: number; message?: string }; return json({ ok: false, error: value.message }, value.status === 403 ? 403 : 400, origin); }
   if (!['CONFIRM', 'RETRY_EMAIL'].includes(action)) return json({ ok: true, lead }, 200, origin);
-  if (lead.email_sent_at) return json({ ok: true, lead, email_sent: true, already_sent: true }, 200, origin);
   if (!lead.email) {
     await call('EMAIL_ERROR', 'No email; contact by phone or WhatsApp');
     return json({ ok: true, lead, email_sent: false, warning: 'no_email' }, 200, origin);
@@ -61,8 +69,8 @@ Deno.serve(async (request: Request) => {
     const sent = await fetch(webhook, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, redirect: 'follow', body: JSON.stringify({ secret, action: 'send_confirmation', lead }) });
     const result = await sent.json().catch(() => ({}));
     if (!sent.ok || result.ok !== true) throw new Error(String(result.error || `Sender returned ${sent.status}`));
-    lead = await call('EMAIL_SENT');
-    return json({ ok: true, lead, email_sent: true, already_sent: result.already_sent === true }, 200, origin);
+    lead = await recordEmailSent();
+    return json({ ok: true, lead, email_sent: true, already_sent: false }, 200, origin);
   } catch (error) {
     const message = error instanceof Error ? error.message.slice(0, 500) : 'Email delivery failed';
     lead = await call('EMAIL_ERROR', message);
