@@ -90,6 +90,24 @@ test('CRM migration preserves legacy leads and protects tracking data', async ()
   assert.match(shortReferral, /to_jsonb\(p\) - array\['tracking_token','tracking_code'\]/);
 });
 
+test('CRM archive is reversible and permanent deletion requires an archived lead', async () => {
+  const [migration, action] = await Promise.all([
+    read('supabase/migrations/20260830150000_store_soft_crm_archive.sql'),
+    read('supabase/functions/crm-admin-action/index.ts'),
+  ]);
+  assert.match(migration, /add column if not exists archived_at timestamptz/);
+  assert.match(migration, /sync_admin_crm_archived_leads/);
+  assert.match(migration, /archive the lead before permanent deletion/);
+  assert.match(migration, /lead name confirmation does not match/);
+  assert.match(migration, /where archived_at is null/);
+  assert.match(migration, /jsonb_build_object\('tracked_url', 'https:\/\/yousoft\.site\/storesoft\/try\/\?t=' \|\| p\.tracking_code\)/);
+  assert.match(migration, /perform sync\.require_vendor_admin\(\)/);
+  assert.match(migration, /from public, anon/);
+  assert.match(action, /'ARCHIVE'/);
+  assert.match(action, /'RESTORE'/);
+  assert.match(action, /'DELETE_PERMANENTLY'/);
+});
+
 test('public tracking accepts only six-character codes and allowlisted app events', async () => {
   const [record, redirect, tryPage, tryScript] = await Promise.all([
     read('supabase/functions/record-store-soft-lead-event/index.ts'),
