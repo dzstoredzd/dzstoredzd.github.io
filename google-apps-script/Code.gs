@@ -4,6 +4,7 @@ var CONFIG = {
   timeZone: 'GMT+01:00',
   statusValues: ['New', 'Confirmed', 'Rejected', 'Installed', 'Paid', 'Lost'],
   downloadUrl: 'https://play.google.com/store/apps/details?id=com.yousoft.storesoft',
+  windowsDownloadUrl: 'https://github.com/dzstoredzd/dz-store-releases/releases/latest/download/storesoft_windows_latest.exe',
   whatsappUrl: 'https://wa.me/213654338649',
   senderName: 'Store Soft',
   replyTo: 'store.soft.algeria@gmail.com'
@@ -245,6 +246,9 @@ function sendConfirmedEmail_(email, name, downloadUrl) {
     'تحتاج إلى مساعدة؟ رد مباشرة على هذا البريد أو تواصل معنا عبر واتساب:',
     CONFIG.whatsappUrl,
     '',
+    'نسخة الكمبيوتر (Windows):',
+    CONFIG.windowsDownloadUrl,
+    '',
     'فريق Store Soft'
   ].join('\n');
 
@@ -261,6 +265,8 @@ function sendConfirmedEmail_(email, name, downloadUrl) {
     '<ul><li>3000 دج سنويًا لكل جهاز إضافي</li></ul>' +
     '<p>تحتاج إلى مساعدة؟ رد مباشرة على هذا البريد أو <strong><a href="' +
     escapeHtml_(CONFIG.whatsappUrl) + '">تواصل معنا عبر واتساب</a></strong>.</p>' +
+    '<p>💻 <strong>نسخة الكمبيوتر (Windows):</strong><br><strong><a href="' +
+    escapeHtml_(CONFIG.windowsDownloadUrl) + '">حمّل Store Soft على الكمبيوتر</a></strong></p>' +
     '<p>فريق Store Soft</p></div>';
 
   MailApp.sendEmail({

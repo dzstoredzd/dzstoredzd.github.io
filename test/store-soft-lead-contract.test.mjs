@@ -147,6 +147,9 @@ test('confirmation email is authenticated, repeatable, counted, and uses branded
   assert.match(appsScript, /حمّل Store Soft من Google Play/);
   assert.match(appsScript, /https:\/\/wa\.me\/213654338649/);
   assert.match(appsScript, /تواصل معنا عبر واتساب/);
+  assert.match(appsScript, /storesoft_windows_latest\.exe/);
+  assert.match(appsScript, /CONFIG\.windowsDownloadUrl/);
+  assert.match(appsScript, /حمّل Store Soft على الكمبيوتر/);
   assert.match(migration, /email_sent_count = email_sent_count \+ 1/);
   assert.match(migration, /email_sent_at = coalesce\(email_sent_at, v_now\)/);
   assert.match(migration, /email_last_sent_at = v_now/);

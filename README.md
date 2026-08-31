@@ -53,9 +53,11 @@ Apps Script sender permits explicit repeat delivery. After each successful MailA
 email, then run **Store Soft → Switch email control to CRM**. Until that explicit
 cutover, the legacy Sheet trigger keeps the ordinary Play link working.
 
-Production status (2026-08-30): migration `20260830134150_store_soft_crm_repeat_email`,
-Apps Script version 8, and `crm-admin-action` version 6 are live. The Apps Script web-app URL
-was preserved, and no customer email was sent during deployment verification.
+Production status (2026-08-31): migration `20260830134150_store_soft_crm_repeat_email`,
+Apps Script version 10, and `crm-admin-action` version 7 are live. The confirmation email includes
+the tracked Google Play URL, WhatsApp support, and a direct Windows installer link in HTML and plain
+text. The Apps Script web-app URL was preserved, and no customer email was sent during deployment
+verification.
 
 ### CRM and tracked trial links
 
