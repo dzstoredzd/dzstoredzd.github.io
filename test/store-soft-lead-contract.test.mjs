@@ -158,7 +158,11 @@ test('confirmation email is authenticated, repeatable, counted, and uses branded
 test('Sheet delivery never receives the CRM tracking token', async () => {
   const edgeFunction = await read('supabase/functions/submit-store-soft-lead/index.ts');
   assert.match(edgeFunction, /const sheetLead=\{id:lead\.id/);
-  assert.match(edgeFunction, /await syncToSheet\(sheetLead\)/);
+  assert.match(
+    edgeFunction,
+    /EdgeRuntime\.waitUntil\(syncToSheet\(sheetLead\)\.catch/,
+  );
+  assert.doesNotMatch(edgeFunction, /await syncToSheet\(sheetLead\)/);
   const sheetPayload = edgeFunction.match(/const sheetLead=\{([^}]+)\}/)?.[1] || '';
   assert.doesNotMatch(sheetPayload, /tracking_token/);
 });
