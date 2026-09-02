@@ -203,7 +203,7 @@ test('landing form asks only for name, selected shop type, and email', async () 
   assert.doesNotMatch(landingScript, /data\.get\('phone'\)|data\.get\('requested_platform'\)/);
 });
 
-test('successful submissions offer localized WhatsApp contact instead of YouTube', async () => {
+test('successful submissions show one localized next step only', async () => {
   const [landingPage, landingScript, landingStyles] = await Promise.all([
     read('storesoft/download/index.html'),
     read('storesoft/download/script.js'),
@@ -212,10 +212,75 @@ test('successful submissions offer localized WhatsApp contact instead of YouTube
 
   const successBlock = landingPage.match(/id="successView"[\s\S]*?<\/aside>/)?.[0] || '';
 
-  assert.match(successBlock, /href="https:\/\/wa\.me\/213654338649\?text=I%20want%20to%20know%20more%20about%20storesoft"/);
-  assert.match(landingPage, /target="_blank" rel="noopener noreferrer"/);
-  assert.doesNotMatch(successBlock, /youtube\.com|YouTube/);
-  assert.match(landingScript, /contactWhatsApp: 'تواصل معنا على WhatsApp'/);
-  assert.match(landingScript, /contactWhatsApp: 'Nous contacter sur WhatsApp'/);
-  assert.match(landingStyles, /\.success__contact a \{[^}]*min-height: 48px/);
+  assert.match(successBlock, /الخطوة التالية: راقب بريدك الإلكتروني/);
+  assert.doesNotMatch(successBlock, /<a\b|<button\b|youtube\.com|YouTube|wa\.me/);
+  assert.match(landingScript, /successText: 'الخطوة التالية: راقب بريدك الإلكتروني/);
+  assert.match(landingScript, /successText: 'Prochaine étape : surveillez votre e-mail/);
+  assert.match(landingStyles, /\.success \{[^}]*min-height: 420px/);
+});
+
+test('landing page presents the current offer in the requested conversion order', async () => {
+  const [page, script, styles, home] = await Promise.all([
+    read('storesoft/download/index.html'),
+    read('storesoft/download/script.js'),
+    read('storesoft/download/styles.css'),
+    read('index.html'),
+  ]);
+
+  const orderedSections = [
+    'class="hero"',
+    'class="benefits"',
+    'class="how-it-works"',
+    'class="product-proof"',
+    'class="pricing-section"',
+    'class="trial-section"',
+    'class="faq-section"',
+  ];
+  let previous = -1;
+  for (const marker of orderedSections) {
+    const next = page.indexOf(marker);
+    assert.ok(next > previous, `${marker} must follow the previous section`);
+    previous = next;
+  }
+
+  assert.match(page, /Android<\/b> \+ <b>Windows/);
+  assert.match(page, /يعمل بدون إنترنت/);
+  assert.match(page, /7000 DA/);
+  assert.match(page, /3000 DA/);
+  assert.match(page, /البريد المستخدم في Google Play/);
+  assert.match(page, /ابدأ تجربتي المجانية/);
+  assert.doesNotMatch(page + script, /نسخة مجانية|معلوماتك تُستعمل لمعالجة طلبك/);
+
+  assert.equal((script.match(/\['features\//g) || []).length, 37);
+  assert.match(script, /index >= 8/);
+  assert.match(page, /id="galleryToggle"[^>]*aria-expanded="false"/);
+  assert.match(page, /<dialog class="lightbox"/);
+  assert.match(styles, /\.mobile-trial-cta \{ display: none; \}/);
+  assert.match(styles, /@media \(max-width: 599px\)[\s\S]*\.mobile-trial-cta \{/);
+
+  assert.match(home, /href="storesoft\/download\/" aria-label="Store Soft trial page"/);
+  assert.match(home, /7,000 DA/);
+  assert.match(home, /3,000 DA/);
+  assert.doesNotMatch(home, /English on the way|We do not run a server/);
+});
+
+test('landing analytics distinguish traffic source and funnel events', async () => {
+  const [script, migration, redirect] = await Promise.all([
+    read('storesoft/download/script.js'),
+    read('supabase/migrations/20260829153849_store_soft_crm_core.sql'),
+    read('supabase/functions/store-soft-play-redirect/index.ts'),
+  ]);
+
+  for (const event of ['LandingPageView', 'TrialCTAClick', 'FormStarted', 'FormSubmitAttempt', 'FormSubmitted', 'WhatsAppCTAClick']) {
+    assert.match(script, new RegExp(event));
+  }
+  assert.match(script, /return 'facebook'/);
+  assert.match(script, /return 'instagram'/);
+  assert.match(script, /return 'tiktok'/);
+  assert.match(script, /traffic_source: trafficSource\(\)/);
+
+  assert.match(redirect, /PLAYSTORE_CLICKED/);
+  for (const milestone of ['APP_FIRST_OPEN', 'STORE_CREATED', 'PRODUCT_CREATED', 'FIRST_SALE']) {
+    assert.match(migration, new RegExp(milestone));
+  }
 });

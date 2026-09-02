@@ -93,15 +93,23 @@ To move the workflow to another Google account:
    returned by `setupLeadSheet()`.
 
 The landing page uses Meta Pixel `2176257146284643`. The Pixel is initialized once
-and records the base `PageView`, custom `LandingPageView`, `FormStarted`,
-`FormSubmitted`, and `WhatsAppCTAClick` events, plus the standard `Lead` event only
-after the Edge Function confirms that the request was saved. Form values are never
-included in tracking events. The same conversion events are also exposed through
-the `storesoft:tracking` browser event and `dataLayer` for future integrations.
+and records the base `PageView`, custom `LandingPageView`, `TrialCTAClick`,
+`FormStarted`, `FormSubmitAttempt`, `FormSubmitted`, and `WhatsAppCTAClick` events,
+plus the standard `Lead` event only after the Edge Function confirms that the request
+was saved. Events carry a normalized `traffic_source` that distinguishes Facebook,
+Instagram and TikTok while preserving the ordinary UTM fields. Form values are never
+included in tracking events. The same conversion events are also exposed through the
+`storesoft:tracking` browser event and `dataLayer` for future integrations.
 
-The product-proof gallery reuses four optimized Android screenshots under
-`storesoft/download/assets/`. They are lazy-loaded to keep the Facebook Ads landing
-experience fast on mobile connections.
+A submitted form remains a lead, not a successful trial or sale. The tracked Google
+Play redirect records `PLAYSTORE_CLICKED`; the Android Install Referrer flow then
+records `APP_FIRST_OPEN`, `STORE_CREATED`, `PRODUCT_CREATED`, and `FIRST_SALE` as
+separate funnel milestones. The CRM never infers those milestones from submission.
+
+The product-proof gallery reuses 37 optimized Android screenshots under
+`storesoft/download/assets/features/`. Only the first eight render initially; visitors
+can reveal the full gallery or open any screenshot in an accessible lightbox. Images
+are lazy-loaded to keep the landing page fast on mobile connections.
 
 ## Deploy
 

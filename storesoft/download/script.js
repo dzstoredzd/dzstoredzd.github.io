@@ -5,26 +5,84 @@
   var formStartedAt = Date.now();
   var currentLanguage = 'ar';
   var formStartTracked = false;
+  var galleryExpanded = false;
+  var lightboxIndex = 0;
   window.dataLayer = window.dataLayer || [];
 
   var copies = {
     ar: {
       brandTagline: 'تسيير بسيط لمحلك',
-      eyebrow: 'نسخة مجانية للمحلات الجزائرية',
-      title: 'محلك كامل<br><span>تحت عينك</span>',
-      intro: 'المبيعات، المخزون، ديون الزبائن والأرباح في تطبيق واحد. جرّبه مجانًا لمدة 7 أيام.',
-      primaryCta: 'استلم رابط النسخة المجانية',
-      whatsappCta: 'واتساب',
+      eyebrow: 'تجربة مجانية لمدة 7 أيام',
+      title: 'سيّر محلك ببساطة<br><span>حتى بدون إنترنت</span>',
+      intro: 'البيع، المخزون، الكريدي، الأرباح والموردون في تطبيق واحد مناسب لاحتياجات المحلات الجزائرية.',
+      platformsLabel: 'المنصات والمزايا الأساسية',
       offlineShort: 'يعمل بدون إنترنت',
-      languagesShort: 'العربية والفرنسية',
-      algeriaShort: 'نتواصل معك عبر واتساب',
-      available: '7 أيام مجانًا',
-      formTitle: 'استلم رابط التطبيق',
-      formIntro: 'عمّر معلوماتك وسنتواصل معك عبر واتساب.',
-      freeOfferValue: '7 أيام مجانًا',
-      freeOfferText: 'المبيعات، المخزون، الديون والأرباح.',
-      priceMain: 'بعد التجربة: 7000 دج للجهاز الأول',
-      priceExtra: 'الأجهزة الإضافية فقط: +3000 دج سنويًا لكل جهاز',
+      primaryCta: 'ابدأ تجربتي المجانية',
+      whatsappCta: 'اسألنا على واتساب',
+      trialShort: '7 أيام للتجربة',
+      languagesShort: 'العربية، الفرنسية، الإنجليزية',
+      priceShort: '7000 دج دفع مرة واحدة',
+      heroPreviewLabel: 'صورة حقيقية من Store Soft',
+      readyOffline: 'جاهز للبيع بدون إنترنت',
+      heroImageAlt: 'شاشة البيع في Store Soft',
+      heroPreviewTitle: 'ابدأ البيع من أول شاشة',
+      heroPreviewText: 'واجهة واضحة للهاتف والكمبيوتر، مع بقاء بيانات محلك على جهازك.',
+      benefitsEyebrow: 'الأهم في يومك',
+      benefitsTitle: 'تابع ما يهم محلك فعلًا',
+      benefitsIntro: 'اختر الميزات التي يحتاجها نشاطك؛ لا نفترض أن كل المحلات تعمل بنفس الطريقة.',
+      benefitSales: 'بيع سريع وواضح',
+      benefitSalesText: 'ابحث، امسح الباركود وسجّل الدفع.',
+      benefitStock: 'مخزون تحت عينك',
+      benefitStockText: 'اعرف الكمية والتنبيهات وحركة السلع.',
+      benefitDebts: 'الكريدي بلا نسيان',
+      benefitDebtsText: 'تابع ما على الزبائن وسجّل دفعاتهم.',
+      benefitProfit: 'أرباح مفهومة',
+      benefitProfitText: 'راجع المبيعات والربح حسب الفترة.',
+      benefitSuppliers: 'حسابات الموردين',
+      benefitSuppliersText: 'تابع الواردات والدفعات وما عليك.',
+      benefitOffline: 'يعمل بدون إنترنت',
+      benefitOfflineText: 'واصل البيع حتى عند انقطاع الشبكة.',
+      howEyebrow: 'بثلاث خطوات',
+      howTitle: 'ابدأ بسرعة',
+      stepOneTitle: 'عمّر معلوماتك',
+      stepOneText: 'الاسم، نوع المحل والبريد المستخدم في Google Play.',
+      stepTwoTitle: 'نرسل لك الرابطين',
+      stepTwoText: 'رابط Android من Google Play ورابط Windows للكمبيوتر.',
+      stepThreeTitle: 'جرّبه 7 أيام',
+      stepThreeText: 'أضف محلك ومنتجاتك وجرّب أول عملية بيع.',
+      proofEyebrow: 'من داخل التطبيق',
+      proofTitle: 'شاهد أهم الشاشات',
+      proofHint: 'نعرض أولًا 8 صور فقط. اضغط على أي صورة لفتحها بحجم أكبر.',
+      proofGalleryLabel: 'صور ميزات Store Soft',
+      showAllFeatures: 'عرض جميع الميزات',
+      showLess: 'عرض أقل',
+      openImage: 'فتح الصورة بحجم أكبر: ',
+      closeImage: 'إغلاق الصورة',
+      previousImage: 'الصورة السابقة',
+      nextImage: 'الصورة التالية',
+      pricingEyebrow: 'سعر واضح',
+      pricingTitle: 'البرنامج الأساسي منفصل عن Sync',
+      baseTag: 'الترخيص الأساسي',
+      baseTitle: 'لجهازك الأساسي',
+      basePriceNote: 'دفع مرة واحدة للجهاز الأساسي',
+      basePointOne: 'يعمل بدون إنترنت',
+      basePointTwo: 'لا يوجد اشتراك شهري للبرنامج الأساسي',
+      basePointThree: 'Android أو Windows لجهاز واحد',
+      syncTitle: 'للأجهزة الإضافية — اختياري',
+      syncPriceNote: 'سنويًا لكل جهاز إضافي',
+      syncPointOne: 'يربط بيانات المحل بين عدة أجهزة',
+      syncPointTwo: 'يحتاج الإنترنت للمزامنة فقط',
+      syncPointThree: 'ليس مطلوبًا لاستعمال البرنامج على جهاز واحد',
+      priceTrust: 'بيانات محلك تبقى متاحة على جهازك ويستمر البيع بدون إنترنت.',
+      trialEyebrow: 'تجربة مجانية لمدة 7 أيام',
+      trialTitle: 'ابدأ تجربتك الآن',
+      trialIntro: 'عمّر معلوماتك وسنرسل لك رابطَي Android وWindows. جرّب البيع والمخزون والكريدي والأرباح قبل الدفع.',
+      trialPointOne: 'لا تحتاج بطاقة دفع',
+      trialPointTwo: 'نرسل الرابطين إلى بريدك',
+      trialPointThree: 'نساعدك عبر واتساب عند الحاجة',
+      available: 'متاحة الآن',
+      formTitle: 'ابدأ تجربتي المجانية',
+      formIntro: 'سنرسل لك رابطَي Android وWindows.',
       nameLabel: 'الاسم',
       namePlaceholder: 'مثال: محمد',
       shopLabel: 'نوع النشاط / المحل',
@@ -35,71 +93,26 @@
       shopParts: 'قطع غيار',
       shopRepair: 'محل تصليح',
       shopOther: 'نشاط آخر',
-      emailLabel: 'البريد الإلكتروني',
+      emailLabel: 'البريد المستخدم في Google Play',
       emailPlaceholder: 'name@gmail.com',
-      submit: 'أرسل طلبي',
+      emailHint: 'استعمل نفس البريد الموجود في Google Play على هاتفك.',
+      submit: 'ابدأ تجربتي المجانية',
       submitting: 'جاري إرسال معلوماتك…',
-      privacyCopy: 'معلوماتك تُستعمل لمعالجة طلبك والتواصل معك فقط.',
+      successTitle: 'تم استلام طلبك',
+      successText: 'الخطوة التالية: راقب بريدك الإلكتروني. سنرسل لك رابطَي Android وWindows.',
+      faqTitle: 'أسئلة سريعة قبل التجربة',
+      faqOfflineQ: 'هل يعمل بدون إنترنت؟',
+      faqOfflineA: 'نعم. البيع والمخزون والكريدي والتقارير تعمل بدون إنترنت. تحتاج الشبكة فقط عند استعمال خدمات اختيارية مثل Sync أو النسخ إلى Google Drive.',
+      faqSubscriptionQ: 'هل يوجد اشتراك شهري؟',
+      faqSubscriptionA: 'لا يوجد اشتراك شهري للترخيص الأساسي: 7000 دج دفع مرة واحدة للجهاز الأساسي. Sync اختياري وسعره منفصل: 3000 دج سنويًا لكل جهاز إضافي.',
+      faqWindowsQ: 'هل يعمل على Windows؟',
+      faqWindowsA: 'نعم، يعمل على أجهزة Windows. نرسل لك رابط التثبيت بعد طلب التجربة.',
+      faqAndroidQ: 'هل يعمل على Android؟',
+      faqAndroidA: 'نعم، يعمل على هواتف وأجهزة Android اللوحية عبر Google Play.',
+      faqAfterTrialQ: 'ماذا يحدث بعد 7 أيام؟',
+      faqAfterTrialA: 'تنتهي التجربة المجانية. يمكنك تفعيل الترخيص الأساسي للجهاز مقابل 7000 دج مرة واحدة ومواصلة استعمال بيانات محلك الموجودة على الجهاز.',
       privacyLink: 'سياسة الخصوصية',
       terms: 'شروط الاستخدام',
-      successTitle: 'تم استلام معلوماتك ✅',
-      successText: 'تم حفظ طلبك. تواصل معنا على واتساب لمعرفة المزيد.',
-      contactPrompt: 'اضغط هنا لفتح محادثة واتساب معنا.',
-      contactWhatsApp: 'تواصل معنا على WhatsApp',
-      editDetails: 'تصحيح المعلومات',
-      valueTitle: 'كل ما يحتاجه محلك',
-      benefitSales: 'تسجيل المبيعات بسرعة',
-      benefitStock: 'متابعة المخزون تلقائيًا',
-      benefitDebts: 'إدارة ديون الزبائن',
-      benefitProfit: 'معرفة المبيعات والأرباح',
-      benefitBarcode: 'البيع بالباركود أو كاميرا الهاتف',
-      benefitOffline: 'يعمل بدون إنترنت',
-      benefitLanguages: 'العربية والفرنسية',
-      benefitSync: 'المزامنة بين عدة أجهزة',
-      proofTitle: 'شاهد التطبيق قبل التحميل',
-      proofHint: '37 شاشة حقيقية من التطبيق.',
-      proofGalleryLabel: 'صور ميزات Store Soft',
-      shot01: 'اختر المنتج المطلوب',
-      shot02: 'اختر وحدة البيع والكمية',
-      shot03: 'راجع سلة المبيعات',
-      shot04: 'سجّل طريقة الدفع',
-      shot05: 'راجع سجل العمليات',
-      shot06: 'تابع قائمة المنتجات',
-      shot07: 'أضف منتجًا جديدًا',
-      shot08: 'راجع عروض التخفيضات',
-      shot09: 'أنشئ عرضًا جديدًا',
-      shot10: 'تابع ديون الزبائن',
-      shot11: 'راجع حساب الزبون',
-      shot12: 'سجّل دفعة الزبون',
-      shot13: 'تابع ديون الموردين',
-      shot14: 'راجع حساب المورد',
-      shot15: 'راجع سجل الواردات',
-      shot16: 'أضف بضاعة واردة',
-      shot17: 'تابع حركة الصندوق',
-      shot18: 'أضف مبلغًا للصندوق',
-      shot19: 'راجع سجل المصاريف',
-      shot20: 'سجّل مصروفًا جديدًا',
-      shot21: 'راجع المبيعات والأرباح',
-      shot22: 'راجع حالة المخزون',
-      shot23: 'اكتشف المنتجات الأكثر ربحًا',
-      shot24: 'راجع ملخص الديون',
-      shot25: 'احسب قيمة الزكاة',
-      shot26: 'راجع أداء البائعين',
-      shot27: 'تابع طلبات التصليح',
-      shot28: 'خصّص إعدادات المحل',
-      shot29: 'أنشئ حساب مالك المحل',
-      shot30: 'سجّل دخول الموظف',
-      shot31: 'تابع المستخدمين والأجهزة',
-      shot32: 'أضف مستخدمًا جديدًا',
-      shot33: 'حدّد صلاحيات المستخدم',
-      shot34: 'راجع جميع الصلاحيات',
-      shot35: 'احصل على المساعدة',
-      shot36: 'تابع مركز الإشعارات',
-      shot37: 'استعرض كل الميزات',
-      closingTitle: 'جرّب Store Soft مجانًا',
-      closingText: 'أرسل طلبك وسنتواصل معك عبر واتساب.',
-      storiesEyebrow: 'تجارب أصحاب المحلات',
-      storiesTitle: 'ماذا يقول زبائن Store Soft؟',
       required: 'هذا الحقل مطلوب.',
       tooShort: 'اكتب حرفين على الأقل.',
       invalidEmail: 'أدخل بريدًا إلكترونيًا صحيحًا.',
@@ -107,21 +120,77 @@
     },
     fr: {
       brandTagline: 'La gestion simple du magasin',
-      eyebrow: 'Version gratuite pour les commerces algériens',
-      title: 'Tout votre commerce<br><span>sous les yeux</span>',
-      intro: 'Ventes, stock, dettes et bénéfices dans une seule application. Essayez-la gratuitement pendant 7 jours.',
-      primaryCta: 'Recevoir la version gratuite',
-      whatsappCta: 'WhatsApp',
+      eyebrow: 'Essai gratuit de 7 jours',
+      title: 'Gérez simplement votre commerce<br><span>même sans Internet</span>',
+      intro: 'Ventes, stock, crédit client, bénéfices et fournisseurs dans une seule application adaptée aux commerces algériens.',
+      platformsLabel: 'Plateformes et avantages principaux',
       offlineShort: 'Fonctionne sans Internet',
-      languagesShort: 'Arabe et français',
-      algeriaShort: 'Nous vous contactons sur WhatsApp',
-      available: '7 jours gratuits',
-      formTitle: 'Recevoir l’application',
-      formIntro: 'Remplissez le formulaire. Nous vous contacterons sur WhatsApp.',
-      freeOfferValue: '7 jours gratuits',
-      freeOfferText: 'Ventes, stock, dettes et bénéfices.',
-      priceMain: 'Après l’essai : 7 000 DA pour le premier appareil',
-      priceExtra: 'Appareils supplémentaires uniquement : +3 000 DA par appareil et par an',
+      primaryCta: 'Commencer mon essai gratuit',
+      whatsappCta: 'Nous écrire sur WhatsApp',
+      trialShort: '7 jours d’essai',
+      languagesShort: 'Arabe, français et anglais',
+      priceShort: '7 000 DA en un seul paiement',
+      heroPreviewLabel: 'Capture réelle de Store Soft',
+      readyOffline: 'Prêt à vendre sans Internet',
+      heroImageAlt: 'Écran de vente de Store Soft',
+      heroPreviewTitle: 'Commencez à vendre dès le premier écran',
+      heroPreviewText: 'Une interface claire sur téléphone et ordinateur, avec les données du commerce sur votre appareil.',
+      benefitsEyebrow: 'L’essentiel au quotidien',
+      benefitsTitle: 'Suivez ce qui compte vraiment',
+      benefitsIntro: 'Choisissez les fonctions utiles à votre activité : tous les commerces n’ont pas les mêmes besoins.',
+      benefitSales: 'Ventes rapides et claires',
+      benefitSalesText: 'Recherchez, scannez et enregistrez le paiement.',
+      benefitStock: 'Stock sous contrôle',
+      benefitStockText: 'Suivez quantités, alertes et mouvements.',
+      benefitDebts: 'Crédit client sans oubli',
+      benefitDebtsText: 'Suivez les dettes et les règlements clients.',
+      benefitProfit: 'Bénéfices compréhensibles',
+      benefitProfitText: 'Consultez ventes et bénéfices par période.',
+      benefitSuppliers: 'Comptes fournisseurs',
+      benefitSuppliersText: 'Suivez arrivages, paiements et montants dus.',
+      benefitOffline: 'Fonctionne sans Internet',
+      benefitOfflineText: 'Continuez à vendre même sans réseau.',
+      howEyebrow: 'En trois étapes',
+      howTitle: 'Démarrez rapidement',
+      stepOneTitle: 'Remplissez vos informations',
+      stepOneText: 'Nom, type de commerce et e-mail utilisé sur Google Play.',
+      stepTwoTitle: 'Nous envoyons les deux liens',
+      stepTwoText: 'Le lien Android sur Google Play et le lien Windows.',
+      stepThreeTitle: 'Essayez pendant 7 jours',
+      stepThreeText: 'Créez votre magasin, ajoutez vos produits et faites une première vente.',
+      proofEyebrow: 'Dans l’application',
+      proofTitle: 'Découvrez les écrans principaux',
+      proofHint: 'Nous affichons d’abord 8 captures. Touchez une image pour l’agrandir.',
+      proofGalleryLabel: 'Captures des fonctions de Store Soft',
+      showAllFeatures: 'Voir toutes les fonctions',
+      showLess: 'Voir moins',
+      openImage: 'Agrandir l’image : ',
+      closeImage: 'Fermer l’image',
+      previousImage: 'Image précédente',
+      nextImage: 'Image suivante',
+      pricingEyebrow: 'Prix clair',
+      pricingTitle: 'La licence de base est séparée de Sync',
+      baseTag: 'Licence de base',
+      baseTitle: 'Pour votre appareil principal',
+      basePriceNote: 'paiement unique pour l’appareil principal',
+      basePointOne: 'Fonctionne sans Internet',
+      basePointTwo: 'Aucun abonnement mensuel pour la licence de base',
+      basePointThree: 'Android ou Windows sur un appareil',
+      syncTitle: 'Pour les appareils supplémentaires — facultatif',
+      syncPriceNote: 'par an et par appareil supplémentaire',
+      syncPointOne: 'Relie les données du commerce entre plusieurs appareils',
+      syncPointTwo: 'Internet est nécessaire uniquement pour la synchronisation',
+      syncPointThree: 'Inutile pour utiliser le logiciel sur un seul appareil',
+      priceTrust: 'Les données restent disponibles sur votre appareil et la vente continue sans Internet.',
+      trialEyebrow: 'Essai gratuit de 7 jours',
+      trialTitle: 'Commencez votre essai',
+      trialIntro: 'Remplissez vos informations et nous vous enverrons les liens Android et Windows. Essayez ventes, stock, crédit et bénéfices avant de payer.',
+      trialPointOne: 'Aucune carte bancaire requise',
+      trialPointTwo: 'Les deux liens sont envoyés par e-mail',
+      trialPointThree: 'Aide sur WhatsApp si nécessaire',
+      available: 'Disponible maintenant',
+      formTitle: 'Commencer mon essai gratuit',
+      formIntro: 'Nous vous enverrons les liens Android et Windows.',
       nameLabel: 'Nom',
       namePlaceholder: 'Exemple : Mohamed',
       shopLabel: 'Type d’activité / magasin',
@@ -132,77 +201,72 @@
       shopParts: 'Pièces détachées',
       shopRepair: 'Atelier de réparation',
       shopOther: 'Autre activité',
-      emailLabel: 'Adresse e-mail',
+      emailLabel: 'E-mail utilisé sur Google Play',
       emailPlaceholder: 'nom@gmail.com',
-      submit: 'Envoyer ma demande',
+      emailHint: 'Utilisez le même e-mail que sur Google Play sur votre téléphone.',
+      submit: 'Commencer mon essai gratuit',
       submitting: 'Envoi de vos informations…',
-      privacyCopy: 'Vos informations servent uniquement à traiter votre demande et à vous contacter.',
+      successTitle: 'Demande reçue',
+      successText: 'Prochaine étape : surveillez votre e-mail. Nous vous enverrons les liens Android et Windows.',
+      faqTitle: 'Questions rapides avant l’essai',
+      faqOfflineQ: 'L’application fonctionne-t-elle sans Internet ?',
+      faqOfflineA: 'Oui. Les ventes, le stock, le crédit et les rapports fonctionnent sans Internet. Le réseau sert uniquement aux services facultatifs comme Sync ou la sauvegarde Google Drive.',
+      faqSubscriptionQ: 'Y a-t-il un abonnement mensuel ?',
+      faqSubscriptionA: 'Non pour la licence de base : 7 000 DA en un seul paiement pour l’appareil principal. Sync est facultatif et séparé : 3 000 DA par an et par appareil supplémentaire.',
+      faqWindowsQ: 'L’application fonctionne-t-elle sur Windows ?',
+      faqWindowsA: 'Oui. Nous vous envoyons le lien d’installation Windows après la demande d’essai.',
+      faqAndroidQ: 'L’application fonctionne-t-elle sur Android ?',
+      faqAndroidA: 'Oui, sur les téléphones et tablettes Android via Google Play.',
+      faqAfterTrialQ: 'Que se passe-t-il après 7 jours ?',
+      faqAfterTrialA: 'L’essai gratuit se termine. Vous pouvez activer la licence de base pour 7 000 DA en un seul paiement et continuer avec les données déjà présentes sur l’appareil.',
       privacyLink: 'Confidentialité',
       terms: 'Conditions',
-      successTitle: 'Informations reçues ✅',
-      successText: 'Votre demande est enregistrée. Contactez-nous sur WhatsApp pour en savoir plus.',
-      contactPrompt: 'Appuyez ici pour ouvrir une discussion WhatsApp avec nous.',
-      contactWhatsApp: 'Nous contacter sur WhatsApp',
-      editDetails: 'Corriger les informations',
-      valueTitle: 'L’essentiel pour votre commerce',
-      benefitSales: 'Enregistrer les ventes rapidement',
-      benefitStock: 'Suivre le stock automatiquement',
-      benefitDebts: 'Gérer les dettes clients',
-      benefitProfit: 'Connaître les ventes et bénéfices',
-      benefitBarcode: 'Vendre avec un code-barres ou la caméra',
-      benefitOffline: 'Fonctionner sans Internet',
-      benefitLanguages: 'Arabe et français',
-      benefitSync: 'Synchroniser plusieurs appareils',
-      proofTitle: 'Voir l’application avant de la télécharger',
-      proofHint: '37 écrans réels de l’application.',
-      proofGalleryLabel: 'Captures des fonctions de Store Soft',
-      shot01: 'Choisir le produit souhaité',
-      shot02: 'Choisir l’unité et la quantité',
-      shot03: 'Vérifier le panier de vente',
-      shot04: 'Enregistrer le mode de paiement',
-      shot05: 'Consulter l’historique des opérations',
-      shot06: 'Suivre la liste des produits',
-      shot07: 'Ajouter un nouveau produit',
-      shot08: 'Consulter les offres promotionnelles',
-      shot09: 'Créer une nouvelle offre',
-      shot10: 'Suivre les dettes clients',
-      shot11: 'Consulter le compte client',
-      shot12: 'Enregistrer un paiement client',
-      shot13: 'Suivre les dettes fournisseurs',
-      shot14: 'Consulter le compte fournisseur',
-      shot15: 'Consulter l’historique des arrivages',
-      shot16: 'Ajouter un nouvel arrivage',
-      shot17: 'Suivre les mouvements de caisse',
-      shot18: 'Ajouter une entrée en caisse',
-      shot19: 'Consulter l’historique des dépenses',
-      shot20: 'Ajouter une nouvelle dépense',
-      shot21: 'Consulter les ventes et bénéfices',
-      shot22: 'Consulter l’état du stock',
-      shot23: 'Voir les produits les plus rentables',
-      shot24: 'Consulter le résumé des dettes',
-      shot25: 'Estimer le montant de la zakat',
-      shot26: 'Consulter la performance des vendeurs',
-      shot27: 'Suivre les demandes de réparation',
-      shot28: 'Personnaliser les réglages du magasin',
-      shot29: 'Créer le compte du propriétaire',
-      shot30: 'Connecter le compte employé',
-      shot31: 'Suivre les utilisateurs et appareils',
-      shot32: 'Ajouter un nouvel utilisateur',
-      shot33: 'Définir les autorisations utilisateur',
-      shot34: 'Consulter toutes les autorisations',
-      shot35: 'Accéder au centre d’aide',
-      shot36: 'Consulter le centre de notifications',
-      shot37: 'Découvrir toutes les fonctions',
-      closingTitle: 'Essayez Store Soft gratuitement',
-      closingText: 'Envoyez votre demande et nous vous contacterons sur WhatsApp.',
-      storiesEyebrow: 'Expériences de commerçants',
-      storiesTitle: 'Que disent les clients Store Soft ?',
       required: 'Ce champ est obligatoire.',
       tooShort: 'Saisissez au moins deux caractères.',
       invalidEmail: 'Saisissez une adresse e-mail valide.',
       generalError: 'Les informations n’ont pas pu être envoyées. Vérifiez votre connexion et réessayez.'
     }
   };
+
+  var galleryItems = [
+    ['features/01-pos/01-catalog-ar.png', 'اختر المنتج المطلوب', 'Choisir le produit souhaité'],
+    ['features/01-pos/02-cart-preview-ar.png?v=20260831-quantity-v2', 'اختر وحدة البيع والكمية', 'Choisir l’unité et la quantité'],
+    ['features/01-pos/03-cart-ar.png', 'راجع سلة المبيعات', 'Vérifier le panier de vente'],
+    ['features/01-pos/04-payment-ar.png', 'سجّل طريقة الدفع', 'Enregistrer le mode de paiement'],
+    ['features/02-sales-history/01-sales-list-ar.png', 'راجع سجل العمليات', 'Consulter l’historique des opérations'],
+    ['features/03-products/01-products-list-ar.png', 'تابع قائمة المنتجات', 'Suivre la liste des produits'],
+    ['features/03-products/02-quick-add-ar.png', 'أضف منتجًا جديدًا', 'Ajouter un nouveau produit'],
+    ['features/05-customers-and-credit/01-customers-list-ar.png', 'تابع ديون الزبائن', 'Suivre les dettes clients'],
+    ['features/04-promotions/01-promotions-list-ar.png', 'راجع عروض التخفيضات', 'Consulter les promotions'],
+    ['features/04-promotions/02-new-promotion-ar.png', 'أنشئ عرضًا جديدًا', 'Créer une nouvelle promotion'],
+    ['features/05-customers-and-credit/02-customer-account-ar.png', 'راجع حساب الزبون', 'Consulter le compte client'],
+    ['features/05-customers-and-credit/03-record-payment-ar.png', 'سجّل دفعة الزبون', 'Enregistrer un paiement client'],
+    ['features/06-suppliers/01-suppliers-list-ar.png', 'تابع ديون الموردين', 'Suivre les dettes fournisseurs'],
+    ['features/06-suppliers/02-supplier-account-ar.png', 'راجع حساب المورد', 'Consulter le compte fournisseur'],
+    ['features/07-deliveries/01-deliveries-list-ar.png', 'راجع سجل الواردات', 'Consulter l’historique des arrivages'],
+    ['features/07-deliveries/02-new-delivery-ar.png', 'أضف بضاعة واردة', 'Ajouter un nouvel arrivage'],
+    ['features/08-cash-drawer/01-open-drawer-ar.png', 'تابع حركة الصندوق', 'Suivre les mouvements de caisse'],
+    ['features/08-cash-drawer/02-cash-in-ar.png', 'أضف مبلغًا للصندوق', 'Ajouter une entrée en caisse'],
+    ['features/09-expenses/01-expenses-list-ar.png', 'راجع سجل المصاريف', 'Consulter les dépenses'],
+    ['features/09-expenses/02-add-expense-ar.png', 'سجّل مصروفًا جديدًا', 'Ajouter une dépense'],
+    ['features/10-reports/01-overview-ar.png', 'راجع المبيعات والأرباح', 'Consulter ventes et bénéfices'],
+    ['features/10-reports/02-inventory-ar.png', 'راجع حالة المخزون', 'Consulter l’état du stock'],
+    ['features/10-reports/03-profitability-ar.png', 'اكتشف المنتجات الأكثر ربحًا', 'Voir les produits les plus rentables'],
+    ['features/10-reports/04-debts-ar.png', 'راجع ملخص الديون', 'Consulter le résumé des dettes'],
+    ['features/10-reports/05-zakat-ar.png', 'احسب قيمة الزكاة', 'Estimer le montant de la zakat'],
+    ['features/10-reports/06-sellers-ar.png', 'راجع أداء البائعين', 'Consulter la performance des vendeurs'],
+    ['features/11-repairs/01-repairs-list-ar.png', 'تابع طلبات التصليح', 'Suivre les réparations'],
+    ['features/12-settings/01-settings-ar.png', 'خصّص إعدادات المحل', 'Personnaliser les réglages'],
+    ['features/13-sync-and-staff/01-create-owner-account-ar.png', 'أنشئ حساب مالك المحل', 'Créer le compte propriétaire'],
+    ['features/13-sync-and-staff/02-staff-login-ar.png', 'سجّل دخول الموظف', 'Connecter le compte employé'],
+    ['features/13-sync-and-staff/03-sync-users-ar.png', 'تابع المستخدمين والأجهزة', 'Suivre utilisateurs et appareils'],
+    ['features/13-sync-and-staff/04-add-user-ar.png', 'أضف مستخدمًا جديدًا', 'Ajouter un utilisateur'],
+    ['features/13-sync-and-staff/05-permissions-ar.png', 'حدّد صلاحيات المستخدم', 'Définir les autorisations'],
+    ['features/13-sync-and-staff/06-permissions-more-ar.png', 'راجع جميع الصلاحيات', 'Consulter toutes les autorisations'],
+    ['features/14-help-center/01-help-center-ar.png', 'احصل على المساعدة', 'Accéder au centre d’aide'],
+    ['features/15-notifications/01-notification-center-ar.png', 'تابع مركز الإشعارات', 'Consulter les notifications'],
+    ['features/16-navigation/01-all-features-ar.png', 'استعرض كل الميزات', 'Découvrir toutes les fonctions']
+  ];
 
   var form = document.getElementById('leadForm');
   var button = document.getElementById('submitButton');
@@ -211,25 +275,102 @@
   var successView = document.getElementById('successView');
   var submitError = document.getElementById('submitError');
   var languageSwitch = document.getElementById('languageSwitch');
+  var screenshots = document.getElementById('screenshots');
+  var galleryToggle = document.getElementById('galleryToggle');
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImage = document.getElementById('lightboxImage');
+  var lightboxCaption = document.getElementById('lightboxCaption');
+  var mobileTrialCta = document.getElementById('mobileTrialCta');
 
-  function copy(key) {
-    return copies[currentLanguage][key];
+  function copy(key) { return copies[currentLanguage][key]; }
+
+  function campaignData() {
+    var params = new URLSearchParams(window.location.search);
+    return {
+      source: params.get('utm_source') || '',
+      medium: params.get('utm_medium') || '',
+      campaign: params.get('utm_campaign') || '',
+      content: params.get('utm_content') || '',
+      term: params.get('utm_term') || '',
+      referrer: document.referrer || '',
+      landing_page: window.location.href
+    };
+  }
+
+  function trafficSource() {
+    var data = campaignData();
+    var source = (data.source || data.referrer || '').toLowerCase();
+    if (/facebook|(^|[^a-z])fb([^a-z]|$)/.test(source)) return 'facebook';
+    if (/instagram|(^|[^a-z])ig([^a-z]|$)/.test(source)) return 'instagram';
+    if (/tiktok|tik-tok/.test(source)) return 'tiktok';
+    if (data.source) return 'other_campaign';
+    if (data.referrer) return 'referral';
+    return 'direct';
   }
 
   function trackEvent(name, properties, standardEvent) {
-    var detail = Object.assign({ language: currentLanguage }, properties || {});
+    var campaign = campaignData();
+    var detail = Object.assign({
+      language: currentLanguage,
+      traffic_source: trafficSource(),
+      utm_source: campaign.source,
+      utm_medium: campaign.medium,
+      utm_campaign: campaign.campaign
+    }, properties || {});
     var trackedEvents = document.documentElement.getAttribute('data-tracking-events');
     document.documentElement.setAttribute('data-tracking-events', trackedEvents ? trackedEvents + ',' + name : name);
-
-    window.dispatchEvent(new CustomEvent('storesoft:tracking', {
-      detail: { event: name, properties: detail }
-    }));
-
+    window.dispatchEvent(new CustomEvent('storesoft:tracking', { detail: { event: name, properties: detail } }));
     window.dataLayer.push(Object.assign({ event: name }, detail));
+    if (typeof window.fbq === 'function') window.fbq(standardEvent ? 'track' : 'trackCustom', name, detail);
+  }
 
-    if (typeof window.fbq === 'function') {
-      window.fbq(standardEvent ? 'track' : 'trackCustom', name, detail);
-    }
+  function galleryCaption(index) { return galleryItems[index][currentLanguage === 'ar' ? 1 : 2]; }
+
+  function renderGallery() {
+    screenshots.textContent = '';
+    galleryItems.forEach(function (item, index) {
+      var figure = document.createElement('figure');
+      figure.hidden = !galleryExpanded && index >= 8;
+      var shot = document.createElement('button');
+      shot.className = 'phone-shot';
+      shot.type = 'button';
+      shot.setAttribute('aria-label', copy('openImage') + galleryCaption(index));
+      shot.addEventListener('click', function () { openLightbox(index); });
+      var image = document.createElement('img');
+      image.src = 'assets/' + item[0];
+      image.width = 1080;
+      image.height = 2400;
+      image.alt = '';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      var caption = document.createElement('figcaption');
+      var strong = document.createElement('b');
+      strong.textContent = galleryCaption(index);
+      caption.appendChild(strong);
+      shot.appendChild(image);
+      figure.appendChild(shot);
+      figure.appendChild(caption);
+      screenshots.appendChild(figure);
+    });
+  }
+
+  function updateLightbox() {
+    lightboxImage.src = 'assets/' + galleryItems[lightboxIndex][0];
+    lightboxImage.alt = galleryCaption(lightboxIndex);
+    lightboxCaption.textContent = galleryCaption(lightboxIndex);
+  }
+
+  function openLightbox(index) {
+    lightboxIndex = index;
+    updateLightbox();
+    if (typeof lightbox.showModal === 'function') lightbox.showModal();
+    else lightbox.setAttribute('open', '');
+    trackEvent('ScreenshotOpened', { screenshot_index: index + 1 }, false);
+  }
+
+  function closeLightbox() {
+    if (typeof lightbox.close === 'function') lightbox.close();
+    else lightbox.removeAttribute('open');
   }
 
   function setLanguage(language) {
@@ -239,21 +380,24 @@
     document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
     languageSwitch.textContent = isArabic ? 'FR' : 'ع';
     languageSwitch.setAttribute('aria-label', isArabic ? 'Afficher en français' : 'عرض الصفحة بالعربية');
-
     document.querySelectorAll('[data-copy]').forEach(function (element) {
       var value = copy(element.getAttribute('data-copy'));
       if (value !== undefined) element.innerHTML = value;
     });
-
     document.querySelectorAll('[data-copy-aria-label]').forEach(function (element) {
       var value = copy(element.getAttribute('data-copy-aria-label'));
       if (value !== undefined) element.setAttribute('aria-label', value);
     });
-
+    document.querySelectorAll('[data-copy-alt]').forEach(function (element) {
+      var value = copy(element.getAttribute('data-copy-alt'));
+      if (value !== undefined) element.alt = value;
+    });
     document.querySelectorAll('[data-copy-placeholder]').forEach(function (element) {
       element.placeholder = copy(element.getAttribute('data-copy-placeholder'));
     });
-
+    galleryToggle.textContent = copy(galleryExpanded ? 'showLess' : 'showAllFeatures');
+    renderGallery();
+    if (lightbox.hasAttribute('open')) updateLightbox();
     clearErrors();
   }
 
@@ -270,87 +414,65 @@
     document.getElementById(id + 'Error').textContent = message;
   }
 
-  function clearFieldError(id) {
-    document.getElementById(id).removeAttribute('aria-invalid');
-    document.getElementById(id + 'Error').textContent = '';
-  }
-
   function isValidEmail(value) {
     if (!value || value.length > 254 || /\s/.test(value)) return false;
     var parts = value.split('@');
     if (parts.length !== 2 || !parts[0] || !parts[1]) return false;
     var localPart = parts[0];
     var domain = parts[1].toLowerCase();
-    if (localPart.length > 64 || localPart.charAt(0) === '.' ||
-        localPart.charAt(localPart.length - 1) === '.' || localPart.indexOf('..') !== -1) return false;
+    if (localPart.length > 64 || localPart.charAt(0) === '.' || localPart.charAt(localPart.length - 1) === '.' || localPart.indexOf('..') !== -1) return false;
     if (!/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(localPart)) return false;
     if (domain.length > 253 || domain.indexOf('.') === -1 || domain.indexOf('..') !== -1) return false;
     var labels = domain.split('.');
-    var labelsAreValid = labels.every(function (label) {
-      return label.length > 0 && label.length <= 63 &&
-        /^[a-z0-9-]+$/i.test(label) && label.charAt(0) !== '-' &&
-        label.charAt(label.length - 1) !== '-';
-    });
-    return labelsAreValid && /^[a-z]{2,63}$/i.test(labels[labels.length - 1]);
+    return labels.every(function (label) {
+      return label.length > 0 && label.length <= 63 && /^[a-z0-9-]+$/i.test(label) && label.charAt(0) !== '-' && label.charAt(label.length - 1) !== '-';
+    }) && /^[a-z]{2,63}$/i.test(labels[labels.length - 1]);
   }
 
   function validate(values) {
     clearErrors();
     var valid = true;
-
-    if (!values.name) {
-      fieldError('name', copy('required'));
-      valid = false;
-    } else if (values.name.length < 2) {
-      fieldError('name', copy('tooShort'));
-      valid = false;
-    }
-    if (!values.shop_type) {
-      fieldError('shopType', copy('required'));
-      valid = false;
-    }
-    if (!values.email) {
-      fieldError('email', copy('required'));
-      valid = false;
-    } else if (!isValidEmail(values.email)) {
-      fieldError('email', copy('invalidEmail'));
-      valid = false;
-    }
+    if (!values.name) { fieldError('name', copy('required')); valid = false; }
+    else if (values.name.length < 2) { fieldError('name', copy('tooShort')); valid = false; }
+    if (!values.shop_type) { fieldError('shopType', copy('required')); valid = false; }
+    if (!values.email) { fieldError('email', copy('required')); valid = false; }
+    else if (!isValidEmail(values.email)) { fieldError('email', copy('invalidEmail')); valid = false; }
     return valid;
   }
 
-  function campaignData() {
-    var params = new URLSearchParams(window.location.search);
-    return {
-      source: params.get('utm_source') || '',
-      medium: params.get('utm_medium') || '',
-      campaign: params.get('utm_campaign') || '',
-      content: params.get('utm_content') || '',
-      term: params.get('utm_term') || '',
-      referrer: document.referrer || '',
-      landing_page: window.location.href
-    };
-  }
+  languageSwitch.addEventListener('click', function () { setLanguage(currentLanguage === 'ar' ? 'fr' : 'ar'); });
 
-  languageSwitch.addEventListener('click', function () {
-    setLanguage(currentLanguage === 'ar' ? 'fr' : 'ar');
-  });
-
-  document.querySelectorAll('a[href="#download-form"]').forEach(function (link) {
+  document.querySelectorAll('.js-trial-cta').forEach(function (link) {
     link.addEventListener('click', function (event) {
       event.preventDefault();
-      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      document.getElementById('download-form').scrollIntoView({
-        behavior: reducedMotion ? 'auto' : 'smooth',
+      trackEvent('TrialCTAClick', { cta_location: link.getAttribute('data-cta-location') || 'unknown' }, false);
+      document.getElementById('free-trial').scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
         block: 'start'
       });
     });
   });
 
   document.querySelectorAll('.js-whatsapp').forEach(function (link) {
-    link.addEventListener('click', function () {
-      trackEvent('WhatsAppCTAClick', { content_name: 'Store Soft download landing page' }, false);
-    });
+    link.addEventListener('click', function () { trackEvent('WhatsAppCTAClick', { cta_location: 'hero' }, false); });
+  });
+
+  galleryToggle.addEventListener('click', function () {
+    galleryExpanded = !galleryExpanded;
+    galleryToggle.setAttribute('aria-expanded', String(galleryExpanded));
+    galleryToggle.textContent = copy(galleryExpanded ? 'showLess' : 'showAllFeatures');
+    renderGallery();
+    trackEvent(galleryExpanded ? 'GalleryExpanded' : 'GalleryCollapsed', { visible_screenshots: galleryExpanded ? galleryItems.length : 8 }, false);
+    if (!galleryExpanded) document.getElementById('proofTitle').scrollIntoView({ block: 'start' });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', function () { lightboxIndex = (lightboxIndex - 1 + galleryItems.length) % galleryItems.length; updateLightbox(); });
+  document.getElementById('lightboxNext').addEventListener('click', function () { lightboxIndex = (lightboxIndex + 1) % galleryItems.length; updateLightbox(); });
+  lightbox.addEventListener('click', function (event) { if (event.target === lightbox) closeLightbox(); });
+  lightbox.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowLeft') document.getElementById('lightboxPrev').click();
+    if (event.key === 'ArrowRight') document.getElementById('lightboxNext').click();
   });
 
   form.addEventListener('focusin', function () {
@@ -371,28 +493,20 @@
       language: currentLanguage,
       form_version: 'email_shop_select_v3'
     };
-
     if (!validate(values)) return;
-
+    trackEvent('FormSubmitAttempt', { content_name: 'Store Soft download request' }, false);
     Object.assign(values, campaignData());
     button.disabled = true;
     submitLabel.textContent = copy('submitting');
-
     try {
-      var response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values)
-      });
+      var response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values) });
       var result = await response.json().catch(function () { return {}; });
       if (!response.ok || !result.ok) throw new Error(result.error || 'submit_failed');
-
       formView.hidden = true;
       successView.hidden = false;
-
+      mobileTrialCta.classList.add('is-hidden');
       trackEvent('FormSubmitted', { content_name: 'Store Soft download request' }, false);
       trackEvent('Lead', { content_name: 'Store Soft download request' }, true);
-
       successView.focus();
     } catch (_) {
       submitError.textContent = copy('generalError');
@@ -402,11 +516,16 @@
     }
   });
 
-  document.getElementById('editDetails').addEventListener('click', function () {
-    successView.hidden = true;
-    formView.hidden = false;
-    document.getElementById('name').focus();
-  });
+  function updateMobileTrialCta() {
+    var heroRect = document.querySelector('.hero').getBoundingClientRect();
+    var trialRect = document.getElementById('free-trial').getBoundingClientRect();
+    var heroVisible = heroRect.bottom > 0 && heroRect.top < window.innerHeight;
+    var trialVisible = trialRect.bottom > 0 && trialRect.top < window.innerHeight;
+    mobileTrialCta.classList.toggle('is-near-form', heroVisible || trialVisible);
+  }
+  window.addEventListener('scroll', updateMobileTrialCta, { passive: true });
+  window.addEventListener('resize', updateMobileTrialCta);
+  updateMobileTrialCta();
 
   document.getElementById('year').textContent = new Date().getFullYear();
   setLanguage('ar');
