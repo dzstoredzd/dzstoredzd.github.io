@@ -284,3 +284,18 @@ test('landing analytics distinguish traffic source and funnel events', async () 
     assert.match(migration, new RegExp(milestone));
   }
 });
+
+test('Store Soft pages use the current product logo as their favicon', async () => {
+  const pages = await Promise.all([
+    read('index.html'),
+    read('privacy.html'),
+    read('terms.html'),
+    read('delete-account.html'),
+    read('storesoft/download/index.html'),
+  ]);
+
+  for (const page of pages) {
+    assert.match(page, /<link rel="icon" type="image\/png" href="(?:\.\.\/\.\.\/)?assets\/icon\.png" \/>/);
+    assert.doesNotMatch(page, /assets\/favicon\.png/);
+  }
+});
