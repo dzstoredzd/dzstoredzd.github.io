@@ -15,7 +15,7 @@ test('every valid submission is inserted as a separate lead', async () => {
   assert.match(edgeFunction, /rest\('store_soft_leads',\{method:'POST'/);
   assert.doesNotMatch(edgeFunction, /inserted\.status===409/);
   assert.doesNotMatch(edgeFunction, /email_normalized=eq\./);
-  assert.match(edgeFunction, /return json\(\{ok:true,lead_id:lead\.id\},200,origin\)/);
+  assert.match(edgeFunction, /return json\(\{ok:true,lead_id:lead\.id,tracking_code:lead\.tracking_code\},200,origin\)/);
 });
 
 test('lead endpoint supports the simplified email and shop-select form', async () => {
@@ -180,30 +180,30 @@ test('every stored submission emits its own Meta Lead event', async () => {
   );
 });
 
-test('landing form asks only for name, selected shop type, and email', async () => {
+test('landing form asks only for name, phone, and selected shop type', async () => {
   const landingPage = await read('storesoft/download/index.html');
 
   assert.match(landingPage, /id="name" name="name" type="text"/);
   assert.match(landingPage, /<select id="shopType" name="shop_type" required>/);
-  assert.match(landingPage, /id="email" name="email" type="email"[^>]*required/);
+  assert.match(landingPage, /id="phone" name="phone" type="tel"[^>]*required/);
   assert.match(landingPage, /value="grocery"/);
   assert.match(landingPage, /value="clothing"/);
   assert.match(landingPage, /value="cosmetics"/);
   assert.match(landingPage, /value="spare_parts"/);
   assert.match(landingPage, /value="repair_shop"/);
   assert.match(landingPage, /value="other"/);
-  assert.doesNotMatch(landingPage, /id="phone"|id="requestedPlatform"/);
-  assert.ok(landingPage.indexOf('id="name"') < landingPage.indexOf('id="shopType"'));
-  assert.ok(landingPage.indexOf('id="shopType"') < landingPage.indexOf('id="email"'));
+  assert.doesNotMatch(landingPage, /id="email"|id="requestedPlatform"/);
+  assert.ok(landingPage.indexOf('id="name"') < landingPage.indexOf('id="phone"'));
+  assert.ok(landingPage.indexOf('id="phone"') < landingPage.indexOf('id="shopType"'));
 
   const landingScript = await read('storesoft/download/script.js');
-  assert.match(landingScript, /email: String\(data\.get\('email'\)/);
-  assert.match(landingScript, /form_version: 'email_shop_select_v3'/);
-  assert.match(landingScript, /isValidEmail\(values\.email\)/);
-  assert.doesNotMatch(landingScript, /data\.get\('phone'\)|data\.get\('requested_platform'\)/);
+  assert.match(landingScript, /phone: String\(data\.get\('phone'\)/);
+  assert.match(landingScript, /form_version: 'phone_shop_select_v4'/);
+  assert.match(landingScript, /isValidPhone\(values\.phone\)/);
+  assert.doesNotMatch(landingScript, /data\.get\('email'\)|data\.get\('requested_platform'\)/);
 });
 
-test('successful submissions show one localized next step only', async () => {
+test('successful submissions offer both localized downloads', async () => {
   const [landingPage, landingScript, landingStyles] = await Promise.all([
     read('storesoft/download/index.html'),
     read('storesoft/download/script.js'),
@@ -212,10 +212,15 @@ test('successful submissions show one localized next step only', async () => {
 
   const successBlock = landingPage.match(/id="successView"[\s\S]*?<\/aside>/)?.[0] || '';
 
-  assert.match(successBlock, /الخطوة التالية: راقب بريدك الإلكتروني/);
-  assert.doesNotMatch(successBlock, /<a\b|<button\b|youtube\.com|YouTube|wa\.me/);
-  assert.match(landingScript, /successText: 'الخطوة التالية: راقب بريدك الإلكتروني/);
-  assert.match(landingScript, /successText: 'Prochaine étape : surveillez votre e-mail/);
+  assert.match(successBlock, /id="downloadAndroid"/);
+  assert.match(successBlock, /id="downloadWindows"/);
+  assert.match(successBlock, /storesoft_windows_latest\.exe/);
+  assert.equal((successBlock.match(/target="_blank"/g) || []).length, 2);
+  assert.match(landingScript, /showDownloads\(result.tracking_code\)/);
+  assert.match(landingScript, /\/storesoft\/try\/\?t=/);
+  assert.match(landingScript, /downloadAndroid: 'تحميل Android'/);
+  assert.match(landingScript, /downloadAndroid: 'Télécharger Android'/);
+  assert.doesNotMatch(landingScript, /emailLabel|راقب بريدك|surveillez votre e-mail/);
   assert.match(landingStyles, /\.success \{[^}]*min-height: 420px/);
 });
 
@@ -247,7 +252,7 @@ test('landing page presents the current offer in the requested conversion order'
   assert.match(page, /يعمل بدون إنترنت/);
   assert.match(page, /7000 DA/);
   assert.match(page, /3000 DA/);
-  assert.match(page, /البريد المستخدم في Google Play/);
+  assert.match(page, /رقم الهاتف \/ واتساب/);
   assert.match(page, /ابدأ تجربتي المجانية/);
   assert.doesNotMatch(page + script, /نسخة مجانية|معلوماتك تُستعمل لمعالجة طلبك/);
 

@@ -5,6 +5,7 @@
   var formStartedAt = Date.now();
   var currentLanguage = 'ar';
   var formStartTracked = false;
+  var submitting = false;
   var galleryExpanded = false;
   var lightboxIndex = 0;
   window.dataLayer = window.dataLayer || [];
@@ -45,8 +46,8 @@
       howEyebrow: 'بثلاث خطوات',
       howTitle: 'ابدأ بسرعة',
       stepOneTitle: 'عمّر معلوماتك',
-      stepOneText: 'الاسم، نوع المحل والبريد المستخدم في Google Play.',
-      stepTwoTitle: 'نرسل لك الرابطين',
+      stepOneText: 'الاسم، رقم الهاتف أو واتساب ونوع النشاط.',
+      stepTwoTitle: 'اختر نسختك وحمّلها',
       stepTwoText: 'رابط Android من Google Play ورابط Windows للكمبيوتر.',
       stepThreeTitle: 'جرّبه 7 أيام',
       stepThreeText: 'أضف محلك ومنتجاتك وجرّب أول عملية بيع.',
@@ -76,13 +77,13 @@
       priceTrust: 'بيانات محلك تبقى متاحة على جهازك ويستمر البيع بدون إنترنت.',
       trialEyebrow: 'تجربة مجانية لمدة 7 أيام',
       trialTitle: 'ابدأ تجربتك الآن',
-      trialIntro: 'عمّر معلوماتك وسنرسل لك رابطَي Android وWindows. جرّب البيع والمخزون والكريدي والأرباح قبل الدفع.',
+      trialIntro: 'عمّر معلوماتك ثم حمّل نسخة Android أو Windows مباشرة. جرّب البيع والمخزون والكريدي والأرباح قبل الدفع.',
       trialPointOne: 'لا تحتاج بطاقة دفع',
-      trialPointTwo: 'نرسل الرابطين إلى بريدك',
+      trialPointTwo: 'رابطا التحميل يظهران مباشرة',
       trialPointThree: 'نساعدك عبر واتساب عند الحاجة',
       available: 'متاحة الآن',
       formTitle: 'ابدأ تجربتي المجانية',
-      formIntro: 'سنرسل لك رابطَي Android وWindows.',
+      formIntro: 'بعد الإرسال، اختر التحميل للهاتف أو الكمبيوتر.',
       nameLabel: 'الاسم',
       namePlaceholder: 'مثال: محمد',
       shopLabel: 'نوع النشاط / المحل',
@@ -93,20 +94,23 @@
       shopParts: 'قطع غيار',
       shopRepair: 'محل تصليح',
       shopOther: 'نشاط آخر',
-      emailLabel: 'البريد المستخدم في Google Play',
-      emailPlaceholder: 'name@gmail.com',
-      emailHint: 'استعمل نفس البريد الموجود في Google Play على هاتفك.',
+      phoneLabel: 'رقم الهاتف / واتساب',
+      phonePlaceholder: '0550 12 34 56',
+      phoneHint: 'رقم يمكننا التواصل معك عليه لمساعدتك في التجربة.',
       submit: 'ابدأ تجربتي المجانية',
       submitting: 'جاري إرسال معلوماتك…',
       successTitle: 'تم استلام طلبك',
-      successText: 'الخطوة التالية: راقب بريدك الإلكتروني. سنرسل لك رابطَي Android وWindows.',
+      successText: 'اختر نسختك وابدأ التجربة. يمكنك تحميل النسختين دون إعادة ملء المعلومات.',
+      downloadAndroid: 'تحميل Android',
+      downloadWindows: 'تحميل Windows',
+      recommendedDevice: 'مناسب لجهازك الحالي',
       faqTitle: 'أسئلة سريعة قبل التجربة',
       faqOfflineQ: 'هل يعمل بدون إنترنت؟',
       faqOfflineA: 'نعم. البيع والمخزون والكريدي والتقارير تعمل بدون إنترنت. تحتاج الشبكة فقط عند استعمال خدمات اختيارية مثل Sync أو النسخ إلى Google Drive.',
       faqSubscriptionQ: 'هل يوجد اشتراك شهري؟',
       faqSubscriptionA: 'لا يوجد اشتراك شهري للترخيص الأساسي: 7000 دج دفع مرة واحدة للجهاز الأساسي. Sync اختياري وسعره منفصل: 3000 دج سنويًا لكل جهاز إضافي.',
       faqWindowsQ: 'هل يعمل على Windows؟',
-      faqWindowsA: 'نعم، يعمل على أجهزة Windows. نرسل لك رابط التثبيت بعد طلب التجربة.',
+      faqWindowsA: 'نعم، يعمل على أجهزة Windows. يظهر رابط التثبيت مباشرة بعد إرسال معلوماتك.',
       faqAndroidQ: 'هل يعمل على Android؟',
       faqAndroidA: 'نعم، يعمل على هواتف وأجهزة Android اللوحية عبر Google Play.',
       faqAfterTrialQ: 'ماذا يحدث بعد 7 أيام؟',
@@ -115,7 +119,7 @@
       terms: 'شروط الاستخدام',
       required: 'هذا الحقل مطلوب.',
       tooShort: 'اكتب حرفين على الأقل.',
-      invalidEmail: 'أدخل بريدًا إلكترونيًا صحيحًا.',
+      invalidPhone: 'أدخل رقم هاتف صحيحًا من 8 إلى 15 رقمًا.',
       generalError: 'تعذّر إرسال المعلومات. تحقق من الإنترنت وحاول مرة أخرى.'
     },
     fr: {
@@ -153,8 +157,8 @@
       howEyebrow: 'En trois étapes',
       howTitle: 'Démarrez rapidement',
       stepOneTitle: 'Remplissez vos informations',
-      stepOneText: 'Nom, type de commerce et e-mail utilisé sur Google Play.',
-      stepTwoTitle: 'Nous envoyons les deux liens',
+      stepOneText: 'Nom, numéro de téléphone ou WhatsApp et activité.',
+      stepTwoTitle: 'Choisissez votre version et téléchargez-la',
       stepTwoText: 'Le lien Android sur Google Play et le lien Windows.',
       stepThreeTitle: 'Essayez pendant 7 jours',
       stepThreeText: 'Créez votre magasin, ajoutez vos produits et faites une première vente.',
@@ -184,13 +188,13 @@
       priceTrust: 'Les données restent disponibles sur votre appareil et la vente continue sans Internet.',
       trialEyebrow: 'Essai gratuit de 7 jours',
       trialTitle: 'Commencez votre essai',
-      trialIntro: 'Remplissez vos informations et nous vous enverrons les liens Android et Windows. Essayez ventes, stock, crédit et bénéfices avant de payer.',
+      trialIntro: 'Remplissez vos informations, puis téléchargez directement la version Android ou Windows. Essayez ventes, stock, crédit et bénéfices avant de payer.',
       trialPointOne: 'Aucune carte bancaire requise',
-      trialPointTwo: 'Les deux liens sont envoyés par e-mail',
+      trialPointTwo: 'Les deux liens sont disponibles immédiatement',
       trialPointThree: 'Aide sur WhatsApp si nécessaire',
       available: 'Disponible maintenant',
       formTitle: 'Commencer mon essai gratuit',
-      formIntro: 'Nous vous enverrons les liens Android et Windows.',
+      formIntro: 'Après l’envoi, choisissez la version téléphone ou ordinateur.',
       nameLabel: 'Nom',
       namePlaceholder: 'Exemple : Mohamed',
       shopLabel: 'Type d’activité / magasin',
@@ -201,20 +205,23 @@
       shopParts: 'Pièces détachées',
       shopRepair: 'Atelier de réparation',
       shopOther: 'Autre activité',
-      emailLabel: 'E-mail utilisé sur Google Play',
-      emailPlaceholder: 'nom@gmail.com',
-      emailHint: 'Utilisez le même e-mail que sur Google Play sur votre téléphone.',
+      phoneLabel: 'Téléphone / WhatsApp',
+      phonePlaceholder: '0550 12 34 56',
+      phoneHint: 'Un numéro pour vous joindre et vous aider pendant l’essai.',
       submit: 'Commencer mon essai gratuit',
       submitting: 'Envoi de vos informations…',
       successTitle: 'Demande reçue',
-      successText: 'Prochaine étape : surveillez votre e-mail. Nous vous enverrons les liens Android et Windows.',
+      successText: 'Choisissez votre version et commencez l’essai. Vous pouvez télécharger les deux sans remplir à nouveau le formulaire.',
+      downloadAndroid: 'Télécharger Android',
+      downloadWindows: 'Télécharger Windows',
+      recommendedDevice: 'Adapté à votre appareil actuel',
       faqTitle: 'Questions rapides avant l’essai',
       faqOfflineQ: 'L’application fonctionne-t-elle sans Internet ?',
       faqOfflineA: 'Oui. Les ventes, le stock, le crédit et les rapports fonctionnent sans Internet. Le réseau sert uniquement aux services facultatifs comme Sync ou la sauvegarde Google Drive.',
       faqSubscriptionQ: 'Y a-t-il un abonnement mensuel ?',
       faqSubscriptionA: 'Non pour la licence de base : 7 000 DA en un seul paiement pour l’appareil principal. Sync est facultatif et séparé : 3 000 DA par an et par appareil supplémentaire.',
       faqWindowsQ: 'L’application fonctionne-t-elle sur Windows ?',
-      faqWindowsA: 'Oui. Nous vous envoyons le lien d’installation Windows après la demande d’essai.',
+      faqWindowsA: 'Oui. Le lien d’installation Windows apparaît dès que vos informations sont envoyées.',
       faqAndroidQ: 'L’application fonctionne-t-elle sur Android ?',
       faqAndroidA: 'Oui, sur les téléphones et tablettes Android via Google Play.',
       faqAfterTrialQ: 'Que se passe-t-il après 7 jours ?',
@@ -223,7 +230,7 @@
       terms: 'Conditions',
       required: 'Ce champ est obligatoire.',
       tooShort: 'Saisissez au moins deux caractères.',
-      invalidEmail: 'Saisissez une adresse e-mail valide.',
+      invalidPhone: 'Saisissez un numéro de téléphone valide de 8 à 15 chiffres.',
       generalError: 'Les informations n’ont pas pu être envoyées. Vérifiez votre connexion et réessayez.'
     }
   };
@@ -402,7 +409,7 @@
   }
 
   function clearErrors() {
-    ['name', 'shopType', 'email'].forEach(function (id) {
+    ['name', 'phone', 'shopType'].forEach(function (id) {
       document.getElementById(id).removeAttribute('aria-invalid');
       document.getElementById(id + 'Error').textContent = '';
     });
@@ -414,19 +421,9 @@
     document.getElementById(id + 'Error').textContent = message;
   }
 
-  function isValidEmail(value) {
-    if (!value || value.length > 254 || /\s/.test(value)) return false;
-    var parts = value.split('@');
-    if (parts.length !== 2 || !parts[0] || !parts[1]) return false;
-    var localPart = parts[0];
-    var domain = parts[1].toLowerCase();
-    if (localPart.length > 64 || localPart.charAt(0) === '.' || localPart.charAt(localPart.length - 1) === '.' || localPart.indexOf('..') !== -1) return false;
-    if (!/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(localPart)) return false;
-    if (domain.length > 253 || domain.indexOf('.') === -1 || domain.indexOf('..') !== -1) return false;
-    var labels = domain.split('.');
-    return labels.every(function (label) {
-      return label.length > 0 && label.length <= 63 && /^[a-z0-9-]+$/i.test(label) && label.charAt(0) !== '-' && label.charAt(label.length - 1) !== '-';
-    }) && /^[a-z]{2,63}$/i.test(labels[labels.length - 1]);
+  function isValidPhone(value) {
+    var digits = value.replace(/\D/g, '');
+    return value.length <= 24 && /^[+\d\s().-]+$/.test(value) && digits.length >= 8 && digits.length <= 15;
   }
 
   function validate(values) {
@@ -435,8 +432,8 @@
     if (!values.name) { fieldError('name', copy('required')); valid = false; }
     else if (values.name.length < 2) { fieldError('name', copy('tooShort')); valid = false; }
     if (!values.shop_type) { fieldError('shopType', copy('required')); valid = false; }
-    if (!values.email) { fieldError('email', copy('required')); valid = false; }
-    else if (!isValidEmail(values.email)) { fieldError('email', copy('invalidEmail')); valid = false; }
+    if (!values.phone) { fieldError('phone', copy('required')); valid = false; }
+    else if (!isValidPhone(values.phone)) { fieldError('phone', copy('invalidPhone')); valid = false; }
     return valid;
   }
 
@@ -483,25 +480,28 @@
 
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
+    if (submitting || !successView.hidden) return;
     var data = new FormData(form);
     var values = {
       name: String(data.get('name') || '').trim(),
       shop_type: String(data.get('shop_type') || '').trim(),
-      email: String(data.get('email') || '').trim().toLowerCase(),
+      phone: String(data.get('phone') || '').trim(),
       website: String(data.get('website') || ''),
       form_started_at: formStartedAt,
       language: currentLanguage,
-      form_version: 'email_shop_select_v3'
+      form_version: 'phone_shop_select_v4'
     };
     if (!validate(values)) return;
     trackEvent('FormSubmitAttempt', { content_name: 'Store Soft download request' }, false);
     Object.assign(values, campaignData());
+    submitting = true;
     button.disabled = true;
     submitLabel.textContent = copy('submitting');
     try {
       var response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values) });
       var result = await response.json().catch(function () { return {}; });
       if (!response.ok || !result.ok) throw new Error(result.error || 'submit_failed');
+      showDownloads(result.tracking_code);
       formView.hidden = true;
       successView.hidden = false;
       mobileTrialCta.classList.add('is-hidden');
@@ -511,9 +511,31 @@
     } catch (_) {
       submitError.textContent = copy('generalError');
     } finally {
+      submitting = false;
       button.disabled = false;
       submitLabel.textContent = copy('submit');
     }
+  });
+
+  function showDownloads(code) {
+    var android = document.getElementById('downloadAndroid');
+    var windows = document.getElementById('downloadWindows');
+    // Never interpret an API response as a URL. Only the opaque code is public.
+    android.href = /^[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{6}$/.test(code || '')
+      ? '/storesoft/try/?t=' + encodeURIComponent(code)
+      : 'https://play.google.com/store/apps/details?id=com.yousoft.storesoft';
+    var userAgent = navigator.userAgent || '';
+    var preferred = /Android/i.test(userAgent) ? android : /Windows/i.test(userAgent) ? windows : null;
+    if (preferred) {
+      preferred.classList.replace('secondary-cta', 'primary-cta');
+      preferred.querySelector('.download-recommendation').hidden = false;
+    }
+  }
+
+  document.querySelectorAll('[data-download-platform]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      trackEvent('DownloadClicked', { platform: link.getAttribute('data-download-platform') }, false);
+    });
   });
 
   function updateMobileTrialCta() {

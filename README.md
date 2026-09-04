@@ -32,10 +32,20 @@ Google Sheets mirroring uses `google-apps-script/Code.gs` and the
 function secrets `GOOGLE_SHEETS_WEBHOOK_URL` and
 `GOOGLE_SHEETS_WEBHOOK_SECRET`.
 
-Every valid form submission creates a new lead. The current form records name, a
-shop type selected from the approved activity list, and email address. Legacy phone
-and requested-platform columns remain nullable so cached versions of previous forms
-can finish submitting safely.
+Every valid form submission creates a new lead. The current `phone_shop_select_v4`
+form records name, phone/WhatsApp number, and an activity from the approved list.
+Email and platform choice are not required; cached email and phone/platform forms
+remain supported. Campaign fields are preserved. The endpoint responds after the
+durable CRM insert with `lead_id` and the public six-character `tracking_code`, never
+the private tracking token; Google Sheet delivery continues in the background.
+
+The success screen immediately offers Android and Windows downloads, emphasizing
+the visitor's platform when recognized. Both links open separately so either can be
+used without resubmitting. Android uses `/storesoft/try/?t=<tracking_code>` and the
+existing Play Install Referrer flow; Windows uses the latest GitHub installer.
+`DownloadClicked` records only the selected platform, not contact details, and is
+separate from installation/app milestones. Google Play is now live in production,
+so no tester email or approval step is needed.
 
 ### Google Sheet workflow
 
@@ -112,6 +122,11 @@ can reveal the full gallery or open any screenshot in an accessible lightbox. Im
 are lazy-loaded to keep the landing page fast on mobile connections.
 
 ## Deploy
+
+Checks: `node --test test/*.test.mjs` (Node 24 for the Edge Function TypeScript harness).
+Browser QA: `node test/store-soft-download.browser.mjs` with Playwright available; optional
+`PLAYWRIGHT_PATH`, `PLAYWRIGHT_CHANNEL`, and `QA_OUTPUT_DIR` select the local runtime/browser
+and screenshot directory. Browser QA mocks external requests and creates no production leads.
 
 GitHub Pages serves this repo from the `main` branch root. Any push to `main`
 republishes the site automatically (Settings → Pages → Deploy from a branch →

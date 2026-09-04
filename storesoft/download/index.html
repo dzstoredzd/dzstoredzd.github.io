@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260902-landing-v1" />
+  <link rel="stylesheet" href="styles.css?v=20260904-phone-v4" />
 </head>
 <body>
   <noscript><img height="1" width="1" style="display:none" alt=""
@@ -107,8 +107,8 @@
           <h2 id="howTitle" data-copy="howTitle">ابدأ بسرعة</h2>
         </div>
         <ol class="steps">
-          <li><span>1</span><div><b data-copy="stepOneTitle">عمّر معلوماتك</b><p data-copy="stepOneText">الاسم، نوع المحل والبريد المستخدم في Google Play.</p></div></li>
-          <li><span>2</span><div><b data-copy="stepTwoTitle">نرسل لك الرابطين</b><p data-copy="stepTwoText">رابط Android من Google Play ورابط Windows للكمبيوتر.</p></div></li>
+          <li><span>1</span><div><b data-copy="stepOneTitle">عمّر معلوماتك</b><p data-copy="stepOneText">الاسم، رقم الهاتف أو واتساب ونوع النشاط.</p></div></li>
+          <li><span>2</span><div><b data-copy="stepTwoTitle">اختر نسختك وحمّلها</b><p data-copy="stepTwoText">رابط Android من Google Play ورابط Windows للكمبيوتر.</p></div></li>
           <li><span>3</span><div><b data-copy="stepThreeTitle">جرّبه 7 أيام</b><p data-copy="stepThreeText">أضف محلك ومنتجاتك وجرّب أول عملية بيع.</p></div></li>
         </ol>
       </div>
@@ -158,30 +158,38 @@
         <div class="trial-copy">
           <p class="eyebrow eyebrow--dark" data-copy="trialEyebrow">تجربة مجانية لمدة 7 أيام</p>
           <h2 data-copy="trialTitle">ابدأ تجربتك الآن</h2>
-          <p data-copy="trialIntro">عمّر معلوماتك وسنرسل لك رابطَي Android وWindows. جرّب البيع والمخزون والكريدي والأرباح قبل الدفع.</p>
-          <ul><li data-copy="trialPointOne">لا تحتاج بطاقة دفع</li><li data-copy="trialPointTwo">نرسل الرابطين إلى بريدك</li><li data-copy="trialPointThree">نساعدك عبر واتساب عند الحاجة</li></ul>
+          <p data-copy="trialIntro">عمّر معلوماتك ثم حمّل نسخة Android أو Windows مباشرة. جرّب البيع والمخزون والكريدي والأرباح قبل الدفع.</p>
+          <ul><li data-copy="trialPointOne">لا تحتاج بطاقة دفع</li><li data-copy="trialPointTwo">رابطا التحميل يظهران مباشرة</li><li data-copy="trialPointThree">نساعدك عبر واتساب عند الحاجة</li></ul>
         </div>
 
         <aside class="receipt" id="download-form" aria-labelledby="formTitle">
           <div class="receipt__top"><span>STORE SOFT / 7 DAYS</span><span class="receipt__status"><i></i><span data-copy="available">متاحة الآن</span></span></div>
           <div id="formView">
             <h2 id="formTitle" data-copy="formTitle">ابدأ تجربتي المجانية</h2>
-            <p class="form-intro" data-copy="formIntro">سنرسل لك رابطَي Android وWindows.</p>
+            <p class="form-intro" data-copy="formIntro">بعد الإرسال، اختر التحميل للهاتف أو الكمبيوتر.</p>
             <form id="leadForm" novalidate>
               <div class="field"><label for="name" data-copy="nameLabel">الاسم</label><input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required placeholder="مثال: محمد" data-copy-placeholder="namePlaceholder" /><p class="field-error" id="nameError"></p></div>
+              <div class="field"><label for="phone" data-copy="phoneLabel">رقم الهاتف / واتساب</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" required placeholder="0550 12 34 56" data-copy-placeholder="phonePlaceholder" dir="ltr" aria-describedby="phoneHint phoneError" /><p class="field-hint" id="phoneHint" data-copy="phoneHint">رقم يمكننا التواصل معك عليه لمساعدتك في التجربة.</p><p class="field-error" id="phoneError"></p></div>
               <div class="field">
                 <label for="shopType" data-copy="shopLabel">نوع النشاط / المحل</label>
                 <select id="shopType" name="shop_type" required>
                   <option value="" data-copy="shopPlaceholder">اختر نوع المحل</option><option value="grocery" data-copy="shopGrocery">مواد غذائية / سوبرات</option><option value="clothing" data-copy="shopClothing">ملابس وأحذية</option><option value="cosmetics" data-copy="shopCosmetics">مواد تجميل</option><option value="spare_parts" data-copy="shopParts">قطع غيار</option><option value="repair_shop" data-copy="shopRepair">محل تصليح</option><option value="other" data-copy="shopOther">نشاط آخر</option>
                 </select><p class="field-error" id="shopTypeError"></p>
               </div>
-              <div class="field"><label for="email" data-copy="emailLabel">البريد المستخدم في Google Play</label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" required placeholder="name@gmail.com" data-copy-placeholder="emailPlaceholder" dir="ltr" autocapitalize="none" autocorrect="off" spellcheck="false" /><p class="field-hint" data-copy="emailHint">استعمل نفس البريد الموجود في Google Play على هاتفك.</p><p class="field-error" id="emailError"></p></div>
               <div class="trap" hidden aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
               <p class="submit-error" id="submitError" role="alert" aria-live="polite"></p>
               <button class="submit-button" id="submitButton" type="submit"><span data-copy="submit">ابدأ تجربتي المجانية</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></button>
             </form>
           </div>
-          <div class="success" id="successView" hidden tabindex="-1"><span class="success__icon" aria-hidden="true">✓</span><h2 data-copy="successTitle">تم استلام طلبك</h2><p data-copy="successText">الخطوة التالية: راقب بريدك الإلكتروني. سنرسل لك رابطَي Android وWindows.</p></div>
+          <div class="success" id="successView" hidden tabindex="-1">
+            <span class="success__icon" aria-hidden="true">✓</span>
+            <h2 data-copy="successTitle">تم استلام طلبك</h2>
+            <p data-copy="successText">اختر نسختك وابدأ التجربة. يمكنك تحميل النسختين دون إعادة ملء المعلومات.</p>
+            <div class="download-options">
+              <a class="secondary-cta download-option" id="downloadAndroid" data-download-platform="android" target="_blank" rel="noopener noreferrer"><span data-copy="downloadAndroid">تحميل Android</span><small class="download-recommendation" data-copy="recommendedDevice" hidden>مناسب لجهازك الحالي</small></a>
+              <a class="secondary-cta download-option" id="downloadWindows" data-download-platform="windows" href="https://github.com/dzstoredzd/dz-store-releases/releases/latest/download/storesoft_windows_latest.exe" target="_blank" rel="noopener noreferrer"><span data-copy="downloadWindows">تحميل Windows</span><small class="download-recommendation" data-copy="recommendedDevice" hidden>مناسب لجهازك الحالي</small></a>
+            </div>
+          </div>
         </aside>
       </div>
     </section>
@@ -192,7 +200,7 @@
         <div class="faq-list">
           <details open><summary data-copy="faqOfflineQ">هل يعمل بدون إنترنت؟</summary><p data-copy="faqOfflineA">نعم. البيع والمخزون والكريدي والتقارير تعمل بدون إنترنت. تحتاج الشبكة فقط عند استعمال خدمات اختيارية مثل Sync أو النسخ إلى Google Drive.</p></details>
           <details><summary data-copy="faqSubscriptionQ">هل يوجد اشتراك شهري؟</summary><p data-copy="faqSubscriptionA">لا يوجد اشتراك شهري للترخيص الأساسي: 7000 دج دفع مرة واحدة للجهاز الأساسي. Sync اختياري وسعره منفصل: 3000 دج سنويًا لكل جهاز إضافي.</p></details>
-          <details><summary data-copy="faqWindowsQ">هل يعمل على Windows؟</summary><p data-copy="faqWindowsA">نعم، يعمل على أجهزة Windows. نرسل لك رابط التثبيت بعد طلب التجربة.</p></details>
+          <details><summary data-copy="faqWindowsQ">هل يعمل على Windows؟</summary><p data-copy="faqWindowsA">نعم، يعمل على أجهزة Windows. يظهر رابط التثبيت مباشرة بعد إرسال معلوماتك.</p></details>
           <details><summary data-copy="faqAndroidQ">هل يعمل على Android؟</summary><p data-copy="faqAndroidA">نعم، يعمل على هواتف وأجهزة Android اللوحية عبر Google Play.</p></details>
           <details><summary data-copy="faqAfterTrialQ">ماذا يحدث بعد 7 أيام؟</summary><p data-copy="faqAfterTrialA">تنتهي التجربة المجانية. يمكنك تفعيل الترخيص الأساسي للجهاز مقابل 7000 دج مرة واحدة ومواصلة استعمال بيانات محلك الموجودة على الجهاز.</p></details>
         </div>
@@ -211,6 +219,6 @@
       <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" type="button" aria-label="الصورة التالية" data-copy-aria-label="nextImage">›</button>
     </div>
   </dialog>
-  <script src="script.js?v=20260902-landing-v1"></script>
+  <script src="script.js?v=20260904-phone-v4"></script>
 </body>
 </html>
