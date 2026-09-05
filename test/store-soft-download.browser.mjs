@@ -31,13 +31,17 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     const requests = [];
+    const telemetry = [];
     let release, arrived;
     const pending = new Promise(resolve => { release = resolve; });
     const arrival = new Promise(resolve => { arrived = resolve; });
     let fail = config.width === 1440;
     await context.route('**/*', async route => {
       const url = route.request().url();
-      if (url.includes('/functions/v1/submit-store-soft-lead')) {
+      if (url.includes('/rpc/record_store_soft_download_event')) {
+        telemetry.push(route.request().postDataJSON());
+        await route.fulfill({ status: 204, body: '' });
+      } else if (url.includes('/functions/v1/submit-store-soft-lead')) {
         requests.push(route.request().postDataJSON());
         if (fail) { await route.fulfill({ status: 500, contentType: 'application/json', body: '{"ok":false}' }); return; }
         arrived();
@@ -46,7 +50,13 @@ try {
       } else if (url.startsWith(base)) await route.continue();
       else await route.fulfill({ status: 200, contentType: 'text/plain', body: '' });
     });
-    await page.goto(base + '/storesoft/download/?utm_source=facebook&utm_campaign=phone-test');
+    await Promise.all([page.waitForResponse('**/rpc/record_store_soft_download_event'),
+      page.goto(base + '/storesoft/download/?utm_source=facebook&utm_campaign=phone-test')]);
+    await Promise.all([page.waitForResponse('**/rpc/record_store_soft_download_event'), page.reload()]);
+    await page.waitForFunction(() => Boolean(localStorage.getItem('storesoft_download_visitor_v1')));
+    // Both initial and repeat page loads use the same persistent ID; PostgreSQL deduplicates it.
+    assert.equal(telemetry.filter(event => event.p_event_type === 'DOWNLOAD_PAGE_VISIT').length, 2);
+    assert.equal(telemetry[0].p_visitor_id, telemetry[1].p_visitor_id);
     if (config.lang === 'fr') await page.locator('#languageSwitch').click();
     assert.equal(await page.locator('#email').count(), 0);
     await page.locator('#submitButton').click();
@@ -96,6 +106,10 @@ try {
     }
     assert.equal(requests.length, expectedRequests);
     const events = await page.evaluate(() => window.dataLayer);
+    await new Promise(resolve => setTimeout(resolve, 100));
+    assert.deepEqual(telemetry.filter(event => event.p_event_type === 'DOWNLOAD_CLICKED').map(event => event.p_platform), ['android', 'windows']);
+    assert.equal(telemetry.filter(event => event.p_event_type === 'LEAD_SUBMITTED').length, 1);
+    assert.doesNotMatch(JSON.stringify(telemetry), /Test Shop|550 12 34 56/);
     assert.equal(events.filter(event => event.event === 'Lead').length, 1);
     assert.deepEqual(events.filter(event => event.event === 'DownloadClicked').map(event => event.platform), ['android', 'windows']);
     assert.doesNotMatch(JSON.stringify(events), /Test Shop|550 12 34 56|ABC234/);

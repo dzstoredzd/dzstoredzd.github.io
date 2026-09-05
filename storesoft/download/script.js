@@ -502,6 +502,7 @@
       var result = await response.json().catch(function () { return {}; });
       if (!response.ok || !result.ok) throw new Error(result.error || 'submit_failed');
       showDownloads(result.tracking_code);
+      window.StoreSoftDownloadTracking?.submitted(result.tracking_code);
       formView.hidden = true;
       successView.hidden = false;
       mobileTrialCta.classList.add('is-hidden');
@@ -535,6 +536,7 @@
   document.querySelectorAll('[data-download-platform]').forEach(function (link) {
     link.addEventListener('click', function () {
       trackEvent('DownloadClicked', { platform: link.getAttribute('data-download-platform') }, false);
+      window.StoreSoftDownloadTracking?.click(link.getAttribute('data-download-platform'));
     });
   });
 
@@ -552,4 +554,5 @@
   document.getElementById('year').textContent = new Date().getFullYear();
   setLanguage('ar');
   trackEvent('LandingPageView', { content_name: 'Store Soft download landing page' }, false);
+  window.StoreSoftDownloadTracking?.visit();
 }());
