@@ -145,6 +145,7 @@ test('confirmation email is authenticated, repeatable, counted, and uses branded
   assert.match(appsScript, /storesoft\\\/try/);
   assert.match(appsScript, /sendConfirmedEmail_\(email, name, trackedUrl\)/);
   assert.match(appsScript, /حمّل Store Soft من Google Play/);
+  assert.doesNotMatch(appsScript, /افتح الرابط باستعمال حساب Google Play نفسه الذي أدخلته في الطلب/);
   assert.match(appsScript, /https:\/\/wa\.me\/213654338649/);
   assert.match(appsScript, /تواصل معنا عبر واتساب/);
   assert.match(appsScript, /storesoft_windows_latest\.exe/);

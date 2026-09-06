@@ -230,7 +230,6 @@ function sendConfirmedEmail_(email, name, downloadUrl) {
     'حمّل Store Soft من Google Play:',
     downloadUrl,
     '',
-    'مهم: افتح الرابط باستعمال حساب Google Play نفسه الذي أدخلته في الطلب.',
     '',
     'بعد التثبيت، ابدأ بهذه الخطوات البسيطة:',
     '1. أضف أحد منتجات محلك.',
@@ -256,7 +255,6 @@ function sendConfirmedEmail_(email, name, downloadUrl) {
     '<p>' + greeting + '</p>' +
     '<p>شكرًا لاهتمامك بـ Store Soft. تم تأكيد طلبك وأصبح بإمكانك تحميل التطبيق:</p>' +
     '<p><strong><a href="' + escapeHtml_(downloadUrl) + '">حمّل Store Soft من Google Play</a></strong></p>' +
-    '<p><strong>مهم:</strong> افتح الرابط باستعمال حساب Google Play نفسه الذي أدخلته في الطلب.</p>' +
     '<p>بعد التثبيت، ابدأ بهذه الخطوات البسيطة:</p>' +
     '<ol><li>أضف أحد منتجات محلك.</li><li>سجّل أول عملية بيع.</li>' +
     '<li>راقب تحديث المخزون والمبيعات تلقائيًا.</li></ol>' +
