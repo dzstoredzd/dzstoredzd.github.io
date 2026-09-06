@@ -81,7 +81,10 @@ Deno.serve(async (request: Request) => {
   try {
     const sent = await fetch(webhook, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, redirect: 'follow', body: JSON.stringify({ secret, action: 'send_confirmation', lead }) });
     const result = await sent.json().catch(() => ({}));
-    if (!sent.ok || result.ok !== true) throw new Error(String(result.error || `Sender returned ${sent.status}`));
+    if (!sent.ok || result.ok !== true || result.email_sent !== true) {
+      console.error('Confirmation sender rejected response', sent.status, result);
+      throw new Error(String(result.error || `Sender did not confirm email delivery (${sent.status})`));
+    }
     lead = await recordEmailSent();
     return json({ ok: true, lead, email_sent: true, already_sent: false }, 200, origin);
   } catch (error) {

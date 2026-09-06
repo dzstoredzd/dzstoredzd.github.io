@@ -134,6 +134,7 @@ test('confirmation email is authenticated, repeatable, counted, and uses branded
   assert.match(action, /sync_admin_crm_apply_action/);
   assert.match(action, /sync_admin_crm_record_email_sent/);
   assert.match(action, /action: 'send_confirmation'/);
+  assert.match(action, /result\.email_sent !== true/);
   assert.match(action, /action === 'CONFIRM'/);
   assert.match(action, /warning: 'email_delivery_failed'/);
   assert.match(action, /origin === 'null'/);
