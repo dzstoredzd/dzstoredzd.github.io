@@ -41,19 +41,13 @@
     <div class="container doc-wrap">
       <a class="back" href="index.html">← Back to home</a>
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: 29 August 2026</p>
+      <p class="updated">Last updated: 25 September 2026</p>
       <p class="intro">
-        This Privacy Policy explains how <strong>Store Soft</strong> ("Store Soft", "the app",
-        "we", "us") handles information when you use our store-management application on
-        Windows and Android. Store Soft is designed to be <strong>offline-first</strong>:
-        your business data lives on your own device, and the app works without an account
-        or an internet connection. One optional feature, <strong>Google Drive backup</strong> (to your own Google account), is
-        <strong>off by default</strong> and only sends data when you turn it on. A second optional
-        feature, <strong>multi-device sync</strong> to our secure cloud backend, is a
-        <strong>paid tier that is also off by default</strong> and only sends data if the shop
-        owner creates an account and turns it on. The app sends a small amount of anonymous
-        usage analytics. If you first submitted a website request and installed through its
-        private link, it also sends the limited lead milestones described in Section 8.
+        Store Soft is an offline-first store-management app for Windows and Android. Products,
+        sales, customers and stock stay on your device unless you enable optional Google Drive
+        backup or multi-device Sync. The app also sends limited installation and usage analytics,
+        including the shop name, phone number and address you enter in Shop info, to our private
+        CRM for support and adoption measurement. Section 8 explains exactly what is sent.
       </p>
 
       <div class="toc">
@@ -137,15 +131,11 @@
         <li>Local user profiles (owner and staff) secured by a username and password, stored only as a salted hash.</li>
       </ul>
       <div class="callout">
-        <strong>By default, your shop data stays on your device.</strong> In its standard
-        offline mode Store Soft does not transmit your products, sales, customers or any
-        business records to us or to any third party. Your business records leave your
-        device only when <em>you</em> choose to turn on an optional feature — <strong>Google
-        Drive backup</strong> (to your own Google account, see Section 5) or the <strong>optional
-        multi-device sync</strong> tier (to our secure backend, see Section 4) — or when you
-        manually export or share a backup file yourself. Separately, the app sends a small
-        amount of <strong>anonymous usage analytics</strong> that never contains any business
-        data (see Section 8).
+        <strong>Store Soft remains offline-first.</strong> Products, sales, customers, prices,
+        debts and stock stay on your device unless you enable Google Drive backup, optional Sync,
+        or manually export a backup. The shop name, phone number and address entered in Shop info
+        are separately sent to our private CRM for installation support and adoption measurement
+        when Internet is available (see Section 8).
       </div>
 
       <h2 id="sync">4. Multi-device sync (optional)</h2>
@@ -262,12 +252,14 @@
         transmitted</strong> anywhere. The app does not access your photo gallery.
       </p>
 
-      <h2 id="analytics">8. Analytics, lead milestones &amp; diagnostics</h2>
+      <h2 id="analytics">8. Installation, usage, lead milestones &amp; diagnostics</h2>
       <p>
-        To understand how many shops install and open the app and which versions and platforms are
-        in use, Store Soft sends a small amount of <strong>anonymous</strong> usage data on startup.
-        This helps us fix bugs and prioritise improvements. It contains <strong>no business data and
-        nothing that identifies you personally</strong>.
+        Store Soft records a random installation ID, a one-way hashed device ID, app version and
+        platform, selected lifecycle milestones, and counts of visits to broad app sections. It
+        also records the shop name, phone number and address entered in Shop info for installation
+        support and adoption measurement. These contact fields are <strong>not anonymous</strong>.
+        Events are stored on the device first and uploaded in batches when online. Only our
+        administrators can view shop contact fields in the private CRM.
       </p>
       <h3>Download page measurement</h3>
       <p>We save a random visitor ID in your browser's local storage to count distinct download-page
@@ -294,20 +286,18 @@
       </p>
       <h3>What is sent</h3>
       <ul>
-        <li>A <strong>one-way hashed device identifier</strong> (so a reinstall on the same machine isn't double-counted; it cannot be reversed to identify you).</li>
-        <li>Platform (Windows or Android), operating-system version, and app version.</li>
-        <li>The app's interface language (for example Arabic or French).</li>
-        <li>Anonymous "install" and "app opened" events (the open event at most once per day).</li>
+        <li>A random installation ID and one-way hashed device ID to recognise reinstalls.</li>
+        <li>Platform, app version, first seen and last active dates.</li>
+        <li>Daily opens, first setup/product/sale/customer/backup and activation milestones, and counts of visits to broad app sections.</li>
+        <li>Separate Offline licence and Sync status, without prices or sale details.</li>
+        <li>Shop name, phone number and address entered in Shop info, stored in our private administrator-only CRM.</li>
       </ul>
       <h3>What is never sent</h3>
       <p>
-        The app <strong>never</strong> sends your products, prices, sale contents, customers, suppliers, debts or
-        any other business records. The limited yes/no milestones above reveal only that a setup or
-        business boundary occurred. Anonymous analytics do not collect your name, email, phone number, contacts,
-        precise location, or any advertising identifier. The installed Store Soft app contains
-        <strong>no advertising and no third-party advertising SDKs</strong>; this data is not sold,
-        not shared, and not used for advertising. The Meta Pixel used on the website download page
-        is separate from the installed app and is described in Section 2.
+        Analytics never sends product names, prices, sale contents, customer or supplier records,
+        debts, stock quantities, precise location or advertising IDs. Shop contact fields listed
+        above are the only shop-entered fields in this analytics channel. We do not sell this data
+        or use it for advertising. The Meta Pixel on the website is separate from the installed app.
       </p>
       <p>
         Separately, the app keeps a <strong>full diagnostic error log on your own device</strong> for
@@ -316,14 +306,9 @@
       </p>
       <h3>Crash &amp; error reports</h3>
       <p>
-        When the app encounters an error, it also sends a <strong>stripped, anonymous crash
-        report</strong> to our own backend so we can find and fix problems. Each report contains only:
-        the one-way hashed device identifier, platform, OS and app version, the error type, a
-        <strong>trimmed</strong> error message and stack trace, and the last few in-app actions (as
-        short labels). It does <strong>not</strong> include your customer list, product catalogue,
-        prices or sales. A trimmed error message can, in rare cases, contain a small fragment of
-        business text; we use it only to fix the app, never for advertising, and never share it with
-        third parties.
+        Error reports sent to our backend contain the installation ID, hashed device ID, platform,
+        OS and app version, error type and broad area. Messages, stack traces, context and action
+        history remain only in the local diagnostic log.
       </p>
 
       <h2 id="use">9. How we use information</h2>
@@ -332,7 +317,7 @@
         <li>To create and restore backups when you ask the app to (locally and, if enabled, to your Google Drive).</li>
         <li>To provide the optional multi-device sync service when you enable it (keeping the same shop data on your enrolled devices).</li>
         <li>To process website download requests, provide Google Play access, send installation instructions, and follow up with interested shop owners.</li>
-        <li>To understand install/usage counts through the anonymous analytics described in Section 8.</li>
+        <li>To measure installation and usage, and support shops using the contact fields described in Section 8.</li>
         <li>To provide onboarding and measure the request-to-trial funnel through the limited lead milestones described in Section 8.</li>
         <li>To show diagnostic logs to you on your own device for troubleshooting (you may choose to share these with our support).</li>
       </ul>
@@ -346,7 +331,7 @@
       <ul>
         <li>You enable Google Drive backup (data goes only to your own Google account); or</li>
         <li>You enable the optional multi-device sync tier (business data goes to our secure backend solely to sync your own devices, see Section 4); or</li>
-        <li>The app sends the anonymous, non-business analytics described in Section 8; or</li>
+        <li>The app sends installation, usage and shop contact analytics described in Section 8 to our private backend; or</li>
         <li>An eligible Android install sends the limited lead-attributed milestones described in Section 8; or</li>
         <li>The website sends page-view and successful-lead events to Meta for advertising measurement as described in Section 2; or</li>
         <li>You manually export, copy or share a backup file or a diagnostic log yourself (for example, sending it to our support over WhatsApp).</li>
@@ -366,7 +351,7 @@
         <li><strong>Revoking Google access:</strong> you can disconnect the account in the app, and you can revoke Store Soft's access at any time from your Google Account at
           <a class="inline" href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.
         </li>
-        <li><strong>Anonymous analytics:</strong> the separate anonymous install/open records cannot be tied back to you, so we cannot single them out for individual deletion. Lead-attributed milestones can be deleted with your website request.</li>
+        <li><strong>Installation analytics and shop contact fields:</strong> contact us using the details below to request deletion of records associated with your shop or installation. Lead-attributed milestones can be deleted with your website request.</li>
       </ul>
 
       <h2 id="security">12. Security</h2>
