@@ -521,6 +521,7 @@
   function showDownloads(code) {
     var android = document.getElementById('downloadAndroid');
     var windows = document.getElementById('downloadWindows');
+    window.StoreSoftWindowsDownload.update(windows);
     // Never interpret an API response as a URL. Only the opaque code is public.
     android.href = /^[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{6}$/.test(code || '')
       ? '/storesoft/try/?t=' + encodeURIComponent(code)

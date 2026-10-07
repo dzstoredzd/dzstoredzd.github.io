@@ -42,7 +42,13 @@ the private tracking token; Google Sheet delivery continues in the background.
 The success screen immediately offers Android and Windows downloads, emphasizing
 the visitor's platform when recognized. Both links open separately so either can be
 used without resubmitting. Android uses `/storesoft/try/?t=<tracking_code>` and the
-existing Play Install Referrer flow; Windows uses the latest GitHub installer.
+existing Play Install Referrer flow; Windows reads the public production Stable
+feed at `https://raw.githubusercontent.com/dzstoredzd/dz-store-releases/main/storesoft/stable/latest.json`
+after a successful submission and uses its versioned GitHub EXE URL. The request
+bypasses the browser cache and never delays the success screen. If the feed is
+unavailable or invalid, the button opens the latest stable GitHub release page.
+Staging/Beta installers are excluded. Publishing a new Stable feed automatically
+updates this download without another website edit.
 `DownloadClicked` records only the selected platform, not contact details, and is
 separate from installation/app milestones. Google Play is now live in production,
 so no tester email or approval step is needed.

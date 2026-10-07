@@ -18,6 +18,8 @@ const server = createServer(async (req, res) => {
 });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
+const windowsFeed = 'https://raw.githubusercontent.com/dzstoredzd/dz-store-releases/main/storesoft/stable/latest.json';
+const windowsInstaller = 'https://github.com/dzstoredzd/dz-store-releases/releases/download/build-999/StoreSoft-9.0.0-999.exe';
 const browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}) });
 try {
   for (const config of [
@@ -38,7 +40,9 @@ try {
     let fail = config.width === 1440;
     await context.route('**/*', async route => {
       const url = route.request().url();
-      if (url.includes('/rpc/record_store_soft_download_event')) {
+      if (url === windowsFeed) {
+        await route.fulfill({ contentType: 'application/json', body: JSON.stringify({ channel: 'stable', environment: 'production', productionEligible: true, downloadUrl: windowsInstaller }) });
+      } else if (url.includes('/rpc/record_store_soft_download_event')) {
         telemetry.push(route.request().postDataJSON());
         await route.fulfill({ status: 204, body: '' });
       } else if (url.includes('/functions/v1/submit-store-soft-lead')) {
@@ -93,7 +97,8 @@ try {
     assert.equal(submitted.email, undefined);
     assert.equal(submitted.requested_platform, undefined);
     assert.equal(await page.locator('#downloadAndroid').getAttribute('href'), '/storesoft/try/?t=ABC234');
-    assert.match(await page.locator('#downloadWindows').getAttribute('href'), /storesoft_windows_latest\.exe$/);
+    await page.waitForFunction(url => document.getElementById('downloadWindows').href === url, windowsInstaller, { timeout: 3000 });
+    assert.equal(await page.locator('#downloadWindows').getAttribute('href'), windowsInstaller);
     for (const platform of ['android', 'windows']) {
       const link = page.locator(`[data-download-platform="${platform}"]`);
       assert.equal(await link.isVisible(), true);

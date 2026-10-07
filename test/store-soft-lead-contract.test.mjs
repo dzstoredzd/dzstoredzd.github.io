@@ -216,7 +216,9 @@ test('successful submissions offer both localized downloads', async () => {
 
   assert.match(successBlock, /id="downloadAndroid"/);
   assert.match(successBlock, /id="downloadWindows"/);
-  assert.match(successBlock, /storesoft_windows_latest\.exe/);
+  assert.match(successBlock, /href="https:\/\/github\.com\/dzstoredzd\/dz-store-releases\/releases\/latest"/);
+  assert.match(landingPage, /windows-download\.js\?v=/);
+  assert.match(landingScript, /StoreSoftWindowsDownload\.update\(windows\)/);
   assert.equal((successBlock.match(/target="_blank"/g) || []).length, 2);
   assert.match(landingScript, /showDownloads\(result.tracking_code\)/);
   assert.match(landingScript, /\/storesoft\/try\/\?t=/);
