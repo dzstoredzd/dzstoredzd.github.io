@@ -41,11 +41,12 @@
     <div class="container doc-wrap">
       <a class="back" href="index.html">← Back to home</a>
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: 26 September 2026</p>
+      <p class="updated">Last updated: 12 October 2026</p>
       <p class="intro">
         Store Soft is an offline-first store-management app for Windows and Android. Products,
-        sales, customers and stock stay on your device unless you enable optional Google Drive
-        backup or multi-device Sync. The app also sends limited installation and usage analytics,
+        sales, customers and stock are stored on your device. Copies can leave it when you enable
+        optional Google Drive backup or multi-device Sync, export a backup, or choose to share
+        data with support. The app also sends limited installation and usage analytics,
         including the shop name, phone number and address you enter in Shop info, to our private
         CRM for support and adoption measurement. Section 8 explains exactly what is sent.
       </p>
@@ -87,12 +88,13 @@
       </p>
       <h3>Website download requests</h3>
       <p>
-        If you request access to Store Soft through our website, we collect the name, email
-        address, phone or WhatsApp number, and shop type that you submit. We also record basic
+        The current download forms collect your name, phone or WhatsApp number, and shop type.
+        Older requests may also contain an email address or a preferred platform. We record basic
         campaign information included in the page link (such as source and campaign name) and
-        the submission time. We use this information only to process your request, add the email
-        address you supplied to the Google Play test, send installation instructions, provide
-        follow-up support, and understand the effectiveness of our campaigns.
+        the submission time. We use this information to provide download and installation
+        instructions, offer follow-up support, and understand the effectiveness of our campaigns.
+        Store Soft is available on Google Play in production; no tester email or test approval
+        is needed to install it.
       </p>
       <p>
         Download requests are stored in our secure Supabase backend and copied to a private
@@ -108,7 +110,8 @@
       </p>
       <h3>Meta advertising measurement on the website</h3>
       <p>
-        The Store Soft download page uses the Meta Pixel to record a page visit and, only after
+        The Store Soft download and Android install pages use the Meta Pixel to record visits,
+        form and download interactions and, only after
         the website successfully saves a request, a standard <strong>Lead</strong> event. Meta may
         receive browser and device information, IP address, cookies or similar identifiers, the
         page URL, and campaign parameters. We use these events to attribute requests to Facebook
@@ -121,19 +124,20 @@
       <h2 id="data-local">3. Data stored on your device</h2>
       <p>
         Store Soft stores the information you enter to run your shop in a local database
-        <strong>on your own device only</strong>. This may include:
+        <strong>on your own device</strong>. This may include:
       </p>
       <ul>
         <li>Shop details you enter (shop name, optional address and phone).</li>
         <li>Products, prices, stock levels, suppliers and purchase costs.</li>
         <li>Sales, receipts, and cash-drawer records.</li>
         <li>Customer and supplier debt (credit / الكريدي) records you create.</li>
-        <li>Local user profiles (owner and staff) secured by a username and password, stored only as a salted hash.</li>
+        <li>Local owner and staff profiles, with an optional local PIN. PINs and passwords are not stored in plain text.</li>
       </ul>
       <div class="callout">
         <strong>Store Soft remains offline-first.</strong> Products, sales, customers, prices,
-        debts and stock stay on your device unless you enable Google Drive backup, optional Sync,
-        or manually export a backup. The shop name, phone number and address entered in Shop info
+        debts and stock stay on your device unless you enable Google Drive backup or Sync,
+        export a backup, or choose to share a data copy with support. The shop name, phone number
+        and address entered in Shop info
         are separately sent to our private CRM for installation support and adoption measurement
         when Internet is available (see Section 8).
       </div>
@@ -142,8 +146,9 @@
       <div class="callout">
         <strong>Status:</strong> Multi-device sync is <strong>available</strong> as an
         optional <strong>paid</strong> tier. It is <strong>off by default</strong>: a shop that
-        never enables it has no account, shows no sync sign-in, and
-        <strong>uploads no business data</strong> to our cloud backend. If you do enable it and
+        never enables it does not upload its products, sales, customers or stock through Sync.
+        Website requests, shop contact details and limited usage records described in Section 8
+        are separate from Sync and may still be held in our private CRM. If you enable Sync and
         later want your account and synced data removed, see
         <a class="inline" href="delete-account.html">Delete your account and data</a>.
       </div>
@@ -151,12 +156,13 @@
         Multi-device sync is an <strong>optional</strong> feature for shops that want the
         same data on more than one device (for example a second till or the owner's phone). It is
         <strong>off by default</strong> and is only active if the shop owner creates a Store Soft
-        cloud account and enables it. Most shops run a single device fully offline and never use it.
+        cloud account and enables it. A single-device shop can use the app without enabling Sync.
       </p>
       <h3>The store account</h3>
       <ul>
         <li>
-          The owner creates an account with an <strong>email address and password</strong>. This
+          The owner creates an account with an <strong>email address and password</strong> and
+          can also use the supported Google sign-in flow. This
           identifies the shop ("the store") and is used to sign in and to enroll devices. We use the
           email only for authentication and account-related contact — never for advertising.
         </li>
@@ -167,7 +173,8 @@
         </li>
         <li>
           <strong>Staff (cashier) accounts</strong> are created by the owner with a username and a
-          password/PIN that is stored only as a <strong>salted hash</strong> — never in plain text.
+          password for Sync and an optional local PIN. Credentials are protected by hashes,
+          never stored in plain text; Sync password verifiers remain on the server.
         </li>
       </ul>
       <h3>What is uploaded</h3>
@@ -195,14 +202,17 @@
       <h2 id="google">5. Google account &amp; Google Drive backup (optional)</h2>
       <p>
         Google Drive backup is an <strong>optional</strong> feature. It is off by default and
-        is only used if you choose to sign in with Google from within the app.
+        is only used if you connect your Google account for backups. Google sign-in for a
+        Store Soft cloud account is a separate flow; signing in does not by itself enable Drive backup.
       </p>
       <h3>What we access</h3>
       <ul>
         <li>
           <strong>Basic Google profile</strong> — when you sign in, Google provides your
           email address and display name so the app can show which account is connected. This
-          is used only to display the connected account; it is not stored on our servers.
+          identifies the connected backup account. If you also use Google to sign in
+          to a Store Soft cloud account, our authentication service keeps the account identity
+          needed for sign-in. That is separate from access to Drive backup files.
         </li>
         <li>
           <strong>A single, app-private Drive folder</strong> — Store Soft requests only the
@@ -238,9 +248,9 @@
       </div>
       <p>Specifically:</p>
       <ul>
-        <li>We only use Google user data to provide and improve the backup and restore feature you explicitly enabled.</li>
+        <li>We use Google profile data for the sign-in you choose, and Drive data only for the backup and restore feature you explicitly enable.</li>
         <li>We do not transfer or sell Google user data to third parties, ad networks, data brokers or for any advertising purpose.</li>
-        <li>We do not use Google user data for advertising or for any purpose other than the backup feature.</li>
+        <li>We do not use Google user data for advertising.</li>
         <li>We do not allow humans to read your data, except where you give explicit consent for support, where required for security or to comply with law, or where the data has been aggregated and anonymized.</li>
       </ul>
 
@@ -275,7 +285,8 @@
         website-request link. Store Soft keeps that code in secure device storage and queues
         delivery offline. We record only: Google Play link opened, app first opened, store setup
         completed, first real product created, first sale completed, Sync enabled, and staff user
-        added. These milestones are connected to the submitted request and are therefore
+        added. We also record counts of completed sales and newly created products, with event
+        times, to help with setup and follow-up. These records are connected to the submitted request and are therefore
         <strong>not anonymous</strong>.
       </p>
       <p>
@@ -301,14 +312,15 @@
       </p>
       <p>
         Separately, the app keeps a <strong>full diagnostic error log on your own device</strong> for
-        troubleshooting, which you can view and share with our support yourself (for example over
-        WhatsApp).
+        troubleshooting. Technical logs are not part of automatic analytics. If you choose to
+        share a technical log or database copy with support, it may contain business records,
+        contact details and technical context. We use the copy to investigate the problem.
       </p>
       <h3>Crash &amp; error reports</h3>
       <p>
         Error reports sent to our backend contain the installation ID, hashed device ID, platform,
         OS and app version, error type and broad area. Messages, stack traces, context and action
-        history remain only in the local diagnostic log.
+        history remain in the local diagnostic log unless you choose to share them with support.
       </p>
 
       <h3>Optional in-app feedback</h3>
@@ -358,10 +370,10 @@
 
       <h2 id="retention">11. Data retention &amp; deletion</h2>
       <ul>
-        <li><strong>On your device:</strong> data is kept until you delete it. The app includes a "delete all business data" option, and uninstalling the app removes its local data.</li>
-        <li><strong>Google Drive backups:</strong> you can delete backups from within the app, or directly from your Google Drive.</li>
+        <li><strong>On your device:</strong> data is kept until you delete it. The app includes a "Delete all data" option. Android uninstall removes the app's local database; on Windows you must also remove the data folder. Safety snapshots, exported backups and cloud copies are separate. See <a class="inline" href="delete-account.html#local">local deletion steps</a>.</li>
+        <li><strong>Google Drive backups:</strong> you can delete Store Soft's hidden app data through Google Drive settings. Disconnecting access is separate from deleting saved files. See <a class="inline" href="delete-account.html#backups">Drive backup deletion steps</a>.</li>
         <li><strong>Synced cloud data:</strong> if you use the multi-device sync tier, you can remove an enrolled device or disable sync in the app; you can also ask us to delete your store account and its synced data from our backend. Full instructions: <a class="inline" href="delete-account.html">Delete your account and data</a>.</li>
-        <li><strong>Website download requests and linked milestones:</strong> we keep a request and its linked trial milestones while needed for installation support and customer follow-up. You may ask us to correct or delete them at any time using the contact details below.</li>
+        <li><strong>Website download requests and linked activity:</strong> we keep requests and linked milestones/action counts while needed for installation support and customer follow-up. You may request correction or deletion, including identifiable copies in our private follow-up Google Sheet, without having a Sync account. See <a class="inline" href="delete-account.html#request">request deletion</a>.</li>
         <li><strong>Revoking Google access:</strong> you can disconnect the account in the app, and you can revoke Store Soft's access at any time from your Google Account at
           <a class="inline" href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.
         </li>
@@ -371,7 +383,7 @@
 
       <h2 id="security">12. Security</h2>
       <p>
-        Local PINs and staff passwords are stored only as salted SHA-256 hashes, never in plain text.
+        Local PINs and Sync passwords are protected by hashes, never stored in plain text.
         Data transferred to Google Drive or to our sync backend is sent over encrypted HTTPS
         connections; synced data is isolated per store by row-level security so one shop cannot access
         another's. No method of storage or transmission is 100% secure, but we design the app to keep

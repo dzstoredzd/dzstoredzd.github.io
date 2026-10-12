@@ -1,44 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="q4sa-fmVwGJOlf542lkuE1kLPuGHTy7R-aptzCyJ97A" />
-  <title>Store Soft — Store Management That Works Without Internet</title>
-  <meta name="description" content="Store Soft helps Algerian shops manage sales, stock, credit, profit and suppliers on Android and Windows. It works without internet and includes a free 7-day trial." />
+  <title>Store Soft — تسيير محلك بدون إنترنت</title>
+  <meta name="description" content="سيّر البيع والمخزون والكريدي والأرباح على Android وWindows. للمحلات الجزائرية، يعمل بدون إنترنت، مع تجربة مجانية لمدة 14 يومًا." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="canonical" href="https://yousoft.site/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Store Soft — Android + Windows, Works Without Internet" />
-  <meta property="og:description" content="Sales, stock, credit, profit and suppliers for Algerian shops. Free 7-day trial." />
+  <meta property="og:title" content="Store Soft — تسيير محلك بدون إنترنت" />
+  <meta property="og:description" content="سيّر البيع والمخزون والكريدي والأرباح على Android وWindows. للمحلات الجزائرية، يعمل بدون إنترنت، مع تجربة مجانية لمدة 14 يومًا." />
   <meta property="og:image" content="https://yousoft.site/assets/icon.png" />
   <meta property="og:url" content="https://yousoft.site/" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20261012-home" />
 </head>
-<body>
+<body class="home-page">
 
   <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <nav class="nav" id="nav">
-        <a class="brand" href="storesoft/download/" aria-label="Store Soft trial page">
+        <a class="brand" href="storesoft/download/" data-home-brand aria-label="Store Soft — ابدأ التجربة">
           <img class="brand-logo" src="assets/icon.png" width="42" height="42" alt="" />
-          <span class="name">Store Soft<small>Store management for shops</small></span>
+          <span class="name">Store Soft<small><span data-home-copy="brandTag">تسيير بسيط لمحلك</span></small></span>
         </a>
         <div class="nav-links">
-          <a href="#features">Features</a>
-          <a href="#backup">Backup</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
+          <a href="#features"><span data-home-copy="features">الميزات</span></a>
+          <a href="#backup"><span data-home-copy="backup">النسخ الاحتياطي</span></a>
+          <a href="#pricing"><span data-home-copy="pricing">الأسعار</span></a>
+          <a href="#faq"><span data-home-copy="faq">أسئلة شائعة</span></a>
         </div>
         <div class="nav-cta">
-          <a class="btn btn-ghost" href="https://wa.me/213654338649" target="_blank" rel="noopener">Talk to us</a>
-          <a class="btn btn-primary" href="storesoft/download/">Start free trial</a>
+          <button class="btn btn-ghost home-language" id="homeLanguage" type="button" aria-label="Afficher en français" lang="fr" dir="ltr">FR</button>
+          <a class="btn btn-ghost" href="https://wa.me/213654338649" target="_blank" rel="noopener"><span data-home-copy="talk">راسلنا</span></a>
+          <a class="btn btn-primary" href="storesoft/download/"><span data-home-copy="start">ابدأ تجربتك المجانية</span></a>
         </div>
-        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </nav>
@@ -49,53 +50,51 @@
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-text">
-        <span class="eyebrow">🛒 Built for Algerian shops · épiceries &amp; superettes</span>
-        <h1>Run your shop the <span class="grad">simple way</span> — even with no internet.</h1>
+        <span class="eyebrow"><span data-home-copy="eyebrow">🛒 للمحلات الجزائرية · المواد الغذائية والسوبرات</span></span>
+        <h1><span data-home-copy="hero">سيّر محلك <span class="grad">ببساطة</span> حتى بدون إنترنت.</span></h1>
         <p class="lead">
-          Store Soft is a cash register and store manager that works without internet. Sell faster,
-          track who owes you (الكريدي), keep an eye on your stock, and see clear daily
-          reports — on Windows and Android, from one app.
+          <span data-home-copy="intro">Store Soft يساعدك في البيع، متابعة الكريدي والمخزون، ومراجعة أرباحك اليومية. تطبيق واحد للهاتف والكمبيوتر، ويعمل بدون إنترنت.</span>
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="storesoft/download/">⬇ Start on Android</a>
-          <a class="btn btn-ghost btn-lg" href="storesoft/download/">🖥 Start on Windows</a>
+          <a class="btn btn-primary btn-lg" id="homeAndroid" href="storesoft/v1/android/"><span data-home-copy="android">⬇ ابدأ على Android</span></a>
+          <a class="btn btn-ghost btn-lg" id="homeWindows" href="storesoft/download/"><span data-home-copy="windows">🖥 ابدأ على Windows</span></a>
         </div>
         <div class="hero-note">
-          <span><span class="check">✓</span> Works fully offline</span>
-          <span><span class="check">✓</span> Base license: one-time payment</span>
-          <span><span class="check">✓</span> Arabic, French &amp; English</span>
+          <span><span class="check">✓</span> <span data-home-copy="offline">يعمل بدون إنترنت</span></span>
+          <span><span class="check">✓</span> <span data-home-copy="once">الترخيص الأساسي: دفع مرة واحدة</span></span>
+          <span><span class="check">✓</span> <span data-home-copy="languages">العربية، الفرنسية والإنجليزية</span></span>
         </div>
       </div>
 
       <!-- Phone mockup -->
       <div class="mockup">
         <div class="float-badge b1">
-          <span class="ic" style="background:#16a34a">↑</span> Backup saved
+          <span class="ic" style="background:#16a34a">↑</span> <span data-home-copy="saved">تم حفظ النسخة الاحتياطية</span>
         </div>
         <div class="float-badge b2">
-          <span class="ic" style="background:var(--blue)">฿</span> Profit today: +4 200 DA
+          <span class="ic" style="background:var(--blue)">↗</span> <span data-home-copy="todayProfit">ربح اليوم: ‎+4 200 دج</span>
         </div>
         <div class="phone">
           <div class="phone-screen">
             <div class="screen-top">
-              <div class="st-title">New sale</div>
-              <div class="st-sub">Cash · Cashier</div>
+              <div class="st-title"><span data-home-copy="newSale">بيع جديد</span></div>
+              <div class="st-sub"><span data-home-copy="cashier">نقدًا · البائع</span></div>
             </div>
             <div class="screen-body">
               <div class="srow">
-                <span style="display:flex;align-items:center;gap:10px"><span class="dot">🥖</span><b>Bread ×3</b></span>
+                <span style="display:flex;align-items:center;gap:10px"><span class="dot">🥖</span><b><span data-home-copy="bread">خبز ×3</span></b></span>
                 <span class="amt">45 DA</span>
               </div>
               <div class="srow">
-                <span style="display:flex;align-items:center;gap:10px"><span class="dot">🥛</span><b>Milk 1L</b></span>
+                <span style="display:flex;align-items:center;gap:10px"><span class="dot">🥛</span><b><span data-home-copy="milk">حليب 1 لتر</span></b></span>
                 <span class="amt">90 DA</span>
               </div>
               <div class="srow">
-                <span style="display:flex;align-items:center;gap:10px"><span class="dot">🧴</span><b>Oil 2L</b></span>
+                <span style="display:flex;align-items:center;gap:10px"><span class="dot">🧴</span><b><span data-home-copy="oil">زيت 2 لتر</span></b></span>
                 <span class="amt">560 DA</span>
               </div>
               <div class="screen-total">
-                <span>Total</span>
+                <span><span data-home-copy="total">المجموع</span></span>
                 <span class="big">695 DA</span>
               </div>
             </div>
@@ -108,13 +107,13 @@
   <!-- TRUST STRIP -->
   <div class="trust">
     <div class="container trust-inner">
-      <span>Made for <b>épiceries</b></span>
+      <span><span data-home-copy="madeFor">مناسب <b>لمحلات المواد الغذائية</b></span></span>
       <span>·</span>
       <span><b>Windows</b> &amp; <b>Android</b></span>
       <span>·</span>
-      <span><b>Arabic, French &amp; English</b></span>
+      <span><b><span data-home-copy="languages">العربية، الفرنسية والإنجليزية</span></b></span>
       <span>·</span>
-      <span>The base setup works <b>from your device</b></span>
+      <span><span data-home-copy="localSetup">البرنامج الأساسي يعمل <b>على جهازك</b></span></span>
     </div>
   </div>
 
@@ -122,41 +121,41 @@
   <section class="block" id="features">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Everything a small shop needs</span>
-        <h2>Simpler than your notebook. Faster than a calculator.</h2>
-        <p>The features that matter for a corner shop — and nothing you have to learn an accounting degree to use.</p>
+        <span class="eyebrow"><span data-home-copy="needs">ما يحتاجه محلك كل يوم</span></span>
+        <h2><span data-home-copy="notebook">أسهل من الدفتر. أسرع من الآلة الحاسبة.</span></h2>
+        <p><span data-home-copy="featuresIntro">بيع، مخزون، كريدي وتقارير واضحة، بكلمات بسيطة وخطوات سهلة.</span></p>
       </div>
 
       <div class="features">
         <div class="feature">
           <div class="ic">⚡</div>
-          <h3>Fast sales screen</h3>
-          <p>Search or scan a barcode straight into the cart. One tap to add, cash by default. The sales screen is the home screen.</p>
+          <h3><span data-home-copy="fastSales">بيع سريع</span></h3>
+          <p><span data-home-copy="fastSalesText">ابحث عن المنتج أو امسح الباركود وأضفه للسلة. شاشة البيع تفتح مباشرة، والدفع نقدًا هو الاختيار الأول.</span></p>
         </div>
         <div class="feature">
           <div class="ic">🧾</div>
-          <h3>Credit tracking (الكريدي)</h3>
-          <p>Sell on credit to regulars and always know who owes you and how much. Record payments as they come in.</p>
+          <h3><span data-home-copy="credit">متابعة الكريدي</span></h3>
+          <p><span data-home-copy="creditText">اعرف ما على كل زبون وسجّل دفعاته عند التسديد، حتى لا تنسى أي كريدي.</span></p>
         </div>
         <div class="feature">
           <div class="ic">📦</div>
-          <h3>Stock &amp; inventory</h3>
-          <p>Receive stock by cost, get low-stock and expiry alerts, and see true profit per item with FIFO costing.</p>
+          <h3><span data-home-copy="stock">متابعة المخزون</span></h3>
+          <p><span data-home-copy="stockText">سجّل السلع وتكلفتها، تابع الكميات، واستقبل تنبيهات نقص المخزون وقرب انتهاء الصلاحية. راجع ربح كل منتج حسب تكلفة شرائه.</span></p>
         </div>
         <div class="feature">
           <div class="ic">🤝</div>
-          <h3>Supplier debt</h3>
-          <p>Track what you owe your suppliers, log payments, and keep both sides of the ledger in one place.</p>
+          <h3><span data-home-copy="suppliers">حسابات الموردين</span></h3>
+          <p><span data-home-copy="suppliersText">تابع ما عليك للموردين وسجّل الدفعات، مع حساب واضح لكل مورد.</span></p>
         </div>
         <div class="feature">
           <div class="ic">📊</div>
-          <h3>Clear reports</h3>
-          <p>Sales, profit, top products, debt and even Zakat — for today, this week, this month, or any range you pick.</p>
+          <h3><span data-home-copy="reports">تقارير واضحة</span></h3>
+          <p><span data-home-copy="reportsText">راجع المبيعات، الربح، أكثر المنتجات مبيعًا، الديون والزكاة لليوم أو الأسبوع أو الشهر أو الفترة التي تختارها.</span></p>
         </div>
         <div class="feature">
           <div class="ic">💵</div>
-          <h3>Cash drawer close</h3>
-          <p>End your day with a simple drawer-closing that reconciles cash sales — no spreadsheets, no surprises.</p>
+          <h3><span data-home-copy="drawer">غلق الصندوق</span></h3>
+          <p><span data-home-copy="drawerText">في نهاية اليوم، قارن المبلغ الموجود في الصندوق بما سجّله التطبيق، واعرف الفرق إن وُجد.</span></p>
         </div>
       </div>
     </div>
@@ -167,25 +166,25 @@
     <div class="container">
       <div class="split">
         <div class="split-text">
-          <span class="eyebrow">Works without internet</span>
-          <h3>Your shop never stops because the internet did.</h3>
-          <p>In the base one-device setup, Store Soft keeps your shop data in a fast local database on your own device. Selling, stock, debt and reports all work with zero connection — the way a real shop runs.</p>
+          <span class="eyebrow"><span data-home-copy="withoutInternet">يعمل بدون إنترنت</span></span>
+          <h3><span data-home-copy="neverStops">انقطاع الإنترنت لا يوقف البيع.</span></h3>
+          <p><span data-home-copy="localText">في استعمال جهاز واحد، تُحفظ بيانات المحل على جهازك. البيع، المخزون، الكريدي والتقارير تعمل بدون اتصال.</span></p>
           <ul class="ticklist">
-            <li>No account or sign-up needed to start selling</li>
-            <li>Set up a new shop in under 10 minutes</li>
-            <li>Money handled exactly to the centime — no rounding errors</li>
-            <li>Owner + cashier roles, each with their own login</li>
+            <li><span data-home-copy="noAccount">لا تحتاج حسابًا سحابيًا لتبدأ البيع</span></li>
+            <li><span data-home-copy="setup">جهّز محلك في أقل من 10 دقائق</span></li>
+            <li><span data-home-copy="centimes">حساب المبالغ بدقة حتى للسنتيم</span></li>
+            <li><span data-home-copy="roles">حسابات للمالك والبائع مع صلاحيات لكل واحد</span></li>
           </ul>
         </div>
         <div class="split-media">
           <div class="media-card">
-            <div class="mc-head"><span class="ic">📈</span> Today at a glance</div>
+            <div class="mc-head"><span class="ic">📈</span> <span data-home-copy="glance">ملخص اليوم</span></div>
             <div class="mc-body">
-              <div class="kv"><span>Sales</span><b>18 450 DA</b></div>
+              <div class="kv"><span><span data-home-copy="sales">المبيعات</span></span><b>18 450 DA</b></div>
               <div class="bar"><i style="width:82%"></i></div>
-              <div class="kv"><span>Profit</span><b>+4 200 DA</b></div>
+              <div class="kv"><span><span data-home-copy="profit">الربح</span></span><b>+4 200 DA</b></div>
               <div class="bar"><i style="width:55%"></i></div>
-              <div class="kv"><span>Owed to you</span><b>6 300 DA</b></div>
+              <div class="kv"><span><span data-home-copy="owed">ما لك عند الزبائن</span></span><b>6 300 DA</b></div>
               <div class="bar"><i style="width:30%"></i></div>
             </div>
           </div>
@@ -199,27 +198,27 @@
     <div class="container">
       <div class="split reverse">
         <div class="split-text">
-          <span class="eyebrow">🔒 Optional Google Drive backup</span>
-          <h3>Keep a safe copy of your shop in your own Google Drive.</h3>
-          <p>A lost or broken phone shouldn't mean a lost business. With one tap you can sign in with Google and back up your data to a private folder in <strong>your own</strong> Google Drive, then restore it on a new device.</p>
+          <span class="eyebrow"><span data-home-copy="driveEyebrow">🔒 نسخ احتياطي اختياري على Google Drive</span></span>
+          <h3><span data-home-copy="driveTitle">احتفظ بنسخة من بيانات محلك في Google Drive الخاص بك.</span></h3>
+          <p><span data-home-copy="driveText">احمِ بيانات محلك من ضياع أو تعطل الجهاز. اربط حساب Google واحفظ نسخة في مساحة خاصة داخل Google Drive <strong>الخاص بك</strong>، ثم استرجعها عند الحاجة.</span></p>
           <ul class="ticklist">
-            <li>Daily automatic backups, kept on your device by default</li>
-            <li>Optional one-tap cloud backup to <strong>your</strong> Google Drive</li>
-            <li>Restore everything on a new phone or PC in minutes</li>
+            <li><span data-home-copy="dailyBackup">نسخ تلقائية يومية تُحفظ على جهازك افتراضيًا</span></li>
+            <li><span data-home-copy="optionalBackup">نسخة سحابية اختيارية في Google Drive <strong>الخاص بك</strong></span></li>
+            <li><span data-home-copy="restore">استرجع بياناتك على هاتف أو كمبيوتر جديد</span></li>
           </ul>
           <div class="note-box">
             <span class="ic">🛡️</span>
-            <span>Store Soft uses the limited <code>drive.appdata</code> permission. It can only read and write its <strong>own hidden backup folder</strong> — it can never see, open or touch any of your other Google Drive files. Backups live in your account; you can delete them and revoke access anytime. See our <a class="inline" href="privacy.html">Privacy Policy</a>.</span>
+            <span><span data-home-copy="driveNote">للنسخ الاحتياطي، يصل Store Soft فقط إلى <strong>مجلد النسخ الخاص به</strong> في Google Drive، ولا يصل إلى ملفاتك الأخرى. يمكنك حذف النسخ وإلغاء الوصول. التفاصيل في <a class="inline" href="privacy.html">سياسة الخصوصية</a>.</span></span>
           </div>
         </div>
         <div class="split-media">
           <div class="media-card">
-            <div class="mc-head"><span class="ic">☁️</span> Drive backup</div>
+            <div class="mc-head"><span class="ic">☁️</span> <span data-home-copy="driveBackup">نسخ Google Drive</span></div>
             <div class="mc-body">
               <div class="srow"><span>store_backup_2026-06-26.db</span><span class="amt">✓</span></div>
               <div class="srow"><span>store_backup_2026-06-25.db</span><span class="amt">✓</span></div>
               <div class="srow"><span>store_backup_2026-06-24.db</span><span class="amt">✓</span></div>
-              <div class="kv" style="margin-top:6px;color:var(--ink-faint)"><span>Private app folder</span><span>3 backups kept</span></div>
+              <div class="kv" style="margin-top:6px;color:var(--ink-faint)"><span><span data-home-copy="privateFolder">مجلد خاص بالتطبيق</span></span><span><span data-home-copy="threeBackups">3 نسخ محفوظة</span></span></div>
             </div>
           </div>
         </div>
@@ -231,51 +230,51 @@
   <section class="block alt" id="pricing">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Simple, honest pricing</span>
-        <h2>Pay once. It's yours.</h2>
-        <p>The base license is 7,000 DA paid once for the main device. Optional Sync for extra devices is priced separately.</p>
+        <span class="eyebrow"><span data-home-copy="pricingEyebrow">أسعار واضحة</span></span>
+        <h2><span data-home-copy="payOnce">ادفع مرة واحدة لجهازك.</span></h2>
+        <p><span data-home-copy="pricingIntro">الترخيص الأساسي بـ 7,000 دج مرة واحدة لجهاز واحد. المزامنة للأجهزة الإضافية اختيارية ولها سعر منفصل.</span></p>
       </div>
 
       <div class="pricing">
         <div class="price-card">
-          <h3>7-day free trial</h3>
-          <p class="sub">See it working before you pay</p>
+          <h3><span data-home-copy="trial">تجربة مجانية لمدة 14 يومًا</span></h3>
+          <p class="sub"><span data-home-copy="tryBeforePay">جرّبه قبل الدفع</span></p>
           <div class="price">0 DA</div>
           <ul>
-            <li>Full app for 7 days</li>
-            <li>Sales, stock, debt &amp; reports</li>
-            <li>Local backups</li>
-            <li>No card, no account needed</li>
+            <li><span data-home-copy="fullTrial">جرّب التطبيق لمدة 14 يومًا</span></li>
+            <li><span data-home-copy="trialFeatures">البيع، المخزون، الكريدي والتقارير</span></li>
+            <li><span data-home-copy="localBackups">نسخ احتياطية على جهازك</span></li>
+            <li><span data-home-copy="noCard">بدون بطاقة دفع أو حساب سحابي</span></li>
           </ul>
-          <a class="btn btn-ghost" href="#download">Start free</a>
+          <a class="btn btn-ghost" href="#download"><span data-home-copy="startFree">ابدأ مجانًا</span></a>
         </div>
 
         <div class="price-card featured">
-          <span class="tag">MOST POPULAR</span>
-          <h3>One-time license</h3>
-          <p class="sub">For a single shop</p>
-          <div class="price">7,000 DA <small>/ one-time for the main device</small></div>
+          <span class="tag"><span data-home-copy="popular">لجهاز واحد</span></span>
+          <h3><span data-home-copy="license">ترخيص دائم</span></h3>
+          <p class="sub"><span data-home-copy="singleShop">لمحل على جهاز واحد</span></p>
+          <div class="price">7,000 DA <small><span data-home-copy="onceDevice">/ مرة واحدة للجهاز الأساسي</span></small></div>
           <ul>
-            <li>Everything in the trial, unlocked</li>
-            <li>Lifetime license for one main device</li>
-            <li>Google Drive cloud backup</li>
-            <li>WhatsApp support</li>
-            <li>Free updates</li>
+            <li><span data-home-copy="unlocked">واصل استعمال ميزات التجربة</span></li>
+            <li><span data-home-copy="lifetime">ترخيص دائم لجهاز أساسي واحد</span></li>
+            <li><span data-home-copy="cloudBackup">نسخ احتياطي على Google Drive</span></li>
+            <li><span data-home-copy="whatsappSupport">مساعدة عبر واتساب</span></li>
+            <li><span data-home-copy="updates">تحديثات مجانية</span></li>
           </ul>
-          <a class="btn btn-primary" href="https://wa.me/213654338649?text=Bonjour%2C%20je%20veux%20une%20licence%20Store%20Soft" target="_blank" rel="noopener">Get a license</a>
+          <a class="btn btn-primary" href="https://wa.me/213654338649?text=Bonjour%2C%20je%20veux%20une%20licence%20Store%20Soft" target="_blank" rel="noopener"><span data-home-copy="getLicense">فعّل الترخيص</span></a>
         </div>
 
         <div class="price-card">
-          <h3>Optional Sync</h3>
-          <p class="sub">For additional devices only</p>
-          <div class="price">3,000 DA <small>/ year per extra device</small></div>
+          <h3><span data-home-copy="optionalSync">المزامنة — اختيارية</span></h3>
+          <p class="sub"><span data-home-copy="extraDevices">للأجهزة الإضافية</span></p>
+          <div class="price">3,000 DA <small><span data-home-copy="yearDevice">/ سنويًا لكل جهاز إضافي</span></small></div>
           <ul>
-            <li>Connect the same shop across devices</li>
-            <li>Optional for multi-device shops</li>
-            <li>Not required on one device</li>
-            <li>Offline selling continues without internet</li>
+            <li><span data-home-copy="connectShop">اربط أجهزة نفس المحل</span></li>
+            <li><span data-home-copy="multiDevice">اختيارية للمحل الذي يستعمل عدة أجهزة</span></li>
+            <li><span data-home-copy="oneDevice">غير مطلوبة لاستعمال جهاز واحد</span></li>
+            <li><span data-home-copy="offlineContinues">البيع يستمر بدون إنترنت</span></li>
           </ul>
-          <a class="btn btn-ghost" href="storesoft/download/">Start free trial</a>
+          <a class="btn btn-ghost" href="storesoft/download/"><span data-home-copy="start">ابدأ تجربتك المجانية</span></a>
         </div>
       </div>
     </div>
@@ -285,10 +284,10 @@
   <section class="cta-band" id="download">
     <div class="container">
       <div class="cta-inner">
-        <h2>Try Store Soft free for 7 days</h2>
-        <p>Available for Android phones and tablets and Windows PCs. Both download links appear immediately after you submit your details.</p>
+        <h2><span data-home-copy="tryTitle">جرّب Store Soft مجانًا لمدة 14 يومًا</span></h2>
+        <p><span data-home-copy="downloadText">متاح لهواتف وأجهزة Android اللوحية وكمبيوتر Windows. اختر Android لفتح صفحة التثبيت، أو Windows لفتح صفحة التحميل.</span></p>
         <div class="actions">
-          <a class="btn btn-ghost btn-lg" href="storesoft/download/">Start my free trial</a>
+          <a class="btn btn-ghost btn-lg" href="storesoft/download/"><span data-home-copy="myTrial">ابدأ تجربتي المجانية</span></a>
         </div>
       </div>
     </div>
@@ -298,35 +297,35 @@
   <section class="block" id="faq">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Good to know</span>
-        <h2>Frequently asked questions</h2>
-        <p>Still have a question? Reach us on WhatsApp or by email — we answer like humans, not tickets.</p>
+        <span class="eyebrow"><span data-home-copy="know">قبل أن تبدأ</span></span>
+        <h2><span data-home-copy="faqTitle">أسئلة شائعة</span></h2>
+        <p><span data-home-copy="faqIntro">تحتاج توضيحًا؟ راسلنا على واتساب أو البريد الإلكتروني ونساعدك.</span></p>
       </div>
 
       <div class="faq">
         <details open>
-          <summary>Do I need the internet to use Store Soft?</summary>
-          <p>No. Selling, stock, debt and reports work without a connection. Internet is only needed for optional services such as Sync, Google Drive backup, or downloading an update.</p>
+          <summary><span data-home-copy="internetQ">هل أحتاج الإنترنت لاستعمال Store Soft؟</span></summary>
+          <p><span data-home-copy="internetA">البيع، المخزون، الكريدي والتقارير تعمل بدون إنترنت. تحتاج الاتصال للتحميل، تفعيل رمز ترخيص جديد، أو خدمات مثل المزامنة ونسخ Google Drive.</span></p>
         </details>
         <details>
-          <summary>Is my shop data sent to any server?</summary>
-          <p>The base product keeps business data on your device. If you optionally enable multi-device Sync, the business data needed for synchronization is sent to our secured Supabase backend. Optional Google Drive backups go to your own private Drive app folder.</p>
+          <summary><span data-home-copy="dataQ">هل تُرسل بيانات محلي إلى خادم؟</span></summary>
+          <p><span data-home-copy="dataA">تُحفظ سجلات البيع والمخزون على جهازك. المزامنة ترسل نسخة إلى خادمنا، ونسخ Google Drive تُحفظ في حسابك. تُرسل أيضًا معلومات اتصال المحل وبيانات استعمال محدودة للمتابعة والمساعدة، حتى بدون المزامنة. التفاصيل في <a class="inline" href="privacy.html">سياسة الخصوصية</a>.</span></p>
         </details>
         <details>
-          <summary>What does the Google sign-in access?</summary>
-          <p>Only a hidden app folder in your own Google Drive, using the limited <code>drive.appdata</code> permission. Store Soft cannot see or open any of your other Drive files, photos or documents. You can revoke access and delete the backups at any time from your Google account.</p>
+          <summary><span data-home-copy="googleQ">إلى ماذا يصل حساب Google؟</span></summary>
+          <p><span data-home-copy="googleA">تسجيل الدخول بحساب Google للتطبيق منفصل عن ربط Google Drive للنسخ الاحتياطي. عند ربط النسخ، يصل التطبيق فقط إلى مجلده الخاص ولا يصل إلى ملفاتك الأخرى.</span></p>
         </details>
         <details>
-          <summary>How much does it cost?</summary>
-          <p>The 7-day trial is free. The base license is 7,000 DA paid once for the main device. Optional Sync costs 3,000 DA per year for each additional device.</p>
+          <summary><span data-home-copy="costQ">ما هو السعر؟</span></summary>
+          <p><span data-home-copy="costA">التجربة مجانية لمدة 14 يومًا. الترخيص الأساسي بـ 7,000 دج مرة واحدة للجهاز الأساسي. المزامنة اختيارية بـ 3,000 دج سنويًا لكل جهاز إضافي.</span></p>
         </details>
         <details>
-          <summary>Which languages are supported?</summary>
-          <p>Arabic (with full right-to-left layout), French and English. You can switch language in the settings.</p>
+          <summary><span data-home-copy="languagesQ">ما هي اللغات المتاحة؟</span></summary>
+          <p><span data-home-copy="languagesA">العربية، الفرنسية والإنجليزية. يمكنك تغيير اللغة من الإعدادات.</span></p>
         </details>
         <details>
-          <summary>How do I get support?</summary>
-          <p>Message us on <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp (+213 654 33 86 49)</a> or email <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>. We help with setup, importing your products, and any question you have.</p>
+          <summary><span data-home-copy="supportQ">كيف أحصل على المساعدة؟</span></summary>
+          <p><span data-home-copy="supportA">راسلنا على <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener">واتساب <bdi>+213 654 33 86 49</bdi></a> أو <a class="inline" href="mailto:younes.mimene@gmail.com">البريد الإلكتروني</a>. نساعدك في التثبيت وإدخال المنتجات واستعمال التطبيق.</span></p>
         </details>
       </div>
     </div>
@@ -339,54 +338,41 @@
         <div>
           <a class="brand" href="storesoft/download/">
             <img class="brand-logo" src="assets/icon.png" width="42" height="42" alt="" />
-            <span class="name">Store Soft<small>Store management for shops</small></span>
+            <span class="name">Store Soft<small><span data-home-copy="brandTag">تسيير بسيط لمحلك</span></small></span>
           </a>
-          <p class="about">Store management built for Algerian shops. Sell faster, track credit, know your stock, and keep working without internet.</p>
+          <p class="about"><span data-home-copy="about">تطبيق للمحلات الجزائرية. بيع سريع، متابعة الكريدي والمخزون، واستعمال بدون إنترنت.</span></p>
         </div>
         <div class="footer-col">
-          <h4>Product</h4>
-          <a href="#features">Features</a>
-          <a href="#backup">Drive backup</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#download">Download</a>
+          <h4><span data-home-copy="product">التطبيق</span></h4>
+          <a href="#features"><span data-home-copy="features">الميزات</span></a>
+          <a href="#backup"><span data-home-copy="driveBackup">نسخ Google Drive</span></a>
+          <a href="#pricing"><span data-home-copy="pricing">الأسعار</span></a>
+          <a href="#download"><span data-home-copy="download">التحميل</span></a>
         </div>
         <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
-          <a href="delete-account.html">Delete your data</a>
+          <h4><span data-home-copy="legal">معلومات الاستخدام</span></h4>
+          <a href="privacy.html"><span data-home-copy="privacy">سياسة الخصوصية</span></a>
+          <a href="terms.html"><span data-home-copy="terms">شروط الاستخدام</span></a>
+          <a href="delete-account.html"><span data-home-copy="delete">حذف بياناتك</span></a>
         </div>
         <div class="footer-col">
-          <h4>Contact</h4>
-          <a href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="mailto:younes.mimene@gmail.com">Email support</a>
+          <h4><span data-home-copy="contact">تواصل معنا</span></h4>
+          <a href="https://wa.me/213654338649" target="_blank" rel="noopener"><span data-home-copy="whatsapp">واتساب</span></a>
+          <a href="mailto:younes.mimene@gmail.com"><span data-home-copy="email">البريد الإلكتروني</span></a>
           <a href="https://github.com/dzstoredzd/dz-store-management" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="year">2026</span> Store Soft. All rights reserved.</span>
+        <span>© <span id="year">2026</span> <span data-home-copy="rights">Store Soft. جميع الحقوق محفوظة.</span></span>
         <span>
-          <a href="privacy.html">Privacy</a> ·
-          <a href="terms.html">Terms</a> ·
-          <a href="delete-account.html">Delete your data</a>
+          <a href="privacy.html"><span data-home-copy="privacyShort">الخصوصية</span></a> ·
+          <a href="terms.html"><span data-home-copy="termsShort">الشروط</span></a> ·
+          <a href="delete-account.html"><span data-home-copy="delete">حذف بياناتك</span></a>
         </span>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Mobile menu
-    var nav = document.getElementById('nav');
-    var toggle = document.getElementById('navToggle');
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    nav.querySelectorAll('.nav-links a').forEach(function (a) {
-      a.addEventListener('click', function () { nav.classList.remove('open'); });
-    });
-    // Current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="home.js?v=20261012-home" defer></script>
 </body>
 </html>

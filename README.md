@@ -8,6 +8,24 @@ terms of service).
 Plain HTML/CSS/JS — no build step, no dependencies. Open `index.html` in a
 browser to preview locally.
 
+Website content update (12 October 2026): the homepage defaults to
+Arabic/RTL and switches to French/LTR with its header button. `?lang=fr` opens
+French directly; reload preserves that URL choice. Homepage copy lives in
+`home.js`, with Arabic also rendered in HTML for visitors without JavaScript.
+The Android hero button opens `/storesoft/v1/android/`; Windows keeps the
+general download page. Both public trial pages now describe the app's 14-day
+trial. Privacy/deletion text covers CRM contact and linked activity records,
+including requests from people without a Sync account. Policy pages remain in
+English. Form APIs, billing, backend and native app behavior are unchanged.
+
+For a local review, run `node tool/preview.mjs` and open
+`http://127.0.0.1:8765/` (or add `?lang=fr`). This localhost-only server blocks
+form requests, tracking and external embeds through a response CSP; it cannot
+be used to test real lead submission or YouTube playback. No CSP restriction is
+added to the published HTML. Browser QA for the homepage and policy/deletion
+layouts: `node test/store-soft-home.browser.mjs`, with the same Playwright
+environment variables as the download-page browser suite.
+
 ## Pages
 
 | File | Purpose | Live URL |
@@ -26,9 +44,9 @@ Google OAuth brand verification requires (github.io is not accepted).
 
 ## Store Soft lead capture
 
-The Android-only `/storesoft/v1/android/` page shows the supplied YouTube Short
-(`ejsVBn3f6Hw`) before its three-field form on phones. Arabic and French are
-available. Pricing above the form shows 7,000 DA once for the first device instead of
+The Android-only `/storesoft/v1/android/` page shows its three-field form first,
+then the vertical YouTube explanation (`80QGPOKsXXg`), then prices. Arabic and French are
+available. Pricing shows 7,000 DA once for the first device instead of
 10,000 DA, plus optional Sync at 3,000 DA per extra device per year instead
 of 5,000 DA, in Arabic and French. These are public page display prices.
 It posts the existing `phone_shop_select_v4` contract with

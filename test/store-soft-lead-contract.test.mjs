@@ -267,7 +267,7 @@ test('landing page presents the current offer in the requested conversion order'
   assert.match(styles, /\.mobile-trial-cta \{ display: none; \}/);
   assert.match(styles, /@media \(max-width: 599px\)[\s\S]*\.mobile-trial-cta \{/);
 
-  assert.match(home, /href="storesoft\/download\/" aria-label="Store Soft trial page"/);
+  assert.match(home, /href="storesoft\/download\/" data-home-brand aria-label=/);
   assert.match(home, /7,000 DA/);
   assert.match(home, /3,000 DA/);
   assert.doesNotMatch(home, /English on the way|We do not run a server/);

@@ -1,0 +1,307 @@
+// Store Soft homepage copy. Arabic is also rendered in index.html for no-script visitors.
+(function () {
+  'use strict';
+  var copies = {
+  "ar": {
+    "brandTag": "تسيير بسيط لمحلك",
+    "features": "الميزات",
+    "backup": "النسخ الاحتياطي",
+    "pricing": "الأسعار",
+    "faq": "أسئلة شائعة",
+    "talk": "راسلنا",
+    "start": "ابدأ تجربتك المجانية",
+    "eyebrow": "🛒 للمحلات الجزائرية · المواد الغذائية والسوبرات",
+    "hero": "سيّر محلك <span class=\"grad\">ببساطة</span> حتى بدون إنترنت.",
+    "intro": "Store Soft يساعدك في البيع، متابعة الكريدي والمخزون، ومراجعة أرباحك اليومية. تطبيق واحد للهاتف والكمبيوتر، ويعمل بدون إنترنت.",
+    "android": "⬇ ابدأ على Android",
+    "windows": "🖥 ابدأ على Windows",
+    "offline": "يعمل بدون إنترنت",
+    "once": "الترخيص الأساسي: دفع مرة واحدة",
+    "languages": "العربية، الفرنسية والإنجليزية",
+    "saved": "تم حفظ النسخة الاحتياطية",
+    "todayProfit": "ربح اليوم: ‎+4 200 دج",
+    "newSale": "بيع جديد",
+    "cashier": "نقدًا · البائع",
+    "bread": "خبز ×3",
+    "milk": "حليب 1 لتر",
+    "oil": "زيت 2 لتر",
+    "total": "المجموع",
+    "madeFor": "مناسب <b>لمحلات المواد الغذائية</b>",
+    "localSetup": "البرنامج الأساسي يعمل <b>على جهازك</b>",
+    "needs": "ما يحتاجه محلك كل يوم",
+    "notebook": "أسهل من الدفتر. أسرع من الآلة الحاسبة.",
+    "featuresIntro": "بيع، مخزون، كريدي وتقارير واضحة، بكلمات بسيطة وخطوات سهلة.",
+    "fastSales": "بيع سريع",
+    "fastSalesText": "ابحث عن المنتج أو امسح الباركود وأضفه للسلة. شاشة البيع تفتح مباشرة، والدفع نقدًا هو الاختيار الأول.",
+    "credit": "متابعة الكريدي",
+    "creditText": "اعرف ما على كل زبون وسجّل دفعاته عند التسديد، حتى لا تنسى أي كريدي.",
+    "stock": "متابعة المخزون",
+    "stockText": "سجّل السلع وتكلفتها، تابع الكميات، واستقبل تنبيهات نقص المخزون وقرب انتهاء الصلاحية. راجع ربح كل منتج حسب تكلفة شرائه.",
+    "suppliers": "حسابات الموردين",
+    "suppliersText": "تابع ما عليك للموردين وسجّل الدفعات، مع حساب واضح لكل مورد.",
+    "reports": "تقارير واضحة",
+    "reportsText": "راجع المبيعات، الربح، أكثر المنتجات مبيعًا، الديون والزكاة لليوم أو الأسبوع أو الشهر أو الفترة التي تختارها.",
+    "drawer": "غلق الصندوق",
+    "drawerText": "في نهاية اليوم، قارن المبلغ الموجود في الصندوق بما سجّله التطبيق، واعرف الفرق إن وُجد.",
+    "withoutInternet": "يعمل بدون إنترنت",
+    "neverStops": "انقطاع الإنترنت لا يوقف البيع.",
+    "localText": "في استعمال جهاز واحد، تُحفظ بيانات المحل على جهازك. البيع، المخزون، الكريدي والتقارير تعمل بدون اتصال.",
+    "noAccount": "لا تحتاج حسابًا سحابيًا لتبدأ البيع",
+    "setup": "جهّز محلك في أقل من 10 دقائق",
+    "centimes": "حساب المبالغ بدقة حتى للسنتيم",
+    "roles": "حسابات للمالك والبائع مع صلاحيات لكل واحد",
+    "glance": "ملخص اليوم",
+    "sales": "المبيعات",
+    "profit": "الربح",
+    "owed": "ما لك عند الزبائن",
+    "driveEyebrow": "🔒 نسخ احتياطي اختياري على Google Drive",
+    "driveTitle": "احتفظ بنسخة من بيانات محلك في Google Drive الخاص بك.",
+    "driveText": "احمِ بيانات محلك من ضياع أو تعطل الجهاز. اربط حساب Google واحفظ نسخة في مساحة خاصة داخل Google Drive <strong>الخاص بك</strong>، ثم استرجعها عند الحاجة.",
+    "dailyBackup": "نسخ تلقائية يومية تُحفظ على جهازك افتراضيًا",
+    "optionalBackup": "نسخة سحابية اختيارية في Google Drive <strong>الخاص بك</strong>",
+    "restore": "استرجع بياناتك على هاتف أو كمبيوتر جديد",
+    "driveNote": "للنسخ الاحتياطي، يصل Store Soft فقط إلى <strong>مجلد النسخ الخاص به</strong> في Google Drive، ولا يصل إلى ملفاتك الأخرى. يمكنك حذف النسخ وإلغاء الوصول. التفاصيل في <a class=\"inline\" href=\"privacy.html\">سياسة الخصوصية</a>.",
+    "driveBackup": "نسخ Google Drive",
+    "privateFolder": "مجلد خاص بالتطبيق",
+    "threeBackups": "3 نسخ محفوظة",
+    "pricingEyebrow": "أسعار واضحة",
+    "payOnce": "ادفع مرة واحدة لجهازك.",
+    "pricingIntro": "الترخيص الأساسي بـ 7,000 دج مرة واحدة لجهاز واحد. المزامنة للأجهزة الإضافية اختيارية ولها سعر منفصل.",
+    "trial": "تجربة مجانية لمدة 14 يومًا",
+    "tryBeforePay": "جرّبه قبل الدفع",
+    "fullTrial": "جرّب التطبيق لمدة 14 يومًا",
+    "trialFeatures": "البيع، المخزون، الكريدي والتقارير",
+    "localBackups": "نسخ احتياطية على جهازك",
+    "noCard": "بدون بطاقة دفع أو حساب سحابي",
+    "startFree": "ابدأ مجانًا",
+    "popular": "لجهاز واحد",
+    "license": "ترخيص دائم",
+    "singleShop": "لمحل على جهاز واحد",
+    "onceDevice": "/ مرة واحدة للجهاز الأساسي",
+    "unlocked": "واصل استعمال ميزات التجربة",
+    "lifetime": "ترخيص دائم لجهاز أساسي واحد",
+    "cloudBackup": "نسخ احتياطي على Google Drive",
+    "whatsappSupport": "مساعدة عبر واتساب",
+    "updates": "تحديثات مجانية",
+    "getLicense": "فعّل الترخيص",
+    "optionalSync": "المزامنة — اختيارية",
+    "extraDevices": "للأجهزة الإضافية",
+    "yearDevice": "/ سنويًا لكل جهاز إضافي",
+    "connectShop": "اربط أجهزة نفس المحل",
+    "multiDevice": "اختيارية للمحل الذي يستعمل عدة أجهزة",
+    "oneDevice": "غير مطلوبة لاستعمال جهاز واحد",
+    "offlineContinues": "البيع يستمر بدون إنترنت",
+    "tryTitle": "جرّب Store Soft مجانًا لمدة 14 يومًا",
+    "downloadText": "متاح لهواتف وأجهزة Android اللوحية وكمبيوتر Windows. اختر Android لفتح صفحة التثبيت، أو Windows لفتح صفحة التحميل.",
+    "myTrial": "ابدأ تجربتي المجانية",
+    "know": "قبل أن تبدأ",
+    "faqTitle": "أسئلة شائعة",
+    "faqIntro": "تحتاج توضيحًا؟ راسلنا على واتساب أو البريد الإلكتروني ونساعدك.",
+    "internetQ": "هل أحتاج الإنترنت لاستعمال Store Soft؟",
+    "internetA": "البيع، المخزون، الكريدي والتقارير تعمل بدون إنترنت. تحتاج الاتصال للتحميل، تفعيل رمز ترخيص جديد، أو خدمات مثل المزامنة ونسخ Google Drive.",
+    "dataQ": "هل تُرسل بيانات محلي إلى خادم؟",
+    "dataA": "تُحفظ سجلات البيع والمخزون على جهازك. المزامنة ترسل نسخة إلى خادمنا، ونسخ Google Drive تُحفظ في حسابك. تُرسل أيضًا معلومات اتصال المحل وبيانات استعمال محدودة للمتابعة والمساعدة، حتى بدون المزامنة. التفاصيل في <a class=\"inline\" href=\"privacy.html\">سياسة الخصوصية</a>.",
+    "googleQ": "إلى ماذا يصل حساب Google؟",
+    "googleA": "تسجيل الدخول بحساب Google للتطبيق منفصل عن ربط Google Drive للنسخ الاحتياطي. عند ربط النسخ، يصل التطبيق فقط إلى مجلده الخاص ولا يصل إلى ملفاتك الأخرى.",
+    "costQ": "ما هو السعر؟",
+    "costA": "التجربة مجانية لمدة 14 يومًا. الترخيص الأساسي بـ 7,000 دج مرة واحدة للجهاز الأساسي. المزامنة اختيارية بـ 3,000 دج سنويًا لكل جهاز إضافي.",
+    "languagesQ": "ما هي اللغات المتاحة؟",
+    "languagesA": "العربية، الفرنسية والإنجليزية. يمكنك تغيير اللغة من الإعدادات.",
+    "supportQ": "كيف أحصل على المساعدة؟",
+    "supportA": "راسلنا على <a class=\"inline\" href=\"https://wa.me/213654338649\" target=\"_blank\" rel=\"noopener\">واتساب <bdi>+213 654 33 86 49</bdi></a> أو <a class=\"inline\" href=\"mailto:younes.mimene@gmail.com\">البريد الإلكتروني</a>. نساعدك في التثبيت وإدخال المنتجات واستعمال التطبيق.",
+    "about": "تطبيق للمحلات الجزائرية. بيع سريع، متابعة الكريدي والمخزون، واستعمال بدون إنترنت.",
+    "product": "التطبيق",
+    "download": "التحميل",
+    "legal": "معلومات الاستخدام",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الاستخدام",
+    "delete": "حذف بياناتك",
+    "contact": "تواصل معنا",
+    "whatsapp": "واتساب",
+    "email": "البريد الإلكتروني",
+    "rights": "Store Soft. جميع الحقوق محفوظة.",
+    "privacyShort": "الخصوصية",
+    "termsShort": "الشروط",
+    "pageTitle": "Store Soft — تسيير محلك بدون إنترنت",
+    "description": "سيّر البيع والمخزون والكريدي والأرباح على Android وWindows. للمحلات الجزائرية، يعمل بدون إنترنت، مع تجربة مجانية لمدة 14 يومًا.",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "brandLabel": "Store Soft — ابدأ التجربة"
+  },
+  "fr": {
+    "brandTag": "Gestion simple de magasin",
+    "features": "Fonctionnalités",
+    "backup": "Sauvegarde",
+    "pricing": "Tarifs",
+    "faq": "Questions fréquentes",
+    "talk": "Contactez-nous",
+    "start": "Essayer gratuitement",
+    "eyebrow": "🛒 Pour les commerces algériens · épiceries et supérettes",
+    "hero": "Gérez votre magasin <span class=\"grad\">simplement</span>, même sans Internet.",
+    "intro": "Store Soft vous aide à vendre, suivre le crédit et le stock, et consulter vos résultats du jour. Une application pour Android et Windows, qui fonctionne sans Internet.",
+    "android": "⬇ Commencer sur Android",
+    "windows": "🖥 Commencer sur Windows",
+    "offline": "Fonctionne sans Internet",
+    "once": "Licence de base : paiement unique",
+    "languages": "Arabe, français et anglais",
+    "saved": "Sauvegarde enregistrée",
+    "todayProfit": "Bénéfice du jour : +4 200 DA",
+    "newSale": "Nouvelle vente",
+    "cashier": "Espèces · Vendeur",
+    "bread": "Pain ×3",
+    "milk": "Lait 1 L",
+    "oil": "Huile 2 L",
+    "total": "Total",
+    "madeFor": "Pensé pour les <b>épiceries</b>",
+    "localSetup": "Le logiciel de base fonctionne <b>sur votre appareil</b>",
+    "needs": "L’essentiel pour votre magasin",
+    "notebook": "Plus simple qu’un cahier. Plus rapide qu’une calculatrice.",
+    "featuresIntro": "Ventes, stock, crédit et rapports clairs, avec des mots simples et des étapes faciles.",
+    "fastSales": "Ventes rapides",
+    "fastSalesText": "Cherchez un produit ou scannez son code-barres pour l’ajouter au panier. L’application s’ouvre sur la vente, avec le paiement en espèces par défaut.",
+    "credit": "Suivi du crédit",
+    "creditText": "Retrouvez ce que chaque client vous doit et enregistrez ses remboursements au fur et à mesure.",
+    "stock": "Suivi du stock",
+    "stockText": "Enregistrez les arrivages et leur coût, suivez les quantités et les alertes de stock ou de péremption. Consultez le bénéfice selon le coût d’achat.",
+    "suppliers": "Comptes fournisseurs",
+    "suppliersText": "Suivez ce que vous devez aux fournisseurs et enregistrez les paiements dans le compte de chacun.",
+    "reports": "Rapports clairs",
+    "reportsText": "Consultez ventes, bénéfices, meilleurs produits, dettes et Zakat pour le jour, la semaine, le mois ou la période choisie.",
+    "drawer": "Clôture de caisse",
+    "drawerText": "En fin de journée, comparez l’argent en caisse au montant enregistré et retrouvez les éventuels écarts.",
+    "withoutInternet": "Fonctionne sans Internet",
+    "neverStops": "Une coupure Internet n’arrête pas vos ventes.",
+    "localText": "Sur un seul appareil, les données du magasin sont enregistrées sur votre appareil. Ventes, stock, crédit et rapports fonctionnent sans connexion.",
+    "noAccount": "Pas de compte cloud nécessaire pour commencer à vendre",
+    "setup": "Configurez votre magasin en moins de 10 minutes",
+    "centimes": "Des montants calculés au centime près",
+    "roles": "Des accès pour le propriétaire et les vendeurs, avec leurs permissions",
+    "glance": "La journée en un coup d’œil",
+    "sales": "Ventes",
+    "profit": "Bénéfice",
+    "owed": "Ce que les clients vous doivent",
+    "driveEyebrow": "🔒 Sauvegarde Google Drive facultative",
+    "driveTitle": "Gardez une copie de votre magasin dans votre propre Google Drive.",
+    "driveText": "Protégez vos données en cas de perte ou de panne. Connectez votre compte Google et sauvegardez dans un espace privé de <strong>votre propre</strong> Google Drive, puis restaurez si nécessaire.",
+    "dailyBackup": "Sauvegardes automatiques quotidiennes sur votre appareil par défaut",
+    "optionalBackup": "Sauvegarde cloud facultative dans <strong>votre</strong> Google Drive",
+    "restore": "Restaurez vos données sur un nouveau téléphone ou PC",
+    "driveNote": "Pour les sauvegardes, Store Soft accède uniquement à <strong>son dossier privé</strong> dans Google Drive, sans accéder à vos autres fichiers. Vous pouvez supprimer les copies et retirer l’accès. Voir la <a class=\"inline\" href=\"privacy.html\">politique de confidentialité</a>.",
+    "driveBackup": "Sauvegarde Drive",
+    "privateFolder": "Dossier privé de l’application",
+    "threeBackups": "3 sauvegardes conservées",
+    "pricingEyebrow": "Des tarifs clairs",
+    "payOnce": "Payez une seule fois pour votre appareil.",
+    "pricingIntro": "La licence de base coûte 7 000 DA, une seule fois pour un appareil. Sync est facultatif et facturé séparément pour les appareils supplémentaires.",
+    "trial": "Essai gratuit de 14 jours",
+    "tryBeforePay": "Essayez avant de payer",
+    "fullTrial": "Essayez l’application pendant 14 jours",
+    "trialFeatures": "Ventes, stock, crédit et rapports",
+    "localBackups": "Sauvegardes sur votre appareil",
+    "noCard": "Sans carte bancaire ni compte cloud",
+    "startFree": "Commencer gratuitement",
+    "popular": "POUR UN APPAREIL",
+    "license": "Licence permanente",
+    "singleShop": "Pour un magasin sur un appareil",
+    "onceDevice": "/ paiement unique pour l’appareil principal",
+    "unlocked": "Continuez à utiliser les fonctionnalités de l’essai",
+    "lifetime": "Licence permanente pour un appareil principal",
+    "cloudBackup": "Sauvegarde sur Google Drive",
+    "whatsappSupport": "Aide sur WhatsApp",
+    "updates": "Mises à jour gratuites",
+    "getLicense": "Activer une licence",
+    "optionalSync": "Sync — facultatif",
+    "extraDevices": "Pour les appareils supplémentaires",
+    "yearDevice": "/ an et par appareil supplémentaire",
+    "connectShop": "Reliez les appareils du même magasin",
+    "multiDevice": "Facultatif pour les magasins avec plusieurs appareils",
+    "oneDevice": "Pas nécessaire sur un seul appareil",
+    "offlineContinues": "Les ventes continuent sans Internet",
+    "tryTitle": "Essayez Store Soft gratuitement pendant 14 jours",
+    "downloadText": "Disponible sur téléphones et tablettes Android et sur PC Windows. Choisissez Android pour la page d’installation, ou Windows pour la page de téléchargement.",
+    "myTrial": "Commencer mon essai gratuit",
+    "know": "Avant de commencer",
+    "faqTitle": "Questions fréquentes",
+    "faqIntro": "Besoin d’une précision ? Contactez-nous sur WhatsApp ou par e-mail.",
+    "internetQ": "Faut-il Internet pour utiliser Store Soft ?",
+    "internetA": "Ventes, stock, crédit et rapports fonctionnent sans Internet. Une connexion est nécessaire pour télécharger, activer un nouveau code de licence ou utiliser Sync et Google Drive.",
+    "dataQ": "Les données de mon magasin sont-elles envoyées à un serveur ?",
+    "dataA": "Les ventes et le stock sont enregistrés sur votre appareil. Sync envoie une copie à notre serveur et les sauvegardes Drive vont dans votre compte. Des coordonnées du magasin et des données d’usage limitées servent aussi au suivi et à l’aide, même sans Sync. Voir la <a class=\"inline\" href=\"privacy.html\">politique de confidentialité</a>.",
+    "googleQ": "À quoi sert la connexion Google ?",
+    "googleA": "La connexion Google au compte Store Soft est séparée de la connexion Drive pour les sauvegardes. Pour les sauvegardes, l’application accède uniquement à son dossier privé, pas à vos autres fichiers.",
+    "costQ": "Quel est le prix ?",
+    "costA": "L’essai de 14 jours est gratuit. La licence de base coûte 7 000 DA une seule fois pour l’appareil principal. Sync est facultatif, à 3 000 DA par an et par appareil supplémentaire.",
+    "languagesQ": "Quelles langues sont disponibles ?",
+    "languagesA": "Arabe, français et anglais. Vous pouvez changer de langue dans les paramètres.",
+    "supportQ": "Comment obtenir de l’aide ?",
+    "supportA": "Écrivez-nous sur <a class=\"inline\" href=\"https://wa.me/213654338649\" target=\"_blank\" rel=\"noopener\">WhatsApp (+213 654 33 86 49)</a> ou par <a class=\"inline\" href=\"mailto:younes.mimene@gmail.com\">e-mail</a>. Nous vous aidons pour l’installation, l’import des produits et l’utilisation.",
+    "about": "Une application pour les commerces algériens. Ventes rapides, crédit et stock suivis, même sans Internet.",
+    "product": "Application",
+    "download": "Télécharger",
+    "legal": "Informations",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d’utilisation",
+    "delete": "Supprimer vos données",
+    "contact": "Contact",
+    "whatsapp": "WhatsApp",
+    "email": "Aide par e-mail",
+    "rights": "Store Soft. Tous droits réservés.",
+    "privacyShort": "Confidentialité",
+    "termsShort": "Conditions",
+    "pageTitle": "Store Soft — Gérez votre magasin sans Internet",
+    "description": "Gérez ventes, stock, crédit et bénéfices sur Android et Windows. Pour les commerces algériens, sans Internet, avec 14 jours d’essai gratuit.",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "brandLabel": "Store Soft — commencer l’essai"
+  }
+};
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var switcher = document.getElementById('homeLanguage');
+  var language = 'ar';
+  function menuLabel() {
+    toggle.setAttribute('aria-label', copies[language][nav.classList.contains('open') ? 'closeMenu' : 'openMenu']);
+  }
+  function setLanguage(next) {
+    language = next;
+    var copy = copies[next];
+    document.documentElement.lang = next;
+    document.documentElement.dir = next === 'ar' ? 'rtl' : 'ltr';
+    document.title = copy.pageTitle;
+    document.querySelectorAll('[data-home-copy]').forEach(function (element) {
+      element.innerHTML = copy[element.dataset.homeCopy];
+    });
+    document.querySelector('meta[name="description"]').content = copy.description;
+    document.querySelector('meta[property="og:description"]').content = copy.description;
+    document.querySelector('meta[property="og:title"]').content = copy.pageTitle;
+    document.querySelector('[data-home-brand]').setAttribute('aria-label', copy.brandLabel);
+    switcher.textContent = next === 'ar' ? 'FR' : 'العربية';
+    switcher.lang = next === 'ar' ? 'fr' : 'ar';
+    switcher.dir = next === 'ar' ? 'ltr' : 'rtl';
+    switcher.setAttribute('aria-label', next === 'ar' ? 'Afficher en français' : 'عرض الصفحة بالعربية');
+    menuLabel();
+  }
+  switcher.addEventListener('click', function () {
+    var next = language === 'ar' ? 'fr' : 'ar';
+    setLanguage(next);
+    try {
+      var url = new URL(window.location.href);
+      url.searchParams.set('lang', next);
+      window.history.replaceState(null, '', url);
+    } catch (_) { /* Language switching also works with local file previews. */ }
+  });
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+    menuLabel();
+  });
+  nav.querySelectorAll('.nav-links a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      menuLabel();
+    });
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+  setLanguage(new URLSearchParams(window.location.search).get('lang') === 'fr' ? 'fr' : 'ar');
+}());
