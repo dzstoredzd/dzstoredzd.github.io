@@ -14,6 +14,7 @@ browser to preview locally.
 |------|---------|----------|
 | `index.html` | Landing / home page | https://yousoft.site/ |
 | `storesoft/download/index.html` | Store Soft trial/download lead form | https://yousoft.site/storesoft/download/ |
+| `storesoft/android/index.html` | Mobile-first Android video, lead form and automatic Play redirect | https://yousoft.site/storesoft/android/ |
 | `storesoft/try/index.html` | Six-character tracked Google Play redirect | https://yousoft.site/storesoft/try/ |
 | `privacy.html` | Privacy Policy (incl. Google API Limited Use) | https://yousoft.site/privacy.html |
 | `terms.html` | Terms of Service | https://yousoft.site/terms.html |
@@ -23,6 +24,18 @@ domain **yousoft.site** (set by the `CNAME` file). The custom domain is what
 Google OAuth brand verification requires (github.io is not accepted).
 
 ## Store Soft lead capture
+
+The Android-only `/storesoft/android/` page shows the supplied YouTube Short
+(`ejsVBn3f6Hw`) before its three-field form on phones. Arabic and French are
+available. It posts the existing `phone_shop_select_v4` contract with
+`requested_platform: phone` (the API's existing Android preference value);
+the existing download page stays unchanged.
+After the durable save, it records best-effort submission/download telemetry
+and navigates in the same tab through `/storesoft/try/?t=<public code>` to Play.
+An invalid/missing code falls back to the ordinary Play listing. A saved-state
+link remains available if navigation is blocked. Errors preserve entered values
+for retry; no download starts before a successful save. Contact details are
+never put in analytics events or redirect URLs.
 
 The download form posts to the `submit-store-soft-lead` Supabase Edge Function.
 Its schema is recorded in the versioned migration under `supabase/migrations/`. The leads

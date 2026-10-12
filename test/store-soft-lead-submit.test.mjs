@@ -57,6 +57,19 @@ test('phone form rejects missing/invalid contacts and activity before writing', 
   assert.equal(app.inserted.length, 0);
 });
 
+test('Android-only page uses the existing phone preference without a backend change', async () => {
+  const app = endpoint();
+  const response = await app.submit({ ...valid(), requested_platform: 'phone',
+    landing_page: 'https://yousoft.site/storesoft/android/?utm_source=facebook', source: 'facebook' });
+  assert.equal(response.status, 200);
+  const result = await response.json();
+  assert.equal(result.tracking_code, 'ABC234');
+  assert.equal(app.inserted[0].requested_platform, 'phone');
+  assert.match(app.inserted[0].landing_page, /\/storesoft\/android\//);
+  assert.equal(app.inserted[0].source, 'facebook');
+  assert.equal(result.tracking_token, undefined);
+});
+
 test('cached email and phone/platform forms still work', async () => {
   const app = endpoint();
   for (const legacy of [
