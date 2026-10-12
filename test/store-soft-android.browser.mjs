@@ -36,6 +36,10 @@ try {
       userAgent: config.width < 900 ? 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/130.0.0.0 Mobile Safari/537.36' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36' });
     const page = await context.newPage();
     const errors = [], requests = [], telemetry = [], navigations = [], missingAssets = [];
+    const metaCalls = [], metaDispatches = [];
+    const leadCalls = () => metaCalls.filter(args => args[0] === 'track' && args[1] === 'Lead');
+    await context.exposeBinding('__recordMetaCall', (_, args) => metaCalls.push(args));
+    await context.exposeBinding('__recordMetaDispatch', (_, args) => metaDispatches.push(args));
     page.on('pageerror', error => errors.push(error.message));
     page.on('response', response => { if (response.url().startsWith(base) && response.status() >= 400) missingAssets.push(response.url()); });
     let fail = true, release, arrived;
@@ -43,7 +47,19 @@ try {
     const arrival = new Promise(resolve => { arrived = resolve; });
     await context.route('**/*', async route => {
       const url = route.request().url();
-      if (url.includes('/rpc/record_store_soft_download_event')) {
+      if (url === 'https://connect.facebook.net/en_US/fbevents.js') {
+        // Drain the real base snippet's queue and simulate asynchronous Pixel dispatch.
+        await route.fulfill({ contentType: 'text/javascript', body: `
+          window.fbq.callMethod = function () {
+            const args = Array.from(arguments);
+            window.__recordMetaCall(args);
+            if (args[0] === 'track' && args[1] === 'Lead') {
+              setTimeout(() => window.__recordMetaDispatch(args), 100);
+            }
+          };
+          window.fbq.queue.splice(0).forEach(args => window.fbq.callMethod.apply(window.fbq, args));
+        ` });
+      } else if (url.includes('/rpc/record_store_soft_download_event')) {
         telemetry.push(route.request().postDataJSON());
         await route.fulfill({ status: 204, body: '' });
       } else if (url.includes('/functions/v1/submit-store-soft-lead')) {
@@ -66,6 +82,8 @@ try {
     await page.goto(base + entry + query + fragment);
     await page.waitForURL(base + '/storesoft/v1/android/' + query + fragment);
     await page.locator('#leadForm').waitFor();
+    assert.equal(metaCalls.filter(args => args[0] === 'init' && args[1] === '2176257146284643').length, 1);
+    assert.equal(leadCalls().length, 0, 'page view is not a Lead');
     assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://yousoft.site/storesoft/v1/android/');
     assert.ok(await page.locator('.brand img').evaluate(el => el.complete && el.naturalWidth > 0));
     if (config.lang === 'fr') await page.locator('#languageSwitch').click();
@@ -97,6 +115,7 @@ try {
     await page.locator('#submitButton').click();
     assert.equal(await page.locator('[aria-invalid=true]').count(), 3);
     assert.equal(requests.length, 0);
+    assert.equal(leadCalls().length, 0, 'invalid form is not a Lead');
     assert.equal(await page.locator('#name').evaluate(el => el === document.activeElement), true);
     await page.locator('#name').fill('Synthetic Shop');
     await page.locator('#phone').fill('123');
@@ -109,18 +128,30 @@ try {
     assert.equal(await page.locator('#phone').inputValue(), '+213 550 12 34 56');
     assert.equal(await page.locator('#submitButton').isEnabled(), true);
     assert.equal(navigations.length, 0);
+    assert.equal(leadCalls().length, 0, 'failed save is not a Lead');
     fail = false;
     // A broken third-party analytics library must not turn a saved lead into an error.
-    await page.evaluate(() => { window.fbq = () => { throw new Error('Synthetic blocked analytics'); }; });
+    const blockedPixel = config.width === 1440;
+    if (blockedPixel) await page.evaluate(() => { window.fbq = () => { throw new Error('Synthetic blocked analytics'); }; });
     await page.locator('#submitButton').click(); await arrival;
     assert.equal(await page.locator('#submitButton').isDisabled(), true);
     await page.locator('#leadForm').dispatchEvent('submit');
+    assert.equal(leadCalls().length, 0, 'pending save and repeated clicks are not Leads');
     const events = await page.evaluate(() => window.dataLayer);
     assert.doesNotMatch(JSON.stringify(events), /Synthetic Shop|550 12 34 56/);
     const listing = page.waitForURL('https://play.google.com/**');
     release(); await listing;
     await page.getByRole('heading', { name: 'Synthetic Play listing' }).waitFor();
     assert.equal(context.pages().length, 1, 'same tab, no popup');
+    assert.equal(leadCalls().length, blockedPixel ? 0 : 1, 'one standard Lead per saved submission');
+    assert.equal(metaDispatches.length, blockedPixel ? 0 : 1, 'queued dispatch gets a chance before navigation');
+    if (!blockedPixel) {
+      assert.equal(leadCalls()[0][2].content_category, 'android_v1');
+      assert.equal(leadCalls()[0][2].content_name, 'Store Soft Android v1');
+      assert.equal(leadCalls()[0][2].utm_source, 'facebook');
+      assert.equal(leadCalls()[0][2].language, config.lang);
+    }
+    assert.doesNotMatch(JSON.stringify(metaCalls), /Synthetic Shop|550 12 34 56|ABC234|synthetic-lead/);
     assert.equal(requests.length, 2, 'one failed save and one successful retry');
     const values = requests.at(-1);
     assert.equal(values.form_version, 'phone_shop_select_v4');
@@ -144,6 +175,9 @@ try {
   for (const trackingCode of [undefined, 'https://untrusted.invalid/']) {
     const context = await browser.newContext();
     const page = await context.newPage();
+    const metaCalls = [];
+    await context.addInitScript(() => { window.fbq = (...args) => window.__recordMetaCall(args); });
+    await context.exposeBinding('__recordMetaCall', (_, args) => metaCalls.push(args));
     await context.route('**/*', route => {
       const url = route.request().url();
       if (url.includes('/functions/v1/submit-store-soft-lead')) {
@@ -161,6 +195,7 @@ try {
     const listing = page.waitForURL('https://play.google.com/**');
     await page.locator('#submitButton').click(); await listing;
     assert.equal(page.url(), 'https://play.google.com/store/apps/details?id=com.yousoft.storesoft');
+    assert.equal(metaCalls.filter(args => args[0] === 'track' && args[1] === 'Lead').length, 0, 'no Lead without a saved lead ID');
     await context.close();
   }
   console.log('PASS missing/malicious code falls back directly to the fixed Play listing');

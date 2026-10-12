@@ -74,7 +74,7 @@
   function track(name, properties, standard) {
     try {
       var campaign = campaignData();
-      var detail = Object.assign({ language: language, content_name: 'Store Soft Android',
+      var detail = Object.assign({ language: language, content_name: 'Store Soft Android v1', content_category: 'android_v1',
         utm_source: campaign.source, utm_medium: campaign.medium, utm_campaign: campaign.campaign }, properties || {});
       window.dataLayer.push(Object.assign({ event: name }, detail));
       window.dispatchEvent(new CustomEvent('storesoft:tracking', { detail: { event: name, properties: detail } }));
@@ -159,9 +159,13 @@
       document.getElementById('successView').focus();
       funnel('submitted', result.tracking_code);
       track('FormSubmitted');
-      track('Lead', {}, true);
+      // Honeypot acknowledgements return ok without a saved lead; do not count them.
+      if (typeof result.lead_id === 'string' && result.lead_id) track('Lead', {}, true);
       funnel('click', 'android');
       track('DownloadClicked', { platform: 'android' });
+      // Give queued Pixel requests a brief chance to start before leaving the page.
+      // This is bounded and never depends on Facebook being available.
+      await new Promise(function (resolve) { setTimeout(resolve, 300); });
       // Same-tab navigation works after async saves without depending on popup permissions.
       window.location.assign(target);
     } catch (_) {

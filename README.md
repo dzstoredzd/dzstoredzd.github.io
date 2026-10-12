@@ -44,6 +44,16 @@ link remains available if navigation is blocked. Errors preserve entered values
 for retry; no download starts before a successful save. Contact details are
 never put in analytics events or redirect URLs.
 
+Android v1 uses the existing Meta Pixel `2176257146284643`. Successful CRM saves
+fire one standard `Lead` event, with `content_category: android_v1` and
+`content_name: Store Soft Android v1`. Invalid fields, pending saves and failed
+requests never fire `Lead`; an explicit submit attempt remains a separate custom
+event. A bounded 300 ms pause gives queued Pixel requests a chance to start
+before Play navigation. Blocked/failed Facebook tracking never prevents the
+download. No contact data, CRM lead ID or referral code is included in Pixel
+parameters. Browser tests use a synthetic Pixel and do not prove Meta account
+receipt; confirm receipt separately in that Pixel's Events Manager.
+
 The download form posts to the `submit-store-soft-lead` Supabase Edge Function.
 Its schema is recorded in the versioned migration under `supabase/migrations/`. The leads
 table and immutable `lead_events` timeline are private (RLS enabled, no
