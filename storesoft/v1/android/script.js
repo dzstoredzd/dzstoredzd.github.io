@@ -10,48 +10,40 @@
   var copies = {
     ar: {
       pageTitle: 'Store Soft — تطبيق تسيير المحلات على Android',
-      brandTagline: 'تسيير بسيط لمحلك', title: 'محلك معك،<br><span>في هاتفك.</span>',
-      intro: 'البيع، المخزون والكريدي في تطبيق واحد. سيّر محلك ببساطة، حتى بدون إنترنت.',
-      jumpToForm: 'جرّب التطبيق على هاتفك', videoTitle: 'شاهد التطبيق في دقيقة',
+      videoTitle: 'شرح مبسّط للتطبيق',
       videoFrameTitle: 'شاهد Store Soft على Android', watchOnYoutube: 'شاهد على YouTube ↗',
-      installStep: 'ثبّت التطبيق وابدأ التجربة', available: 'متاح على Google Play',
       basePriceTitle: 'التطبيق لجهاز واحد', insteadOf: 'بدلًا من',
       basePriceNote: 'دفع مرة واحدة. يعمل بدون إنترنت.', syncPriceTitle: 'Sync — المزامنة',
       syncPriceNote: 'سنويًا لكل جهاز إضافي.', syncPriceHint: 'اختياري، لربط أجهزة نفس المحل.',
-      formTitle: 'ابدأ بمعلومات بسيطة', formIntro: 'عمّر معلوماتك وسنفتح Google Play مباشرة لتثبيت التطبيق.',
       nameLabel: 'الاسم', namePlaceholder: 'مثال: محمد', phoneLabel: 'رقم الهاتف / واتساب',
-      phoneHint: 'رقم نقدر نساعدك من خلاله في استعمال التطبيق.', shopLabel: 'نوع النشاط / المحل',
+      shopLabel: 'نوع النشاط / المحل',
       shopPlaceholder: 'اختر نوع المحل', shopGrocery: 'مواد غذائية / سوبرات', shopClothing: 'ملابس وأحذية',
       shopCosmetics: 'مواد تجميل', shopParts: 'قطع غيار', shopRepair: 'محل تصليح', shopOther: 'نشاط آخر',
       submit: 'تثبيت من Google Play', submitting: 'جاري إرسال معلوماتك…',
-      privacyNote: 'نستعمل معلوماتك لمساعدتك في تجربة Store Soft.', privacyLink: 'سياسة الخصوصية', terms: 'شروط الاستخدام',
+      privacyLink: 'سياسة الخصوصية', terms: 'شروط الاستخدام',
       successTitle: 'جاري فتح Google Play…', successText: 'تم حفظ معلوماتك. إذا لم يفتح المتجر، اضغط على الزر أدناه.',
-      openPlay: 'فتح Google Play', needHelp: 'تحتاج مساعدة؟', whatsappCta: 'راسلنا على واتساب ↗',
+      openPlay: 'فتح Google Play', needHelp: 'تحتاج مساعدة؟', whatsappCta: 'راسلنا على واتساب',
       required: 'هذا الحقل مطلوب.', invalidName: 'اكتب اسمًا من حرفين إلى 80 حرفًا.',
-      invalidPhone: 'أدخل رقم هاتف صحيحًا من 8 إلى 15 رقمًا.',
+      invalidPhone: 'أدخل رقم هاتف من 10 أرقام يبدأ بـ 05 أو 06 أو 07.',
       generalError: 'تعذّر إرسال المعلومات. تحقق من الإنترنت وحاول مرة أخرى.'
     },
     fr: {
       pageTitle: 'Store Soft — Gestion de magasin sur Android',
-      brandTagline: 'La gestion simple du magasin', title: 'Votre commerce,<br><span>dans votre poche.</span>',
-      intro: 'Ventes, stock et crédit client dans une seule application. Gérez simplement votre magasin, même sans Internet.',
-      jumpToForm: 'Essayer sur mon téléphone', videoTitle: 'Découvrez l’application en une minute',
+      videoTitle: 'Comment utiliser l’application',
       videoFrameTitle: 'Découvrir Store Soft sur Android', watchOnYoutube: 'Voir sur YouTube ↗',
-      installStep: 'Installez et commencez votre essai', available: 'Disponible sur Google Play',
       basePriceTitle: 'L’application pour un appareil', insteadOf: 'au lieu de',
       basePriceNote: 'Paiement unique. Fonctionne sans Internet.', syncPriceTitle: 'Sync — Synchronisation',
       syncPriceNote: 'Par an et par appareil supplémentaire.', syncPriceHint: 'Facultatif, pour relier les appareils du même magasin.',
-      formTitle: 'Quelques informations pour commencer', formIntro: 'Remplissez le formulaire. Google Play s’ouvrira directement pour installer l’application.',
       nameLabel: 'Nom', namePlaceholder: 'Exemple : Mohamed', phoneLabel: 'Téléphone / WhatsApp',
-      phoneHint: 'Un numéro pour vous aider à utiliser l’application.', shopLabel: 'Type d’activité / magasin',
+      shopLabel: 'Type d’activité / magasin',
       shopPlaceholder: 'Choisissez votre activité', shopGrocery: 'Alimentation / supérette', shopClothing: 'Vêtements et chaussures',
       shopCosmetics: 'Cosmétiques', shopParts: 'Pièces détachées', shopRepair: 'Atelier de réparation', shopOther: 'Autre activité',
       submit: 'Installer depuis Google Play', submitting: 'Envoi de vos informations…',
-      privacyNote: 'Nous utilisons vos informations pour vous aider à essayer Store Soft.', privacyLink: 'Confidentialité', terms: 'Conditions',
+      privacyLink: 'Confidentialité', terms: 'Conditions',
       successTitle: 'Ouverture de Google Play…', successText: 'Vos informations sont enregistrées. Si le magasin ne s’ouvre pas, appuyez ci-dessous.',
-      openPlay: 'Ouvrir Google Play', needHelp: 'Besoin d’aide ?', whatsappCta: 'Écrivez-nous sur WhatsApp ↗',
+      openPlay: 'Ouvrir Google Play', needHelp: 'Besoin d’aide ?', whatsappCta: 'Écrivez-nous sur WhatsApp',
       required: 'Ce champ est obligatoire.', invalidName: 'Saisissez un nom de 2 à 80 caractères.',
-      invalidPhone: 'Saisissez un numéro de téléphone valide de 8 à 15 chiffres.',
+      invalidPhone: 'Saisissez 10 chiffres commençant par 05, 06 ou 07.',
       generalError: 'Envoi impossible. Vérifiez votre connexion et réessayez.'
     }
   };
@@ -109,9 +101,8 @@
     var errors = {};
     if (!values.name) errors.name = copy('required');
     else if (values.name.length < 2 || values.name.length > 80) errors.name = copy('invalidName');
-    var digits = values.phone.replace(/\D/g, '');
     if (!values.phone) errors.phone = copy('required');
-    else if (values.phone.length > 24 || !/^[+\d\s().-]+$/.test(values.phone) || digits.length < 8 || digits.length > 15) errors.phone = copy('invalidPhone');
+    else if (!/^0[567][0-9]{8}$/.test(values.phone)) errors.phone = copy('invalidPhone');
     if (!activities.includes(values.shop_type)) errors.shopType = copy('required');
     Object.keys(errors).forEach(function (id) {
       document.getElementById(id).setAttribute('aria-invalid', 'true');
@@ -180,7 +171,6 @@
   });
   download.addEventListener('click', function () { funnel('click', 'android'); track('DownloadClicked', { platform: 'android' }); });
   document.querySelector('.js-whatsapp').addEventListener('click', function () { track('WhatsAppCTAClick'); });
-  document.querySelector('.install-jump').addEventListener('click', function () { track('TrialCTAClick', { cta_location: 'android_hero' }); });
   document.getElementById('year').textContent = new Date().getFullYear();
   setLanguage('ar');
   track('LandingPageView');

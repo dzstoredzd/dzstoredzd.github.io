@@ -85,7 +85,6 @@ try {
     assert.equal(metaCalls.filter(args => args[0] === 'init' && args[1] === '2176257146284643').length, 1);
     assert.equal(leadCalls().length, 0, 'page view is not a Lead');
     assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://yousoft.site/storesoft/v1/android/');
-    assert.ok(await page.locator('.brand img').evaluate(el => el.complete && el.naturalWidth > 0));
     if (config.lang === 'fr') await page.locator('#languageSwitch').click();
     assert.equal(await page.locator('html').getAttribute('dir'), config.lang === 'ar' ? 'rtl' : 'ltr');
     assert.deepEqual(await page.locator('.android-price__amount strong').allTextContents(), ['7 000 DA', '3 000 DA']);
@@ -94,14 +93,19 @@ try {
     assert.match(await page.locator('.android-prices').innerText(), config.lang === 'ar' ? /سنويًا لكل جهاز إضافي/ : /Par an et par appareil supplémentaire/);
     assert.match(await page.locator('.android-prices').innerText(), config.lang === 'ar' ? /دفع مرة واحدة/ : /Paiement unique/);
     assert.equal(await page.locator('#email, #downloadWindows').count(), 0);
-    assert.equal(await page.locator('iframe').getAttribute('src'), 'https://www.youtube-nocookie.com/embed/ejsVBn3f6Hw?rel=0');
+    assert.equal(await page.locator('iframe').getAttribute('src'), 'https://www.youtube-nocookie.com/embed/80QGPOKsXXg?rel=0');
+    assert.equal(await page.locator('.video-link').getAttribute('href'), 'https://youtu.be/80QGPOKsXXg');
     const video = await page.locator('.video-frame').boundingBox();
     assert.ok(Math.abs(video.width / video.height - 9 / 16) < 0.01);
-    if (config.width < 600) {
-      const form = await page.locator('#install').boundingBox();
-      assert.ok(form.y > video.y + video.height, 'video comes before the form on phones');
-      await page.locator('.install-jump').click();
-    }
+    assert.equal(await page.locator('.android-heading, .install-jump, .step-heading').count(), 0);
+    const form = await page.locator('#install').boundingBox();
+    const explanation = await page.locator('.video-section').boundingBox();
+    const prices = await page.locator('.android-prices').boundingBox();
+    assert.ok(explanation.y >= form.y + form.height, 'explanation comes after the form');
+    assert.ok(prices.y >= explanation.y + explanation.height, 'prices come after the explanation');
+    await page.evaluate(() => scrollTo(0, 0));
+    const name = await page.locator('#name').boundingBox();
+    assert.ok(name.y >= 0 && name.y + name.height < config.height, 'first field visible without scrolling');
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
     for (const selector of ['#name', '#phone', '#shopType', '#submitButton', '#languageSwitch']) {
       const box = await page.locator(selector).boundingBox();
@@ -118,14 +122,22 @@ try {
     assert.equal(leadCalls().length, 0, 'invalid form is not a Lead');
     assert.equal(await page.locator('#name').evaluate(el => el === document.activeElement), true);
     await page.locator('#name').fill('Synthetic Shop');
-    await page.locator('#phone').fill('123');
     await page.locator('#shopType').selectOption('grocery');
-    await page.locator('#submitButton').click();
-    assert.equal(requests.length, 0);
-    await page.locator('#phone').fill('+213 550 12 34 56');
+    for (const invalidPhone of ['123', '0450123456', '0850123456', '5501234567', '055012345', '05501234567', '+213550123456', '0550 12 34 56', '055012345x']) {
+      await page.locator('#phone').fill(invalidPhone);
+      await page.locator('#submitButton').click();
+      assert.equal(requests.length, 0, `invalid phone must not submit: ${invalidPhone}`);
+      assert.equal(leadCalls().length, 0, 'invalid phone is not a Lead');
+      assert.equal(await page.locator('#phone').getAttribute('aria-invalid'), 'true');
+      assert.equal(await page.locator('#phone').evaluate(el => el === document.activeElement), true);
+      assert.match(await page.locator('#phoneError').innerText(), /10.*05.*06.*07/);
+    }
+    const validPhone = config.width === 320 ? '0550123456' : config.lang === 'fr' ? '0660123456' : '0770123456';
+    await page.locator('#phone').fill(validPhone);
     await page.locator('#submitButton').click();
     await page.waitForFunction(() => document.getElementById('submitError').textContent.length > 0);
-    assert.equal(await page.locator('#phone').inputValue(), '+213 550 12 34 56');
+    assert.equal(await page.locator('#phone').inputValue(), validPhone);
+    assert.equal(await page.locator('#phone').getAttribute('aria-invalid'), null);
     assert.equal(await page.locator('#submitButton').isEnabled(), true);
     assert.equal(navigations.length, 0);
     assert.equal(leadCalls().length, 0, 'failed save is not a Lead');
@@ -138,7 +150,8 @@ try {
     await page.locator('#leadForm').dispatchEvent('submit');
     assert.equal(leadCalls().length, 0, 'pending save and repeated clicks are not Leads');
     const events = await page.evaluate(() => window.dataLayer);
-    assert.doesNotMatch(JSON.stringify(events), /Synthetic Shop|550 12 34 56/);
+    assert.doesNotMatch(JSON.stringify(events), /Synthetic Shop/);
+    assert.equal(JSON.stringify(events).includes(validPhone), false);
     const listing = page.waitForURL('https://play.google.com/**');
     release(); await listing;
     await page.getByRole('heading', { name: 'Synthetic Play listing' }).waitFor();
@@ -151,9 +164,11 @@ try {
       assert.equal(leadCalls()[0][2].utm_source, 'facebook');
       assert.equal(leadCalls()[0][2].language, config.lang);
     }
-    assert.doesNotMatch(JSON.stringify(metaCalls), /Synthetic Shop|550 12 34 56|ABC234|synthetic-lead/);
+    assert.doesNotMatch(JSON.stringify(metaCalls), /Synthetic Shop|ABC234|synthetic-lead/);
+    assert.equal(JSON.stringify(metaCalls).includes(validPhone), false);
     assert.equal(requests.length, 2, 'one failed save and one successful retry');
     const values = requests.at(-1);
+    assert.equal(values.phone, validPhone);
     assert.equal(values.form_version, 'phone_shop_select_v4');
     assert.equal(values.requested_platform, 'phone');
     assert.equal(values.source, 'android_v1');
@@ -165,7 +180,8 @@ try {
     assert.match(navigations[1], /id=com\.yousoft\.storesoft/);
     assert.equal(telemetry.filter(row => row.p_event_type === 'LEAD_SUBMITTED').length, 1);
     assert.equal(telemetry.filter(row => row.p_event_type === 'DOWNLOAD_CLICKED').length, 1);
-    assert.doesNotMatch(JSON.stringify(telemetry), /Synthetic Shop|550 12 34 56/);
+    assert.doesNotMatch(JSON.stringify(telemetry), /Synthetic Shop/);
+    assert.equal(JSON.stringify(telemetry).includes(validPhone), false);
     assert.deepEqual(errors, []);
     assert.deepEqual(missingAssets, []);
     await context.close();
