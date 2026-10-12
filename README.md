@@ -14,7 +14,8 @@ browser to preview locally.
 |------|---------|----------|
 | `index.html` | Landing / home page | https://yousoft.site/ |
 | `storesoft/download/index.html` | Store Soft trial/download lead form | https://yousoft.site/storesoft/download/ |
-| `storesoft/android/index.html` | Mobile-first Android video, lead form and automatic Play redirect | https://yousoft.site/storesoft/android/ |
+| `storesoft/v1/android/index.html` | Mobile-first Android v1 video, lead form and automatic Play redirect | https://yousoft.site/storesoft/v1/android/ |
+| `storesoft/android/index.html` | Compatibility redirect preserving query and fragment | https://yousoft.site/storesoft/android/ |
 | `storesoft/try/index.html` | Six-character tracked Google Play redirect | https://yousoft.site/storesoft/try/ |
 | `privacy.html` | Privacy Policy (incl. Google API Limited Use) | https://yousoft.site/privacy.html |
 | `terms.html` | Terms of Service | https://yousoft.site/terms.html |
@@ -25,14 +26,17 @@ Google OAuth brand verification requires (github.io is not accepted).
 
 ## Store Soft lead capture
 
-The Android-only `/storesoft/android/` page shows the supplied YouTube Short
+The Android-only `/storesoft/v1/android/` page shows the supplied YouTube Short
 (`ejsVBn3f6Hw`) before its three-field form on phones. Arabic and French are
 available. Pricing above the form shows 7,000 DA once for the first device instead of
 10,000 DA, plus optional Sync at 3,000 DA per extra device per year instead
 of 5,000 DA, in Arabic and French. These are public page display prices.
 It posts the existing `phone_shop_select_v4` contract with
 `requested_platform: phone` (the API's existing Android preference value);
-the existing download page stays unchanged.
+the existing download page stays unchanged. CRM `source` is always `android_v1`,
+even with `utm_source` in the query. Other campaign fields remain unchanged;
+the full `landing_page` retains all UTM values. The old `/storesoft/android/`
+URL redirects here and preserves its query and fragment.
 After the durable save, it records best-effort submission/download telemetry
 and navigates in the same tab through `/storesoft/try/?t=<public code>` to Play.
 An invalid/missing code falls back to the ordinary Play listing. A saved-state

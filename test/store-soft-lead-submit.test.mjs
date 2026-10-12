@@ -57,16 +57,17 @@ test('phone form rejects missing/invalid contacts and activity before writing', 
   assert.equal(app.inserted.length, 0);
 });
 
-test('Android-only page uses the existing phone preference without a backend change', async () => {
+test('Android v1 stores its CRM source and returns the existing public referral code', async () => {
   const app = endpoint();
   const response = await app.submit({ ...valid(), requested_platform: 'phone',
-    landing_page: 'https://yousoft.site/storesoft/android/?utm_source=facebook', source: 'facebook' });
+    landing_page: 'https://yousoft.site/storesoft/v1/android/?utm_source=facebook', source: 'android_v1' });
   assert.equal(response.status, 200);
   const result = await response.json();
   assert.equal(result.tracking_code, 'ABC234');
   assert.equal(app.inserted[0].requested_platform, 'phone');
-  assert.match(app.inserted[0].landing_page, /\/storesoft\/android\//);
-  assert.equal(app.inserted[0].source, 'facebook');
+  assert.match(app.inserted[0].landing_page, /\/storesoft\/v1\/android\//);
+  assert.match(app.inserted[0].landing_page, /utm_source=facebook/);
+  assert.equal(app.inserted[0].source, 'android_v1');
   assert.equal(result.tracking_token, undefined);
 });
 

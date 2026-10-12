@@ -35,8 +35,9 @@ try {
     const context = await browser.newContext({ viewport: config,
       userAgent: config.width < 900 ? 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 Chrome/130.0.0.0 Mobile Safari/537.36' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36' });
     const page = await context.newPage();
-    const errors = [], requests = [], telemetry = [], navigations = [];
+    const errors = [], requests = [], telemetry = [], navigations = [], missingAssets = [];
     page.on('pageerror', error => errors.push(error.message));
+    page.on('response', response => { if (response.url().startsWith(base) && response.status() >= 400) missingAssets.push(response.url()); });
     let fail = true, release, arrived;
     const pending = new Promise(resolve => { release = resolve; });
     const arrival = new Promise(resolve => { arrived = resolve; });
@@ -58,7 +59,15 @@ try {
       } else if (url.startsWith(base)) await route.continue();
       else await route.fulfill({ contentType: 'text/plain', body: '' });
     });
-    await page.goto(base + '/storesoft/android/?utm_source=facebook&utm_campaign=android-test');
+    const query = '?utm_source=facebook&utm_campaign=android-test';
+    const fragment = config.width === 320 ? '#install' : '';
+    // Existing campaign links must reach v1 with attribution intact.
+    const entry = config.width === 320 ? '/storesoft/android/' : '/storesoft/v1/android/';
+    await page.goto(base + entry + query + fragment);
+    await page.waitForURL(base + '/storesoft/v1/android/' + query + fragment);
+    await page.locator('#leadForm').waitFor();
+    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://yousoft.site/storesoft/v1/android/');
+    assert.ok(await page.locator('.brand img').evaluate(el => el.complete && el.naturalWidth > 0));
     if (config.lang === 'fr') await page.locator('#languageSwitch').click();
     assert.equal(await page.locator('html').getAttribute('dir'), config.lang === 'ar' ? 'rtl' : 'ltr');
     assert.deepEqual(await page.locator('.android-price__amount strong').allTextContents(), ['7 000 DA', '3 000 DA']);
@@ -116,16 +125,18 @@ try {
     const values = requests.at(-1);
     assert.equal(values.form_version, 'phone_shop_select_v4');
     assert.equal(values.requested_platform, 'phone');
-    assert.equal(values.source, 'facebook');
+    assert.equal(values.source, 'android_v1');
     assert.equal(values.campaign, 'android-test');
     assert.equal(values.language, config.lang);
-    assert.match(values.landing_page, /\/storesoft\/android\//);
+    assert.match(values.landing_page, /\/storesoft\/v1\/android\//);
+    assert.match(values.landing_page, /utm_source=facebook/);
     assert.match(navigations[0], /\?t=ABC234$/);
     assert.match(navigations[1], /id=com\.yousoft\.storesoft/);
     assert.equal(telemetry.filter(row => row.p_event_type === 'LEAD_SUBMITTED').length, 1);
     assert.equal(telemetry.filter(row => row.p_event_type === 'DOWNLOAD_CLICKED').length, 1);
     assert.doesNotMatch(JSON.stringify(telemetry), /Synthetic Shop|550 12 34 56/);
     assert.deepEqual(errors, []);
+    assert.deepEqual(missingAssets, []);
     await context.close();
     console.log(`PASS ${config.width}x${config.height} ${config.lang}: mobile layout, validation, retry, single saved lead, automatic tracked Play navigation`);
   }
@@ -135,12 +146,15 @@ try {
     const page = await context.newPage();
     await context.route('**/*', route => {
       const url = route.request().url();
-      if (url.includes('/functions/v1/submit-store-soft-lead')) return route.fulfill({ json: { ok: true, tracking_code: trackingCode } });
+      if (url.includes('/functions/v1/submit-store-soft-lead')) {
+        assert.equal(route.request().postDataJSON().source, 'android_v1');
+        return route.fulfill({ json: { ok: true, tracking_code: trackingCode } });
+      }
       if (url.startsWith('https://play.google.com/')) return route.fulfill({ contentType: 'text/html', body: '<h1>Synthetic Play</h1>' });
       if (url.startsWith(base)) return route.continue();
       return route.fulfill({ status: 200, body: '' });
     });
-    await page.goto(base + '/storesoft/android/');
+    await page.goto(base + '/storesoft/v1/android/');
     await page.locator('#name').fill('Synthetic Shop');
     await page.locator('#phone').fill('0550123456');
     await page.locator('#shopType').selectOption('other');
