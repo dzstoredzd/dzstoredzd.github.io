@@ -27,7 +27,10 @@ Google OAuth brand verification requires (github.io is not accepted).
 
 The Android-only `/storesoft/android/` page shows the supplied YouTube Short
 (`ejsVBn3f6Hw`) before its three-field form on phones. Arabic and French are
-available. It posts the existing `phone_shop_select_v4` contract with
+available. Pricing above the form shows 7,000 DA once for the first device instead of
+10,000 DA, plus optional Sync at 3,000 DA per extra device per year instead
+of 5,000 DA, in Arabic and French. These are public page display prices.
+It posts the existing `phone_shop_select_v4` contract with
 `requested_platform: phone` (the API's existing Android preference value);
 the existing download page stays unchanged.
 After the durable save, it records best-effort submission/download telemetry
