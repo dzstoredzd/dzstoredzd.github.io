@@ -8,51 +8,25 @@ terms of service).
 Plain HTML/CSS/JS — no build step, no dependencies. Open `index.html` in a
 browser to preview locally.
 
-## Central pricing (19 October 2026)
+## Static website pricing (19 October 2026)
 
-`/pricing/` is the canonical Arabic/RTL, French and English pricing page.
-`?lang=ar`, `?lang=fr` and `?lang=en` select its language. The homepage and both
-download pages link here instead of keeping separate prices or offer cards.
-Prices, titles, descriptions, features and billing notes come from the production
-`storesoft_get_public_pricing(p_devices)` RPC. Only published offers are returned.
-The server calculates initial and yearly totals in integer centimes. The browser
-only formats amounts in DA; it never provides a price to an activation endpoint.
+The owner replaced the Supabase pricing setup with static website content.
+Edit pricing/offers.js for Solo/Cloud Sync prices, names, descriptions,
+features and billing notes in Arabic, French and English. Amounts are integer
+centimes. The page calculates the selected device estimate locally and formats
+DA; support confirms the actual charge and Solo credit before activation.
+Publish the website after edits and bump the offers.js version in pricing/index.html
+so existing browsers receive the new file. No app update is needed for these edits.
 
-Admin Billing manages the existing Solo and Cloud Sync offers, all translations
-and publication flags. No additional commercial offers currently exist in the
-configuration. Publication controls require migration `20261019070418` from the
-app repository. Existing prices and legacy RPC signatures are retained.
-The only shipped key is Supabase's public publishable key. There is no login,
-service-role key, payment form, licence bridge or shop data on the page.
+The homepage and both download pages link to /pricing/?lang=ar|fr|en.
+There is no pricing API, Supabase key, login, payment or entitlement bridge on
+this page. Loaded offers and device estimates keep working when offline; the
+page must first be downloaded. A failed page download still uses the app's
+existing error/Retry flow. WhatsApp stays the contact channel.
 
-Prices refresh on opening, device-count changes, returning to the page, returning
-online, every visible minute and the Refresh button. Failed refreshes clear the
-cards; no prices or offer text are cached as a fallback. WhatsApp stays available.
-The page displays quotes only; support confirms price, Solo credit and activation.
-
-Run `node --test test/*.test.mjs` and `node test/pricing.browser.mjs` (set
-`PLAYWRIGHT_PATH` and optionally `PLAYWRIGHT_CHANNEL=msedge`). The browser suite
-uses synthetic API responses and covers all three languages, 320–1440px layouts,
-device totals, content/price changes, publication, missing/invalid responses,
-offline events and retry. It never edits live pricing or submits a lead.
-
-Website content update (12 October 2026): the homepage defaults to
-Arabic/RTL and switches to French/LTR with its header button. `?lang=fr` opens
-French directly; reload preserves that URL choice. Homepage copy lives in
-`home.js`, with Arabic also rendered in HTML for visitors without JavaScript.
-The Android hero button opens `/storesoft/v1/android/`; Windows keeps the
-general download page. Both public trial pages now describe the app's 14-day
-trial. Privacy/deletion text covers CRM contact and linked activity records,
-including requests from people without a Sync account. Policy pages remain in
-English. Form APIs, billing, backend and native app behavior are unchanged.
-
-For a local review, run `node tool/preview.mjs` and open
-`http://127.0.0.1:8765/` (or add `?lang=fr`). This localhost-only server blocks
-form requests, tracking and external embeds through a response CSP; it cannot
-be used to test real lead submission or YouTube playback. No CSP restriction is
-added to the published HTML. Browser QA for the homepage and policy/deletion
-layouts: `node test/store-soft-home.browser.mjs`, with the same Playwright
-environment variables as the download-page browser suite.
+Run node --test test/*.test.mjs and node test/pricing.browser.mjs with
+PLAYWRIGHT_PATH and optionally PLAYWRIGHT_CHANNEL=msedge. Browser checks cover
+AR/FR/EN, 320–1440px, local estimates, offline events and zero external requests.
 
 ## Pages
 

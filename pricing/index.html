@@ -9,7 +9,8 @@
   <link rel="icon" type="image/png" href="/assets/icon.png" />
   <link rel="canonical" href="https://yousoft.site/pricing/" />
   <link rel="stylesheet" href="pricing.css?v=20261019-compat" />
-  <script src="pricing.js?v=20261019" defer></script>
+  <script src="offers.js?v=20261019-static" defer></script>
+  <script src="pricing.js?v=20261019-static" defer></script>
 </head>
 <body>
   <header class="topbar wrap">
@@ -29,7 +30,6 @@
     <section class="price-controls" aria-label="Pricing">
       <label id="devicesLabel" for="devices" data-ui="devices">عدد الأجهزة لحساب المزامنة</label>
       <select id="devices" aria-labelledby="devicesLabel"><option value="2">2</option></select>
-      <button id="refresh" type="button" data-ui="refresh">تحديث الأسعار</button>
     </section>
     <p id="status" role="status" aria-live="polite" data-ui="loading">جارٍ تحميل العروض…</p>
     <div id="offers" class="offers" aria-busy="true"></div>
