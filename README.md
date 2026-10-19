@@ -59,6 +59,7 @@ environment variables as the download-page browser suite.
 | File | Purpose | Live URL |
 |------|---------|----------|
 | `index.html` | Landing / home page | https://yousoft.site/ |
+| `pricing/index.html` | Live published offers in Arabic, French and English | https://yousoft.site/pricing/ |
 | `storesoft/download/index.html` | Store Soft trial/download lead form | https://yousoft.site/storesoft/download/ |
 | `storesoft/v1/android/index.html` | Mobile-first Android v1 video, lead form and automatic Play redirect | https://yousoft.site/storesoft/v1/android/ |
 | `storesoft/android/index.html` | Compatibility redirect preserving query and fragment | https://yousoft.site/storesoft/android/ |
@@ -73,10 +74,9 @@ Google OAuth brand verification requires (github.io is not accepted).
 ## Store Soft lead capture
 
 The Android-only `/storesoft/v1/android/` page shows its three-field form first,
-then the vertical YouTube explanation (`80QGPOKsXXg`), then prices. Arabic and French are
-available. Pricing shows 7,000 DA once for the first device instead of
-10,000 DA, plus optional Sync at 3,000 DA per extra device per year instead
-of 5,000 DA, in Arabic and French. These are public page display prices.
+then the vertical YouTube explanation (`80QGPOKsXXg`), then a link to the live
+Pricing page. Arabic and French are available. All commercial amounts and offer
+details are maintained through Admin Billing, as described above.
 It posts the existing `phone_shop_select_v4` contract with
 `requested_platform: phone` (the API's existing Android preference value);
 the existing download page stays unchanged. CRM `source` is always `android_v1`,
