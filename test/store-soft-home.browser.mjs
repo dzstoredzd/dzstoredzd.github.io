@@ -36,7 +36,7 @@ try {
       assert.match(await page.title(), lang === 'ar' ? /تسيير محلك/ : /Gérez votre magasin/);
       assert.match(await page.locator('meta[name="description"]').getAttribute('content'), lang === 'ar' ? /14 يومًا/ : /14 jours/);
       assert.equal(await page.locator('meta[property="og:title"]').getAttribute('content'), await page.title());
-      assert.match(await page.locator('[data-home-copy="fullTrial"]').innerText(), lang === 'ar' ? /14 يومًا/ : /14 jours/);
+      assert.match(await page.locator('[data-home-copy="tryTitle"]').innerText(), lang === 'ar' ? /14 يومًا/ : /14 jours/);
       assert.doesNotMatch(await page.locator('body').innerText(), /7-day|7 days|7 jours|7 أيام|undefined/);
       assert.equal(await page.locator('#homeAndroid').getAttribute('href'), 'storesoft/v1/android/');
       assert.equal(await page.locator('#homeWindows').getAttribute('href'), 'storesoft/download/');
@@ -82,7 +82,7 @@ try {
   await page.goto(base + '/');
   assert.equal(await page.locator('html').getAttribute('lang'), 'ar');
   assert.match(await page.locator('h1').innerText(), /سيّر محلك/);
-  assert.match(await page.locator('[data-home-copy="trial"]').innerText(), /14 يومًا/);
+  assert.match(await page.locator('[data-home-copy="tryTitle"]').innerText(), /14 يومًا/);
   assert.equal(await page.locator('#homeAndroid').getAttribute('href'), 'storesoft/v1/android/');
   console.log('PASS Arabic fallback without JavaScript');
   await noScript.close();

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Store Soft — الأسعار والعروض</title>
+  <meta name="description" content="الأسعار والعروض الحالية لـ Store Soft. تواصل معنا لاختيار العرض المناسب لمحلك." />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="icon" type="image/png" href="/assets/icon.png" />
+  <link rel="canonical" href="https://yousoft.site/pricing/" />
+  <link rel="stylesheet" href="pricing.css?v=20261019" />
+  <script src="pricing.js?v=20261019" defer></script>
+</head>
+<body>
+  <header class="topbar wrap">
+    <a class="brand" href="/" aria-label="Store Soft"><img src="/assets/icon.png" width="44" height="44" alt="" /><strong>Store Soft</strong></a>
+    <nav aria-label="Language" class="languages">
+      <a href="?lang=ar" lang="ar" data-lang="ar">العربية</a>
+      <a href="?lang=fr" lang="fr" data-lang="fr">FR</a>
+      <a href="?lang=en" lang="en" data-lang="en">EN</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    <section class="intro">
+      <p class="eyebrow" data-ui="eyebrow">Store Soft · العروض الحالية</p>
+      <h1 data-ui="heading">اختر ما يناسب محلك.</h1>
+      <p class="lead" data-ui="intro">أسعار واضحة بالدينار الجزائري. فريقنا يساعدك قبل التفعيل.</p>
+    </section>
+    <section class="price-controls" aria-label="Pricing">
+      <label id="devicesLabel" for="devices" data-ui="devices">عدد الأجهزة لحساب المزامنة</label>
+      <select id="devices" aria-labelledby="devicesLabel"><option value="2">2</option></select>
+      <button id="refresh" type="button" data-ui="refresh">تحديث الأسعار</button>
+    </section>
+    <p id="status" role="status" aria-live="polite" data-ui="loading">جارٍ تحميل العروض…</p>
+    <div id="offers" class="offers" aria-busy="true"></div>
+    <noscript><p class="notice">فعّل JavaScript لعرض الأسعار الحالية. · Activez JavaScript pour voir les tarifs actuels. · Enable JavaScript to see current prices.</p></noscript>
+    <aside class="support">
+      <div><h2 data-ui="supportTitle">نساعدك في الاختيار.</h2><p data-ui="supportBody">تواصل معنا لتأكيد السعر والتفعيل قبل الدفع.</p></div>
+      <a class="button" id="support" href="https://wa.me/213654338649" data-ui="contact">تواصل عبر واتساب</a>
+    </aside>
+    <p class="footnote" data-ui="separate">هذه الصفحة لعرض الأسعار. التفعيل وتجديد الاشتراك يتمان مع فريق Store Soft.</p>
+  </main>
+  <footer class="wrap"><a href="/" data-ui="home">الرئيسية</a><a href="/privacy.html" data-ui="privacy">الخصوصية</a><span>© Store Soft</span></footer>
+</body>
+</html>

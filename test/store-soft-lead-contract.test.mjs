@@ -254,8 +254,8 @@ test('landing page presents the current offer in the requested conversion order'
 
   assert.match(page, /Android<\/b> \+ <b>Windows/);
   assert.match(page, /يعمل بدون إنترنت/);
-  assert.match(page, /7000 DA/);
-  assert.match(page, /3000 DA/);
+  assert.match(page, /data-pricing-link href="\/pricing\/\?lang=ar"/);
+  assert.doesNotMatch(page + script, /7000 DA|3000 DA|7 000 DA|3 000 DA/);
   assert.match(page, /رقم الهاتف \/ واتساب/);
   assert.match(page, /ابدأ تجربتي المجانية/);
   assert.doesNotMatch(page + script, /نسخة مجانية|معلوماتك تُستعمل لمعالجة طلبك/);
@@ -268,8 +268,8 @@ test('landing page presents the current offer in the requested conversion order'
   assert.match(styles, /@media \(max-width: 599px\)[\s\S]*\.mobile-trial-cta \{/);
 
   assert.match(home, /href="storesoft\/download\/" data-home-brand aria-label=/);
-  assert.match(home, /7,000 DA/);
-  assert.match(home, /3,000 DA/);
+  assert.match(home, /data-pricing-link href="\/pricing\/\?lang=ar"/);
+  assert.doesNotMatch(home, /7,000 DA|3,000 DA/);
   assert.doesNotMatch(home, /English on the way|We do not run a server/);
 });
 

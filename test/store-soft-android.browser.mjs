@@ -87,11 +87,10 @@ try {
     assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://yousoft.site/storesoft/v1/android/');
     if (config.lang === 'fr') await page.locator('#languageSwitch').click();
     assert.equal(await page.locator('html').getAttribute('dir'), config.lang === 'ar' ? 'rtl' : 'ltr');
-    assert.deepEqual(await page.locator('.android-price__amount strong').allTextContents(), ['7 000 DA', '3 000 DA']);
-    assert.deepEqual(await page.locator('.android-price__amount s').allTextContents(), ['10 000 DA', '5 000 DA']);
-    assert.match(await page.locator('.android-prices').innerText(), config.lang === 'ar' ? /Sync — المزامنة/ : /Sync — Synchronisation/);
-    assert.match(await page.locator('.android-prices').innerText(), config.lang === 'ar' ? /سنويًا لكل جهاز إضافي/ : /Par an et par appareil supplémentaire/);
-    assert.match(await page.locator('.android-prices').innerText(), config.lang === 'ar' ? /دفع مرة واحدة/ : /Paiement unique/);
+    assert.equal(await page.locator('[data-pricing-link]').getAttribute('href'), '/pricing/?lang=' + config.lang);
+    assert.equal(await page.locator('.android-price__amount strong').count(), 0);
+    assert.equal(await page.locator('.android-price__amount s').count(), 0);
+    assert.match(await page.locator('.android-prices').innerText(), config.lang === 'ar' ? /الأسعار والعروض الحالية/ : /Tarifs et offres actuels/);
     assert.equal(await page.locator('#email, #downloadWindows').count(), 0);
     assert.equal(await page.locator('iframe').getAttribute('src'), 'https://www.youtube-nocookie.com/embed/80QGPOKsXXg?rel=0');
     assert.equal(await page.locator('.video-link').getAttribute('href'), 'https://youtu.be/80QGPOKsXXg');

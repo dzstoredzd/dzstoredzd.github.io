@@ -12,6 +12,7 @@
 
   var copies = {
     ar: {
+      viewPricing: 'عرض الأسعار الحالية',
       brandTagline: 'تسيير بسيط لمحلك',
       eyebrow: 'تجربة مجانية لمدة 14 يومًا',
       title: 'سيّر محلك ببساطة<br><span>حتى بدون إنترنت</span>',
@@ -22,7 +23,7 @@
       whatsappCta: 'اسألنا على واتساب',
       trialShort: '14 يومًا للتجربة',
       languagesShort: 'العربية، الفرنسية، الإنجليزية',
-      priceShort: '7000 دج دفع مرة واحدة',
+      priceShort: 'الأسعار الحالية في صفحة الأسعار',
       heroPreviewLabel: 'صورة حقيقية من Store Soft',
       readyOffline: 'جاهز للبيع بدون إنترنت',
       heroImageAlt: 'شاشة البيع في Store Soft',
@@ -62,7 +63,7 @@
       previousImage: 'الصورة السابقة',
       nextImage: 'الصورة التالية',
       pricingEyebrow: 'سعر واضح',
-      pricingTitle: 'البرنامج الأساسي منفصل عن Sync',
+      pricingTitle: 'الأسعار والعروض الحالية',
       baseTag: 'الترخيص الأساسي',
       baseTitle: 'لجهازك الأساسي',
       basePriceNote: 'دفع مرة واحدة للجهاز الأساسي',
@@ -108,13 +109,13 @@
       faqOfflineQ: 'هل يعمل بدون إنترنت؟',
       faqOfflineA: 'نعم. البيع والمخزون والكريدي والتقارير تعمل بدون إنترنت. تحتاج الشبكة فقط عند استعمال خدمات اختيارية مثل Sync أو النسخ إلى Google Drive.',
       faqSubscriptionQ: 'هل يوجد اشتراك شهري؟',
-      faqSubscriptionA: 'لا يوجد اشتراك شهري للترخيص الأساسي: 7000 دج دفع مرة واحدة للجهاز الأساسي. Sync اختياري وسعره منفصل: 3000 دج سنويًا لكل جهاز إضافي.',
+      faqSubscriptionA: 'الأسعار وفترات الدفع وتفاصيل العروض متاحة في صفحة الأسعار الحالية.',
       faqWindowsQ: 'هل يعمل على Windows؟',
       faqWindowsA: 'نعم، يعمل على أجهزة Windows. يظهر رابط التثبيت مباشرة بعد إرسال معلوماتك.',
       faqAndroidQ: 'هل يعمل على Android؟',
       faqAndroidA: 'نعم، يعمل على هواتف وأجهزة Android اللوحية عبر Google Play.',
       faqAfterTrialQ: 'ماذا يحدث بعد 14 يومًا؟',
-      faqAfterTrialA: 'تنتهي التجربة المجانية. يمكنك تفعيل الترخيص الأساسي للجهاز مقابل 7000 دج مرة واحدة ومواصلة استعمال بيانات محلك الموجودة على الجهاز.',
+      faqAfterTrialA: 'تنتهي التجربة المجانية. تواصل معنا للتفعيل واطّلع على العروض الحالية في صفحة الأسعار.',
       privacyLink: 'سياسة الخصوصية',
       terms: 'شروط الاستخدام',
       required: 'هذا الحقل مطلوب.',
@@ -123,6 +124,7 @@
       generalError: 'تعذّر إرسال المعلومات. تحقق من الإنترنت وحاول مرة أخرى.'
     },
     fr: {
+      viewPricing: 'Voir les tarifs actuels',
       brandTagline: 'La gestion simple du magasin',
       eyebrow: 'Essai gratuit de 14 jours',
       title: 'Gérez simplement votre commerce<br><span>même sans Internet</span>',
@@ -133,7 +135,7 @@
       whatsappCta: 'Nous écrire sur WhatsApp',
       trialShort: '14 jours d’essai',
       languagesShort: 'Arabe, français et anglais',
-      priceShort: '7 000 DA en un seul paiement',
+      priceShort: 'Tarifs actuels sur la page Tarifs',
       heroPreviewLabel: 'Capture réelle de Store Soft',
       readyOffline: 'Prêt à vendre sans Internet',
       heroImageAlt: 'Écran de vente de Store Soft',
@@ -173,7 +175,7 @@
       previousImage: 'Image précédente',
       nextImage: 'Image suivante',
       pricingEyebrow: 'Prix clair',
-      pricingTitle: 'La licence de base est séparée de Sync',
+      pricingTitle: 'Tarifs et offres actuels',
       baseTag: 'Licence de base',
       baseTitle: 'Pour votre appareil principal',
       basePriceNote: 'paiement unique pour l’appareil principal',
@@ -219,13 +221,13 @@
       faqOfflineQ: 'L’application fonctionne-t-elle sans Internet ?',
       faqOfflineA: 'Oui. Les ventes, le stock, le crédit et les rapports fonctionnent sans Internet. Le réseau sert uniquement aux services facultatifs comme Sync ou la sauvegarde Google Drive.',
       faqSubscriptionQ: 'Y a-t-il un abonnement mensuel ?',
-      faqSubscriptionA: 'Non pour la licence de base : 7 000 DA en un seul paiement pour l’appareil principal. Sync est facultatif et séparé : 3 000 DA par an et par appareil supplémentaire.',
+      faqSubscriptionA: 'Les prix, périodes de facturation et offres sont disponibles sur la page Tarifs.',
       faqWindowsQ: 'L’application fonctionne-t-elle sur Windows ?',
       faqWindowsA: 'Oui. Le lien d’installation Windows apparaît dès que vos informations sont envoyées.',
       faqAndroidQ: 'L’application fonctionne-t-elle sur Android ?',
       faqAndroidA: 'Oui, sur les téléphones et tablettes Android via Google Play.',
       faqAfterTrialQ: 'Que se passe-t-il après 14 jours ?',
-      faqAfterTrialA: 'L’essai gratuit se termine. Vous pouvez activer la licence de base pour 7 000 DA en un seul paiement et continuer avec les données déjà présentes sur l’appareil.',
+      faqAfterTrialA: 'L’essai gratuit se termine. Contactez-nous pour l’activation et consultez les offres sur la page Tarifs.',
       privacyLink: 'Confidentialité',
       terms: 'Conditions',
       required: 'Ce champ est obligatoire.',
@@ -383,6 +385,7 @@
   function setLanguage(language) {
     currentLanguage = language;
     var isArabic = language === 'ar';
+    document.querySelectorAll("[data-pricing-link]").forEach(function (link) { link.href = "/pricing/?lang=" + language; });
     document.documentElement.lang = language;
     document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
     languageSwitch.textContent = isArabic ? 'FR' : 'ع';

@@ -9,6 +9,7 @@
   var formStarted = false;
   var copies = {
     ar: {
+      pricingTitle: 'الأسعار والعروض الحالية', viewPricing: 'عرض الأسعار الحالية',
       pageTitle: 'Store Soft — تطبيق تسيير المحلات على Android',
       videoTitle: 'شرح مبسّط للتطبيق',
       videoFrameTitle: 'شاهد Store Soft على Android', watchOnYoutube: 'شاهد على YouTube ↗',
@@ -28,6 +29,7 @@
       generalError: 'تعذّر إرسال المعلومات. تحقق من الإنترنت وحاول مرة أخرى.'
     },
     fr: {
+      pricingTitle: 'Tarifs et offres actuels', viewPricing: 'Voir les tarifs actuels',
       pageTitle: 'Store Soft — Gestion de magasin sur Android',
       videoTitle: 'Comment utiliser l’application',
       videoFrameTitle: 'Découvrir Store Soft sur Android', watchOnYoutube: 'Voir sur YouTube ↗',
@@ -85,6 +87,7 @@
   }
   function setLanguage(next) {
     language = next;
+    document.querySelectorAll("[data-pricing-link]").forEach(function (link) { link.href = "/pricing/?lang=" + next; });
     document.documentElement.lang = next;
     document.documentElement.dir = next === 'ar' ? 'rtl' : 'ltr';
     document.title = copy('pageTitle');

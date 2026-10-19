@@ -3,6 +3,7 @@
   'use strict';
   var copies = {
   "ar": {
+    "viewPricing": "عرض الأسعار الحالية",
     "brandTag": "تسيير بسيط لمحلك",
     "features": "الميزات",
     "backup": "النسخ الاحتياطي",
@@ -65,8 +66,8 @@
     "privateFolder": "مجلد خاص بالتطبيق",
     "threeBackups": "3 نسخ محفوظة",
     "pricingEyebrow": "أسعار واضحة",
-    "payOnce": "ادفع مرة واحدة لجهازك.",
-    "pricingIntro": "الترخيص الأساسي بـ 7,000 دج مرة واحدة لجهاز واحد. المزامنة للأجهزة الإضافية اختيارية ولها سعر منفصل.",
+    "payOnce": "اختر ما يناسب محلك.",
+    "pricingIntro": "اطّلع على العروض والأسعار الحالية في صفحة الأسعار.",
     "trial": "تجربة مجانية لمدة 14 يومًا",
     "tryBeforePay": "جرّبه قبل الدفع",
     "fullTrial": "جرّب التطبيق لمدة 14 يومًا",
@@ -104,7 +105,7 @@
     "googleQ": "إلى ماذا يصل حساب Google؟",
     "googleA": "تسجيل الدخول بحساب Google للتطبيق منفصل عن ربط Google Drive للنسخ الاحتياطي. عند ربط النسخ، يصل التطبيق فقط إلى مجلده الخاص ولا يصل إلى ملفاتك الأخرى.",
     "costQ": "ما هو السعر؟",
-    "costA": "التجربة مجانية لمدة 14 يومًا. الترخيص الأساسي بـ 7,000 دج مرة واحدة للجهاز الأساسي. المزامنة اختيارية بـ 3,000 دج سنويًا لكل جهاز إضافي.",
+    "costA": "الأسعار وتفاصيل العروض متاحة في صفحة الأسعار الحالية.",
     "languagesQ": "ما هي اللغات المتاحة؟",
     "languagesA": "العربية، الفرنسية والإنجليزية. يمكنك تغيير اللغة من الإعدادات.",
     "supportQ": "كيف أحصل على المساعدة؟",
@@ -129,6 +130,7 @@
     "brandLabel": "Store Soft — ابدأ التجربة"
   },
   "fr": {
+    "viewPricing": "Voir les tarifs actuels",
     "brandTag": "Gestion simple de magasin",
     "features": "Fonctionnalités",
     "backup": "Sauvegarde",
@@ -191,8 +193,8 @@
     "privateFolder": "Dossier privé de l’application",
     "threeBackups": "3 sauvegardes conservées",
     "pricingEyebrow": "Des tarifs clairs",
-    "payOnce": "Payez une seule fois pour votre appareil.",
-    "pricingIntro": "La licence de base coûte 7 000 DA, une seule fois pour un appareil. Sync est facultatif et facturé séparément pour les appareils supplémentaires.",
+    "payOnce": "Choisissez ce qui convient à votre magasin.",
+    "pricingIntro": "Consultez les offres et tarifs actuels sur la page Tarifs.",
     "trial": "Essai gratuit de 14 jours",
     "tryBeforePay": "Essayez avant de payer",
     "fullTrial": "Essayez l’application pendant 14 jours",
@@ -230,7 +232,7 @@
     "googleQ": "À quoi sert la connexion Google ?",
     "googleA": "La connexion Google au compte Store Soft est séparée de la connexion Drive pour les sauvegardes. Pour les sauvegardes, l’application accède uniquement à son dossier privé, pas à vos autres fichiers.",
     "costQ": "Quel est le prix ?",
-    "costA": "L’essai de 14 jours est gratuit. La licence de base coûte 7 000 DA une seule fois pour l’appareil principal. Sync est facultatif, à 3 000 DA par an et par appareil supplémentaire.",
+    "costA": "Les tarifs et les offres sont disponibles sur la page Tarifs.",
     "languagesQ": "Quelles langues sont disponibles ?",
     "languagesA": "Arabe, français et anglais. Vous pouvez changer de langue dans les paramètres.",
     "supportQ": "Comment obtenir de l’aide ?",
@@ -279,6 +281,7 @@
     switcher.lang = next === 'ar' ? 'fr' : 'ar';
     switcher.dir = next === 'ar' ? 'ltr' : 'rtl';
     switcher.setAttribute('aria-label', next === 'ar' ? 'Afficher en français' : 'عرض الصفحة بالعربية');
+    document.querySelectorAll("[data-pricing-link]").forEach(function (link) { link.href = "/pricing/?lang=" + next; });
     menuLabel();
   }
   switcher.addEventListener('click', function () {
