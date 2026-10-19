@@ -28,6 +28,24 @@ Run node --test test/*.test.mjs and node test/pricing.browser.mjs with
 PLAYWRIGHT_PATH and optionally PLAYWRIGHT_CHANNEL=msedge. Browser checks cover
 AR/FR/EN, 320–1440px, local estimates, offline events and zero external requests.
 
+Website content update (12 October 2026): the homepage defaults to
+Arabic/RTL and switches to French/LTR with its header button. `?lang=fr` opens
+French directly; reload preserves that URL choice. Homepage copy lives in
+`home.js`, with Arabic also rendered in HTML for visitors without JavaScript.
+The Android hero button opens `/storesoft/v1/android/`; Windows keeps the
+general download page. Both public trial pages now describe the app's 14-day
+trial. Privacy/deletion text covers CRM contact and linked activity records,
+including requests from people without a Sync account. Policy pages remain in
+English. Form APIs, billing, backend and native app behavior are unchanged.
+
+For a local review, run `node tool/preview.mjs` and open
+`http://127.0.0.1:8765/` (or add `?lang=fr`). This localhost-only server blocks
+form requests, tracking and external embeds through a response CSP; it cannot
+be used to test real lead submission or YouTube playback. No CSP restriction is
+added to the published HTML. Browser QA for the homepage and policy/deletion
+layouts: `node test/store-soft-home.browser.mjs`, with the same Playwright
+environment variables as the download-page browser suite.
+
 ## Pages
 
 | File | Purpose | Live URL |
