@@ -11,10 +11,22 @@ browser to preview locally.
 ## Static website pricing (19 October 2026)
 
 The owner replaced the Supabase pricing setup with static website content.
-Edit pricing/offers.js for Solo/Cloud Sync prices, names, descriptions,
-features and billing notes in Arabic, French and English. Amounts are integer
-centimes. The page calculates the selected device estimate locally and formats
-DA; support confirms the actual charge and Solo credit before activation.
+Edit pricing/offers.js for prices, names, descriptions, features and billing
+notes in Arabic, French and English. Amounts are integer centimes. Until
+31 October 2026 the page shows two cards: the old lifetime offer (billing
+"lifetime": 7,000 DA once for the first device + 3,000 DA/year per extra
+device, `available_until: "2026-10-31"`) and the new yearly plan (billing
+"yearly": 6,900 DA/year for the first device + 3,000 DA/year per extra device,
+from 1 November 2026). From 1 November (Algeria time) the lifetime card hides
+itself, so no publish is needed that day. The
+page calculates the totals for 1–100 devices locally and formats DA;
+support confirms the actual charge before activation. The homepage hero says
+"yearly subscription" and the Apps Script welcome email shows the same prices
+(redeploy Code.gs after editing it).
+The lifetime card shows the days left (today and 31 October count, Algeria
+time), the yearly card shows "less than N DA a day", a "try 14 days free"
+button opens the Google Play listing (referrer `utm_source=pricing`), and one line says
+payment is by CCP or BaridiMob.
 Publish the website after edits and bump the offers.js version in pricing/index.html
 so existing browsers receive the new file. No app update is needed for these edits.
 
@@ -27,6 +39,12 @@ existing error/Retry flow. WhatsApp stays the contact channel.
 Run node --test test/*.test.mjs and node test/pricing.browser.mjs with
 PLAYWRIGHT_PATH and optionally PLAYWRIGHT_CHANNEL=msedge. Browser checks cover
 AR/FR/EN, 320–1440px, local estimates, offline events and zero external requests.
+
+## Font
+
+Every Store Soft page uses the app font, IBM Plex Sans Arabic, self-hosted in
+`assets/fonts/` (woff2 made from the app's TTF files, SIL OFL licence included).
+Pages link `/assets/fonts/plex.css`; there is no Google Fonts request.
 
 Website content update (12 October 2026): the homepage defaults to
 Arabic/RTL and switches to French/LTR with its header button. `?lang=fr` opens

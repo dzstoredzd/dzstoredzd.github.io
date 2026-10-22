@@ -1,91 +1,102 @@
 // Website-owned commercial content. Amounts are integer centimes; edit and publish this file.
+// available_until (last day, Algeria time) hides an offer automatically after that day.
 window.storeSoftOffers = [
   {
-    "code": "solo",
+    "code": "lifetime",
     "title": {
-      "ar": "Solo · جهاز واحد",
-      "en": "Solo · one device",
-      "fr": "Solo · un appareil"
+      "ar": "مدى الحياة · آخر الأيام",
+      "en": "Lifetime · last days",
+      "fr": "À vie · derniers jours"
     },
-    "billing": "once",
+    "billing": "lifetime",
+    "available_until": "2026-10-31",
     "features": {
       "ar": [
         "البيع حتى بدون إنترنت",
         "المنتجات والمخزون والباركود",
         "كريدي الزبائن والدفعات",
         "تقارير المبيعات والأرباح",
-        "النسخ الاحتياطية"
+        "النسخ الاحتياطية",
+        "Cloud Sync للأجهزة الإضافية"
       ],
       "en": [
         "Sell even offline",
         "Products, stock and barcodes",
         "Customer credit and payments",
         "Sales and profit reports",
-        "Backups"
+        "Backups",
+        "Cloud Sync for extra devices"
       ],
       "fr": [
         "Vente même hors ligne",
         "Produits, stock et codes-barres",
         "Crédit clients et paiements",
         "Rapports de ventes et bénéfices",
-        "Sauvegardes"
+        "Sauvegardes",
+        "Cloud Sync pour les appareils supplémentaires"
       ]
     },
     "description": {
-      "ar": "البيع والمنتجات والمخزون والكريدي والتقارير في جهاز واحد. يعمل بدون إنترنت بعد التفعيل.",
-      "en": "Sales, products, stock, customer credit and reports on one device. Works offline after activation.",
-      "fr": "Vente, produits, stock, crédit clients et rapports sur un appareil. Fonctionne hors ligne après activation."
+      "ar": "ادفع مرة واحدة للجهاز الأول ويبقى مفعّلًا دائمًا.",
+      "en": "Pay once for the first device and it stays activated for good.",
+      "fr": "Payez une seule fois pour le premier appareil, activé pour toujours."
     },
     "billing_note": {
-      "ar": "دفع مرة واحدة. تفعيل دائم لجهاز واحد.",
-      "en": "One payment. Permanent activation for one device.",
-      "fr": "Un seul paiement. Activation permanente pour un appareil."
+      "ar": "عرض محدود حتى 31 أكتوبر 2026.",
+      "en": "Limited offer until 31 October 2026.",
+      "fr": "Offre limitée jusqu’au 31 octobre 2026."
     },
-    "activation_centimes": 700000,
-    "additional_device_year_centimes": null
+    "first_device_once_centimes": 700000,
+    "additional_device_year_centimes": 300000
   },
   {
-    "code": "sync",
+    "code": "yearly",
     "title": {
-      "ar": "Cloud Sync · جهازان أو أكثر",
-      "en": "Cloud Sync · two or more devices",
-      "fr": "Cloud Sync · deux appareils ou plus"
+      "ar": "Store Soft · اشتراك سنوي",
+      "en": "Store Soft · yearly subscription",
+      "fr": "Store Soft · abonnement annuel"
     },
-    "billing": "activation_and_yearly",
+    "billing": "yearly",
     "features": {
       "ar": [
-        "كل ميزات Solo",
-        "نفس بيانات المحل على أجهزتك",
-        "البيع محليًا وتبادل التغييرات عند رجوع الإنترنت",
-        "كريدي ومخزون مشترك",
+        "البيع حتى بدون إنترنت",
+        "المنتجات والمخزون والباركود",
+        "كريدي الزبائن والدفعات",
+        "تقارير المبيعات والأرباح",
+        "النسخ الاحتياطية",
+        "نفس بيانات المحل على كل أجهزتك عبر Cloud Sync",
         "حسابات البائعين والصلاحيات"
       ],
       "en": [
-        "All Solo features",
-        "The same shop data on your devices",
-        "Sell locally; exchange changes when internet returns",
-        "Shared credit and stock",
+        "Sell even offline",
+        "Products, stock and barcodes",
+        "Customer credit and payments",
+        "Sales and profit reports",
+        "Backups",
+        "The same shop data on all your devices (Cloud Sync)",
         "Staff access and permissions"
       ],
       "fr": [
-        "Toutes les fonctions Solo",
-        "Les mêmes données sur vos appareils",
-        "Vente locale, échanges au retour d’internet",
-        "Crédit et stock partagés",
+        "Vente même hors ligne",
+        "Produits, stock et codes-barres",
+        "Crédit clients et paiements",
+        "Rapports de ventes et bénéfices",
+        "Sauvegardes",
+        "Les mêmes données sur tous vos appareils (Cloud Sync)",
         "Accès et permissions du personnel"
       ]
     },
     "description": {
-      "ar": "بيانات المحل مشتركة بين جهازين أو أكثر. التغييرات المحلية تتبادل كي يرجع الإنترنت. الدعم والتفعيل عبر واتساب.",
-      "en": "Shared shop data across two devices or more. Local changes exchange when internet returns. Support and activation through WhatsApp.",
-      "fr": "Données du magasin partagées entre deux appareils ou plus. Les changements locaux s’échangent au retour d’internet. Support et activation par WhatsApp."
+      "ar": "كل ميزات Store Soft في اشتراك واحد: البيع والمخزون والكريدي والتقارير، مع مزامنة أجهزتك. يعمل بدون إنترنت.",
+      "en": "Every Store Soft feature in one subscription: sales, stock, customer credit and reports, with your devices in sync. Works offline.",
+      "fr": "Toutes les fonctions Store Soft dans un seul abonnement : vente, stock, crédit clients et rapports, avec vos appareils synchronisés. Fonctionne hors ligne."
     },
     "billing_note": {
-      "ar": "تفعيل الجهاز الأول مرة واحدة، واشتراك سنوي لكل جهاز إضافي. الدعم يؤكد خصم تفعيل Solo السابق قبل الدفع.",
-      "en": "First-device activation once, plus a yearly fee per additional device. Support confirms existing Solo activation credit before payment.",
-      "fr": "Activation du premier appareil une seule fois, puis abonnement annuel par appareil supplémentaire. Le support confirme le crédit Solo avant paiement."
+      "ar": "اشتراك سنوي ابتداءً من 1 نوفمبر 2026. الزبائن الذين دفعوا من قبل يحتفظون بتفعيلهم الحالي.",
+      "en": "Yearly subscription from 1 November 2026. Customers who already paid keep their current activation.",
+      "fr": "Abonnement annuel à partir du 1er novembre 2026. Les clients ayant déjà payé gardent leur activation actuelle."
     },
-    "activation_centimes": 700000,
+    "first_device_year_centimes": 690000,
     "additional_device_year_centimes": 300000
   }
 ];

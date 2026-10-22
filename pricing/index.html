@@ -8,9 +8,10 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <link rel="icon" type="image/png" href="/assets/icon.png" />
   <link rel="canonical" href="https://yousoft.site/pricing/" />
-  <link rel="stylesheet" href="pricing.css?v=20261019-compat" />
-  <script src="offers.js?v=20261019-static" defer></script>
-  <script src="pricing.js?v=20261019-static" defer></script>
+  <link rel="stylesheet" href="/assets/fonts/plex.css?v=20261101" />
+  <link rel="stylesheet" href="pricing.css?v=20261101-yearly" />
+  <script src="offers.js?v=20261101-yearly" defer></script>
+  <script src="pricing.js?v=20261101-yearly" defer></script>
 </head>
 <body>
   <header class="topbar wrap">
@@ -26,12 +27,14 @@
       <p class="eyebrow" data-ui="eyebrow">Store Soft · العروض الحالية</p>
       <h1 data-ui="heading">اختر ما يناسب محلك.</h1>
       <p class="lead" data-ui="intro">أسعار واضحة بالدينار الجزائري. فريقنا يساعدك قبل التفعيل.</p>
+      <a class="button secondary" id="trial" href="https://play.google.com/store/apps/details?id=com.yousoft.storesoft&amp;referrer=utm_source%3Dpricing" data-ui="trial">جرّب 14 يومًا مجانًا</a>
     </section>
     <section class="price-controls" aria-label="Pricing">
-      <label id="devicesLabel" for="devices" data-ui="devices">عدد الأجهزة لحساب المزامنة</label>
-      <select id="devices" aria-labelledby="devicesLabel"><option value="2">2</option></select>
+      <label id="devicesLabel" for="devices" data-ui="devices">عدد الأجهزة</label>
+      <select id="devices" aria-labelledby="devicesLabel"><option value="1">1</option></select>
     </section>
     <p id="status" role="status" aria-live="polite" data-ui="loading">جارٍ تحميل العروض…</p>
+    <p class="payment" data-ui="payment">الدفع عبر CCP أو BaridiMob</p>
     <div id="offers" class="offers" aria-busy="true"></div>
     <noscript><p class="notice">فعّل JavaScript لعرض الأسعار الحالية. · Activez JavaScript pour voir les tarifs actuels. · Enable JavaScript to see current prices.</p></noscript>
     <aside class="support">

@@ -1,4 +1,4 @@
-:root { color-scheme: light; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #192442; background: #f6f8fd; --blue: #2563eb; --purple: #713de3; }
+:root { color-scheme: light; font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif; color: #192442; background: #f6f8fd; --blue: #2563eb; --purple: #713de3; }
 * { box-sizing: border-box; }
 body { margin: 0; line-height: 1.7; }
 a { color: #315aca; text-decoration: none; }
@@ -24,7 +24,13 @@ h1 { font-size: 32px; font-size: clamp(32px, 5vw, 54px); line-height: 1.3; margi
 #status.error { color: #9f2939; background: #fff0f1; padding: 16px; border-radius: 14px; }
 .offers { display: flex; align-items: stretch; gap: 24px; flex-wrap: wrap; }
 .offer { min-width: 0; flex: 1 1 350px; border: 1px solid #dce3f3; border-radius: 24px; background: #fff; padding: 32px; display: flex; flex-direction: column; box-shadow: 0 12px 40px #283f7710; overflow-wrap: break-word; overflow-wrap: anywhere; }
-.offer[data-code="sync"] { border-color: #9272e9; border-top: 5px solid #7543e6; padding-top: 28px; }
+.offer[data-code="lifetime"] { border-color: #9272e9; border-top: 5px solid #7543e6; padding-top: 28px; }
+.badge { align-self: flex-start; margin: 0 0 12px; padding: 4px 12px; border-radius: 999px; background: #fff1e6; color: #a1460a; font-size: 14px; font-weight: 700; }
+.per-day { margin: 4px 0 0; color: #1f7a4d; font-weight: 600; }
+.payment { text-align: center; color: #3b4766; font-weight: 600; margin: -12px 0 24px; }
+.intro .button { margin-top: 8px; }
+.button.secondary { background: #fff; color: #4b2db4; border: 2px solid #7543e6; }
+.button.secondary:hover { background: #f3efff; filter: none; }
 .offer h2 { margin: 0 0 12px; font-size: 24px; line-height: 1.4; }
 .description { color: #59647e; margin: 0 0 20px; }
 .amount { font-size: 30px; font-size: clamp(30px, 4vw, 42px); color: #253e83; font-weight: 800; line-height: 1.25; margin: 12px 0 4px; font-variant-numeric: tabular-nums; }
@@ -44,7 +50,7 @@ h1 { font-size: 32px; font-size: clamp(32px, 5vw, 54px); line-height: 1.3; margi
 .footnote { color: #59647e; font-size: 14px; text-align: center; }
 footer { display: flex; justify-content: center; flex-wrap: wrap; align-items: center; gap: 24px; padding: 40px 0; color: #59647e; font-size: 14px; }
 footer a { display: inline-flex; align-items: center; }
-@media (max-width: 599px) { .wrap { width: calc(100% - 32px); } .topbar { gap: 8px; flex-wrap: wrap; padding: 16px 0; } .brand { font-size: 18px; gap: 8px; } .languages a { padding: 10px; } .intro { margin-top: 32px; } .lead { font-size: 17px; } .offer { padding: 24px; flex-basis: 100%; } .offer[data-code="sync"] { padding-top: 20px; } .price-controls label { flex-basis: 100%; text-align: center; } .support { flex-direction: column; align-items: stretch; padding: 24px; } }
+@media (max-width: 599px) { .wrap { width: calc(100% - 32px); } .topbar { gap: 8px; flex-wrap: wrap; padding: 16px 0; } .brand { font-size: 18px; gap: 8px; } .languages a { padding: 10px; } .intro { margin-top: 32px; } .lead { font-size: 17px; } .offer { padding: 24px; flex-basis: 100%; } .offer[data-code="lifetime"] { padding-top: 20px; } .price-controls label { flex-basis: 100%; text-align: center; } .support { flex-direction: column; align-items: stretch; padding: 24px; } }
 /* Android's original WebView lacks flex gap and logical spacing. */
 @supports not (gap: 1px) {
   .brand img { margin: 0 6px; }
