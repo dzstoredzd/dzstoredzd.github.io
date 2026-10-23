@@ -11,21 +11,22 @@ browser to preview locally.
 ## Static website pricing (19 October 2026)
 
 The owner replaced the Supabase pricing setup with static website content.
-Edit pricing/offers.js for prices, names, descriptions, features and billing
-notes in Arabic, French and English. Amounts are integer centimes. Until
-31 October 2026 the page shows two cards: the old lifetime offer (billing
-"lifetime": 7,000 DA once for the first device + 3,000 DA/year per extra
-device, `available_until: "2026-10-31"`) and the new yearly plan (billing
-"yearly": 6,900 DA/year for the first device + 3,000 DA/year per extra device,
-from 1 November 2026). From 1 November (Algeria time) the lifetime card hides
-itself, so no publish is needed that day. The
-page calculates the totals for 1–100 devices locally and formats DA;
-support confirms the actual charge before activation. The homepage hero says
-"yearly subscription" and the Apps Script welcome email shows the same prices
-(redeploy Code.gs after editing it).
-The lifetime card shows the days left (today and 31 October count, Algeria
-time), the yearly card shows "less than N DA a day", and one line says
-payment is by CCP or BaridiMob.
+Edit pricing/offers.js for prices, names, features and the small note in
+Arabic, French and English. Amounts are integer centimes. The page (simplified
+23 October 2026) shows one clear card for the yearly plan (billing "yearly":
+6,900 DA/year for the first device + 3,000 DA/year per extra device): big
+total for the chosen device count, "less than N DA a day", a − / + device
+count (1–100), "what you get" list, one WhatsApp button whose message carries
+the device count and total, the CCP/BaridiMob line and the "already paid
+customers keep their activation" note. Until 31 October 2026 the old lifetime
+offer (billing "lifetime": 7,000 DA once for the first device,
+`available_until: "2026-10-31"`) shows as a small orange strip above the card
+with the days left (today and 31 October count, Algeria time) and its own
+WhatsApp link; from 1 November it hides itself, so no publish is needed that
+day. The "we help you choose" WhatsApp box shows only when prices cannot be
+shown. Support confirms the actual charge before activation. The homepage
+hero says "yearly subscription" and the Apps Script welcome email shows the
+same prices (redeploy Code.gs after editing it).
 Publish the website after edits and bump the offers.js version in pricing/index.html
 so existing browsers receive the new file. No app update is needed for these edits.
 

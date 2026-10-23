@@ -9,9 +9,9 @@
   <link rel="icon" type="image/png" href="/assets/icon.png" />
   <link rel="canonical" href="https://yousoft.site/pricing/" />
   <link rel="stylesheet" href="/assets/fonts/plex.css?v=20261101" />
-  <link rel="stylesheet" href="pricing.css?v=20261023-nointro" />
-  <script src="offers.js?v=20261101-yearly" defer></script>
-  <script src="pricing.js?v=20261023-nointro" defer></script>
+  <link rel="stylesheet" href="pricing.css?v=20261023-simple" />
+  <script src="offers.js?v=20261023-simple" defer></script>
+  <script src="pricing.js?v=20261023-simple" defer></script>
 </head>
 <body>
   <header class="topbar wrap">
@@ -23,19 +23,14 @@
     </nav>
   </header>
   <main class="wrap">
-    <section class="price-controls" aria-label="Pricing">
-      <label id="devicesLabel" for="devices" data-ui="devices">عدد الأجهزة</label>
-      <select id="devices" aria-labelledby="devicesLabel"><option value="1">1</option></select>
-    </section>
     <p id="status" role="status" aria-live="polite" data-ui="loading">جارٍ تحميل العروض…</p>
-    <p class="payment" data-ui="payment">الدفع عبر CCP أو BaridiMob</p>
+    <div id="last" class="last" hidden></div>
     <div id="offers" class="offers" aria-busy="true"></div>
     <noscript><p class="notice">فعّل JavaScript لعرض الأسعار الحالية. · Activez JavaScript pour voir les tarifs actuels. · Enable JavaScript to see current prices.</p></noscript>
-    <aside class="support">
+    <aside class="support" id="help">
       <div><h2 data-ui="supportTitle">نساعدك في الاختيار.</h2><p data-ui="supportBody">تواصل معنا لتأكيد السعر والتفعيل قبل الدفع.</p></div>
       <a class="button" id="support" href="https://wa.me/213654338649" data-ui="contact">تواصل عبر واتساب</a>
     </aside>
-    <p class="footnote" data-ui="separate">هذه الصفحة لعرض الأسعار. التفعيل وتجديد الاشتراك يتمان مع فريق Store Soft.</p>
   </main>
   <footer class="wrap"><a href="/" data-ui="home">الرئيسية</a><a href="/privacy.html" data-ui="privacy">الخصوصية</a><span>© Store Soft</span></footer>
 </body>

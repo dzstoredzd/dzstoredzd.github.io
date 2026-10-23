@@ -12,20 +12,20 @@ test('website owns complete localized offers and integer-centime prices without 
   const [lifetime,yearly]=offers;
   for(const offer of offers){
     assert.equal(offer.additional_device_year_centimes,300000);
-    for(const lang of ['ar','fr','en']) for(const field of ['title','description','billing_note','features']) assert.ok(offer[field][lang].length);
+    for(const lang of ['ar','fr','en']) assert.ok(offer.title[lang].length);
   }
+  // The lifetime strip shows only its title, price and days left.
   assert.equal(lifetime.billing,'lifetime');
   assert.equal(lifetime.first_device_once_centimes,700000);
   assert.equal(lifetime.available_until,'2026-10-31');
-  assert.match(lifetime.billing_note.ar,/31 أكتوبر 2026/);
-  assert.match(lifetime.billing_note.fr,/31 octobre 2026/);
-  assert.match(lifetime.billing_note.en,/31 October 2026/);
   assert.equal(yearly.billing,'yearly');
   assert.equal(yearly.first_device_year_centimes,690000);
   assert.equal(yearly.available_until,undefined);
-  assert.match(yearly.billing_note.ar,/1 نوفمبر 2026/);
-  assert.match(yearly.billing_note.fr,/1er novembre 2026/);
-  assert.match(yearly.billing_note.en,/1 November 2026/);
+  for(const lang of ['ar','fr','en']){
+    assert.equal(yearly.features[lang].length,7);
+    assert.ok(yearly.billing_note[lang].length);
+  }
+  assert.match(yearly.billing_note.ar,/يحتفظون بتفعيلهم الحالي/);
   assert.match(script,/today <= offer\.available_until/);
 });
 test('home page and welcome email show the yearly price, not a one-time payment', async()=>{

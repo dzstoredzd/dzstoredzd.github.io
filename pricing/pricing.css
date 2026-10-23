@@ -1,10 +1,11 @@
 :root { color-scheme: light; font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif; color: #192442; background: #f6f8fd; --blue: #2563eb; --purple: #713de3; }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { margin: 0; line-height: 1.7; }
 a { color: #315aca; text-decoration: none; }
-button, select { font: inherit; color: inherit; }
-button, select, .button, .languages a, footer a { min-height: 48px; }
-button, select { border: 1px solid #cdd6eb; border-radius: 12px; background: white; padding: 8px 16px; cursor: pointer; }
+button { font: inherit; color: inherit; }
+button, .button, .languages a, footer a { min-height: 48px; }
+button { border: 1px solid #cdd6eb; border-radius: 12px; background: white; padding: 8px 16px; cursor: pointer; }
 button:hover, .languages a:hover { background: #eef2ff; }
 :focus-visible { outline: 3px solid #7543e6; outline-offset: 3px; }
 .wrap { width: calc(100% - 40px); max-width: 1120px; margin: auto; }
@@ -14,43 +15,55 @@ button:hover, .languages a:hover { background: #eef2ff; }
 .languages { display: flex; gap: 4px; }
 .languages a { padding: 10px 12px; border-radius: 10px; display: inline-flex; align-items: center; }
 .languages a[aria-current="true"] { background: #e7eaff; color: #4b2db4; font-weight: 700; }
-.price-controls { margin-top: 40px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; }
-#devices { min-width: 84px; }
-#status { text-align: center; color: #59647e; min-height: 28px; margin: 24px 0; }
+main { padding-top: 32px; }
+#status { text-align: center; color: #59647e; min-height: 28px; margin: 0 0 24px; }
+#status:empty { display: none; }
 #status.error { color: #9f2939; background: #fff0f1; padding: 16px; border-radius: 14px; }
-.offers { display: flex; align-items: stretch; gap: 24px; flex-wrap: wrap; }
-.offer { min-width: 0; flex: 1 1 350px; border: 1px solid #dce3f3; border-radius: 24px; background: #fff; padding: 32px; display: flex; flex-direction: column; box-shadow: 0 12px 40px #283f7710; overflow-wrap: break-word; overflow-wrap: anywhere; }
-.offer[data-code="lifetime"] { border-color: #9272e9; border-top: 5px solid #7543e6; padding-top: 28px; }
-.badge { align-self: flex-start; margin: 0 0 12px; padding: 4px 12px; border-radius: 999px; background: #fff1e6; color: #a1460a; font-size: 14px; font-weight: 700; }
-.per-day { margin: 4px 0 0; color: #1f7a4d; font-weight: 600; }
-.payment { text-align: center; color: #3b4766; font-weight: 600; margin: -12px 0 24px; }
-.offer h2 { margin: 0 0 12px; font-size: 24px; line-height: 1.4; }
-.description { color: #59647e; margin: 0 0 20px; }
-.amount { font-size: 30px; font-size: clamp(30px, 4vw, 42px); color: #253e83; font-weight: 800; line-height: 1.25; margin: 12px 0 4px; font-variant-numeric: tabular-nums; }
-.period { margin: 0; color: #59647e; }
-.breakdown { padding: 16px; border-radius: 14px; background: #f3f5fc; font-size: 14px; margin-top: 16px; }
-.breakdown p { margin: 4px 0; }
-.billing-note { color: #59647e; font-size: 14px; }
-.features { padding: 0; list-style: none; margin: 20px 0 28px; flex: 1; }
-.features li { padding: 8px 0 8px 25px; position: relative; }
+.last, .offer { width: 100%; max-width: 520px; margin-left: auto; margin-right: auto; }
+.last { margin-bottom: 16px; }
+.last-offer { display: flex; flex-direction: column; gap: 8px; padding: 14px 18px; border-radius: 16px; border: 1px solid #f3c79c; background: #fff6ec; color: #6b3508; overflow-wrap: break-word; overflow-wrap: anywhere; }
+.last-offer:hover { background: #ffefdd; }
+.last-title { font-weight: 700; }
+.last-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.ask { color: #4b2db4; font-weight: 700; font-size: 15px; }
+.badge { padding: 4px 12px; border-radius: 999px; background: #ffe2c7; color: #a1460a; font-size: 14px; font-weight: 700; }
+.offers { display: flex; justify-content: center; }
+.offer { border: 1px solid #dce3f3; border-top: 5px solid #7543e6; border-radius: 24px; background: #fff; padding: 32px; display: flex; flex-direction: column; box-shadow: 0 12px 40px #283f7710; overflow-wrap: break-word; overflow-wrap: anywhere; }
+.offer h2 { margin: 0; font-size: 20px; line-height: 1.4; color: #4b2db4; }
+.price { margin: 8px 0 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+.amount { font-size: 38px; font-size: clamp(38px, 6vw, 48px); color: #253e83; font-weight: 800; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.period { color: #59647e; font-size: 18px; font-weight: 600; }
+.per-day { margin: 4px 0 0; color: #1f7a4d; font-weight: 700; }
+.devices { margin: 24px 0 8px; padding: 10px 10px 10px 16px; border-radius: 16px; background: #f3f5fc; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+[dir="rtl"] .devices { padding: 10px 16px 10px 10px; }
+.devices-label { font-weight: 600; }
+.stepper { display: flex; align-items: center; gap: 8px; }
+.stepper button { width: 48px; height: 48px; padding: 0; font-size: 24px; font-weight: 700; line-height: 1; color: #4b2db4; }
+.stepper button:disabled { opacity: .4; cursor: default; background: white; }
+.count { min-width: 40px; text-align: center; font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.extra { margin: 0; color: #59647e; font-size: 14px; }
+.gains { margin: 24px 0 0; font-size: 18px; }
+.features { padding: 0; list-style: none; margin: 8px 0 24px; }
+.features li { padding: 6px 0 6px 25px; position: relative; }
 .features li::before { content: "✓"; position: absolute; left: 0; color: #6840c0; font-weight: 700; }
 [dir="rtl"] .features li { padding-right: 25px; padding-left: 0; }
 [dir="rtl"] .features li::before { left: auto; right: 0; }
 .button { display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; padding: 12px 24px; background: linear-gradient(120deg, #2563eb, #713de3); color: white; font-weight: 700; text-align: center; }
 .button:hover { filter: brightness(1.08); }
+.offer .button { width: 100%; font-size: 18px; }
+.payment { text-align: center; color: #3b4766; font-weight: 600; margin: 12px 0 0; }
+.billing-note { color: #59647e; font-size: 13px; text-align: center; margin: 4px 0 0; }
 .support { margin: 40px 0 20px; padding: 28px; border-radius: 24px; background: #eaeefb; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .support h2, .support p { margin: 0; }
-.footnote { color: #59647e; font-size: 14px; text-align: center; }
 footer { display: flex; justify-content: center; flex-wrap: wrap; align-items: center; gap: 24px; padding: 40px 0; color: #59647e; font-size: 14px; }
 footer a { display: inline-flex; align-items: center; }
-@media (max-width: 599px) { .wrap { width: calc(100% - 32px); } .topbar { gap: 8px; flex-wrap: wrap; padding: 16px 0; } .brand { font-size: 18px; gap: 8px; } .languages a { padding: 10px; } .offer { padding: 24px; flex-basis: 100%; } .offer[data-code="lifetime"] { padding-top: 20px; } .price-controls label { flex-basis: 100%; text-align: center; } .support { flex-direction: column; align-items: stretch; padding: 24px; } }
+@media (max-width: 599px) { .wrap { width: calc(100% - 32px); } .topbar { gap: 8px; flex-wrap: wrap; padding: 16px 0; } .brand { font-size: 18px; gap: 8px; } .languages a { padding: 10px; } main { padding-top: 20px; } .offer { padding: 24px 20px; } .support { flex-direction: column; align-items: stretch; padding: 24px; } }
 /* Android's original WebView lacks flex gap and logical spacing. */
 @supports not (gap: 1px) {
   .brand img { margin: 0 6px; }
   .languages a { margin: 0 2px; }
-  .price-controls > * { margin: 6px; }
-  .offers { display: block; }
-  .offer { margin-bottom: 24px; }
+  .last-offer > * { margin: 4px 0; }
+  .last-row > *, .price > *, .devices > *, .stepper > * { margin: 4px; }
   .support > * { margin: 6px; }
   footer > * { margin: 0 12px; }
 }
