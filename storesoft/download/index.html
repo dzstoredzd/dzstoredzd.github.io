@@ -25,7 +25,7 @@
   fbq('track','PageView');
   </script>
   <link rel="stylesheet" href="/assets/fonts/plex.css?v=20261101" />
-  <link rel="stylesheet" href="styles.css?v=20261101-font" />
+  <link rel="stylesheet" href="styles.css?v=20261023-prices" />
 </head>
 <body>
   <noscript><img height="1" width="1" style="display:none" alt=""
@@ -59,7 +59,7 @@
           <ul class="hero__proof" aria-label="معلومات سريعة عن Store Soft">
             <li data-copy="trialShort">14 يومًا للتجربة</li>
             <li data-copy="languagesShort">العربية، الفرنسية، الإنجليزية</li>
-            <li data-copy="priceShort">الأسعار الحالية في صفحة الأسعار</li>
+            <li data-copy="priceShort">اشتراك سنوي بسيط</li>
           </ul>
         </div>
 
@@ -129,8 +129,9 @@
 
     <section class="pricing-section" id="pricing" aria-labelledby="pricingTitle"><div class="shell"><div class="section-heading section-heading--center">
       <h2 id="pricingTitle" data-copy="pricingTitle">الأسعار والعروض الحالية</h2>
-      <a class="button button--primary" data-pricing-link href="/pricing/?lang=ar" data-copy="viewPricing">عرض الأسعار الحالية</a>
-    </div></div></section>
+    </div>
+      <iframe class="pricing-frame" data-pricing-frame src="/pricing/?lang=ar&amp;embed=1" title="Store Soft — الأسعار · Tarifs"></iframe>
+    </div></section>
 
     <section class="trial-section" id="free-trial" aria-labelledby="formTitle">
       <div class="shell trial-layout">
@@ -178,7 +179,7 @@
         <div class="section-heading section-heading--center"><p>FAQ</p><h2 id="faqTitle" data-copy="faqTitle">أسئلة سريعة قبل التجربة</h2></div>
         <div class="faq-list">
           <details open><summary data-copy="faqOfflineQ">هل يعمل بدون إنترنت؟</summary><p data-copy="faqOfflineA">نعم. البيع والمخزون والكريدي والتقارير تعمل بدون إنترنت. تحتاج الشبكة فقط عند استعمال خدمات اختيارية مثل Sync أو النسخ إلى Google Drive.</p></details>
-          <details><summary data-copy="faqSubscriptionQ">هل يوجد اشتراك شهري؟</summary><p data-copy="faqSubscriptionA">الأسعار وفترات الدفع وتفاصيل العروض متاحة في صفحة الأسعار الحالية.</p></details>
+          <details><summary data-copy="faqSubscriptionQ">هل يوجد اشتراك شهري؟</summary><p data-copy="faqSubscriptionA">لا. الاشتراك سنوي، تدفعه مرة في السنة. السعر والتفاصيل في قسم الأسعار أعلاه.</p></details>
           <details><summary data-copy="faqWindowsQ">هل يعمل على Windows؟</summary><p data-copy="faqWindowsA">نعم، يعمل على أجهزة Windows. يظهر رابط التثبيت مباشرة بعد إرسال معلوماتك.</p></details>
           <details><summary data-copy="faqAndroidQ">هل يعمل على Android؟</summary><p data-copy="faqAndroidA">نعم، يعمل على هواتف وأجهزة Android اللوحية عبر Google Play.</p></details>
           <details><summary data-copy="faqAfterTrialQ">ماذا يحدث بعد 14 يومًا؟</summary><p data-copy="faqAfterTrialA">تنتهي التجربة المجانية. تواصل معنا للتفعيل واطّلع على العروض الحالية في صفحة الأسعار.</p></details>
@@ -200,6 +201,6 @@
   </dialog>
   <script src="tracking.js?v=20260905"></script>
   <script src="windows-download.js?v=20261007"></script>
-  <script src="script.js?v=20261019-pricing"></script>
+  <script src="script.js?v=20261023-prices"></script>
 </body>
 </html>

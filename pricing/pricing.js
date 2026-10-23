@@ -6,9 +6,18 @@
     fr: { title: 'Store Soft — Tarifs et offres', intro: 'Des prix clairs en dinars algériens. Notre équipe vous accompagne avant l’activation.', loading: 'Chargement des offres…', error: 'Impossible d’afficher les tarifs. Contactez-nous sur WhatsApp.', empty: 'Aucune offre publiée pour le moment. Contactez-nous.', contact: 'Nous contacter sur WhatsApp', supportTitle: 'Nous vous aidons à choisir.', supportBody: 'Contactez-nous pour confirmer le prix et l’activation avant paiement.', home: 'Accueil', privacy: 'Confidentialité', devices: 'Nombre d’appareils', less: 'Un appareil de moins', more: 'Un appareil de plus', perYear: '/ an', perDay: ['Moins de ', ' par jour'], extra: ['Chaque appareil en plus : ', ' par an'], gains: 'Ce que vous gagnez', subscribe: 'S’abonner sur WhatsApp', payment: 'Paiement par CCP ou BaridiMob', colon: ' : ', firstOnce: 'une seule fois pour le premier appareil', ask: 'Le demander sur WhatsApp', order: 'Bonjour, je veux cette offre Store Soft :', countLine: 'Nombre d’appareils : ', totalLine: function (amount) { return 'Total : ' + amount + ' par an'; }, message: 'Bonjour, je souhaite des informations sur les offres Store Soft.', lastDay: '⏳ Dernier jour aujourd’hui', twoDays: '⏳ Plus que 2 jours', daysLeft: function (n) { return '⏳ Plus que ' + n + ' jours'; } },
     en: { title: 'Store Soft — Pricing and offers', intro: 'Clear prices in Algerian dinars. Our team helps you before activation.', loading: 'Loading offers…', error: 'Could not display pricing. Contact us on WhatsApp.', empty: 'No published offers right now. Contact us for help.', contact: 'Contact us on WhatsApp', supportTitle: 'We help you choose.', supportBody: 'Contact us to confirm the price and activation before payment.', home: 'Home', privacy: 'Privacy', devices: 'Number of devices', less: 'One device less', more: 'One more device', perYear: '/ year', perDay: ['Less than ', ' a day'], extra: ['Each extra device: ', ' a year'], gains: 'What you get', subscribe: 'Subscribe on WhatsApp', payment: 'Pay by CCP or BaridiMob', colon: ': ', firstOnce: 'once for the first device', ask: 'Ask on WhatsApp', order: 'Hello, I want this Store Soft offer:', countLine: 'Number of devices: ', totalLine: function (amount) { return 'Total: ' + amount + ' a year'; }, message: 'Hello, I would like information about Store Soft offers.', lastDay: '⏳ Last day today', twoDays: '⏳ Only 2 days left', daysLeft: function (n) { return '⏳ Only ' + n + ' days left'; } }
   };
-  var language = new URLSearchParams(location.search).get('lang');
+  var params = new URLSearchParams(location.search), language = params.get('lang');
   if (!copies[language]) language = 'ar';
   var copy = copies[language];
+  // ?embed=1: only the prices, shown inside the download and Android pages (same site).
+  var embed = params.get('embed') === '1' && window.parent !== window;
+  if (embed) document.documentElement.className += ' embed';
+  // Tells the page around the frame how tall the prices are, and opens links outside the frame.
+  function fitParent() {
+    if (!embed) return;
+    Array.prototype.forEach.call(document.querySelectorAll('a[href^="https://"]'), function (link) { link.target = '_blank'; link.rel = 'noopener'; });
+    window.parent.postMessage({ type: 'storesoft-pricing-height', height: Math.ceil(document.body.getBoundingClientRect().height) }, location.origin);
+  }
   var offers = document.getElementById('offers'), status = document.getElementById('status');
   var last = document.getElementById('last'), help = document.getElementById('help');
   // One device count for the page; cards update in place so the +/- buttons keep focus.
@@ -45,6 +54,7 @@
       card.less.disabled = count <= 1; card.more.disabled = count >= 100;
       card.link.href = whatsApp([copy.order, card.title, copy.countLine + count, copy.totalLine(money(sum))]);
     });
+    fitParent();
   }
   function change(step) { var next = count + step; if (next >= 1 && next <= 100) { count = next; update(); } }
   function yearlyCard(offer) {
@@ -95,6 +105,7 @@
     cards = []; offers.textContent = ''; last.textContent = ''; last.hidden = true;
     status.textContent = message; status.className = error ? 'error' : '';
     offers.setAttribute('aria-busy', 'false'); help.hidden = false;
+    fitParent();
   }
   function render(data) {
     if (!data || !Array.isArray(data.offers)) throw new Error('Invalid pricing');
@@ -113,6 +124,7 @@
     offers.appendChild(fragment); offers.setAttribute('aria-busy', 'false');
     if (strip) { last.appendChild(strip); last.hidden = false; }
     help.hidden = true;
+    fitParent();
   }
   function start() {
     try {
@@ -130,4 +142,8 @@
   Array.prototype.forEach.call(document.querySelectorAll('[data-lang]'), function (el) { if (el.getAttribute('data-lang') === language) el.setAttribute('aria-current', 'true'); });
   document.getElementById('support').href = whatsApp([copy.message]);
   start();
+  if (embed) {
+    window.addEventListener('resize', fitParent);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitParent);
+  }
 })();

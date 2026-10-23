@@ -11,14 +11,8 @@
 .video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 .video-link { display: flex; align-items: center; justify-content: center; min-height: 48px; width: fit-content; margin: 6px auto 0; padding-inline: 12px; color: #52617f; font-size: 13px; text-underline-offset: 4px; }
 .install-section { width: 100%; max-width: 560px; margin-inline: auto; scroll-margin-top: 90px; }
-.android-prices { width: 100%; max-width: 680px; margin-inline: auto; padding: 20px; border: 1px solid #d4dcf4; border-radius: 20px; background: #edf1ff; }
-.android-price + .android-price { margin-top: 16px; padding-top: 16px; border-top: 1px solid #d4dcf4; }
-.android-price h2 { margin: 0 0 6px; color: var(--midnight); font: 600 14px/1.6 var(--display); }
-.android-price__amount { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 10px; margin: 0 0 5px; }
-.android-price__amount strong { color: var(--blue); font: 800 26px/1.4 var(--display); white-space: nowrap; }
-.android-price__amount span, .android-price__amount s { color: #63708d; font-size: 13px; white-space: nowrap; }
-.android-price__amount s { text-decoration-thickness: 2px; }
-.android-price__note { margin: 3px 0 0; color: #52617f; font-size: 13px; line-height: 1.7; }
+.android-prices { width: 100%; max-width: 680px; margin-inline: auto; padding: 16px 12px; border: 1px solid #d4dcf4; border-radius: 20px; background: #edf1ff; }
+.android-prices h2 { margin: 0 0 12px; text-align: center; color: var(--midnight); font: 600 18px/1.6 var(--display); }
 .android-page .receipt { width: 100%; padding: 24px 20px; border-radius: 22px; }
 .android-page .receipt h2 { margin: 0 0 8px; color: var(--midnight); font: 700 clamp(22px, 6vw, 27px)/1.4 var(--display); letter-spacing: -0.035em; }
 .android-page .field { margin-bottom: 17px; }
@@ -40,8 +34,7 @@
 .android-page :focus-visible { outline: 3px solid #315ce8; outline-offset: 4px; }
 @media (min-width: 600px) {
   .android-main { padding-block: 28px 60px; }
-  .android-prices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-  .android-price + .android-price { margin-top: 0; padding-top: 0; border-top: 0; padding-inline-start: 24px; border-inline-start: 1px solid #d4dcf4; }
+  .android-prices { padding: 24px; }
   .android-page .receipt { padding: 26px 24px; }
 }
 @media (min-width: 1200px) {

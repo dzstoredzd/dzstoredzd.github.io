@@ -81,6 +81,10 @@
   }
   function setLanguage(next) {
     language = next;
+    document.querySelectorAll('[data-pricing-frame]').forEach(function (frame) {
+      var src = '/pricing/?lang=' + next + '&embed=1';
+      if (frame.getAttribute('src') !== src) frame.setAttribute('src', src);
+    });
     document.querySelectorAll("[data-pricing-link]").forEach(function (link) { link.href = "/pricing/?lang=" + next; });
     document.documentElement.lang = next;
     document.documentElement.dir = next === 'ar' ? 'rtl' : 'ltr';
@@ -168,6 +172,13 @@
   });
   download.addEventListener('click', function () { funnel('click', 'android'); track('DownloadClicked', { platform: 'android' }); });
   document.querySelector('.js-whatsapp').addEventListener('click', function () { track('WhatsAppCTAClick'); });
+  // The embedded pricing page reports its height so the frame never scrolls.
+  window.addEventListener('message', function (event) {
+    if (event.origin !== window.location.origin || !event.data || event.data.type !== 'storesoft-pricing-height') return;
+    document.querySelectorAll('[data-pricing-frame]').forEach(function (frame) {
+      if (frame.contentWindow === event.source && event.data.height > 0) frame.style.height = event.data.height + 'px';
+    });
+  });
   document.getElementById('year').textContent = new Date().getFullYear();
   setLanguage('ar');
   track('LandingPageView');

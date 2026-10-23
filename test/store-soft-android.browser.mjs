@@ -87,12 +87,21 @@ try {
     assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://yousoft.site/storesoft/v1/android/');
     if (config.lang === 'fr') await page.locator('#languageSwitch').click();
     assert.equal(await page.locator('html').getAttribute('dir'), config.lang === 'ar' ? 'rtl' : 'ltr');
-    assert.equal(await page.locator('[data-pricing-link]').getAttribute('href'), '/pricing/?lang=' + config.lang);
-    assert.equal(await page.locator('.android-price__amount strong').count(), 0);
-    assert.equal(await page.locator('.android-price__amount s').count(), 0);
-    assert.match(await page.locator('.android-prices').innerText(), config.lang === 'ar' ? /الأسعار والعروض الحالية/ : /Tarifs et offres actuels/);
+    // The same price card as /pricing/, shown in a frame that grows to fit it.
+    assert.equal(await page.locator('[data-pricing-frame]').getAttribute('src'), '/pricing/?lang=' + config.lang + '&embed=1');
+    const priceFrame = page.frameLocator('[data-pricing-frame]');
+    assert.equal(await priceFrame.locator('[data-code="yearly"] .amount').innerText(), '6 900 DA');
+    assert.equal(await priceFrame.locator('html').getAttribute('lang'), config.lang);
+    assert.equal(await priceFrame.locator('.topbar').isVisible(), false, 'No second header inside the frame');
+    await page.waitForFunction(() => {
+      const frame = document.querySelector('[data-pricing-frame]');
+      const inner = frame.contentDocument.body.getBoundingClientRect().height;
+      return inner > 300 && Math.abs(frame.getBoundingClientRect().height - Math.ceil(inner)) <= 2;
+    });
+    assert.equal(await priceFrame.locator('[data-code="yearly"] .button').getAttribute('target'), '_blank');
+    assert.match(await page.locator('.android-prices h2').innerText(), config.lang === 'ar' ? /الأسعار والعروض الحالية/ : /Tarifs et offres actuels/);
     assert.equal(await page.locator('#email, #downloadWindows').count(), 0);
-    assert.equal(await page.locator('iframe').getAttribute('src'), 'https://www.youtube-nocookie.com/embed/80QGPOKsXXg?rel=0');
+    assert.equal(await page.locator('.video-frame iframe').getAttribute('src'), 'https://www.youtube-nocookie.com/embed/80QGPOKsXXg?rel=0');
     assert.equal(await page.locator('.video-link').getAttribute('href'), 'https://youtu.be/80QGPOKsXXg');
     const video = await page.locator('.video-frame').boundingBox();
     assert.ok(Math.abs(video.width / video.height - 9 / 16) < 0.01);

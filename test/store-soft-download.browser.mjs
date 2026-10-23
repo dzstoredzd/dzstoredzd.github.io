@@ -62,6 +62,16 @@ try {
     assert.equal(telemetry.filter(event => event.p_event_type === 'DOWNLOAD_PAGE_VISIT').length, 2);
     assert.equal(telemetry[0].p_visitor_id, telemetry[1].p_visitor_id);
     if (config.lang === 'fr') await page.locator('#languageSwitch').click();
+    // The pricing section shows the same price card as /pricing/, in the page language.
+    assert.equal(await page.locator('[data-pricing-frame]').getAttribute('src'), `/pricing/?lang=${config.lang}&embed=1`);
+    const prices = page.frameLocator('[data-pricing-frame]');
+    assert.equal(await prices.locator('[data-code="yearly"] .amount').innerText(), '6 900 DA');
+    assert.equal(await prices.locator('html').getAttribute('lang'), config.lang);
+    await page.waitForFunction(() => {
+      const frame = document.querySelector('[data-pricing-frame]');
+      const inner = frame.contentDocument.body.getBoundingClientRect().height;
+      return inner > 300 && Math.abs(frame.getBoundingClientRect().height - Math.ceil(inner)) <= 2;
+    });
     assert.equal(await page.locator('#email').count(), 0);
     await page.locator('#submitButton').click();
     assert.equal(await page.locator('[aria-invalid="true"]').count(), 3);

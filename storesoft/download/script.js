@@ -23,7 +23,7 @@
       whatsappCta: 'اسألنا على واتساب',
       trialShort: '14 يومًا للتجربة',
       languagesShort: 'العربية، الفرنسية، الإنجليزية',
-      priceShort: 'الأسعار الحالية في صفحة الأسعار',
+      priceShort: 'اشتراك سنوي بسيط',
       heroPreviewLabel: 'صورة حقيقية من Store Soft',
       readyOffline: 'جاهز للبيع بدون إنترنت',
       heroImageAlt: 'شاشة البيع في Store Soft',
@@ -96,7 +96,7 @@
       faqOfflineQ: 'هل يعمل بدون إنترنت؟',
       faqOfflineA: 'نعم. البيع والمخزون والكريدي والتقارير تعمل بدون إنترنت. تحتاج الشبكة فقط عند استعمال خدمات اختيارية مثل Sync أو النسخ إلى Google Drive.',
       faqSubscriptionQ: 'هل يوجد اشتراك شهري؟',
-      faqSubscriptionA: 'الأسعار وفترات الدفع وتفاصيل العروض متاحة في صفحة الأسعار الحالية.',
+      faqSubscriptionA: 'لا. الاشتراك سنوي، تدفعه مرة في السنة. السعر والتفاصيل في قسم الأسعار أعلاه.',
       faqWindowsQ: 'هل يعمل على Windows؟',
       faqWindowsA: 'نعم، يعمل على أجهزة Windows. يظهر رابط التثبيت مباشرة بعد إرسال معلوماتك.',
       faqAndroidQ: 'هل يعمل على Android؟',
@@ -122,7 +122,7 @@
       whatsappCta: 'Nous écrire sur WhatsApp',
       trialShort: '14 jours d’essai',
       languagesShort: 'Arabe, français et anglais',
-      priceShort: 'Tarifs actuels sur la page Tarifs',
+      priceShort: 'Abonnement annuel simple',
       heroPreviewLabel: 'Capture réelle de Store Soft',
       readyOffline: 'Prêt à vendre sans Internet',
       heroImageAlt: 'Écran de vente de Store Soft',
@@ -195,7 +195,7 @@
       faqOfflineQ: 'L’application fonctionne-t-elle sans Internet ?',
       faqOfflineA: 'Oui. Les ventes, le stock, le crédit et les rapports fonctionnent sans Internet. Le réseau sert uniquement aux services facultatifs comme Sync ou la sauvegarde Google Drive.',
       faqSubscriptionQ: 'Y a-t-il un abonnement mensuel ?',
-      faqSubscriptionA: 'Les prix, périodes de facturation et offres sont disponibles sur la page Tarifs.',
+      faqSubscriptionA: 'Non. L’abonnement est annuel : vous payez une fois par an. Le prix et les détails sont dans la section Tarifs ci-dessus.',
       faqWindowsQ: 'L’application fonctionne-t-elle sur Windows ?',
       faqWindowsA: 'Oui. Le lien d’installation Windows apparaît dès que vos informations sont envoyées.',
       faqAndroidQ: 'L’application fonctionne-t-elle sur Android ?',
@@ -359,6 +359,10 @@
   function setLanguage(language) {
     currentLanguage = language;
     var isArabic = language === 'ar';
+    document.querySelectorAll('[data-pricing-frame]').forEach(function (frame) {
+      var src = '/pricing/?lang=' + language + '&embed=1';
+      if (frame.getAttribute('src') !== src) frame.setAttribute('src', src);
+    });
     document.querySelectorAll("[data-pricing-link]").forEach(function (link) { link.href = "/pricing/?lang=" + language; });
     document.documentElement.lang = language;
     document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
@@ -528,6 +532,14 @@
   window.addEventListener('scroll', updateMobileTrialCta, { passive: true });
   window.addEventListener('resize', updateMobileTrialCta);
   updateMobileTrialCta();
+
+  // The embedded pricing page reports its height so the frame never scrolls.
+  window.addEventListener('message', function (event) {
+    if (event.origin !== window.location.origin || !event.data || event.data.type !== 'storesoft-pricing-height') return;
+    document.querySelectorAll('[data-pricing-frame]').forEach(function (frame) {
+      if (frame.contentWindow === event.source && event.data.height > 0) frame.style.height = event.data.height + 'px';
+    });
+  });
 
   document.getElementById('year').textContent = new Date().getFullYear();
   setLanguage('ar');

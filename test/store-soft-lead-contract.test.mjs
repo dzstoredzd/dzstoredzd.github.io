@@ -254,7 +254,8 @@ test('landing page presents the current offer in the requested conversion order'
 
   assert.match(page, /Android<\/b> \+ <b>Windows/);
   assert.match(page, /يعمل بدون إنترنت/);
-  assert.match(page, /data-pricing-link href="\/pricing\/\?lang=ar"/);
+  assert.match(page, /<iframe class="pricing-frame" data-pricing-frame src="\/pricing\/\?lang=ar&amp;embed=1"/);
+  assert.match(script, /'\/pricing\/\?lang=' \+ language \+ '&embed=1'/);
   assert.doesNotMatch(page + script, /7000 DA|3000 DA|7 000 DA|3 000 DA/);
   assert.match(page, /رقم الهاتف \/ واتساب/);
   assert.match(page, /ابدأ تجربتي المجانية/);
