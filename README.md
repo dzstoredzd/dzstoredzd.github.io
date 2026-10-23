@@ -24,8 +24,7 @@ support confirms the actual charge before activation. The homepage hero says
 "yearly subscription" and the Apps Script welcome email shows the same prices
 (redeploy Code.gs after editing it).
 The lifetime card shows the days left (today and 31 October count, Algeria
-time), the yearly card shows "less than N DA a day", a "try 14 days free"
-button opens the Google Play listing (referrer `utm_source=pricing`), and one line says
+time), the yearly card shows "less than N DA a day", and one line says
 payment is by CCP or BaridiMob.
 Publish the website after edits and bump the offers.js version in pricing/index.html
 so existing browsers receive the new file. No app update is needed for these edits.

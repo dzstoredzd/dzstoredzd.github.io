@@ -42,8 +42,6 @@ try{
       assert.match(await page.locator('[data-code="yearly"] .per-day').innerText(),/19 DA/);
       assert.equal(await page.locator('[data-code="lifetime"] .per-day').count(),0);
       assert.match(await page.locator('.payment').innerText(),/CCP[\s\S]*BaridiMob/);
-      assert.equal(await page.locator('#trial').getAttribute('href'),'https://play.google.com/store/apps/details?id=com.yousoft.storesoft&referrer=utm_source%3Dpricing');
-      assert.equal(await page.locator('#trial').innerText(),{ar:'جرّب 14 يومًا مجانًا',fr:'Essai gratuit de 14 jours',en:'Try it free for 14 days'}[language]);
       assert.doesNotMatch(await page.locator('.offers').innerText(),/دج|7000|6900/,'One price format: "7 000 DA"');
       assert.ok(await page.evaluate(async()=>{await document.fonts.ready;return document.fonts.check('700 16px "IBM Plex Sans Arabic"')&&getComputedStyle(document.body).fontFamily.startsWith('"IBM Plex Sans Arabic"');}),'App font is loaded');
       await page.locator('#devices').selectOption('3');
@@ -51,7 +49,7 @@ try{
       assert.equal(await page.locator('[data-code="yearly"] .amount').innerText(),'12 900 DA');
       assert.match(await page.locator('[data-code="yearly"] .per-day').innerText(),/36 DA/);
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`${width}/${language} overflow`);
-      for(const selector of ['#devices','#support','#trial','[data-lang="ar"]']){
+      for(const selector of ['#devices','#support','[data-lang="ar"]']){
         const box=await page.locator(selector).boundingBox();assert.ok(box.height>=48&&box.width>=48,`${selector} touch target`);
       }
       assert.match(await page.locator('#support').getAttribute('href'),/^https:\/\/wa.me\/213654338649/);
