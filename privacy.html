@@ -42,7 +42,7 @@
     <div class="container doc-wrap">
       <a class="back" href="index.html">← Back to home</a>
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: 12 October 2026</p>
+      <p class="updated">Last updated: 27 October 2026</p>
       <p class="intro">
         Store Soft is an offline-first store-management app for Windows and Android. Products,
         sales, customers and stock are stored on your device. Copies can leave it when you enable
@@ -121,6 +121,19 @@
         entered in the form in the events we send. Meta processes these events under its own
         <a class="inline" href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Privacy Policy</a>.
       </p>
+      <h3>Meta advertising measurement in the Android app</h3>
+      <p>
+        To know which Facebook and Instagram ads bring real shops, the Android app includes the
+        Meta SDK for app events. It sends Meta Platforms: app install and open, "shop set up",
+        "first sale" (only that it happened, never its content) and a new Google Play subscription
+        with its price. Meta also receives the device's Advertising ID and device and app
+        information. When our team records a payment you made another way (WhatsApp, cash, card),
+        our server sends Meta the amount with a one-way hash (SHA-256) of the account email and
+        shop phone. We never send products, customers, suppliers, sale contents or stock. You can
+        limit this by deleting or resetting your Advertising ID in Android settings. The Windows app
+        does not use the Meta SDK. Meta processes these events under its own
+        <a class="inline" href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Privacy Policy</a>.
+      </p>
 
       <h2 id="data-local">3. Data stored on your device</h2>
       <p>
@@ -165,7 +178,8 @@
           The owner creates an account with an <strong>email address and password</strong> and
           can also use the supported Google sign-in flow. This
           identifies the shop ("the store") and is used to sign in and to enroll devices. We use the
-          email only for authentication and account-related contact — never for advertising.
+          email for authentication and account-related contact. When you pay for a plan, a one-way
+          hash of it may be sent to Meta to measure our ads (Section 2); it is never shown in ads or sold.
         </li>
         <li>
           Each device you enroll registers under the store using a <strong>device fingerprint</strong>
@@ -309,7 +323,8 @@
         Analytics never sends product names, prices, sale contents, customer or supplier records,
         debts, stock quantities, precise location or advertising IDs. Shop contact fields listed
         above are the only shop-entered fields in this analytics channel. We do not sell this data
-        or use it for advertising. The Meta Pixel on the website is separate from the installed app.
+        or use it for advertising. The Meta Pixel on the website and the Meta SDK in the Android app (Section 2) are separate
+        from this analytics channel.
       </p>
       <p>
         Separately, the app keeps a <strong>full diagnostic error log on your own device</strong> for
@@ -361,6 +376,7 @@
         <li>An eligible Android install sends the limited lead-attributed milestones described in Section 8; or</li>
         <li>You choose to submit optional in-app feedback described in Section 8 to our private backend; or</li>
         <li>The website sends page-view and successful-lead events to Meta for advertising measurement as described in Section 2; or</li>
+        <li>The Android app and our server send the advertising measurement events described in Section 2 to Meta; or</li>
         <li>You manually export, copy or share a backup file or a diagnostic log yourself (for example, sending it to our support over WhatsApp).</li>
       </ul>
       <p>
