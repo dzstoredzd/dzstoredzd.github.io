@@ -98,7 +98,8 @@ and navigates in the same tab through `/storesoft/try/?t=<public code>` to Play.
 An invalid/missing code falls back to the ordinary Play listing. A saved-state
 link remains available if navigation is blocked. Errors preserve entered values
 for retry; no download starts before a successful save. Contact details are
-never put in analytics events or redirect URLs.
+never put in analytics events or redirect URLs; the only exception is the Meta
+advanced matching phone described below.
 
 Android v1 uses the existing Meta Pixel `2176257146284643`. Successful CRM saves
 fire one standard `Lead` event, with `content_category: android_v1` and
@@ -107,7 +108,10 @@ requests never fire `Lead`; an explicit submit attempt remains a separate custom
 event. A bounded 300 ms pause gives queued Pixel requests a chance to start
 before Play navigation. Blocked/failed Facebook tracking never prevents the
 download. No contact data, CRM lead ID or referral code is included in Pixel
-parameters. Browser tests use a synthetic Pixel and do not prove Meta account
+event parameters. Manual advanced matching (2026-10-28): only after a saved lead
+(`lead_id` present), the page re-inits the Pixel with `ph` (the phone as
+`213XXXXXXXXX`) and `country: dz`; the Pixel SHA-256 hashes them in the browser
+before sending. Browser tests use a synthetic Pixel and do not prove Meta account
 receipt; confirm receipt separately in that Pixel's Events Manager.
 
 The download form posts to the `submit-store-soft-lead` Supabase Edge Function.
@@ -202,7 +206,10 @@ and records the base `PageView`, custom `LandingPageView`, `TrialCTAClick`,
 plus the standard `Lead` event only after the Edge Function confirms that the request
 was saved. Events carry a normalized `traffic_source` that distinguishes Facebook,
 Instagram and TikTok while preserving the ordinary UTM fields. Form values are never
-included in tracking events. The same conversion events are also exposed through the
+included in tracking events. Manual advanced matching (2026-10-28): after a successful
+save, the page re-inits the Pixel with `ph` (the phone with the 213 country code, digits
+only) and `country: dz`; the Pixel SHA-256 hashes them in the browser before sending, and
+numbers it cannot turn into 213 + 8 or 9 digits are skipped. The same conversion events are also exposed through the
 `storesoft:tracking` browser event and `dataLayer` for future integrations.
 
 A submitted form remains a lead, not a successful trial or sale. The tracked Google

@@ -42,7 +42,7 @@
     <div class="container doc-wrap">
       <a class="back" href="index.html">← Back to home</a>
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: 27 October 2026</p>
+      <p class="updated">Last updated: 28 October 2026</p>
       <p class="intro">
         Store Soft is an offline-first store-management app for Windows and Android. Products,
         sales, customers and stock are stored on your device. Copies can leave it when you enable
@@ -116,9 +116,14 @@
         the website successfully saves a request, a standard <strong>Lead</strong> event. Meta may
         receive browser and device information, IP address, cookies or similar identifiers, the
         page URL, and campaign parameters. We use these events to attribute requests to Facebook
-        and Instagram ads, measure campaign performance, and improve ad delivery. We do
-        <strong>not</strong> explicitly include the name, email address, phone number, or shop type
-        entered in the form in the events we send. Meta processes these events under its own
+        and Instagram ads, measure campaign performance, and improve ad delivery. After a request
+        is saved, the Pixel also sends Meta the phone number entered in the form, with the country
+        (Algeria), so Meta can match the request to a Facebook or Instagram account (advanced
+        matching). Your browser turns the phone number into a one-way hash (SHA-256) before it is
+        sent, so Meta does not receive the number itself. We do <strong>not</strong> add the name,
+        email address, or shop type to the events ourselves. Meta's automatic advanced matching,
+        which is turned on for this Pixel, may also read the name and phone number typed in the
+        form and send them hashed in the same way. Meta processes these events under its own
         <a class="inline" href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Privacy Policy</a>.
       </p>
       <h3>Meta advertising measurement in the Android app</h3>

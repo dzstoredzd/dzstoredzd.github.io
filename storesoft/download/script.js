@@ -307,6 +307,23 @@
     if (typeof window.fbq === 'function') window.fbq(standardEvent ? 'track' : 'trackCustom', name, detail);
   }
 
+  // Meta advanced matching wants digits with the country code: 0550 12 34 56 -> 213550123456.
+  function metaPhone(value) {
+    var digits = value.replace(/\D/g, '');
+    if (digits.indexOf('00') === 0) digits = digits.slice(2);
+    else if (digits.charAt(0) === '0') digits = '213' + digits.slice(1);
+    return /^213\d{8,9}$/.test(digits) ? digits : '';
+  }
+
+  // Re-init with user data (same Pixel ID as index.html). The Pixel hashes it (SHA-256) before sending.
+  // Analytics failures must never interrupt a saved submission.
+  function setMetaUser(phone) {
+    try {
+      var ph = metaPhone(phone);
+      if (ph && typeof window.fbq === 'function') window.fbq('init', '2176257146284643', { ph: ph, country: 'dz' });
+    } catch (_) { /* Best effort. */ }
+  }
+
   function galleryCaption(index) { return galleryItems[index][currentLanguage === 'ar' ? 1 : 2]; }
 
   function renderGallery() {
@@ -487,6 +504,7 @@
       formView.hidden = true;
       successView.hidden = false;
       mobileTrialCta.classList.add('is-hidden');
+      setMetaUser(values.phone);
       trackEvent('FormSubmitted', { content_name: 'Store Soft download request' }, false);
       trackEvent('Lead', { content_name: 'Store Soft download request' }, true);
       successView.focus();

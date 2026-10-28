@@ -126,6 +126,11 @@ try {
     assert.equal(telemetry.filter(event => event.p_event_type === 'LEAD_SUBMITTED').length, 1);
     assert.doesNotMatch(JSON.stringify(telemetry), /Test Shop|550 12 34 56/);
     assert.equal(events.filter(event => event.event === 'Lead').length, 1);
+    // fbevents.js is stubbed out, so every Pixel call stays in the snippet's queue.
+    const metaCalls = await page.evaluate(() => window.fbq.queue.map(args => Array.from(args)));
+    // Advanced matching: the phone goes only into the Pixel init, with the 213 country code.
+    assert.deepEqual(metaCalls.filter(args => args[0] === 'init' && args[2]), [['init', '2176257146284643', { ph: '213550123456', country: 'dz' }]]);
+    assert.doesNotMatch(JSON.stringify(metaCalls.filter(args => args[0] !== 'init')), /Test Shop|550 12 34 56|550123456/);
     assert.deepEqual(events.filter(event => event.event === 'DownloadClicked').map(event => event.platform), ['android', 'windows']);
     assert.doesNotMatch(JSON.stringify(events), /Test Shop|550 12 34 56|ABC234/);
     await page.locator('#languageSwitch').click();

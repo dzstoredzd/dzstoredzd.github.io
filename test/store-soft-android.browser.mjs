@@ -174,6 +174,10 @@ try {
     }
     assert.doesNotMatch(JSON.stringify(metaCalls), /Synthetic Shop|ABC234|synthetic-lead/);
     assert.equal(JSON.stringify(metaCalls).includes(validPhone), false);
+    // Advanced matching: the phone goes only into the Pixel init, with the 213 country code.
+    assert.deepEqual(metaCalls.filter(args => args[0] === 'init' && args[2]),
+      blockedPixel ? [] : [['init', '2176257146284643', { ph: '213' + validPhone.slice(1), country: 'dz' }]]);
+    assert.equal(JSON.stringify(metaCalls.filter(args => args[0] !== 'init')).includes(validPhone.slice(1)), false);
     assert.equal(requests.length, 2, 'one failed save and one successful retry');
     const values = requests.at(-1);
     assert.equal(values.phone, validPhone);
@@ -220,6 +224,7 @@ try {
     await page.locator('#submitButton').click(); await listing;
     assert.equal(page.url(), 'https://play.google.com/store/apps/details?id=com.yousoft.storesoft');
     assert.equal(metaCalls.filter(args => args[0] === 'track' && args[1] === 'Lead').length, 0, 'no Lead without a saved lead ID');
+    assert.equal(metaCalls.filter(args => args[0] === 'init' && args[2]).length, 0, 'no advanced matching without a saved lead ID');
     await context.close();
   }
   console.log('PASS missing/malicious code falls back directly to the fixed Play listing');

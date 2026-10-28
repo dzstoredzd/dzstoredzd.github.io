@@ -69,6 +69,15 @@
       if (typeof window.fbq === 'function') window.fbq(standard ? 'track' : 'trackCustom', name, detail);
     } catch (_) { /* Best effort. */ }
   }
+  // Meta advanced matching: re-init with the phone as 213XXXXXXXXX (same Pixel ID as index.html).
+  // The Pixel hashes it (SHA-256) before sending.
+  function setMetaUser(phone) {
+    try {
+      if (/^0[567][0-9]{8}$/.test(phone) && typeof window.fbq === 'function') {
+        window.fbq('init', '2176257146284643', { ph: '213' + phone.slice(1), country: 'dz' });
+      }
+    } catch (_) { /* Best effort. */ }
+  }
   function funnel(method, value) {
     try { window.StoreSoftDownloadTracking?.[method](value); } catch (_) { /* Best effort. */ }
   }
@@ -150,9 +159,11 @@
       document.getElementById('successView').hidden = false;
       document.getElementById('successView').focus();
       funnel('submitted', result.tracking_code);
+      // Honeypot acknowledgements return ok without a saved lead; do not count or match them.
+      var savedLead = typeof result.lead_id === 'string' && result.lead_id;
+      if (savedLead) setMetaUser(values.phone);
       track('FormSubmitted');
-      // Honeypot acknowledgements return ok without a saved lead; do not count them.
-      if (typeof result.lead_id === 'string' && result.lead_id) track('Lead', {}, true);
+      if (savedLead) track('Lead', {}, true);
       funnel('click', 'android');
       track('DownloadClicked', { platform: 'android' });
       // Give queued Pixel requests a brief chance to start before leaving the page.
