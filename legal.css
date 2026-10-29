@@ -1,0 +1,18 @@
+/* Privacy and Terms pages: language buttons, short summary and RTL lists. */
+.legal-langs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; }
+.legal-langs a {
+  min-height: 48px; min-width: 48px; padding: 0 18px; border: 1px solid var(--line);
+  border-radius: 999px; display: inline-flex; align-items: center; justify-content: center;
+  color: var(--ink-soft); font-size: 15px; font-weight: 500;
+}
+.legal-langs a:hover { color: var(--ink); }
+.legal-langs a[aria-current="true"] { background: #5b46dc; border-color: #5b46dc; color: #fff; }
+.doc [data-legal-lang] [id] { scroll-margin-top: 96px; }
+.doc .legal-short { margin: 0 0 30px; }
+.doc .legal-short h2 { margin-top: 0; font-size: 19px; }
+.doc .legal-short ul { margin: 0; }
+.doc [dir="rtl"] ul, .doc [dir="rtl"] .toc ol { padding-left: 0; padding-right: 22px; }
+.doc [dir="rtl"] .toc ol { padding-right: 20px; }
+.doc [dir="rtl"] code { direction: ltr; unicode-bidi: isolate; }
+.doc [data-legal-lang] + [data-legal-lang] { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+.doc [data-legal-lang][hidden] + [data-legal-lang], .doc [data-legal-lang]:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }

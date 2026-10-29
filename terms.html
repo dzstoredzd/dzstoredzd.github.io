@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="q4sa-fmVwGJOlf542lkuE1kLPuGHTy7R-aptzCyJ97A" />
   <title>Terms of Service — Store Soft</title>
-  <meta name="description" content="Terms of Service for Store Soft, an offline-first store-management app for Windows and Android." />
+  <meta name="description" content="Store Soft Terms of Service in simple words: free trial, plans and payment, your data, and your rights. Arabic, French and English." />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="canonical" href="https://yousoft.site/terms.html" />
   <link rel="stylesheet" href="/assets/fonts/plex.css?v=20261101" />
   <link rel="stylesheet" href="styles.css?v=20261101-font" />
+  <link rel="stylesheet" href="legal.css?v=20261029" />
 </head>
 <body>
 
@@ -17,18 +18,18 @@
   <header class="site-header">
     <div class="container">
       <nav class="nav" id="nav">
-        <a class="brand" href="index.html" aria-label="Store Soft home">
+        <a class="brand" href="index.html" data-legal-home="" aria-label="Store Soft home">
           <span class="mark">S</span>
-          <span class="name">Store Soft<small>Store management for shops</small></span>
+          <span class="name">Store Soft<small data-legal-t="tagline">Store management for shops</small></span>
         </a>
         <div class="nav-links">
-          <a href="index.html#features">Features</a>
-          <a href="index.html#backup">Backup</a>
-          <a href="index.html#pricing">Pricing</a>
-          <a href="privacy.html">Privacy</a>
+          <a href="index.html#features" data-legal-home="#features" data-legal-t="features">Features</a>
+          <a href="index.html#backup" data-legal-home="#backup" data-legal-t="backup">Backup</a>
+          <a href="index.html#pricing" data-legal-home="#pricing" data-legal-t="pricing">Pricing</a>
+          <a href="privacy.html" data-legal-t="privacy">Privacy</a>
         </div>
         <div class="nav-cta">
-          <a class="btn btn-primary" href="index.html#download">Get the app</a>
+          <a class="btn btn-primary" href="index.html#download" data-legal-home="#download" data-legal-t="getApp">Get the app</a>
         </div>
         <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -40,157 +41,369 @@
   <!-- DOCUMENT -->
   <main class="doc">
     <div class="container doc-wrap">
-      <a class="back" href="index.html">← Back to home</a>
-      <h1>Terms of Service</h1>
-      <p class="updated">Last updated: 26 June 2026</p>
-      <p class="intro">
-        These Terms of Service ("Terms") govern your use of the <strong>Store Soft</strong>
-        application for Windows and Android ("the app", "the Service") and this website. By
-        downloading, installing or using Store Soft, you agree to these Terms. If you do not
-        agree, please do not use the app.
-      </p>
+      <a class="back" href="index.html" data-legal-home="" data-legal-t="back">← Back to home</a>
+      <nav class="legal-langs" aria-label="Language / اللغة / Langue">
+        <a href="?lang=ar" data-legal-switch="ar" lang="ar" dir="rtl">العربية</a>
+        <a href="?lang=fr" data-legal-switch="fr" lang="fr">Français</a>
+        <a href="?lang=en" data-legal-switch="en" lang="en">English</a>
+      </nav>
 
-      <div class="toc">
-        <h4>Contents</h4>
-        <ol>
-          <li><a href="#acceptance">Acceptance</a></li>
-          <li><a href="#license">License to use</a></li>
-          <li><a href="#trial">Trial &amp; activation</a></li>
-          <li><a href="#payment">Payment &amp; refunds</a></li>
-          <li><a href="#acceptable">Acceptable use</a></li>
-          <li><a href="#data">Your data &amp; backups</a></li>
-          <li><a href="#google">Google services</a></li>
-          <li><a href="#availability">Updates &amp; availability</a></li>
-          <li><a href="#warranty">Disclaimer of warranties</a></li>
-          <li><a href="#liability">Limitation of liability</a></li>
-          <li><a href="#termination">Termination</a></li>
-          <li><a href="#law">Governing law</a></li>
-          <li><a href="#changes">Changes</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ol>
-      </div>
+      <!-- ENGLISH -->
+      <article data-legal-lang="en" lang="en" dir="ltr">
+        <h1>Terms of Service</h1>
+        <p class="updated">Last updated: 29 October 2026</p>
 
-      <h2 id="acceptance">1. Acceptance of these Terms</h2>
-      <p>
-        By installing or using Store Soft you confirm that you are at least the age of majority
-        in your country and are authorized to operate the shop or business for which you use
-        the app. These Terms form a binding agreement between you and the Store Soft team.
-      </p>
+        <div class="callout legal-short" id="summary">
+          <h2>In short</h2>
+          <ul>
+            <li>By creating an account, or by installing or using Store Soft, you accept these terms.</li>
+            <li>You can try the app <strong>free for 14 days</strong>. After that, a paid plan is needed to keep selling.</li>
+            <li>Your shop data <strong>belongs to you</strong>. Keep backups.</li>
+            <li>When a paid plan ends, you have <strong>7 days to renew</strong>. We do not delete your data when a plan ends.</li>
+          </ul>
+        </div>
 
-      <h2 id="license">2. License to use</h2>
-      <p>
-        Subject to these Terms and, where applicable, payment of the license fee, we grant you
-        a limited, non-exclusive, non-transferable, revocable license to install and use Store
-        Soft to manage your own shop. A one-time license is intended for use by a single shop
-        unless otherwise agreed in writing.
-      </p>
-      <p>You may not:</p>
-      <ul>
-        <li>Resell, sublicense, rent or redistribute the app or your license;</li>
-        <li>Reverse-engineer, decompile or attempt to extract source code, except to the extent permitted by law;</li>
-        <li>Remove or alter any proprietary notices; or</li>
-        <li>Use the app to break any applicable law.</li>
-      </ul>
+        <h2 id="acceptance">1. Accepting these terms</h2>
+        <p>
+          These terms are an agreement between you and the Store Soft team. They apply when you create
+          an account, or install or use the Store Soft app (Windows and Android) or this website. If you
+          do not accept them, do not use Store Soft. You must be an adult and allowed to run the shop you
+          use the app for.
+        </p>
 
-      <h2 id="trial">3. Trial &amp; activation</h2>
-      <p>
-        Store Soft may be offered with a free trial period so you can evaluate it before
-        purchasing. After the trial, certain features may require a valid license to continue.
-        Attempting to bypass, tamper with or circumvent trial or license checks is a breach of
-        these Terms.
-      </p>
+        <h2 id="account">2. Your account</h2>
+        <ul>
+          <li>Use a real email address that you can open.</li>
+          <li>Keep your password secret. You are responsible for what is done with your account and with the staff accounts you create.</li>
+          <li>If you think someone else uses your account, change your password and tell us quickly.</li>
+        </ul>
 
-      <h2 id="payment">4. Payment &amp; refunds</h2>
-      <p>
-        License fees and any optional services (such as installation, product import,
-        migration, training or support) are described at the time of purchase or arranged
-        directly with us. Unless required by law or agreed otherwise, license fees are
-        one-time and non-recurring. Because the app can be fully evaluated during the trial,
-        refunds are handled on a case-by-case basis — contact us if there is a problem and we
-        will try to make it right.
-      </p>
+        <h2 id="trial">3. Free trial</h2>
+        <p>
+          Each shop gets one free trial of 14 days. When the trial ends, selling stops until you choose a
+          paid plan. Your data stays on your device and you can still make a backup. Trying to get around
+          the trial, the licence or the device limit is not allowed.
+        </p>
 
-      <h2 id="acceptable">5. Acceptable use</h2>
-      <p>
-        You are responsible for the data you enter and for operating your business lawfully,
-        including any tax, accounting and consumer-protection obligations that apply to you.
-        Store Soft is a tool to help you record and manage your shop; it does not provide legal,
-        tax or accounting advice.
-      </p>
+        <h2 id="payment">4. Plans and payment</h2>
+        <ul>
+          <li>Prices are shown on our <a class="inline" href="/pricing/">pricing page</a> and in the app. They may change; a change never affects time you already paid.</li>
+          <li><strong>If you pay in Google Play:</strong> the subscription renews automatically until you cancel it in Google Play. After you cancel, your plan works until the end of the paid period. Google Play's refund rules apply.</li>
+          <li><strong>If you pay us directly</strong> (for example CCP or BaridiMob): we add the paid time to your shop after we confirm the payment.</li>
+          <li><strong>When a paid plan ends</strong> and is not renewed, you have 7 days to renew. After that, selling stops until you renew. We do not delete your data, and you can still make a backup.</li>
+          <li>Customers who paid the old lifetime offer keep their activation.</li>
+          <li>Extra services (setup, product import, training) are agreed with us directly.</li>
+          <li>For a refund of a direct payment, contact us. We look at each case fairly.</li>
+        </ul>
 
-      <h2 id="data">6. Your data &amp; backups</h2>
-      <p>
-        Store Soft is offline-first and stores your business data locally on your device. You
-        are responsible for maintaining backups of your data. While the app provides automatic
-        local backups and optional Google Drive backup to help you, <strong>you remain
-        responsible for keeping safe copies</strong>. We are not liable for data loss caused by
-        device failure, loss, theft, uninstalling the app, clearing app data, or your failure
-        to keep backups.
-      </p>
+        <h2 id="acceptable">5. Fair use</h2>
+        <p>You may not:</p>
+        <ul>
+          <li>Resell, rent or share the app or your plan with another shop;</li>
+          <li>Try to get around the trial, the licence, the payment or the device limit;</li>
+          <li>Copy or take apart the app's code, except where the law allows it;</li>
+          <li>Use Store Soft to break the law.</li>
+        </ul>
 
-      <h2 id="google">7. Google services</h2>
-      <p>
-        If you choose to enable Google Drive backup, your use of Google services is also subject
-        to Google's own terms and policies. Store Soft only accesses a private application
-        folder in your Google Drive, as described in our
-        <a class="inline" href="privacy.html">Privacy Policy</a>. You may revoke this access at
-        any time from your Google account.
-      </p>
+        <h2 id="data">6. Your data and backups</h2>
+        <p>
+          Your shop data belongs to you. The app saves it on your device and offers backups on the device
+          and on Google Drive, but <strong>you are responsible for keeping safe copies</strong>. We are not
+          responsible for data lost because a device breaks, is lost or stolen, the app is uninstalled or its
+          data is cleared, or no backup was kept. Our <a class="inline" href="privacy.html">Privacy Policy</a>
+          explains what we collect and why.
+        </p>
 
-      <h2 id="availability">8. Updates &amp; availability</h2>
-      <p>
-        We may release updates that add, change or remove features, and we may discontinue parts
-        of the Service. We aim to keep the app working reliably, but we do not guarantee that it
-        will be uninterrupted or error-free. Updates may be required for the app to keep
-        functioning correctly.
-      </p>
+        <h2 id="business">7. Your shop</h2>
+        <p>
+          You are responsible for your prices, taxes and accounts, and for following the law for your
+          shop. Store Soft is a tool to help you; it is not legal, tax or accounting advice.
+        </p>
 
-      <h2 id="warranty">9. Disclaimer of warranties</h2>
-      <p>
-        The app is provided "as is" and "as available", without warranties of any kind, whether
-        express or implied, including but not limited to implied warranties of merchantability,
-        fitness for a particular purpose and non-infringement. We do not warrant that the app
-        will meet all your requirements or be free of defects.
-      </p>
+        <h2 id="google">8. Google and other services</h2>
+        <p>
+          Google Drive, Google sign-in and Google Play have their own terms. For Drive backup, Store Soft
+          only uses its own private folder in your Drive, and you can remove its access at any time from
+          your Google account.
+        </p>
 
-      <h2 id="liability">10. Limitation of liability</h2>
-      <p>
-        To the maximum extent permitted by law, the Store Soft team shall not be liable for any
-        indirect, incidental, special, consequential or punitive damages, or for any loss of
-        profits, revenue, data or goodwill, arising out of or related to your use of (or
-        inability to use) the app. To the extent liability cannot be excluded, our total
-        liability is limited to the amount you paid for the license in the twelve months before
-        the claim.
-      </p>
+        <h2 id="availability">9. Updates</h2>
+        <p>
+          We may add, change or remove features. Some updates may be needed to keep the app working. We
+          work hard to keep Store Soft working well, but we cannot promise that it will never stop or have errors.
+        </p>
 
-      <h2 id="termination">11. Termination</h2>
-      <p>
-        These Terms apply while you use the app. We may suspend or terminate your license if you
-        materially breach these Terms. You may stop using the app at any time by uninstalling
-        it. Sections that by their nature should survive termination (such as disclaimers and
-        limitation of liability) will survive.
-      </p>
+        <h2 id="warranty">10. No guarantee</h2>
+        <p>The app is provided "as is", without guarantees, as far as the law allows.</p>
 
-      <h2 id="law">12. Governing law</h2>
-      <p>
-        These Terms are governed by the laws of the People's Democratic Republic of Algeria,
-        without regard to its conflict-of-laws rules, unless a mandatory law of your place of
-        residence provides otherwise.
-      </p>
+        <h2 id="liability">11. Limit of our responsibility</h2>
+        <p>
+          As far as the law allows, we are not responsible for indirect losses, such as lost profit, lost
+          sales or lost data. If we are found responsible, the most we pay is what you paid us in the
+          12 months before the problem.
+        </p>
 
-      <h2 id="changes">13. Changes to these Terms</h2>
-      <p>
-        We may update these Terms from time to time. When we do, we will update the "Last
-        updated" date above. Your continued use of the app after changes take effect means you
-        accept the revised Terms.
-      </p>
+        <h2 id="termination">12. Stopping</h2>
+        <p>
+          You can stop using Store Soft at any time and ask us to delete your account
+          (<a class="inline" href="delete-account.html">how to delete</a>). We may stop your account or
+          licence if you seriously break these terms. Sections 10 and 11 still apply after that.
+        </p>
 
-      <h2 id="contact">14. Contact us</h2>
-      <p>
-        Questions about these Terms? Message us on
-        <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp (+213 654 33 86 49)</a>
-        or email <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
-      </p>
+        <h2 id="law">13. Law</h2>
+        <p>
+          These terms follow the law of Algeria, unless the law of your country gives you rights that
+          cannot be removed.
+        </p>
+
+        <h2 id="changes">14. Changes</h2>
+        <p>If we change these terms, we change the date at the top. Using the app after a change means you accept the new terms.</p>
+
+        <h2 id="contact">15. Contact us</h2>
+        <p>
+          Questions about these terms? Message us on
+          <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp (+213 654 33 86 49)</a>
+          or email <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
+        </p>
+      </article>
+
+      <!-- FRANÇAIS -->
+      <article data-legal-lang="fr" lang="fr" dir="ltr">
+        <h1>Conditions d’utilisation</h1>
+        <p class="updated">Dernière mise à jour : 29 octobre 2026</p>
+
+        <div class="callout legal-short" id="fr-summary">
+          <h2>En bref</h2>
+          <ul>
+            <li>En créant un compte, ou en installant ou utilisant Store Soft, vous acceptez ces conditions.</li>
+            <li>Vous pouvez essayer l’app <strong>gratuitement pendant 14 jours</strong>. Ensuite, une offre payante est nécessaire pour continuer à vendre.</li>
+            <li>Les données de votre magasin <strong>vous appartiennent</strong>. Faites des sauvegardes.</li>
+            <li>Quand une offre payante se termine, vous avez <strong>7 jours pour la renouveler</strong>. Nous ne supprimons pas vos données à la fin d’une offre.</li>
+          </ul>
+        </div>
+
+        <h2 id="fr-acceptance">1. Accepter ces conditions</h2>
+        <p>
+          Ces conditions sont un accord entre vous et l’équipe Store Soft. Elles s’appliquent quand vous
+          créez un compte, ou installez ou utilisez l’app Store Soft (Windows et Android) ou ce site. Si vous
+          ne les acceptez pas, n’utilisez pas Store Soft. Vous devez être majeur et autorisé à gérer le
+          magasin pour lequel vous utilisez l’app.
+        </p>
+
+        <h2 id="fr-account">2. Votre compte</h2>
+        <ul>
+          <li>Utilisez une vraie adresse e-mail que vous pouvez ouvrir.</li>
+          <li>Gardez votre mot de passe secret. Vous êtes responsable de ce qui est fait avec votre compte et avec les comptes employés que vous créez.</li>
+          <li>Si vous pensez que quelqu’un d’autre utilise votre compte, changez votre mot de passe et prévenez-nous vite.</li>
+        </ul>
+
+        <h2 id="fr-trial">3. Essai gratuit</h2>
+        <p>
+          Chaque magasin a un seul essai gratuit de 14 jours. À la fin de l’essai, la vente s’arrête jusqu’à
+          ce que vous choisissiez une offre payante. Vos données restent sur votre appareil et vous pouvez
+          toujours faire une sauvegarde. Il est interdit de contourner l’essai, la licence ou la limite d’appareils.
+        </p>
+
+        <h2 id="fr-payment">4. Offres et paiement</h2>
+        <ul>
+          <li>Les prix sont affichés sur notre <a class="inline" href="/pricing/?lang=fr">page des prix</a> et dans l’app. Ils peuvent changer ; un changement ne touche jamais le temps déjà payé.</li>
+          <li><strong>Si vous payez sur Google Play :</strong> l’abonnement se renouvelle automatiquement jusqu’à ce que vous l’annuliez dans Google Play. Après l’annulation, votre offre marche jusqu’à la fin de la période payée. Les règles de remboursement de Google Play s’appliquent.</li>
+          <li><strong>Si vous nous payez directement</strong> (par exemple CCP ou BaridiMob) : nous ajoutons le temps payé à votre magasin après avoir confirmé le paiement.</li>
+          <li><strong>Quand une offre payante se termine</strong> sans renouvellement, vous avez 7 jours pour la renouveler. Ensuite, la vente s’arrête jusqu’au renouvellement. Nous ne supprimons pas vos données, et vous pouvez toujours faire une sauvegarde.</li>
+          <li>Les clients qui ont payé l’ancienne offre à vie gardent leur activation.</li>
+          <li>Les services en plus (installation, import des produits, formation) se décident directement avec nous.</li>
+          <li>Pour un remboursement d’un paiement direct, contactez-nous. Nous étudions chaque cas honnêtement.</li>
+        </ul>
+
+        <h2 id="fr-acceptable">5. Bon usage</h2>
+        <p>Il est interdit de :</p>
+        <ul>
+          <li>Revendre, louer ou partager l’app ou votre offre avec un autre magasin ;</li>
+          <li>Contourner l’essai, la licence, le paiement ou la limite d’appareils ;</li>
+          <li>Copier ou démonter le code de l’app, sauf si la loi le permet ;</li>
+          <li>Utiliser Store Soft pour enfreindre la loi.</li>
+        </ul>
+
+        <h2 id="fr-data">6. Vos données et sauvegardes</h2>
+        <p>
+          Les données de votre magasin vous appartiennent. L’app les enregistre sur votre appareil et propose
+          des sauvegardes sur l’appareil et sur Google Drive, mais <strong>c’est à vous de garder des copies
+          sûres</strong>. Nous ne sommes pas responsables des données perdues parce qu’un appareil tombe en
+          panne, est perdu ou volé, que l’app est désinstallée ou ses données effacées, ou qu’aucune
+          sauvegarde n’a été faite. Notre <a class="inline" href="privacy.html?lang=fr">politique de confidentialité</a>
+          explique ce que nous collectons et pourquoi.
+        </p>
+
+        <h2 id="fr-business">7. Votre magasin</h2>
+        <p>
+          Vous êtes responsable de vos prix, de vos impôts et de vos comptes, et du respect de la loi pour
+          votre magasin. Store Soft est un outil pour vous aider ; ce n’est pas un conseil juridique, fiscal
+          ou comptable.
+        </p>
+
+        <h2 id="fr-google">8. Google et autres services</h2>
+        <p>
+          Google Drive, la connexion Google et Google Play ont leurs propres conditions. Pour la sauvegarde
+          Drive, Store Soft utilise seulement son propre dossier privé dans votre Drive, et vous pouvez
+          retirer son accès à tout moment depuis votre compte Google.
+        </p>
+
+        <h2 id="fr-availability">9. Mises à jour</h2>
+        <p>
+          Nous pouvons ajouter, changer ou retirer des fonctions. Certaines mises à jour peuvent être
+          nécessaires pour que l’app continue à marcher. Nous faisons tout pour que Store Soft marche bien,
+          mais nous ne pouvons pas promettre qu’il ne s’arrêtera jamais ou n’aura aucune erreur.
+        </p>
+
+        <h2 id="fr-warranty">10. Pas de garantie</h2>
+        <p>L’app est fournie « telle quelle », sans garantie, dans la limite permise par la loi.</p>
+
+        <h2 id="fr-liability">11. Limite de notre responsabilité</h2>
+        <p>
+          Dans la limite permise par la loi, nous ne sommes pas responsables des pertes indirectes, comme
+          un manque à gagner, des ventes perdues ou des données perdues. Si notre responsabilité est
+          reconnue, le maximum que nous payons est ce que vous nous avez payé dans les 12 mois avant le problème.
+        </p>
+
+        <h2 id="fr-termination">12. Arrêt</h2>
+        <p>
+          Vous pouvez arrêter d’utiliser Store Soft à tout moment et nous demander de supprimer votre
+          compte (<a class="inline" href="delete-account.html">comment supprimer</a>). Nous pouvons arrêter
+          votre compte ou votre licence si vous enfreignez gravement ces conditions. Les sections 10 et 11
+          restent valables après.
+        </p>
+
+        <h2 id="fr-law">13. Loi</h2>
+        <p>
+          Ces conditions suivent la loi algérienne, sauf si la loi de votre pays vous donne des droits qui
+          ne peuvent pas être retirés.
+        </p>
+
+        <h2 id="fr-changes">14. Modifications</h2>
+        <p>Si nous changeons ces conditions, nous changeons la date en haut. Utiliser l’app après un changement veut dire que vous acceptez les nouvelles conditions.</p>
+
+        <h2 id="fr-contact">15. Nous contacter</h2>
+        <p>
+          Une question sur ces conditions ? Écrivez-nous sur
+          <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp (+213 654 33 86 49)</a>
+          ou par e-mail à <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
+        </p>
+      </article>
+
+      <!-- العربية -->
+      <article data-legal-lang="ar" lang="ar" dir="rtl">
+        <h1>شروط الاستخدام</h1>
+        <p class="updated">آخر تحديث: 29 أكتوبر 2026</p>
+
+        <div class="callout legal-short" id="ar-summary">
+          <h2>باختصار</h2>
+          <ul>
+            <li>بإنشاء حساب، أو بتثبيت Store Soft أو استعماله، فإنك توافق على هذه الشروط.</li>
+            <li>يمكنك تجربة التطبيق <strong>مجانًا لمدة 14 يومًا</strong>. بعدها تحتاج إلى اشتراك مدفوع لمواصلة البيع.</li>
+            <li>بيانات محلك <strong>ملك لك</strong>. احتفظ بنسخ احتياطية.</li>
+            <li>عند انتهاء الاشتراك المدفوع، لديك <strong>7 أيام للتجديد</strong>. ولا نحذف بياناتك عند انتهاء الاشتراك.</li>
+          </ul>
+        </div>
+
+        <h2 id="ar-acceptance">1. قبول هذه الشروط</h2>
+        <p>
+          هذه الشروط اتفاق بينك وبين فريق Store Soft. وتنطبق عندما تنشئ حسابًا، أو تثبّت تطبيق Store Soft
+          (Windows وAndroid) أو تستعمله، أو تستعمل هذا الموقع. إذا لم توافق عليها فلا تستعمل Store Soft.
+          ويجب أن تكون بالغًا ومخوّلًا بتسيير المحل الذي تستعمل التطبيق من أجله.
+        </p>
+
+        <h2 id="ar-account">2. حسابك</h2>
+        <ul>
+          <li>استعمل بريدًا إلكترونيًا حقيقيًا تستطيع فتحه.</li>
+          <li>احفظ كلمة المرور سرًا. أنت مسؤول عمّا يُفعل بحسابك وبحسابات العمال التي تنشئها.</li>
+          <li>إذا ظننت أن شخصًا آخر يستعمل حسابك، غيّر كلمة المرور وأخبرنا بسرعة.</li>
+        </ul>
+
+        <h2 id="ar-trial">3. التجربة المجانية</h2>
+        <p>
+          لكل محل تجربة مجانية واحدة مدتها 14 يومًا. عند انتهائها يتوقف البيع حتى تختار اشتراكًا مدفوعًا.
+          تبقى بياناتك على جهازك، ويمكنك دائمًا إنشاء نسخة احتياطية. ولا يُسمح بمحاولة تجاوز التجربة أو
+          الرخصة أو حدّ عدد الأجهزة.
+        </p>
+
+        <h2 id="ar-payment">4. الاشتراكات والدفع</h2>
+        <ul>
+          <li>الأسعار معروضة في <a class="inline" href="/pricing/?lang=ar">صفحة الأسعار</a> وفي التطبيق. وقد تتغير، لكن التغيير لا يمسّ أبدًا المدة التي دفعتها.</li>
+          <li><strong>إذا دفعت عبر Google Play:</strong> يتجدد الاشتراك تلقائيًا حتى تلغيه من Google Play. بعد الإلغاء يبقى اشتراكك يعمل حتى نهاية المدة المدفوعة. وتنطبق قواعد الاسترداد الخاصة بـ Google Play.</li>
+          <li><strong>إذا دفعت لنا مباشرة</strong> (مثلًا عبر CCP أو BaridiMob): نضيف المدة المدفوعة إلى محلك بعد تأكيد الدفع.</li>
+          <li><strong>عند انتهاء الاشتراك المدفوع</strong> دون تجديد، لديك 7 أيام للتجديد. بعدها يتوقف البيع حتى تجدد. لا نحذف بياناتك، ويمكنك دائمًا إنشاء نسخة احتياطية.</li>
+          <li>الزبائن الذين دفعوا العرض القديم مدى الحياة يحتفظون بتفعيلهم.</li>
+          <li>الخدمات الإضافية (التثبيت، إدخال المنتجات، التدريب) يُتفق عليها معنا مباشرة.</li>
+          <li>لاسترداد مبلغ دفعته لنا مباشرة، تواصل معنا. ندرس كل حالة بإنصاف.</li>
+        </ul>
+
+        <h2 id="ar-acceptable">5. الاستعمال السليم</h2>
+        <p>لا يُسمح لك بما يلي:</p>
+        <ul>
+          <li>إعادة بيع التطبيق أو اشتراكك أو تأجيرهما أو مشاركتهما مع محل آخر؛</li>
+          <li>محاولة تجاوز التجربة أو الرخصة أو الدفع أو حدّ عدد الأجهزة؛</li>
+          <li>نسخ شيفرة التطبيق أو تفكيكها، إلا حيث يسمح القانون بذلك؛</li>
+          <li>استعمال Store Soft لمخالفة القانون.</li>
+        </ul>
+
+        <h2 id="ar-data">6. بياناتك ونسخك الاحتياطية</h2>
+        <p>
+          بيانات محلك ملك لك. يحفظها التطبيق على جهازك ويوفر نسخًا احتياطية على الجهاز وعلى Google Drive،
+          لكن <strong>أنت المسؤول عن الاحتفاظ بنسخ آمنة</strong>. لسنا مسؤولين عن البيانات الضائعة بسبب عطل
+          الجهاز أو ضياعه أو سرقته، أو إلغاء تثبيت التطبيق أو مسح بياناته، أو عدم وجود نسخة احتياطية.
+          وتشرح <a class="inline" href="privacy.html?lang=ar">سياسة الخصوصية</a> ما نجمعه ولماذا.
+        </p>
+
+        <h2 id="ar-business">7. محلك</h2>
+        <p>
+          أنت المسؤول عن أسعارك وضرائبك وحساباتك، وعن احترام القانون في محلك. Store Soft أداة لمساعدتك،
+          وليس استشارة قانونية أو ضريبية أو محاسبية.
+        </p>
+
+        <h2 id="ar-google">8. Google والخدمات الأخرى</h2>
+        <p>
+          لكلٍّ من Google Drive والدخول بحساب Google وGoogle Play شروطه الخاصة. في النسخ على Drive، لا
+          يستعمل Store Soft إلا مجلده الخاص في Drive الخاص بك، ويمكنك إزالة إذنه في أي وقت من حساب Google.
+        </p>
+
+        <h2 id="ar-availability">9. التحديثات</h2>
+        <p>
+          قد نضيف ميزات أو نغيّرها أو نزيلها. وقد تكون بعض التحديثات ضرورية ليبقى التطبيق يعمل. نعمل
+          جاهدين ليعمل Store Soft جيدًا، لكننا لا نستطيع أن نعد بأنه لن يتوقف أبدًا أو لن يحدث فيه خطأ.
+        </p>
+
+        <h2 id="ar-warranty">10. دون ضمان</h2>
+        <p>يُقدَّم التطبيق «كما هو»، دون ضمانات، في الحدود التي يسمح بها القانون.</p>
+
+        <h2 id="ar-liability">11. حدود مسؤوليتنا</h2>
+        <p>
+          في الحدود التي يسمح بها القانون، لسنا مسؤولين عن الخسائر غير المباشرة، مثل الربح الفائت أو
+          المبيعات الضائعة أو البيانات الضائعة. وإذا ثبتت مسؤوليتنا، فأقصى ما ندفعه هو ما دفعته لنا خلال
+          الأشهر الـ12 التي سبقت المشكلة.
+        </p>
+
+        <h2 id="ar-termination">12. التوقف</h2>
+        <p>
+          يمكنك التوقف عن استعمال Store Soft في أي وقت وطلب حذف حسابك
+          (<a class="inline" href="delete-account.html">طريقة الحذف</a>). وقد نوقف حسابك أو رخصتك إذا خالفت
+          هذه الشروط مخالفة جسيمة. ويبقى القسمان 10 و11 ساريين بعد ذلك.
+        </p>
+
+        <h2 id="ar-law">13. القانون</h2>
+        <p>
+          تخضع هذه الشروط للقانون الجزائري، إلا إذا منحك قانون بلدك حقوقًا لا يمكن التنازل عنها.
+        </p>
+
+        <h2 id="ar-changes">14. التغييرات</h2>
+        <p>إذا غيّرنا هذه الشروط نغيّر التاريخ في أعلى الصفحة. واستعمالك للتطبيق بعد التغيير يعني قبولك للشروط الجديدة.</p>
+
+        <h2 id="ar-contact">15. اتصل بنا</h2>
+        <p>
+          لديك سؤال عن هذه الشروط؟ راسلنا على
+          <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener" dir="ltr">WhatsApp (+213 654 33 86 49)</a>
+          أو عبر البريد <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
+        </p>
+      </article>
     </div>
   </main>
 
@@ -199,47 +412,39 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="index.html">
+          <a class="brand" href="index.html" data-legal-home="">
             <span class="mark">S</span>
-            <span class="name">Store Soft<small>Store management for shops</small></span>
+            <span class="name">Store Soft<small data-legal-t="tagline">Store management for shops</small></span>
           </a>
-          <p class="about">Offline-first point-of-sale &amp; store management built for Algerian shops.</p>
+          <p class="about" data-legal-t="about">Offline-first point-of-sale &amp; store management built for shops.</p>
         </div>
         <div class="footer-col">
-          <h4>Product</h4>
-          <a href="index.html#features">Features</a>
-          <a href="index.html#backup">Drive backup</a>
-          <a href="index.html#pricing">Pricing</a>
-          <a href="index.html#download">Download</a>
+          <h4 data-legal-t="product">Product</h4>
+          <a href="index.html#features" data-legal-home="#features" data-legal-t="features">Features</a>
+          <a href="index.html#backup" data-legal-home="#backup" data-legal-t="drive">Drive backup</a>
+          <a href="index.html#pricing" data-legal-home="#pricing" data-legal-t="pricing">Pricing</a>
+          <a href="index.html#download" data-legal-home="#download" data-legal-t="download">Download</a>
         </div>
         <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
-          <a href="delete-account.html">Delete your data</a>
+          <h4 data-legal-t="legal">Legal</h4>
+          <a href="privacy.html" data-legal-t="privacyPolicy">Privacy Policy</a>
+          <a href="terms.html" data-legal-t="termsOfService">Terms of Service</a>
+          <a href="delete-account.html" data-legal-t="deleteData">Delete your data</a>
         </div>
         <div class="footer-col">
-          <h4>Contact</h4>
+          <h4 data-legal-t="contact">Contact</h4>
           <a href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="mailto:younes.mimene@gmail.com">Email support</a>
+          <a href="mailto:younes.mimene@gmail.com" data-legal-t="email">Email support</a>
           <a href="https://github.com/dzstoredzd/dz-store-management" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="year">2026</span> Store Soft. All rights reserved.</span>
-        <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="delete-account.html">Delete your data</a></span>
+        <span>© <span id="year">2026</span> Store Soft. <span data-legal-t="rights">All rights reserved.</span></span>
+        <span><a href="privacy.html" data-legal-t="privacy">Privacy</a> · <a href="terms.html" data-legal-t="terms">Terms</a> · <a href="delete-account.html" data-legal-t="deleteData">Delete your data</a></span>
       </div>
     </div>
   </footer>
 
-  <script>
-    var nav = document.getElementById('nav');
-    var toggle = document.getElementById('navToggle');
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="legal.js?v=20261029"></script>
 </body>
 </html>

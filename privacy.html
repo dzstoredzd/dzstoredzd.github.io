@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Store Soft</title>
-  <meta name="description" content="Privacy Policy for Store Soft, an offline-first store-management app. How we handle your data and Google Drive backup access." />
+  <meta name="description" content="Store Soft Privacy Policy in simple words: what stays on your device, what the app sends, Google Drive backup and how to delete your data. Arabic, French and English." />
   <meta name="google-site-verification" content="q4sa-fmVwGJOlf542lkuE1kLPuGHTy7R-aptzCyJ97A" />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="canonical" href="https://yousoft.site/privacy.html" />
   <link rel="stylesheet" href="/assets/fonts/plex.css?v=20261101" />
   <link rel="stylesheet" href="styles.css?v=20261101-font" />
+  <link rel="stylesheet" href="legal.css?v=20261029" />
 </head>
 <body>
 
@@ -17,18 +18,18 @@
   <header class="site-header">
     <div class="container">
       <nav class="nav" id="nav">
-        <a class="brand" href="index.html" aria-label="Store Soft home">
+        <a class="brand" href="index.html" data-legal-home="" aria-label="Store Soft home">
           <span class="mark">S</span>
-          <span class="name">Store Soft<small>Store management for shops</small></span>
+          <span class="name">Store Soft<small data-legal-t="tagline">Store management for shops</small></span>
         </a>
         <div class="nav-links">
-          <a href="index.html#features">Features</a>
-          <a href="index.html#backup">Backup</a>
-          <a href="index.html#pricing">Pricing</a>
-          <a href="terms.html">Terms</a>
+          <a href="index.html#features" data-legal-home="#features" data-legal-t="features">Features</a>
+          <a href="index.html#backup" data-legal-home="#backup" data-legal-t="backup">Backup</a>
+          <a href="index.html#pricing" data-legal-home="#pricing" data-legal-t="pricing">Pricing</a>
+          <a href="terms.html" data-legal-t="terms">Terms</a>
         </div>
         <div class="nav-cta">
-          <a class="btn btn-primary" href="index.html#download">Get the app</a>
+          <a class="btn btn-primary" href="index.html#download" data-legal-home="#download" data-legal-t="getApp">Get the app</a>
         </div>
         <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -40,397 +41,559 @@
   <!-- DOCUMENT -->
   <main class="doc">
     <div class="container doc-wrap">
-      <a class="back" href="index.html">← Back to home</a>
-      <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: 28 October 2026</p>
-      <p class="intro">
-        Store Soft is an offline-first store-management app for Windows and Android. Products,
-        sales, customers and stock are stored on your device. Copies can leave it when you enable
-        optional Google Drive backup or multi-device Sync, export a backup, or choose to share
-        data with support. The app also sends limited installation and usage analytics,
-        including the shop name, phone number and address you enter in Shop info, to our private
-        CRM for support and adoption measurement. Section 8 explains exactly what is sent.
-      </p>
+      <a class="back" href="index.html" data-legal-home="" data-legal-t="back">← Back to home</a>
+      <nav class="legal-langs" aria-label="Language / اللغة / Langue">
+        <a href="?lang=ar" data-legal-switch="ar" lang="ar" dir="rtl">العربية</a>
+        <a href="?lang=fr" data-legal-switch="fr" lang="fr">Français</a>
+        <a href="?lang=en" data-legal-switch="en" lang="en">English</a>
+      </nav>
 
-      <div class="toc">
-        <h4>Contents</h4>
-        <ol>
-          <li><a href="#who">Who we are</a></li>
-          <li><a href="#scope">Scope</a></li>
-          <li><a href="#data-local">Data stored on your device</a></li>
-          <li><a href="#sync">Multi-device sync (optional)</a></li>
-          <li><a href="#google">Google account &amp; Google Drive backup (optional)</a></li>
-          <li><a href="#limited-use">Google API Limited Use</a></li>
-          <li><a href="#camera">Camera</a></li>
-          <li><a href="#analytics">Analytics, lead milestones &amp; diagnostics</a></li>
-          <li><a href="#use">How we use information</a></li>
-          <li><a href="#sharing">Sharing &amp; disclosure</a></li>
-          <li><a href="#retention">Retention &amp; deletion</a></li>
-          <li><a href="#security">Security</a></li>
-          <li><a href="#children">Children</a></li>
-          <li><a href="#changes">Changes</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ol>
-      </div>
+      <!-- ENGLISH -->
+      <article data-legal-lang="en" lang="en" dir="ltr">
+        <h1>Privacy Policy</h1>
+        <p class="updated">Last updated: 29 October 2026</p>
 
-      <h2 id="who">1. Who we are</h2>
-      <p>
-        Store Soft is a point-of-sale and store-management app for small shops (primarily
-        Algerian épiceries and superettes). It is developed and operated by the Store Soft
-        team. You can reach us at
-        <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
-      </p>
+        <div class="callout legal-short" id="summary">
+          <h2>In short</h2>
+          <ul>
+            <li>Your shop records (products, sales, customers, stock, debts) are saved <strong>on your device</strong>.</li>
+            <li>They leave your device only if you turn on <strong>Cloud Sync</strong> or <strong>Google Drive backup</strong>, or if you send a copy to us yourself.</li>
+            <li>The app sends us your <strong>shop name, phone and address</strong> and simple usage numbers, so we can help you. Never your sales or your products.</li>
+            <li>The Android app and our website tell Meta (Facebook) about installs, setup, the first sale and payments, to measure our ads.</li>
+            <li>We <strong>never sell</strong> your data.</li>
+          </ul>
+        </div>
 
-      <h2 id="scope">2. Scope of this policy</h2>
-      <p>
-        This policy covers the Store Soft desktop and mobile applications and this website.
-        It does not cover third-party services you may separately use (for example, Google),
-        which are governed by their own privacy policies.
-      </p>
-      <h3>Website download requests</h3>
-      <p>
-        The current download forms collect your name, phone or WhatsApp number, and shop type.
-        Older requests may also contain an email address or a preferred platform. We record basic
-        campaign information included in the page link (such as source and campaign name) and
-        the submission time. We use this information to provide download and installation
-        instructions, offer follow-up support, and understand the effectiveness of our campaigns.
-        Store Soft is available on Google Play in production; no tester email or test approval
-        is needed to install it.
-      </p>
-      <p>
-        Download requests are stored in our secure Supabase backend and copied to a private
-        Google Sheet used by the Store Soft team to manage follow-up. We do not sell these details
-        or use them for unrelated advertising. You may ask us to correct or delete a request using
-        the contact details at the end of this policy.
-      </p>
-      <p>
-        Each request receives a random private link containing only a six-character opaque code.
-        The link contains no name, phone number, or email address. If you use it to open Google
-        Play and then install Store Soft, the code may let us connect the limited trial milestones
-        in Section 8 to your request so we can provide timely setup help.
-      </p>
-      <h3>Meta advertising measurement on the website</h3>
-      <p>
-        The Store Soft download and Android install pages use the Meta Pixel to record visits,
-        form and download interactions and, only after
-        the website successfully saves a request, a standard <strong>Lead</strong> event. Meta may
-        receive browser and device information, IP address, cookies or similar identifiers, the
-        page URL, and campaign parameters. We use these events to attribute requests to Facebook
-        and Instagram ads, measure campaign performance, and improve ad delivery. After a request
-        is saved, the Pixel also sends Meta the phone number entered in the form, with the country
-        (Algeria), so Meta can match the request to a Facebook or Instagram account (advanced
-        matching). Your browser turns the phone number into a one-way hash (SHA-256) before it is
-        sent, so Meta does not receive the number itself. We do <strong>not</strong> add the name,
-        email address, or shop type to the events ourselves. Meta's automatic advanced matching,
-        which is turned on for this Pixel, may also read the name and phone number typed in the
-        form and send them hashed in the same way. Meta processes these events under its own
-        <a class="inline" href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Privacy Policy</a>.
-      </p>
-      <h3>Meta advertising measurement in the Android app</h3>
-      <p>
-        To know which Facebook and Instagram ads bring real shops, the Android app includes the
-        Meta SDK for app events. It sends Meta Platforms: app install and open, "shop set up",
-        "first sale" (only that it happened, never its content) and a new Google Play subscription
-        with its price. Meta also receives the device's Advertising ID and device and app
-        information. When our team records a payment you made another way (WhatsApp, cash, card),
-        our server sends Meta the amount with a one-way hash (SHA-256) of the account email and
-        shop phone. We never send products, customers, suppliers, sale contents or stock. You can
-        limit this by deleting or resetting your Advertising ID in Android settings. The Windows app
-        does not use the Meta SDK. Meta processes these events under its own
-        <a class="inline" href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Privacy Policy</a>.
-      </p>
+        <div class="toc">
+          <h4>Contents</h4>
+          <ol>
+            <li><a href="#who">Who we are</a></li>
+            <li><a href="#data-local">What stays on your device</a></li>
+            <li><a href="#analytics">What the app sends us</a></li>
+            <li><a href="#sync">Cloud Sync and your account</a></li>
+            <li><a href="#google">Google sign-in and Drive backup</a></li>
+            <li><a href="#limited-use">Google data: Limited Use</a></li>
+            <li><a href="#meta">Ads measurement with Meta</a></li>
+            <li><a href="#website">Website download requests</a></li>
+            <li><a href="#camera">Camera, Bluetooth, fingerprint</a></li>
+            <li><a href="#support">Sending data to support</a></li>
+            <li><a href="#sharing">Who gets your data</a></li>
+            <li><a href="#retention">Keeping and deleting data</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#children">Children</a></li>
+            <li><a href="#changes">Changes</a></li>
+            <li><a href="#contact">Contact us</a></li>
+          </ol>
+        </div>
 
-      <h2 id="data-local">3. Data stored on your device</h2>
-      <p>
-        Store Soft stores the information you enter to run your shop in a local database
-        <strong>on your own device</strong>. This may include:
-      </p>
-      <ul>
-        <li>Shop details you enter (shop name, optional address and phone).</li>
-        <li>Products, prices, stock levels, suppliers and purchase costs.</li>
-        <li>Sales, receipts, and cash-drawer records.</li>
-        <li>Customer and supplier debt (credit / الكريدي) records you create.</li>
-        <li>Local owner and staff profiles, with an optional local PIN. PINs and passwords are not stored in plain text.</li>
-      </ul>
-      <div class="callout">
-        <strong>Store Soft remains offline-first.</strong> Products, sales, customers, prices,
-        debts and stock stay on your device unless you enable Google Drive backup or Sync,
-        export a backup, or choose to share a data copy with support. The shop name, phone number
-        and address entered in Shop info
-        are separately sent to our private CRM for installation support and adoption measurement
-        when Internet is available (see Section 8).
-      </div>
+        <h2 id="who">1. Who we are</h2>
+        <p>
+          Store Soft is an app to run a shop (sales, stock, customers and debts) on Windows and
+          Android. It is made by the Store Soft team. This policy covers the app and this website.
+          Google, Meta and other services have their own privacy policies.
+        </p>
 
-      <h2 id="sync">4. Multi-device sync (optional)</h2>
-      <div class="callout">
-        <strong>Status:</strong> Multi-device sync is <strong>available</strong> as an
-        optional <strong>paid</strong> tier. It is <strong>off by default</strong>: a shop that
-        never enables it does not upload its products, sales, customers or stock through Sync.
-        Website requests, shop contact details and limited usage records described in Section 8
-        are separate from Sync and may still be held in our private CRM. If you enable Sync and
-        later want your account and synced data removed, see
-        <a class="inline" href="delete-account.html">Delete your account and data</a>.
-      </div>
-      <p>
-        Multi-device sync is an <strong>optional</strong> feature for shops that want the
-        same data on more than one device (for example a second till or the owner's phone). It is
-        <strong>off by default</strong> and is only active if the shop owner creates a Store Soft
-        cloud account and enables it. A single-device shop can use the app without enabling Sync.
-      </p>
-      <h3>The store account</h3>
-      <ul>
-        <li>
-          The owner creates an account with an <strong>email address and password</strong> and
-          can also use the supported Google sign-in flow. This
-          identifies the shop ("the store") and is used to sign in and to enroll devices. We use the
-          email for authentication and account-related contact. When you pay for a plan, a one-way
-          hash of it may be sent to Meta to measure our ads (Section 2); it is never shown in ads or sold.
-        </li>
-        <li>
-          Each device you enroll registers under the store using a <strong>device fingerprint</strong>
-          (the same machine ID / Android ID the license uses), so the number of devices can be limited
-          to your plan and a lost or sold device can be removed.
-        </li>
-        <li>
-          <strong>Staff (cashier) accounts</strong> are created by the owner with a username and a
-          password for Sync and an optional local PIN. Credentials are protected by hashes,
-          never stored in plain text; Sync password verifiers remain on the server.
-        </li>
-      </ul>
-      <h3>What is uploaded</h3>
-      <p>
-        When sync is enabled, your shop's business records — products, prices, stock, suppliers,
-        sales and receipts, customers, debt (credit / الكريدي) records, repair tickets and staff
-        accounts — are uploaded to our cloud backend so they appear on every enrolled device of the
-        same shop. <strong>Unlike Drive backup, these copies are stored on a server we operate</strong>
-        (our Supabase backend, hosted in the European Union) for as long as sync is active on your account.
-      </p>
-      <h3>How it is protected</h3>
-      <ul>
-        <li>Data is transferred over <strong>encrypted HTTPS</strong> connections.</li>
-        <li>
-          Each store's data is <strong>isolated</strong> by row-level security keyed to your store
-          identifier, so one shop can never read or modify another shop's data.
-        </li>
-        <li>We use your synced business data <strong>only</strong> to provide the sync service to you. We do not sell it, share it, or use it for advertising.</li>
-      </ul>
-      <p>
-        You can disconnect a device, disable sync, or ask us to delete your store's cloud data at any
-        time (see Sections 11 and 15).
-      </p>
+        <h2 id="data-local">2. What stays on your device</h2>
+        <p>The app saves what you type in a database <strong>on your own device</strong>:</p>
+        <ul>
+          <li>Shop info: name, address and phone.</li>
+          <li>Products, prices, stock, suppliers and purchase costs.</li>
+          <li>Sales, receipts and cash records.</li>
+          <li>Customers, suppliers and their debts (credit).</li>
+          <li>Owner and staff profiles. PINs and passwords are never saved in plain text.</li>
+        </ul>
+        <div class="callout">
+          <strong>Selling works without internet.</strong> These records stay on your device unless you
+          turn on Cloud Sync or Google Drive backup, export a backup, or send a copy to support.
+        </div>
 
-      <h2 id="google">5. Google account &amp; Google Drive backup (optional)</h2>
-      <p>
-        Google Drive backup is an <strong>optional</strong> feature. It is off by default and
-        is only used if you connect your Google account for backups. Google sign-in for a
-        Store Soft cloud account is a separate flow; signing in does not by itself enable Drive backup.
-      </p>
-      <h3>What we access</h3>
-      <ul>
-        <li>
-          <strong>Basic Google profile</strong> — when you sign in, Google provides your
-          email address and display name so the app can show which account is connected. This
-          identifies the connected backup account. If you also use Google to sign in
-          to a Store Soft cloud account, our authentication service keeps the account identity
-          needed for sign-in. That is separate from access to Drive backup files.
-        </li>
-        <li>
-          <strong>A single, app-private Drive folder</strong> — Store Soft requests only the
-          limited <code>https://www.googleapis.com/auth/drive.appdata</code> permission. This
-          grants access <strong>exclusively to a hidden application-data folder</strong> that
-          the app creates in your own Google Drive.
-        </li>
-      </ul>
-      <h3>What we cannot access</h3>
-      <p>
-        The <code>drive.appdata</code> permission technically prevents the app from seeing or
-        opening any of your other Google Drive content. Store Soft <strong>cannot read, list,
-        modify or delete your documents, photos, spreadsheets or any other files</strong> in
-        your Drive. It can only see the backup files it placed in its own hidden folder.
-      </p>
-      <h3>What we do with it</h3>
-      <ul>
-        <li>Upload encrypted-at-rest copies of your local database backup to that hidden folder.</li>
-        <li>List the backups already in that folder so you can choose one to restore.</li>
-        <li>Download a backup you select in order to restore it onto your device.</li>
-        <li>Delete older backups to keep only the most recent few (rotation).</li>
-      </ul>
-      <p>
-        The backups are stored in <strong>your</strong> Google account, under your control. We
-        never receive a copy.
-      </p>
+        <h2 id="analytics">3. What the app sends us, even without Cloud Sync</h2>
+        <p>
+          The app keeps these on your device and sends them to our private server when internet is on:
+        </p>
+        <ul>
+          <li>The <strong>shop name, phone and address</strong> typed in Shop info. They are <strong>not anonymous</strong>. Only our team can see them, in our private customer list. We use them to help you set up and to follow how shops use the app.</li>
+          <li>A random installation number, a one-way coded (hashed) device ID, the app version, Android or Windows, and the first and last use dates.</li>
+          <li>Simple usage: daily opens, first steps (setup, first product, first sale, first customer, first backup, activation), visits to the main parts of the app, and the licence and Cloud Sync status (without prices or sales).</li>
+          <li>Error reports: only the error type and the part of the app, with the numbers above. Full error details stay in a log on your device.</li>
+          <li>Feedback, only if you send it: your stars (1 to 5), a problem type and your comment.</li>
+        </ul>
+        <p>
+          <strong>Never sent here:</strong> product names, barcodes, prices, stock, sale contents or
+          amounts, customers, suppliers, debts, staff names, your location or your advertising ID.
+          Meta ads measurement is separate (section 7).
+        </p>
 
-      <h2 id="limited-use">6. Google API Services User Data Policy — Limited Use</h2>
-      <div class="callout">
-        Store Soft's use and transfer of information received from Google APIs adheres to the
-        <a class="inline" href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes" target="_blank" rel="noopener">Google API Services User Data Policy</a>,
-        including the <strong>Limited Use</strong> requirements.
-      </div>
-      <p>Specifically:</p>
-      <ul>
-        <li>We use Google profile data for the sign-in you choose, and Drive data only for the backup and restore feature you explicitly enable.</li>
-        <li>We do not transfer or sell Google user data to third parties, ad networks, data brokers or for any advertising purpose.</li>
-        <li>We do not use Google user data for advertising.</li>
-        <li>We do not allow humans to read your data, except where you give explicit consent for support, where required for security or to comply with law, or where the data has been aggregated and anonymized.</li>
-      </ul>
+        <h2 id="sync">4. Cloud Sync and your account (optional, paid)</h2>
+        <ul>
+          <li>Cloud Sync is <strong>off</strong> until the owner creates a Store Soft account and turns it on. A shop with one device can work without it.</li>
+          <li>You create the account with an <strong>email and password</strong>, or with Google. We use the email to sign you in and to contact you about your account.</li>
+          <li>When Cloud Sync is on, your shop records (products, prices, stock, suppliers, sales, receipts, customers, debts, repair tickets and staff accounts) are copied to <strong>our server</strong> (Supabase, in the European Union), so all your devices show the same data. They stay there while Cloud Sync is active on your account.</li>
+          <li>Each device is registered with its device ID (the same one the licence uses), to count the devices in your plan and to remove a lost device.</li>
+          <li>Staff sign in with a username and password chosen by the owner. Passwords are protected by a hash and checked on our server.</li>
+          <li>Each shop's data is kept apart: one shop can never see another shop's data.</li>
+          <li>We use this data only to run Cloud Sync for you. We do not sell it and we do not use it for ads. When you pay for a plan, a one-way coded (hashed) copy of your account email may be sent to Meta to measure our ads (section 7).</li>
+        </ul>
 
-      <h2 id="camera">7. Camera</h2>
-      <p>
-        On Android, Store Soft uses the camera <strong>only</strong> to scan product barcodes in
-        real time (when you open a scanner to add a product or ring up a sale). The camera preview is
-        processed on your device to read the barcode; <strong>images are not stored and are not
-        transmitted</strong> anywhere. The app does not access your photo gallery.
-      </p>
+        <h2 id="google">5. Google sign-in and Google Drive backup (optional)</h2>
+        <ul>
+          <li><strong>Google sign-in:</strong> Google gives us your email and name, to sign you in and to show which account is connected. Signing in does not turn on Drive backup.</li>
+          <li><strong>Drive backup</strong> is off until you connect it. It uses only the permission <code>https://www.googleapis.com/auth/drive.appdata</code>: a hidden folder in your own Google Drive that only Store Soft uses.</li>
+          <li>The app <strong>cannot see, read, change or delete your other Drive files</strong> (documents, photos, sheets...).</li>
+          <li>In its folder the app only: saves backups of your shop, lists them, downloads the one you choose to restore, and deletes older ones to keep the latest few.</li>
+          <li>Backups stay in <strong>your</strong> Google account. We never receive a copy.</li>
+        </ul>
 
-      <h2 id="analytics">8. Installation, usage, lead milestones &amp; diagnostics</h2>
-      <p>
-        Store Soft records a random installation ID, a one-way hashed device ID, app version and
-        platform, selected lifecycle milestones, and counts of visits to broad app sections. It
-        also records the shop name, phone number and address entered in Shop info for installation
-        support and adoption measurement. These contact fields are <strong>not anonymous</strong>.
-        Events are stored on the device first and uploaded in batches when online. Only our
-        administrators can view shop contact fields in the private CRM.
-      </p>
-      <h3>Download page measurement</h3>
-      <p>We save a random visitor ID in your browser's local storage to count distinct download-page
-        visitors, including repeat visits, rather than page loads. We record only this ID, a broad
-        device category (Android, Windows or other), and the first visit time. Clearing browser data
-        or using another browser creates a new visitor. Browsers that block this storage are omitted.
-        The visitor ID is not saved alongside a lead. After you submit a request, its broad device
-        category and Android/Windows download clicks may be attached to that request using its opaque
-        referral code. Repeated clicks count once per request and platform.</p>
-      <h3>Lead-attributed trial milestones</h3>
-      <p>
-        This applies only when an Android installation receives the opaque six-character code from a private
-        website-request link. Store Soft keeps that code in secure device storage and queues
-        delivery offline. We record only: Google Play link opened, app first opened, store setup
-        completed, first real product created, first sale completed, Sync enabled, and staff user
-        added. We also record counts of completed sales and newly created products, with event
-        times, to help with setup and follow-up. These records are connected to the submitted request and are therefore
-        <strong>not anonymous</strong>.
-      </p>
-      <p>
-        We do not send product names, barcodes, prices, stock, customer or supplier data, sale
-        contents, sale or purchase amounts, employee names, or UI clicks. Demo products and the
-        app's hidden repair-service product are excluded. These records are used for onboarding,
-        support, lead follow-up, and aggregate funnel measurement, not advertising delivery.
-      </p>
-      <h3>What is sent</h3>
-      <ul>
-        <li>A random installation ID and one-way hashed device ID to recognise reinstalls.</li>
-        <li>Platform, app version, first seen and last active dates.</li>
-        <li>Daily opens, first setup/product/sale/customer/backup and activation milestones, and counts of visits to broad app sections.</li>
-        <li>Separate Offline licence and Sync status, without prices or sale details.</li>
-        <li>Shop name, phone number and address entered in Shop info, stored in our private administrator-only CRM.</li>
-      </ul>
-      <h3>What is never sent</h3>
-      <p>
-        Analytics never sends product names, prices, sale contents, customer or supplier records,
-        debts, stock quantities, precise location or advertising IDs. Shop contact fields listed
-        above are the only shop-entered fields in this analytics channel. We do not sell this data
-        or use it for advertising. The Meta Pixel on the website and the Meta SDK in the Android app (Section 2) are separate
-        from this analytics channel.
-      </p>
-      <p>
-        Separately, the app keeps a <strong>full diagnostic error log on your own device</strong> for
-        troubleshooting. Technical logs are not part of automatic analytics. If you choose to
-        share a technical log or database copy with support, it may contain business records,
-        contact details and technical context. We use the copy to investigate the problem.
-      </p>
-      <h3>Crash &amp; error reports</h3>
-      <p>
-        Error reports sent to our backend contain the installation ID, hashed device ID, platform,
-        OS and app version, error type and broad area. Messages, stack traces, context and action
-        history remain in the local diagnostic log unless you choose to share them with support.
-      </p>
+        <h2 id="limited-use">6. Google data: Limited Use</h2>
+        <div class="callout">
+          Store Soft's use and transfer of information received from Google APIs adheres to the
+          <a class="inline" href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes" target="_blank" rel="noopener">Google API Services User Data Policy</a>,
+          including the <strong>Limited Use</strong> requirements.
+        </div>
+        <ul>
+          <li>We use Google profile data only for the sign-in you choose, and Drive data only for the backup and restore you turn on.</li>
+          <li>We do not sell or transfer Google user data to others, ad networks or data brokers.</li>
+          <li>We do not use Google user data for ads.</li>
+          <li>No human reads your Google data, except with your clear permission for support, for security or the law, or when it is grouped and anonymous.</li>
+        </ul>
 
-      <h3>Optional in-app feedback</h3>
-      <p>
-        If you choose to send feedback inside Store Soft, we receive your 1–5 star rating,
-        one issue category for ratings below five, and any comment you choose to write.
-        We also receive a random installation ID, the app version, Android or Windows
-        platform, and submission time. Feedback can wait on your device while offline
-        and is sent to our private backend when online. Only Store Soft administrators
-        can read it. We use it to understand problems and improve the app, including
-        rating and category totals. The optional comment may contain information you
-        choose to enter. This submission works even if optional Analytics is off.
-        Google Play reviews are separate and are handled by Google Play.
-      </p>
+        <h2 id="meta">7. Ads measurement with Meta (Facebook, Instagram)</h2>
+        <p>We use these events to know which Facebook and Instagram ads bring real shops.</p>
+        <ul>
+          <li><strong>Android app:</strong> it includes the Meta SDK. It sends Meta: install and open, "shop set up", "first sale" (only that it happened, never what was sold), and a new Google Play subscription with its price. Meta also gets the device's Advertising ID and device and app information. You can delete or reset the Advertising ID in Android settings. The Windows app has no Meta SDK.</li>
+          <li><strong>Payments made another way</strong> (WhatsApp, cash, card...): when our team records your payment, our server sends Meta the amount with a one-way code (SHA-256 hash) of the account email and the shop phone.</li>
+          <li><strong>Our website:</strong> the download pages use the Meta Pixel. It records visits, form and download clicks and, after a request is saved, a "Lead" event. Meta can receive browser and device information, IP address, cookies, the page address and campaign details. After a request is saved, the Pixel also sends the phone number from the form, coded (SHA-256 hash) in your browser, with the country (Algeria). Meta's automatic matching, which is on, may also send the name and phone typed in the form, coded the same way. We do not add the email or shop type.</li>
+        </ul>
+        <p>
+          We never send Meta your products, customers, suppliers, sale contents or stock. Meta uses
+          this data under its own
+          <a class="inline" href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Privacy Policy</a>.
+        </p>
 
-      <h2 id="use">9. How we use information</h2>
-      <ul>
-        <li>To let you run your shop: ring up sales, manage stock, and track debt — entirely on your device.</li>
-        <li>To create and restore backups when you ask the app to (locally and, if enabled, to your Google Drive).</li>
-        <li>To provide the optional multi-device sync service when you enable it (keeping the same shop data on your enrolled devices).</li>
-        <li>To process website download requests, provide Google Play access, send installation instructions, and follow up with interested shop owners.</li>
-        <li>To measure installation and usage, and support shops using the contact fields described in Section 8.</li>
-        <li>To provide onboarding and measure the request-to-trial funnel through the limited lead milestones described in Section 8.</li>
-        <li>To show diagnostic logs to you on your own device for troubleshooting (you may choose to share these with our support).</li>
-      </ul>
+        <h2 id="website">8. Website download requests</h2>
+        <ul>
+          <li>The download form asks for your name, phone or WhatsApp number and shop type. Older requests may also have an email or a platform. We also save the campaign details in the link (such as source and campaign name) and the time.</li>
+          <li>Requests are saved on our Supabase server. Requests made before 27 October 2026 were also copied to a private Google Sheet used by our team. We use requests to send download and setup help and to follow up with you.</li>
+          <li>Each request gets a private link with only a random 6-character code (no name or phone). If you install the Android app from that link, the app sends, with that code: Google Play link opened, app first opened, setup done, first real product, first sale, Cloud Sync turned on, staff user added, and the number of sales and new products with their times. These are linked to your request, so they are <strong>not anonymous</strong>. They never include product names, prices, amounts or sale contents. Demo products are not counted.</li>
+          <li>The download pages save a random visitor number in your browser to count visitors, with the device type (Android, Windows or other) and the first visit time. It is not saved with your request. After you send a request, the device type and the Android or Windows download clicks may be linked to it.</li>
+        </ul>
 
-      <h2 id="sharing">10. Sharing &amp; disclosure</h2>
-      <p>
-        We do not sell, rent or trade your information. We do not share your shop data, your Google
-        data, or your analytics data with third parties for their own purposes. Information may only
-        leave your device when:
-      </p>
-      <ul>
-        <li>You enable Google Drive backup (data goes only to your own Google account); or</li>
-        <li>You enable the optional multi-device sync tier (business data goes to our secure backend solely to sync your own devices, see Section 4); or</li>
-        <li>The app sends installation, usage and shop contact analytics described in Section 8 to our private backend; or</li>
-        <li>An eligible Android install sends the limited lead-attributed milestones described in Section 8; or</li>
-        <li>You choose to submit optional in-app feedback described in Section 8 to our private backend; or</li>
-        <li>The website sends page-view and successful-lead events to Meta for advertising measurement as described in Section 2; or</li>
-        <li>The Android app and our server send the advertising measurement events described in Section 2 to Meta; or</li>
-        <li>You manually export, copy or share a backup file or a diagnostic log yourself (for example, sending it to our support over WhatsApp).</li>
-      </ul>
-      <p>
-        We may disclose information if required by law, or to protect the security and integrity of
-        the service. We host our backend with infrastructure providers (Supabase / its cloud
-        provider, in the EU) acting solely as our processors.
-      </p>
+        <h2 id="camera">9. Camera, Bluetooth, fingerprint and notifications</h2>
+        <ul>
+          <li><strong>Camera (Android):</strong> only to scan barcodes. Pictures are read on the device and are never saved or sent. The app does not open your photo gallery.</li>
+          <li><strong>Bluetooth:</strong> only to connect to your printer and other shop devices you choose.</li>
+          <li><strong>Fingerprint or face:</strong> Android checks it for the app lock. The app never receives it.</li>
+          <li><strong>Notifications:</strong> made on your device.</li>
+        </ul>
 
-      <h2 id="retention">11. Data retention &amp; deletion</h2>
-      <ul>
-        <li><strong>On your device:</strong> data is kept until you delete it. The app includes a "Delete all data" option. Android uninstall removes the app's local database; on Windows you must also remove the data folder. Safety snapshots, exported backups and cloud copies are separate. See <a class="inline" href="delete-account.html#local">local deletion steps</a>.</li>
-        <li><strong>Google Drive backups:</strong> you can delete Store Soft's hidden app data through Google Drive settings. Disconnecting access is separate from deleting saved files. See <a class="inline" href="delete-account.html#backups">Drive backup deletion steps</a>.</li>
-        <li><strong>Synced cloud data:</strong> if you use the multi-device sync tier, you can remove an enrolled device or disable sync in the app; you can also ask us to delete your store account and its synced data from our backend. Full instructions: <a class="inline" href="delete-account.html">Delete your account and data</a>.</li>
-        <li><strong>Website download requests and linked activity:</strong> we keep requests and linked milestones/action counts while needed for installation support and customer follow-up. You may request correction or deletion, including identifiable copies in our private follow-up Google Sheet, without having a Sync account. See <a class="inline" href="delete-account.html#request">request deletion</a>.</li>
-        <li><strong>Revoking Google access:</strong> you can disconnect the account in the app, and you can revoke Store Soft's access at any time from your Google Account at
-          <a class="inline" href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.
-        </li>
-        <li><strong>Installation analytics and shop contact fields:</strong> contact us using the details below to request deletion of records associated with your shop or installation. Lead-attributed milestones can be deleted with your website request.</li>
-        <li><strong>In-app feedback:</strong> contact us using the details below to request deletion of a submitted rating or comment associated with your installation.</li>
-      </ul>
+        <h2 id="support">10. Sending data to support (your choice)</h2>
+        <p>
+          The app keeps a full error log on your device. If you choose to send us a backup, an error
+          log or a copy of your shop data (for example on WhatsApp, or from the app after you say yes),
+          it may contain your shop records and contact details. We use it only to fix your problem.
+        </p>
 
-      <h2 id="security">12. Security</h2>
-      <p>
-        Local PINs and Sync passwords are protected by hashes, never stored in plain text.
-        Data transferred to Google Drive or to our sync backend is sent over encrypted HTTPS
-        connections; synced data is isolated per store by row-level security so one shop cannot access
-        another's. No method of storage or transmission is 100% secure, but we design the app to keep
-        your data on your device and under your control by default.
-      </p>
+        <h2 id="sharing">11. Who gets your data</h2>
+        <p>We do not sell, rent or trade your data. Only these services receive data, for the reasons above:</p>
+        <ul>
+          <li><strong>Supabase</strong> (our server, in the European Union): Cloud Sync, accounts, usage records, error reports, feedback and website requests.</li>
+          <li><strong>Google:</strong> your own Drive (backups), Google sign-in, and Google Play (downloads, updates and payments).</li>
+          <li><strong>Meta:</strong> ads measurement (section 7).</li>
+        </ul>
+        <p>We may also share data if the law requires it, or to protect the safety of the service.</p>
 
-      <h2 id="children">13. Children's privacy</h2>
-      <p>
-        Store Soft is a business tool intended for shop owners and their staff. It is not
-        directed to children and we do not knowingly collect personal information from children.
-      </p>
+        <h2 id="retention">12. Keeping and deleting your data</h2>
+        <ul>
+          <li><strong>On your device:</strong> kept until you delete it. Use "Delete all data" in the app. On Android, uninstalling removes the app's data. On Windows you must also remove the data folder. Backups you exported are separate. See the <a class="inline" href="delete-account.html#local">local deletion steps</a>.</li>
+          <li><strong>Google Drive backups:</strong> delete Store Soft's hidden data in your Google Drive settings. Removing access does not delete the files. See the <a class="inline" href="delete-account.html#backups">Drive steps</a>. You can remove Store Soft's access at any time at <a class="inline" href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</li>
+          <li><strong>Cloud Sync account and data:</strong> remove a device or turn off Cloud Sync in the app, or ask us to delete your account and its cloud data: <a class="inline" href="delete-account.html">Delete your account and data</a>.</li>
+          <li><strong>Website requests, shop contact details, usage records and feedback:</strong> we keep them while we need them to help you and follow up. You can ask us to correct or delete them, even without a Sync account. Records linked to your request are deleted with it. See <a class="inline" href="delete-account.html#request">request deletion</a>.</li>
+        </ul>
 
-      <h2 id="changes">14. Changes to this policy</h2>
-      <p>
-        We may update this Privacy Policy from time to time. When we do, we will revise the
-        "Last updated" date at the top of this page. Continued use of the app after changes
-        take effect constitutes acceptance of the updated policy.
-      </p>
+        <h2 id="security">13. Security</h2>
+        <p>
+          Data sent to our server or to Google Drive uses encrypted HTTPS. Passwords and PINs are
+          protected by hashes. Each shop's cloud data is kept apart. No system is 100% safe, but by
+          default your data stays on your device and in your hands.
+        </p>
 
-      <h2 id="contact">15. Contact us</h2>
-      <p>
-        Questions about this policy or your data? Message us on
-        <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp (+213 654 33 86 49)</a>
-        or email <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
-      </p>
+        <h2 id="children">14. Children</h2>
+        <p>Store Soft is a tool for shop owners and their staff. It is not made for children, and we do not knowingly collect children's data.</p>
+
+        <h2 id="changes">15. Changes</h2>
+        <p>If we change this policy, we change the date at the top. Using the app after a change means you accept the new policy.</p>
+
+        <h2 id="contact">16. Contact us</h2>
+        <p>
+          Questions about your data? Message us on
+          <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp (+213 654 33 86 49)</a>
+          or email <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
+        </p>
+      </article>
+
+      <!-- FRANÇAIS -->
+      <article data-legal-lang="fr" lang="fr" dir="ltr">
+        <h1>Politique de confidentialité</h1>
+        <p class="updated">Dernière mise à jour : 29 octobre 2026</p>
+
+        <div class="callout legal-short" id="fr-summary">
+          <h2>En bref</h2>
+          <ul>
+            <li>Les données de votre magasin (produits, ventes, clients, stock, dettes) sont enregistrées <strong>sur votre appareil</strong>.</li>
+            <li>Elles quittent votre appareil seulement si vous activez la <strong>Synchronisation Cloud</strong> ou la <strong>sauvegarde Google Drive</strong>, ou si vous nous envoyez une copie vous-même.</li>
+            <li>L’app nous envoie le <strong>nom, le téléphone et l’adresse du magasin</strong> et des chiffres d’utilisation simples, pour vous aider. Jamais vos ventes ni vos produits.</li>
+            <li>L’app Android et notre site informent Meta (Facebook) des installations, de la configuration, de la première vente et des paiements, pour mesurer nos publicités.</li>
+            <li>Nous ne <strong>vendons jamais</strong> vos données.</li>
+          </ul>
+        </div>
+
+        <div class="toc">
+          <h4>Sommaire</h4>
+          <ol>
+            <li><a href="#fr-who">Qui sommes-nous</a></li>
+            <li><a href="#fr-data-local">Ce qui reste sur votre appareil</a></li>
+            <li><a href="#fr-analytics">Ce que l’app nous envoie</a></li>
+            <li><a href="#fr-sync">Synchronisation Cloud et compte</a></li>
+            <li><a href="#fr-google">Connexion Google et sauvegarde Drive</a></li>
+            <li><a href="#fr-limited-use">Données Google : usage limité</a></li>
+            <li><a href="#fr-meta">Mesure des publicités avec Meta</a></li>
+            <li><a href="#fr-website">Demandes de téléchargement</a></li>
+            <li><a href="#fr-camera">Caméra, Bluetooth, empreinte</a></li>
+            <li><a href="#fr-support">Envoyer des données au support</a></li>
+            <li><a href="#fr-sharing">Qui reçoit vos données</a></li>
+            <li><a href="#fr-retention">Conserver et supprimer</a></li>
+            <li><a href="#fr-security">Sécurité</a></li>
+            <li><a href="#fr-children">Enfants</a></li>
+            <li><a href="#fr-changes">Modifications</a></li>
+            <li><a href="#fr-contact">Nous contacter</a></li>
+          </ol>
+        </div>
+
+        <h2 id="fr-who">1. Qui sommes-nous</h2>
+        <p>
+          Store Soft est une application pour gérer un magasin (ventes, stock, clients et dettes) sur
+          Windows et Android. Elle est faite par l’équipe Store Soft. Cette politique concerne l’app et
+          ce site. Google, Meta et les autres services ont leurs propres politiques.
+        </p>
+
+        <h2 id="fr-data-local">2. Ce qui reste sur votre appareil</h2>
+        <p>L’app enregistre ce que vous saisissez dans une base de données <strong>sur votre appareil</strong> :</p>
+        <ul>
+          <li>Infos du magasin : nom, adresse et téléphone.</li>
+          <li>Produits, prix, stock, fournisseurs et prix d’achat.</li>
+          <li>Ventes, tickets et caisse.</li>
+          <li>Clients, fournisseurs et leurs dettes (crédit).</li>
+          <li>Profils du propriétaire et des employés. Les codes PIN et mots de passe ne sont jamais enregistrés en clair.</li>
+        </ul>
+        <div class="callout">
+          <strong>La vente marche sans Internet.</strong> Ces données restent sur votre appareil, sauf si
+          vous activez la Synchronisation Cloud ou la sauvegarde Google Drive, exportez une sauvegarde
+          ou envoyez une copie au support.
+        </div>
+
+        <h2 id="fr-analytics">3. Ce que l’app nous envoie, même sans Synchronisation Cloud</h2>
+        <p>L’app garde ces éléments sur l’appareil et les envoie à notre serveur privé quand Internet est disponible :</p>
+        <ul>
+          <li>Le <strong>nom, le téléphone et l’adresse du magasin</strong> saisis dans Infos du magasin. Ils ne sont <strong>pas anonymes</strong>. Seule notre équipe peut les voir, dans notre liste privée de clients. Nous les utilisons pour vous aider à démarrer et pour suivre l’utilisation de l’app.</li>
+          <li>Un numéro d’installation aléatoire, un identifiant d’appareil codé à sens unique (haché), la version de l’app, Android ou Windows, et les dates de première et dernière utilisation.</li>
+          <li>Utilisation simple : ouvertures par jour, premières étapes (configuration, premier produit, première vente, premier client, première sauvegarde, activation), visites des grandes parties de l’app, et état de la licence et de la Synchronisation Cloud (sans prix ni ventes).</li>
+          <li>Rapports d’erreur : seulement le type d’erreur et la partie de l’app, avec les numéros ci-dessus. Le détail complet reste dans un journal sur votre appareil.</li>
+          <li>Avis, seulement si vous l’envoyez : vos étoiles (1 à 5), un type de problème et votre commentaire.</li>
+        </ul>
+        <p>
+          <strong>Jamais envoyé ici :</strong> noms de produits, codes-barres, prix, stock, contenu ou
+          montant des ventes, clients, fournisseurs, dettes, noms des employés, votre position ou votre
+          identifiant publicitaire. La mesure des publicités Meta est à part (section 7).
+        </p>
+
+        <h2 id="fr-sync">4. Synchronisation Cloud et votre compte (option payante)</h2>
+        <ul>
+          <li>La Synchronisation Cloud est <strong>désactivée</strong> tant que le propriétaire ne crée pas un compte Store Soft et ne l’active pas. Un magasin avec un seul appareil peut s’en passer.</li>
+          <li>Vous créez le compte avec un <strong>e-mail et un mot de passe</strong>, ou avec Google. Nous utilisons l’e-mail pour vous connecter et vous contacter au sujet de votre compte.</li>
+          <li>Quand elle est active, les données du magasin (produits, prix, stock, fournisseurs, ventes, tickets, clients, dettes, fiches de réparation et comptes employés) sont copiées sur <strong>notre serveur</strong> (Supabase, dans l’Union européenne), pour que tous vos appareils aient les mêmes données. Elles y restent tant que la synchronisation est active sur votre compte.</li>
+          <li>Chaque appareil est enregistré avec son identifiant (le même que pour la licence), pour compter les appareils de votre offre et retirer un appareil perdu.</li>
+          <li>Les employés se connectent avec un nom d’utilisateur et un mot de passe choisis par le propriétaire. Les mots de passe sont protégés par un hachage et vérifiés sur notre serveur.</li>
+          <li>Les données de chaque magasin sont séparées : un magasin ne peut jamais voir celles d’un autre.</li>
+          <li>Nous utilisons ces données seulement pour faire marcher la synchronisation. Nous ne les vendons pas et ne les utilisons pas pour la publicité. Quand vous payez une offre, une copie codée à sens unique (hachée) de l’e-mail du compte peut être envoyée à Meta pour mesurer nos publicités (section 7).</li>
+        </ul>
+
+        <h2 id="fr-google">5. Connexion Google et sauvegarde Google Drive (option)</h2>
+        <ul>
+          <li><strong>Connexion Google :</strong> Google nous donne votre e-mail et votre nom, pour vous connecter et afficher le compte relié. Se connecter n’active pas la sauvegarde Drive.</li>
+          <li>La <strong>sauvegarde Drive</strong> est désactivée tant que vous ne la reliez pas. Elle utilise seulement l’autorisation <code>https://www.googleapis.com/auth/drive.appdata</code> : un dossier caché dans votre propre Google Drive, utilisé seulement par Store Soft.</li>
+          <li>L’app <strong>ne peut ni voir, ni lire, ni modifier, ni supprimer vos autres fichiers Drive</strong> (documents, photos, tableurs...).</li>
+          <li>Dans son dossier, l’app fait seulement ceci : enregistrer les sauvegardes du magasin, les lister, télécharger celle que vous choisissez pour la restaurer, et supprimer les plus anciennes pour garder les dernières.</li>
+          <li>Les sauvegardes restent dans <strong>votre</strong> compte Google. Nous n’en recevons jamais de copie.</li>
+        </ul>
+
+        <h2 id="fr-limited-use">6. Données Google : usage limité</h2>
+        <div class="callout">
+          L’utilisation et le transfert par Store Soft des informations reçues des API Google respectent la
+          <a class="inline" href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes" target="_blank" rel="noopener">Google API Services User Data Policy</a>,
+          y compris les exigences d’<strong>usage limité</strong> (Limited Use).
+        </div>
+        <ul>
+          <li>Nous utilisons le profil Google seulement pour la connexion que vous choisissez, et les données Drive seulement pour la sauvegarde et la restauration que vous activez.</li>
+          <li>Nous ne vendons ni ne transférons les données Google à d’autres, à des régies publicitaires ou à des courtiers en données.</li>
+          <li>Nous n’utilisons pas les données Google pour la publicité.</li>
+          <li>Personne ne lit vos données Google, sauf avec votre accord clair pour le support, pour la sécurité ou la loi, ou quand elles sont regroupées et anonymes.</li>
+        </ul>
+
+        <h2 id="fr-meta">7. Mesure des publicités avec Meta (Facebook, Instagram)</h2>
+        <p>Ces événements nous montrent quelles publicités Facebook et Instagram amènent de vrais magasins.</p>
+        <ul>
+          <li><strong>App Android :</strong> elle contient le SDK Meta. Elle envoie à Meta : installation et ouverture, « magasin configuré », « première vente » (seulement le fait, jamais ce qui a été vendu), et un nouvel abonnement Google Play avec son prix. Meta reçoit aussi l’identifiant publicitaire de l’appareil et des informations sur l’appareil et l’app. Vous pouvez supprimer ou réinitialiser l’identifiant publicitaire dans les paramètres Android. L’app Windows n’a pas le SDK Meta.</li>
+          <li><strong>Paiements faits autrement</strong> (WhatsApp, espèces, carte...) : quand notre équipe enregistre votre paiement, notre serveur envoie à Meta le montant avec un code à sens unique (hachage SHA-256) de l’e-mail du compte et du téléphone du magasin.</li>
+          <li><strong>Notre site :</strong> les pages de téléchargement utilisent le Pixel Meta. Il enregistre les visites, les clics sur le formulaire et le téléchargement et, après l’enregistrement d’une demande, un événement « Lead ». Meta peut recevoir des informations sur le navigateur et l’appareil, l’adresse IP, des cookies, l’adresse de la page et les détails de campagne. Après l’enregistrement d’une demande, le Pixel envoie aussi le numéro de téléphone du formulaire, codé (hachage SHA-256) dans votre navigateur, avec le pays (Algérie). La correspondance automatique de Meta, qui est activée, peut aussi envoyer le nom et le téléphone saisis, codés de la même façon. Nous n’ajoutons ni l’e-mail ni le type de magasin.</li>
+        </ul>
+        <p>
+          Nous n’envoyons jamais à Meta vos produits, clients, fournisseurs, contenu des ventes ou stock.
+          Meta utilise ces données selon sa propre
+          <a class="inline" href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">politique de confidentialité</a>.
+        </p>
+
+        <h2 id="fr-website">8. Demandes de téléchargement sur le site</h2>
+        <ul>
+          <li>Le formulaire demande votre nom, votre numéro de téléphone ou WhatsApp et le type de magasin. Les anciennes demandes peuvent aussi contenir un e-mail ou une plateforme. Nous gardons aussi les détails de campagne du lien (source, nom de campagne) et l’heure.</li>
+          <li>Les demandes sont enregistrées sur notre serveur Supabase. Les demandes faites avant le 27 octobre 2026 étaient aussi copiées dans une feuille Google privée de notre équipe. Nous les utilisons pour envoyer l’aide au téléchargement et à l’installation, et pour vous recontacter.</li>
+          <li>Chaque demande reçoit un lien privé avec seulement un code aléatoire de 6 caractères (sans nom ni téléphone). Si vous installez l’app Android depuis ce lien, l’app envoie, avec ce code : lien Google Play ouvert, première ouverture, configuration terminée, premier vrai produit, première vente, Synchronisation Cloud activée, employé ajouté, et le nombre de ventes et de nouveaux produits avec leurs heures. Ces éléments sont liés à votre demande, donc <strong>pas anonymes</strong>. Ils ne contiennent jamais de noms de produits, prix, montants ou contenu de vente. Les produits de démonstration ne sont pas comptés.</li>
+          <li>Les pages de téléchargement gardent un numéro de visiteur aléatoire dans votre navigateur pour compter les visiteurs, avec le type d’appareil (Android, Windows ou autre) et l’heure de la première visite. Il n’est pas enregistré avec votre demande. Après l’envoi d’une demande, le type d’appareil et les clics de téléchargement Android ou Windows peuvent y être liés.</li>
+        </ul>
+
+        <h2 id="fr-camera">9. Caméra, Bluetooth, empreinte et notifications</h2>
+        <ul>
+          <li><strong>Caméra (Android) :</strong> seulement pour lire les codes-barres. Les images sont lues sur l’appareil et ne sont jamais enregistrées ni envoyées. L’app n’ouvre pas votre galerie.</li>
+          <li><strong>Bluetooth :</strong> seulement pour se connecter à votre imprimante et aux autres appareils du magasin que vous choisissez.</li>
+          <li><strong>Empreinte ou visage :</strong> Android le vérifie pour le verrouillage de l’app. L’app ne le reçoit jamais.</li>
+          <li><strong>Notifications :</strong> créées sur votre appareil.</li>
+        </ul>
+
+        <h2 id="fr-support">10. Envoyer des données au support (votre choix)</h2>
+        <p>
+          L’app garde un journal d’erreurs complet sur votre appareil. Si vous choisissez de nous envoyer
+          une sauvegarde, un journal d’erreurs ou une copie de vos données (par exemple sur WhatsApp, ou
+          depuis l’app après votre accord), elle peut contenir les données du magasin et vos coordonnées.
+          Nous l’utilisons seulement pour régler votre problème.
+        </p>
+
+        <h2 id="fr-sharing">11. Qui reçoit vos données</h2>
+        <p>Nous ne vendons, ne louons et n’échangeons pas vos données. Seuls ces services en reçoivent, pour les raisons ci-dessus :</p>
+        <ul>
+          <li><strong>Supabase</strong> (notre serveur, dans l’Union européenne) : Synchronisation Cloud, comptes, utilisation, rapports d’erreur, avis et demandes du site.</li>
+          <li><strong>Google :</strong> votre propre Drive (sauvegardes), la connexion Google, et Google Play (téléchargements, mises à jour et paiements).</li>
+          <li><strong>Meta :</strong> mesure des publicités (section 7).</li>
+        </ul>
+        <p>Nous pouvons aussi partager des données si la loi l’exige, ou pour protéger la sécurité du service.</p>
+
+        <h2 id="fr-retention">12. Conserver et supprimer vos données</h2>
+        <ul>
+          <li><strong>Sur votre appareil :</strong> gardées jusqu’à ce que vous les supprimiez. Utilisez « Supprimer toutes les données » dans l’app. Sur Android, la désinstallation supprime les données de l’app. Sur Windows, il faut aussi supprimer le dossier des données. Les sauvegardes exportées sont à part. Voir les <a class="inline" href="delete-account.html#local">étapes de suppression locale</a>.</li>
+          <li><strong>Sauvegardes Google Drive :</strong> supprimez les données cachées de Store Soft dans les paramètres de Google Drive. Retirer l’accès ne supprime pas les fichiers. Voir les <a class="inline" href="delete-account.html#backups">étapes Drive</a>. Vous pouvez retirer l’accès de Store Soft à tout moment sur <a class="inline" href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</li>
+          <li><strong>Compte et données de Synchronisation Cloud :</strong> retirez un appareil ou désactivez la synchronisation dans l’app, ou demandez-nous de supprimer votre compte et ses données : <a class="inline" href="delete-account.html">Supprimer votre compte et vos données</a>.</li>
+          <li><strong>Demandes du site, coordonnées du magasin, utilisation et avis :</strong> nous les gardons tant qu’ils sont utiles pour vous aider et vous suivre. Vous pouvez demander leur correction ou suppression, même sans compte de synchronisation. Les éléments liés à votre demande sont supprimés avec elle. Voir <a class="inline" href="delete-account.html#request">demander la suppression</a>.</li>
+        </ul>
+
+        <h2 id="fr-security">13. Sécurité</h2>
+        <p>
+          Les données envoyées à notre serveur ou à Google Drive passent par HTTPS chiffré. Les mots de
+          passe et codes PIN sont protégés par hachage. Les données cloud de chaque magasin sont séparées.
+          Aucun système n’est sûr à 100 %, mais par défaut vos données restent sur votre appareil, entre vos mains.
+        </p>
+
+        <h2 id="fr-children">14. Enfants</h2>
+        <p>Store Soft est un outil pour les commerçants et leurs employés. Il n’est pas fait pour les enfants, et nous ne collectons pas sciemment de données d’enfants.</p>
+
+        <h2 id="fr-changes">15. Modifications</h2>
+        <p>Si nous changeons cette politique, nous changeons la date en haut. Utiliser l’app après un changement veut dire que vous acceptez la nouvelle politique.</p>
+
+        <h2 id="fr-contact">16. Nous contacter</h2>
+        <p>
+          Une question sur vos données ? Écrivez-nous sur
+          <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp (+213 654 33 86 49)</a>
+          ou par e-mail à <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
+        </p>
+      </article>
+
+      <!-- العربية -->
+      <article data-legal-lang="ar" lang="ar" dir="rtl">
+        <h1>سياسة الخصوصية</h1>
+        <p class="updated">آخر تحديث: 29 أكتوبر 2026</p>
+
+        <div class="callout legal-short" id="ar-summary">
+          <h2>باختصار</h2>
+          <ul>
+            <li>بيانات محلّك (المنتجات، المبيعات، الزبائن، المخزون، الديون) تُحفظ <strong>على جهازك</strong>.</li>
+            <li>لا تخرج من جهازك إلا إذا شغّلت <strong>المزامنة السحابية</strong> أو <strong>النسخ الاحتياطي على Google Drive</strong>، أو أرسلت إلينا نسخة بنفسك.</li>
+            <li>يرسل إلينا التطبيق <strong>اسم المحل وهاتفه وعنوانه</strong> وأرقام استعمال بسيطة لكي نساعدك. ولا يرسل أبدًا مبيعاتك أو منتجاتك.</li>
+            <li>يخبر تطبيق Android وموقعنا شركة Meta (فيسبوك) بالتثبيت وإعداد المحل وأول بيع والدفع، لقياس إعلاناتنا.</li>
+            <li><strong>لا نبيع</strong> بياناتك أبدًا.</li>
+          </ul>
+        </div>
+
+        <div class="toc">
+          <h4>المحتويات</h4>
+          <ol>
+            <li><a href="#ar-who">من نحن</a></li>
+            <li><a href="#ar-data-local">ما يبقى على جهازك</a></li>
+            <li><a href="#ar-analytics">ما يرسله إلينا التطبيق</a></li>
+            <li><a href="#ar-sync">المزامنة السحابية وحسابك</a></li>
+            <li><a href="#ar-google">الدخول بـ Google ونسخ Drive</a></li>
+            <li><a href="#ar-limited-use">بيانات Google: استعمال محدود</a></li>
+            <li><a href="#ar-meta">قياس الإعلانات مع Meta</a></li>
+            <li><a href="#ar-website">طلبات التحميل من الموقع</a></li>
+            <li><a href="#ar-camera">الكاميرا والبلوتوث والبصمة</a></li>
+            <li><a href="#ar-support">إرسال البيانات إلى الدعم</a></li>
+            <li><a href="#ar-sharing">من يتلقى بياناتك</a></li>
+            <li><a href="#ar-retention">حفظ البيانات وحذفها</a></li>
+            <li><a href="#ar-security">الأمان</a></li>
+            <li><a href="#ar-children">الأطفال</a></li>
+            <li><a href="#ar-changes">التغييرات</a></li>
+            <li><a href="#ar-contact">اتصل بنا</a></li>
+          </ol>
+        </div>
+
+        <h2 id="ar-who">1. من نحن</h2>
+        <p>
+          Store Soft تطبيق لتسيير المحل (المبيعات والمخزون والزبائن والديون) على Windows وAndroid،
+          من إعداد فريق Store Soft. تشمل هذه السياسة التطبيق وهذا الموقع. أما Google وMeta وغيرها من
+          الخدمات فلكلٍّ منها سياسة خصوصية خاصة بها.
+        </p>
+
+        <h2 id="ar-data-local">2. ما يبقى على جهازك</h2>
+        <p>يحفظ التطبيق ما تكتبه في قاعدة بيانات <strong>على جهازك أنت</strong>:</p>
+        <ul>
+          <li>معلومات المحل: الاسم والعنوان والهاتف.</li>
+          <li>المنتجات والأسعار والمخزون والموردون وأسعار الشراء.</li>
+          <li>المبيعات والإيصالات وحركة الصندوق.</li>
+          <li>الزبائن والموردون وديونهم.</li>
+          <li>ملفات المالك والعمال. لا تُحفظ الرموز السرية وكلمات المرور أبدًا كنص مكشوف.</li>
+        </ul>
+        <div class="callout">
+          <strong>البيع يعمل دون إنترنت.</strong> تبقى هذه البيانات على جهازك، إلا إذا شغّلت المزامنة
+          السحابية أو النسخ على Google Drive، أو صدّرت نسخة احتياطية، أو أرسلت نسخة إلى الدعم.
+        </div>
+
+        <h2 id="ar-analytics">3. ما يرسله إلينا التطبيق، حتى دون المزامنة السحابية</h2>
+        <p>يحفظ التطبيق هذه المعلومات على الجهاز ويرسلها إلى خادمنا الخاص عند توفر الإنترنت:</p>
+        <ul>
+          <li><strong>اسم المحل وهاتفه وعنوانه</strong> كما كتبتها في معلومات المحل. هذه المعلومات <strong>ليست مجهولة الهوية</strong>، ولا يراها إلا فريقنا في قائمة زبائننا الخاصة. نستعملها لمساعدتك في البداية ولمعرفة كيف تستعمل المحلات التطبيق.</li>
+          <li>رقم تثبيت عشوائي، ومعرّف الجهاز بعد ترميزه باتجاه واحد (hash)، ونسخة التطبيق، وهل الجهاز Android أو Windows، وتاريخ أول وآخر استعمال.</li>
+          <li>استعمال بسيط: عدد مرات الفتح يوميًا، والخطوات الأولى (الإعداد، أول منتج، أول بيع، أول زبون، أول نسخة احتياطية، التفعيل)، وزيارات الأقسام الرئيسية في التطبيق، وحالة الرخصة والمزامنة السحابية (دون أسعار أو مبيعات).</li>
+          <li>تقارير الأخطاء: نوع الخطأ وجزء التطبيق فقط، مع الأرقام المذكورة أعلاه. تبقى تفاصيل الخطأ كاملة في سجل على جهازك.</li>
+          <li>رأيك في التطبيق، فقط إذا أرسلته: عدد النجوم (من 1 إلى 5)، ونوع المشكلة، وتعليقك.</li>
+        </ul>
+        <p>
+          <strong>لا يُرسل هنا أبدًا:</strong> أسماء المنتجات، والباركود، والأسعار، والمخزون، ومحتوى
+          المبيعات أو مبالغها، والزبائن، والموردون، والديون، وأسماء العمال، وموقعك، ومعرّف الإعلانات.
+          قياس إعلانات Meta منفصل (القسم 7).
+        </p>
+
+        <h2 id="ar-sync">4. المزامنة السحابية وحسابك (اختيارية ومدفوعة)</h2>
+        <ul>
+          <li>المزامنة السحابية <strong>متوقفة</strong> حتى ينشئ المالك حساب Store Soft ويشغّلها. المحل الذي يعمل بجهاز واحد يمكنه الاستغناء عنها.</li>
+          <li>تنشئ الحساب <strong>ببريد إلكتروني وكلمة مرور</strong>، أو بحساب Google. نستعمل البريد لتسجيل دخولك وللتواصل معك بخصوص حسابك.</li>
+          <li>عند تشغيل المزامنة تُنسخ بيانات المحل (المنتجات، الأسعار، المخزون، الموردون، المبيعات، الإيصالات، الزبائن، الديون، بطاقات الإصلاح وحسابات العمال) إلى <strong>خادمنا</strong> (Supabase، في الاتحاد الأوروبي)، لكي تظهر البيانات نفسها على كل أجهزتك. وتبقى هناك ما دامت المزامنة مفعّلة في حسابك.</li>
+          <li>يُسجَّل كل جهاز بمعرّفه (نفس المعرّف الذي تستعمله الرخصة)، لعدّ الأجهزة في اشتراكك ولإزالة جهاز ضائع.</li>
+          <li>يدخل العمال باسم مستخدم وكلمة مرور يختارهما المالك. كلمات المرور محمية بالترميز (hash) ويتم التحقق منها على خادمنا.</li>
+          <li>بيانات كل محل منفصلة: لا يمكن لمحل أن يرى بيانات محل آخر أبدًا.</li>
+          <li>نستعمل هذه البيانات فقط لتشغيل المزامنة لك. لا نبيعها ولا نستعملها للإعلانات. عند دفع اشتراك، قد تُرسل نسخة مرمّزة باتجاه واحد (hash) من بريد الحساب إلى Meta لقياس إعلاناتنا (القسم 7).</li>
+        </ul>
+
+        <h2 id="ar-google">5. الدخول بحساب Google والنسخ الاحتياطي على Google Drive (اختياري)</h2>
+        <ul>
+          <li><strong>الدخول بحساب Google:</strong> يعطينا Google بريدك الإلكتروني واسمك، لتسجيل دخولك ولإظهار الحساب المربوط. الدخول وحده لا يشغّل النسخ على Drive.</li>
+          <li><strong>النسخ على Drive</strong> متوقف حتى تربطه بنفسك. ويستعمل فقط الإذن <code>https://www.googleapis.com/auth/drive.appdata</code>: مجلد مخفي في Google Drive الخاص بك لا يستعمله إلا Store Soft.</li>
+          <li><strong>لا يستطيع التطبيق رؤية ملفاتك الأخرى في Drive ولا قراءتها ولا تغييرها ولا حذفها</strong> (المستندات، الصور، الجداول...).</li>
+          <li>في مجلده الخاص، يقوم التطبيق فقط بما يلي: حفظ نسخ محلّك، وعرض قائمتها، وتنزيل النسخة التي تختارها لاسترجاعها، وحذف النسخ القديمة للإبقاء على آخرها.</li>
+          <li>تبقى النسخ في حساب Google <strong>الخاص بك</strong>. ولا نتلقى منها أي نسخة أبدًا.</li>
+        </ul>
+
+        <h2 id="ar-limited-use">6. بيانات Google: استعمال محدود</h2>
+        <div class="callout">
+          يلتزم Store Soft في استعمال ونقل المعلومات التي يتلقاها من واجهات Google البرمجية بـ
+          <a class="inline" href="https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes" target="_blank" rel="noopener">سياسة بيانات مستخدمي خدمات Google API</a>،
+          بما في ذلك شروط <strong>الاستعمال المحدود</strong> (Limited Use).
+        </div>
+        <ul>
+          <li>نستعمل بيانات ملف Google فقط لتسجيل الدخول الذي تختاره، وبيانات Drive فقط للنسخ والاسترجاع الذي تشغّله.</li>
+          <li>لا نبيع بيانات Google ولا ننقلها إلى غيرنا، ولا إلى شبكات الإعلانات أو تجار البيانات.</li>
+          <li>لا نستعمل بيانات Google للإعلانات.</li>
+          <li>لا يقرأ أي شخص بيانات Google الخاصة بك، إلا بموافقتك الصريحة لأجل الدعم، أو لأجل الأمان أو القانون، أو إذا كانت مجمّعة ومجهولة الهوية.</li>
+        </ul>
+
+        <h2 id="ar-meta">7. قياس الإعلانات مع Meta (فيسبوك، إنستغرام)</h2>
+        <p>نستعمل هذه الأحداث لنعرف أي إعلانات فيسبوك وإنستغرام تجلب محلات حقيقية.</p>
+        <ul>
+          <li><strong>تطبيق Android:</strong> يحتوي على أداة Meta (Meta SDK). يرسل إلى Meta: التثبيت والفتح، و«إعداد المحل»، و«أول بيع» (حدوثه فقط، دون ما بيع أبدًا)، والاشتراك الجديد في Google Play مع سعره. وتتلقى Meta أيضًا معرّف الإعلانات للجهاز ومعلومات عن الجهاز والتطبيق. يمكنك حذف معرّف الإعلانات أو إعادة تعيينه من إعدادات Android. تطبيق Windows لا يحتوي على أداة Meta.</li>
+          <li><strong>الدفع بطريقة أخرى</strong> (واتساب، نقدًا، بطاقة...): عندما يسجّل فريقنا دفعتك، يرسل خادمنا إلى Meta المبلغ مع رمز باتجاه واحد (ترميز SHA-256) لبريد الحساب وهاتف المحل.</li>
+          <li><strong>موقعنا:</strong> تستعمل صفحات التحميل Meta Pixel. وهو يسجل الزيارات والنقرات على الاستمارة والتحميل، وبعد حفظ الطلب حدث «Lead». وقد تتلقى Meta معلومات عن المتصفح والجهاز، وعنوان IP، وملفات تعريف الارتباط (cookies)، وعنوان الصفحة، وتفاصيل الحملة. بعد حفظ الطلب، يرسل Pixel أيضًا رقم الهاتف المكتوب في الاستمارة بعد ترميزه (SHA-256) داخل متصفحك، مع البلد (الجزائر). وقد ترسل المطابقة التلقائية لدى Meta، وهي مفعّلة، الاسم والهاتف المكتوبين في الاستمارة بالترميز نفسه. نحن لا نضيف البريد الإلكتروني ولا نوع المحل.</li>
+        </ul>
+        <p>
+          لا نرسل أبدًا إلى Meta منتجاتك أو زبائنك أو مورديك أو محتوى مبيعاتك أو مخزونك. وتستعمل Meta
+          هذه البيانات وفق
+          <a class="inline" href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">سياسة الخصوصية</a> الخاصة بها.
+        </p>
+
+        <h2 id="ar-website">8. طلبات التحميل من الموقع</h2>
+        <ul>
+          <li>تطلب استمارة التحميل اسمك، ورقم هاتفك أو واتساب، ونوع محلك. وقد تحتوي الطلبات القديمة أيضًا على بريد إلكتروني أو نوع الجهاز. ونحفظ كذلك تفاصيل الحملة الموجودة في الرابط (مثل المصدر واسم الحملة) ووقت الإرسال.</li>
+          <li>تُحفظ الطلبات على خادمنا Supabase. والطلبات المرسلة قبل 27 أكتوبر 2026 نُسخت أيضًا إلى جدول Google خاص بفريقنا. نستعمل الطلبات لإرسال المساعدة في التحميل والتثبيت وللتواصل معك.</li>
+          <li>يحصل كل طلب على رابط خاص فيه رمز عشوائي من 6 أحرف فقط (دون اسم أو هاتف). إذا ثبّتّ تطبيق Android من هذا الرابط، يرسل التطبيق مع هذا الرمز: فتح رابط Google Play، وأول فتح للتطبيق، وانتهاء الإعداد، وأول منتج حقيقي، وأول بيع، وتشغيل المزامنة السحابية، وإضافة عامل، وعدد المبيعات والمنتجات الجديدة مع أوقاتها. هذه المعلومات مرتبطة بطلبك، لذلك فهي <strong>ليست مجهولة الهوية</strong>. ولا تحتوي أبدًا على أسماء المنتجات أو الأسعار أو المبالغ أو محتوى المبيعات. ولا تُحسب المنتجات التجريبية.</li>
+          <li>تحفظ صفحات التحميل رقم زائر عشوائيًا في متصفحك لعدّ الزوار، مع نوع الجهاز (Android أو Windows أو غيرهما) ووقت أول زيارة. ولا يُحفظ هذا الرقم مع طلبك. بعد إرسال طلبك، قد يُربط به نوع الجهاز ونقرات تحميل Android أو Windows.</li>
+        </ul>
+
+        <h2 id="ar-camera">9. الكاميرا والبلوتوث والبصمة والإشعارات</h2>
+        <ul>
+          <li><strong>الكاميرا (Android):</strong> لقراءة الباركود فقط. تُقرأ الصورة على الجهاز ولا تُحفظ ولا تُرسل أبدًا. ولا يفتح التطبيق معرض صورك.</li>
+          <li><strong>البلوتوث:</strong> فقط للاتصال بطابعتك وبأجهزة المحل الأخرى التي تختارها.</li>
+          <li><strong>البصمة أو الوجه:</strong> يتحقق منها Android لقفل التطبيق. ولا يتلقاها التطبيق أبدًا.</li>
+          <li><strong>الإشعارات:</strong> تُنشأ على جهازك.</li>
+        </ul>
+
+        <h2 id="ar-support">10. إرسال البيانات إلى الدعم (باختيارك)</h2>
+        <p>
+          يحتفظ التطبيق بسجل أخطاء كامل على جهازك. إذا اخترت أن ترسل إلينا نسخة احتياطية، أو سجل
+          الأخطاء، أو نسخة من بيانات محلك (مثلًا عبر واتساب، أو من التطبيق بعد موافقتك)، فقد تحتوي على
+          بيانات محلك ومعلومات الاتصال. نستعملها فقط لحل مشكلتك.
+        </p>
+
+        <h2 id="ar-sharing">11. من يتلقى بياناتك</h2>
+        <p>لا نبيع بياناتك ولا نؤجرها ولا نتاجر بها. لا يتلقى البيانات إلا هذه الخدمات، للأسباب المذكورة أعلاه:</p>
+        <ul>
+          <li><strong>Supabase</strong> (خادمنا، في الاتحاد الأوروبي): المزامنة السحابية، والحسابات، وسجلات الاستعمال، وتقارير الأخطاء، والآراء، وطلبات الموقع.</li>
+          <li><strong>Google:</strong> Drive الخاص بك (النسخ الاحتياطية)، والدخول بحساب Google، وGoogle Play (التحميل والتحديثات والدفع).</li>
+          <li><strong>Meta:</strong> قياس الإعلانات (القسم 7).</li>
+        </ul>
+        <p>وقد نشارك البيانات أيضًا إذا طلب القانون ذلك، أو لحماية أمان الخدمة.</p>
+
+        <h2 id="ar-retention">12. حفظ بياناتك وحذفها</h2>
+        <ul>
+          <li><strong>على جهازك:</strong> تبقى حتى تحذفها. استعمل «حذف كل البيانات» في التطبيق. في Android، إلغاء تثبيت التطبيق يحذف بياناته. وفي Windows يجب أيضًا حذف مجلد البيانات. والنسخ التي صدّرتها منفصلة. انظر <a class="inline" href="delete-account.html#local">خطوات الحذف من الجهاز</a>.</li>
+          <li><strong>نسخ Google Drive:</strong> احذف بيانات Store Soft المخفية من إعدادات Google Drive. إزالة الإذن لا تحذف الملفات. انظر <a class="inline" href="delete-account.html#backups">خطوات Drive</a>. ويمكنك إزالة إذن Store Soft في أي وقت من <a class="inline" href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</li>
+          <li><strong>حساب المزامنة السحابية وبياناته:</strong> أزل جهازًا أو أوقف المزامنة من التطبيق، أو اطلب منا حذف حسابك وبياناته السحابية: <a class="inline" href="delete-account.html">حذف حسابك وبياناتك</a>.</li>
+          <li><strong>طلبات الموقع ومعلومات اتصال المحل وسجلات الاستعمال والآراء:</strong> نحتفظ بها ما دمنا نحتاجها لمساعدتك ومتابعتك. ويمكنك أن تطلب تصحيحها أو حذفها، حتى دون حساب مزامنة. والمعلومات المرتبطة بطلبك تُحذف معه. انظر <a class="inline" href="delete-account.html#request">طلب الحذف</a>.</li>
+        </ul>
+
+        <h2 id="ar-security">13. الأمان</h2>
+        <p>
+          البيانات المرسلة إلى خادمنا أو إلى Google Drive تمر عبر اتصال HTTPS مشفّر. كلمات المرور والرموز
+          السرية محمية بالترميز (hash). وبيانات كل محل في السحابة منفصلة. لا يوجد نظام آمن 100%، لكن
+          بياناتك تبقى افتراضيًا على جهازك وبين يديك.
+        </p>
+
+        <h2 id="ar-children">14. الأطفال</h2>
+        <p>Store Soft أداة لأصحاب المحلات وعمالهم. وهو غير موجّه للأطفال، ولا نجمع عن علم بيانات الأطفال.</p>
+
+        <h2 id="ar-changes">15. التغييرات</h2>
+        <p>إذا غيّرنا هذه السياسة نغيّر التاريخ في أعلى الصفحة. واستعمالك للتطبيق بعد التغيير يعني قبولك للسياسة الجديدة.</p>
+
+        <h2 id="ar-contact">16. اتصل بنا</h2>
+        <p>
+          لديك سؤال عن بياناتك؟ راسلنا على
+          <a class="inline" href="https://wa.me/213654338649" target="_blank" rel="noopener" dir="ltr">WhatsApp (+213 654 33 86 49)</a>
+          أو عبر البريد <a class="inline" href="mailto:younes.mimene@gmail.com">younes.mimene@gmail.com</a>.
+        </p>
+      </article>
     </div>
   </main>
 
@@ -439,47 +602,39 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="index.html">
+          <a class="brand" href="index.html" data-legal-home="">
             <span class="mark">S</span>
-            <span class="name">Store Soft<small>Store management for shops</small></span>
+            <span class="name">Store Soft<small data-legal-t="tagline">Store management for shops</small></span>
           </a>
-          <p class="about">Offline-first point-of-sale &amp; store management built for Algerian shops.</p>
+          <p class="about" data-legal-t="about">Offline-first point-of-sale &amp; store management built for shops.</p>
         </div>
         <div class="footer-col">
-          <h4>Product</h4>
-          <a href="index.html#features">Features</a>
-          <a href="index.html#backup">Drive backup</a>
-          <a href="index.html#pricing">Pricing</a>
-          <a href="index.html#download">Download</a>
+          <h4 data-legal-t="product">Product</h4>
+          <a href="index.html#features" data-legal-home="#features" data-legal-t="features">Features</a>
+          <a href="index.html#backup" data-legal-home="#backup" data-legal-t="drive">Drive backup</a>
+          <a href="index.html#pricing" data-legal-home="#pricing" data-legal-t="pricing">Pricing</a>
+          <a href="index.html#download" data-legal-home="#download" data-legal-t="download">Download</a>
         </div>
         <div class="footer-col">
-          <h4>Legal</h4>
-          <a href="privacy.html">Privacy Policy</a>
-          <a href="terms.html">Terms of Service</a>
-          <a href="delete-account.html">Delete your data</a>
+          <h4 data-legal-t="legal">Legal</h4>
+          <a href="privacy.html" data-legal-t="privacyPolicy">Privacy Policy</a>
+          <a href="terms.html" data-legal-t="termsOfService">Terms of Service</a>
+          <a href="delete-account.html" data-legal-t="deleteData">Delete your data</a>
         </div>
         <div class="footer-col">
-          <h4>Contact</h4>
+          <h4 data-legal-t="contact">Contact</h4>
           <a href="https://wa.me/213654338649" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="mailto:younes.mimene@gmail.com">Email support</a>
+          <a href="mailto:younes.mimene@gmail.com" data-legal-t="email">Email support</a>
           <a href="https://github.com/dzstoredzd/dz-store-management" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="year">2026</span> Store Soft. All rights reserved.</span>
-        <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="delete-account.html">Delete your data</a></span>
+        <span>© <span id="year">2026</span> Store Soft. <span data-legal-t="rights">All rights reserved.</span></span>
+        <span><a href="privacy.html" data-legal-t="privacy">Privacy</a> · <a href="terms.html" data-legal-t="terms">Terms</a> · <a href="delete-account.html" data-legal-t="deleteData">Delete your data</a></span>
       </div>
     </div>
   </footer>
 
-  <script>
-    var nav = document.getElementById('nav');
-    var toggle = document.getElementById('navToggle');
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="legal.js?v=20261029"></script>
 </body>
 </html>
